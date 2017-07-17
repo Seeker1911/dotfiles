@@ -6,15 +6,15 @@ set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 "set term=xterm-256color
 set term=screen-256color
-if &term == "screen"
-    set t_Co=256
-endif
+set t_Co=256
 set termencoding=utf-8
 set modelines=0 " fix security exploits
 set wildmenu " autocomplete
 set relativenumber " Numbers lines relative to current line
 set undofile " creates .un file with redo actions even after closing
-let mapleader = "," " set leader key to comma
+set backupdir=~/.backup
+ " set leader key to comma
+let mapleader = ","
 
 " Python specific
 " enable syntax highlighting
@@ -45,7 +45,7 @@ set showmatch
 set textwidth=79
 
 " enable all Python syntax highlighting features
-let python_highlight_all = 1
+let python_highlight_all=1
 " End Python specific
 
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS - See more at: https://docs.oseems.com/general/application/vim/auto-complete-javascript#sthash.kpKthHb3.dpuf

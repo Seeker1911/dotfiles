@@ -5,6 +5,7 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$
 export LSCOLORS=ExFxBxDxCxegedabagacad
 # symlinks -----------------------------------------------------------------------------------------------
 export rasberry="ssh pi@10.0.0.135"
+alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'
 alias tmux='tmux -2'
 alias scratch='vim scratchpad.sh'
@@ -32,12 +33,12 @@ PATH="$HOME/bin:$PATH"
 PATH="${PATH}:/usr/local/sbin"
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+#PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 PATH="$PATH:/Users/michaelmead/Documents/Programming/historian"
 PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local"
 # added by Anaconda3 4.2.0 installer
-PATH="/Users/michaelmead/anaconda/bin:$PATH"
+# PATH="/Users/michaelmead/anaconda/bin:$PATH"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
 export PATH
@@ -53,3 +54,12 @@ export PATH
 #powerline-daemon -q 
 #. /anaconda/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
 
+
+#
+# Hack to get python 2.7
+#
+export PYTHON27_HOME=/Library/Frameworks/Python.framework/Versions/2.7
+export PATH=$PYTHON27_HOME/bin:$PATH
+
+#
+#-- End of Hack

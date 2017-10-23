@@ -5,6 +5,7 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$
 export LSCOLORS=ExFxBxDxCxegedabagacad
 # symlinks -----------------------------------------------------------------------------------------------
 export rasberry="ssh pi@10.0.0.135"
+alias python='python3'
 alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'
 alias tmux='tmux -2'
@@ -29,13 +30,13 @@ alias hist="/Users/michaelmead/Documents/Programming/historian/hist"
 export hist import >> ~/.profile
 
 # PATH ------------------------------------------------------------------------------------------------------------------
-PATH="$HOME/bin:$PATH"
+#PATH="$HOME/bin:$PATH"
 PATH="${PATH}:/usr/local/sbin"
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 #PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 PATH="$PATH:/Users/michaelmead/Documents/Programming/historian"
-PATH="${PATH}:/usr/local/sbin"
+#PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local"
 # added by Anaconda3 4.2.0 installer
 # PATH="/Users/michaelmead/anaconda/bin:$PATH"
@@ -58,8 +59,11 @@ export PATH
 #
 # Hack to get python 2.7
 #
-export PYTHON27_HOME=/Library/Frameworks/Python.framework/Versions/2.7
-export PATH=$PYTHON27_HOME/bin:$PATH
+#export PYTHON27_HOME=/Library/Frameworks/Python.framework/Versions/2.7
+#export PATH=$PATH:$PYTHON27_HOME/bin
 
 #
 #-- End of Hack
+
+# added by Anaconda3 5.0.0 installer
+export PATH="/Users/michaelmead/anaconda3/bin:$PATH"

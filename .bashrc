@@ -5,11 +5,13 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$
 export LSCOLORS=ExFxBxDxCxegedabagacad
 # symlinks -----------------------------------------------------------------------------------------------
 export rasberry="ssh pi@10.0.0.135"
+# use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
+alias vim='/usr/local/bin/vim'
 alias python='python3'
 alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'
 alias tmux='tmux -2'
-alias scratch='vim scratchpad.sh'
+alias scratch='vim ~/Documents/Programming/scratchpad.sh'
 export TERM=screen-256color
 # set up alias for icloud drive
 alias icloud='cd /Library/Mobile Documents/com~apple~CloudDocs'
@@ -42,6 +44,7 @@ PATH="${PATH}:/usr/local"
 # PATH="/Users/michaelmead/anaconda/bin:$PATH"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
+PATH="/usr/local/bin:$PATH"
 export PATH
 
 # PYENV ----------------------------------------------------------------------------------------------------------------------

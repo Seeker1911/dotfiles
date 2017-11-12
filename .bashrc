@@ -12,7 +12,10 @@ alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'
 alias tmux='tmux -2'
 alias scratch='vim ~/Documents/Programming/scratchpad.sh'
-export TERM=screen-256color
+# tmux screen colors.
+# export TERM=screen-256color
+# bash/vim screen colors.
+# export TERM=xterm-256color
 # set up alias for icloud drive
 alias icloud='cd /Library/Mobile Documents/com~apple~CloudDocs'
 # shell history ignores repeat commands

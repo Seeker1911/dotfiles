@@ -2,7 +2,9 @@
 # Command Line color prompts ------------------------------------------------------------------------------
 export CLICOLOR=1
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
-export LSCOLORS=ExFxBxDxCxegedabagacad
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+# for dark background
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # symlinks -----------------------------------------------------------------------------------------------
 export rasberry="ssh pi@10.0.0.135"
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
@@ -30,6 +32,12 @@ alias l.='ls -d .*'
 alias clu='cd ~/Documents/Programming'
 
 export monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
+# vimspectr colortheme
+[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210curve-dark 
+# return to bash colorscheme after vim exit (if different)
+vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210curve-dark;  clear; }
+# set directory colors
+#eval `dircolors ~/.vimspectr-shell/dircolors`
 # historian ------------------------------------------------------------------------------------------------------------
 alias hist="/Users/michaelmead/Documents/Programming/historian/hist"
 export hist import >> ~/.profile

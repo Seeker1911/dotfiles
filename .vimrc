@@ -165,6 +165,16 @@ syntax on
 " colorscheme vimspectrHS-B H=hue, S=saturation, B=background
 " vimspectr carbonized
 let g:vimspectr60flat_dark_StatusLine = 'orange'
-colorscheme vimspectr60flat-dark
+" my default dark theme.
+"colorscheme vimspectr60flat-dark
+"simplify light theme"
+"colorscheme vimspectrgrey-light
+" carbonized
+"let g:vimspectr60flat_dark_StatusLine = 'orange'
+"colorscheme vimspectr60flat-dark 
+" forgotten
 "let g:vimspectr210curve_dark_StatusLine = 'red'
 "colorscheme vimspectr210curve-dark 
+" office
+colorscheme vimspectr60flat-dark 
+

@@ -1,7 +1,8 @@
 # customize display --------------------------------------------------------------------------------------
 # Command Line color prompts ------------------------------------------------------------------------------
 export CLICOLOR=1
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
+export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 #export LSCOLORS=ExFxBxDxCxegedabagacad
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

@@ -20,23 +20,27 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " on-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" Using a non-master branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'sheerun/vim-polyglot'
+Plug 'junegunn/fzf.vim'
+Plug 'guns/xterm-color-table.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'simnalamburt/vim-mundo'
+" using a non-master branch
+" plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 "
-" " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" Plug 'fatih/vim-go', { 'tag': '*' }
+" " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+" plug 'fatih/vim-go', { 'tag': '*' }
 "
-" " Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+" " plugin options
+" plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 "
-" " Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" " plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "
-" " Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
+" " unmanaged plugin (manually installed and updated)
+" plug '~/my-prototype-plugin'
 "
-" " Initialize plugin system
+" " initialize plugin system
 call plug#end()
 
 " use tab completion in completor vim 
@@ -57,7 +61,7 @@ let g:airline#extensions#ale#enabled = 1
 
 " set commands for preferred general settings ---------------------
 
-filetype off                  " required
+filetype on                   " required
 set nocompatible              " required
 " dont select numbers in selection
 set mouse=a
@@ -73,7 +77,6 @@ set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf-8
 set modelines=0 " fix security exploits
 set wildmenu " autocomplete command menu
-set relativenumber " Numbers lines relative to current line
 set undofile " creates .un file with redo actions even after closing
 set backupdir=~/.backup
 " set leader key to comma
@@ -82,9 +85,16 @@ let mapleader = ","
 syntax enable
 " show line numbers
 set number
+set ruler
+set list
+set noswapfile
+set infercase
+set lazyredraw
+set scrolloff=3
 
-" What does this do????????????????????????
+
 hi NonText ctermbg=NONE
+highlight PmenuSel ctermbg=5
 set omnifunc=syntaxcomplete#Complete
 " use system clipboard on OSX
 set clipboard=unnamed
@@ -92,6 +102,7 @@ set clipboard=unnamed
 set wrap linebreak nolist
 " enable folding
 set foldenable
+set undodir=~/.backup
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
@@ -102,7 +113,7 @@ nnoremap <space> za
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 
 " clear the higlight when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+nnoremap <CR> :nohlsearch<cr>
 
 " save on focus lost
 au FocusLost * :wa
@@ -150,6 +161,8 @@ set autoindent
 
 " filetype specific settings ----------------------------------------
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+" use help command for help files (:h )
+autocmd FileType help setlocal keywordprg=:help
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS

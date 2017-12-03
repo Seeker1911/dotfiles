@@ -82,3 +82,5 @@ export PATH
 
 # added by Anaconda3 5.0.0 installer
 export PATH="/Users/michaelmead/anaconda3/bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

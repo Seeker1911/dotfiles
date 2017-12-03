@@ -81,7 +81,6 @@ set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf-8
 set modelines=0 " fix security exploits
 set wildmenu " autocomplete command menu
-set undofile " creates .un file with redo actions even after closing
 set backupdir=~/.backup
 " set leader key to comma
 let mapleader = ","

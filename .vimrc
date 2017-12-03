@@ -20,8 +20,12 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " on-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" git in vim
+Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
+" fuzzy finder everywhere
 Plug 'junegunn/fzf.vim'
+" see xterm color table 
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'simnalamburt/vim-mundo'

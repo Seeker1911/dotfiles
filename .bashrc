@@ -40,7 +40,7 @@ vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210curve-dark;  clear; }
 # set directory colors
 #eval `dircolors ~/.vimspectr-shell/dircolors`
 # historian ------------------------------------------------------------------------------------------------------------
-alias hist="/Users/michaelmead/Documents/Programming/historian/hist"
+alias hist="$HOME/Documents/Programming/historian/hist"
 export hist import >> ~/.profile
 
 # PATH ------------------------------------------------------------------------------------------------------------------
@@ -49,11 +49,11 @@ PATH="${PATH}:/usr/local/sbin"
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 #PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-PATH="$PATH:/Users/michaelmead/Documents/Programming/historian"
+PATH="$PATH:$HOME/Documents/Programming/historian"
 #PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local"
 # added by Anaconda3 4.2.0 installer
-# PATH="/Users/michaelmead/anaconda/bin:$PATH"
+# PATH="$HOME/anaconda/bin:$PATH"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
@@ -81,6 +81,6 @@ export PATH
 #-- End of Hack
 
 # added by Anaconda3 5.0.0 installer
-export PATH="/Users/michaelmead/anaconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

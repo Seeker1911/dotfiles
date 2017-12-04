@@ -163,7 +163,7 @@ set autoindent
 " End Python specific
 
 " filetype specific settings ----------------------------------------
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
 " use help command for help files (:h )
 autocmd FileType help setlocal keywordprg=:help
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS

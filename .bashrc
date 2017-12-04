@@ -44,43 +44,16 @@ alias hist="$HOME/Documents/Programming/historian/hist"
 export hist import >> ~/.profile
 
 # PATH ------------------------------------------------------------------------------------------------------------------
-#PATH="$HOME/bin:$PATH"
-PATH="${PATH}:/usr/local/sbin"
-# Setting PATH for Python 3.5
-# The original version is saved in .bash_profile.pysave
-#PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-PATH="$PATH:$HOME/Documents/Programming/historian"
-#PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local"
-# added by Anaconda3 4.2.0 installer
-# PATH="$HOME/anaconda/bin:$PATH"
+PATH="${PATH}:/usr/local/sbin"
+PATH="/usr/local/bin:$PATH"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
-PATH="/usr/local/bin:$PATH"
-export PATH
-
-# PYENV ----------------------------------------------------------------------------------------------------------------------
-# COMMENTING OUT PYENV TO TEST ANACONDA COMPATABILITY >>>>>>>>>>>>>>>>>>>>>>>>
-#export PYENV_ROOT="$HOME/.pyenv"
-
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-#POWERLINE --------------------------------------------------
-#powerline-daemon -q 
-#. /anaconda/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
-
-
-#
-# Hack to get python 2.7
-#
-#export PYTHON27_HOME=/Library/Frameworks/Python.framework/Versions/2.7
-#export PATH=$PATH:$PYTHON27_HOME/bin
-
-#
-#-- End of Hack
-
+# Setting PATH for Python 3.5
+# The original version is saved in .bash_profile.pysave
 # added by Anaconda3 5.0.0 installer
 export PATH="$HOME/anaconda3/bin:$PATH"
-
+PATH="$PATH:$HOME/Documents/Programming/historian"
+export PATH
+# fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

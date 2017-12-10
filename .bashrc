@@ -52,7 +52,9 @@ PATH="$HOME/bin:$PATH"
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 # added by Anaconda3 5.0.0 installer
-export PATH="$HOME/anaconda3/bin:$PATH"
+if [ -d $HOME/anaconda3 ]; then
+	export PATH="$HOME/anaconda3/bin:$PATH"
+fi
 PATH="$PATH:$HOME/Documents/Programming/historian"
 export PATH
 # fuzzy finder in bash 

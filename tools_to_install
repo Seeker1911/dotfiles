@@ -1,4 +1,6 @@
 brew
 vim V8.0
+reattach-to-user-namespace
 tmux
 mycli
+httpie

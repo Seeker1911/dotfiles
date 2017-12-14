@@ -45,7 +45,10 @@ vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210curve-dark;  clear; }
 # historian ------------------------------------------------------------------------------------------------------------
 alias hist="$HOME/Documents/Programming/historian/hist"
 export hist import >> ~/.profile
-
+#Pandoc/lynx markdown function-----------------------------------------------------------------------------------------------------------------------
+rmd(){
+    pandoc $1 | lynx -stdin
+}
 # PATH ------------------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/sbin"

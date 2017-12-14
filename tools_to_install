@@ -1,6 +1,18 @@
-brew
-vim V8.0
-reattach-to-user-namespace
-tmux
-mycli
+cmake
+fzf
+gdbm
+gettext
 httpie
+libevent
+lynx
+mycli
+mysql
+openssl
+pandoc
+python
+python3
+readline
+reattach-to-user-namespace
+sqlite
+tmux
+xz

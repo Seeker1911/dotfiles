@@ -25,6 +25,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 " fuzzy finder everywhere
 Plug 'junegunn/fzf.vim'
+" grep search everywhere.
+Plug 'mhinz/vim-grepper'
 " see xterm color table 
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-gitgutter'

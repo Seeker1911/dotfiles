@@ -7,10 +7,12 @@ export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # symlinks -----------------------------------------------------------------------------------------------
+export MYSQL_ROOT_PASSWORD='root'
+export FZF_DEFAULT_OPTS='--height 40% --border'
 export rasberry="ssh pi@10.0.0.135"
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vim='/usr/local/bin/vim'
-alias python='python3'
+alias python='python'
 alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'
 alias tmux='tmux -2'
@@ -31,7 +33,8 @@ alias ll='ls -l'
 alias l.='ls -d .*'
 # set alias for programming folder
 alias clu='cd ~/Documents/Programming'
-
+source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
+source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 export monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
 # vimspectr colortheme
 [ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210curve-dark 
@@ -59,3 +62,4 @@ PATH="$PATH:$HOME/Documents/Programming/historian"
 export PATH
 # fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH="/usr/local/opt/gettext/bin:$PATH"

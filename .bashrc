@@ -17,6 +17,8 @@ alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'
 alias tmux='tmux -2'
 alias scratch='vim ~/Documents/Programming/scratchpad.sh'
+alias dunnet='emacs -batch -l dunnet'
+alias play='ls /usr/share/emacs/22.1/lisp/play' 
 # tmux screen colors.
 # export TERM=screen-256color
 # bash/vim screen colors.

@@ -98,7 +98,8 @@ set noswapfile
 set infercase
 set lazyredraw
 set scrolloff=3
-
+" ensure ctags can read subdirectories
+set tags=tags;/
 
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
@@ -130,10 +131,10 @@ inoremap jj <ESC>
 
 " Python specific -------------------------------------------
 au BufNewFile,BufRead *.py
-    \set tabstop=4
-    \set softtabstop=4
-    \set shiftwidth=4
-    \set textwidth=79
+    \set tabstop=2
+    \set softtabstop=2
+    \set shiftwidth=2
+    \set textwidth=80
     \set expandtab
     \set autoindent
     \set fileformat=unix

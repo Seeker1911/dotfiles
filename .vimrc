@@ -114,6 +114,7 @@ set undodir=~/.backup
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
+set hlsearch
 " use space to fold/unfold
 nnoremap <space> za
 

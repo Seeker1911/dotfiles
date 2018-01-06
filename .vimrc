@@ -51,7 +51,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " " initialize plugin system
 call plug#end()
 
-" use tab completion in completor vim 
+" use tab _tompletion in completor vim 
+let g:completor_python_binary = 'usr/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
@@ -61,9 +62,12 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Set this in your vimrc file to disabling highlighting in w0rp/ale
 let g:ale_set_highlights = 0
-
+" use flake8 from virtualenv if it exists.
+let g:ale_python_flake8_glabal = 1
 " Set this. Airline will handle the rest in statusline for messages
 let g:airline#extensions#ale#enabled = 1
+" lint
+let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
 
 " end plug in specific ---------------------------------------------
 

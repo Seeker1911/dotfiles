@@ -1,0 +1,5 @@
+{
+	"scripts": {
+	     "build": "themer -c themer-colors-default -t themer-vim -t themer-wallpaper-block-wave -o gen"
+	    }
+}	    

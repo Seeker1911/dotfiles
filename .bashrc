@@ -19,6 +19,7 @@ alias tmux='tmux -2'
 alias scratch='vim ~/Documents/Programming/scratchpad.sh'
 alias dunnet='emacs -batch -l dunnet'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
+alias weather='ansiweather -l Nashville,TN -u imperial'
 # tmux screen colors.
 # export TERM=screen-256color
 # bash/vim screen colors.

@@ -7,6 +7,8 @@ export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # symlinks -----------------------------------------------------------------------------------------------
+export GOPATH=$HOME/code/go
+export GOBIN=$HOME/code/go/bin
 export MYSQL_ROOT_PASSWORD='root'
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export rasberry="ssh pi@10.0.0.135"

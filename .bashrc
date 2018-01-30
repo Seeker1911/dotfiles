@@ -21,7 +21,7 @@ alias tmux='tmux -2'
 alias scratch='vim ~/Documents/Programming/scratchpad.sh'
 alias dunnet='emacs -batch -l dunnet'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
-alias weather='curl wttr.in/Nashville'
+alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
 # tmux screen colors.
 # export TERM=screen-256color

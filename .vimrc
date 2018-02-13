@@ -14,12 +14,10 @@ Plug 'maralla/completor.vim'
 " fix colorscheme problems 
 Plug 'godlygeek/csapprox'
 " " Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 " " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " on-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " git in vim
 Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
@@ -192,7 +190,6 @@ syntax on
 " vimspectr carbonized
 let g:vimspectr60flat_dark_StatusLine = 'orange'
 " my default dark theme.
-"colorscheme vimspectr60flat-dark
 "simplify light theme"
 "colorscheme vimspectrgrey-light
 " carbonized
@@ -202,5 +199,7 @@ let g:vimspectr60flat_dark_StatusLine = 'orange'
 "let g:vimspectr210curve_dark_StatusLine = 'red'
 "colorscheme vimspectr210curve-dark 
 " office
-colorscheme vimspectr60flat-dark 
+"colorscheme vimspectr60flat-dark 
+colorscheme vimspectrgrey-dark
+"colorscheme vimspectr60-dark
 

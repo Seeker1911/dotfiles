@@ -275,7 +275,7 @@ set -g @plugin 'tmux-plugins/tmux-logging'
 # set -g @plugin 'git@github.com/user/plugin'
 # set -g @plugin 'git@bitbucket.com/user/plugin'
 # save bash pane history
-set -g @resurrect-save-shell-history 'on'
+set -g @resurrect-save-shell-history 'off'
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
 

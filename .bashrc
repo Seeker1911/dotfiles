@@ -13,6 +13,7 @@ export MYSQL_ROOT_PASSWORD='root'
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export rasberry="ssh pi@10.0.0.135"
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
+alias vtop='vtop --theme brew'
 alias vim='/usr/local/bin/vim'
 alias python='python'
 alias server="python -m simpleHTTPServer 8000"
@@ -43,7 +44,7 @@ source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
 source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 export monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
 # vimspectr colortheme
-[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210curve-dark 
+#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210curve-dark 
 # return to bash colorscheme after vim exit (if different)
 vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210curve-dark;  clear; }
 # set directory colors

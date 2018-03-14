@@ -11,7 +11,7 @@ export GOPATH=$HOME/code/go
 export GOBIN=$HOME/code/go/bin
 export MYSQL_ROOT_PASSWORD='root'
 export FZF_DEFAULT_OPTS='--height 40% --border'
-export rasberry="ssh pi@10.0.0.135"
+alias rasberry="ssh pi@10.0.0.135"
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vtop='vtop --theme brew'
 alias vim='/usr/local/bin/vim'
@@ -62,6 +62,7 @@ PATH="${PATH}:/usr/local/sbin"
 PATH="/usr/local/bin:$PATH"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
+PYTHONPATH="$PYTHONPATH:/usr/local/google_appengine:/usr/local/google_appengine/lib/:/usr/local/google_appengine/lib/yaml/"
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 # added by Anaconda3 5.0.0 installer

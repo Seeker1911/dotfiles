@@ -55,9 +55,6 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
-" toggle nerdtree with ctrl+n
-map <C-n> :NERDTreeToggle<CR>
-
 " Set this in your vimrc file to disabling highlighting in w0rp/ale
 let g:ale_set_highlights = 0
 " use flake8 from virtualenv if it exists.
@@ -71,6 +68,8 @@ let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-reposito
 
 " set commands for preferred general settings ---------------------
 
+" toggle nerdtree with ctrl+n
+map <C-n> :NERDTreeToggle<CR>
 filetype on                   " required
 set nocompatible              " required
 " dont select numbers in selection
@@ -79,11 +78,6 @@ set mouse=a
 set path+=$PWD/** 
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
-"vim colors
-"set term=xterm-256color
-" tmux colors
-" set term=screen-256color
-" set t_Co=256
 set termencoding=utf-8
 set modelines=0 " fix security exploits
 set wildmenu " autocomplete command menu
@@ -102,7 +96,6 @@ set lazyredraw
 set scrolloff=3
 " ensure ctags can read subdirectories
 set tags=tags;/
-
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
 set omnifunc=syntaxcomplete#Complete
@@ -119,60 +112,50 @@ set foldmethod=indent
 set hlsearch
 " use space to fold/unfold
 nnoremap <space> za
-
 " set up proper paste mode and inherit indent from source, then exit paste mode
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
-
 " clear the higlight when hitting return
 nnoremap <CR> :nohlsearch<cr>
-
 " save on focus lost
 au FocusLost * :wa
-
 " remap esc. key to jj
 inoremap jj <ESC>
 
 " Python specific -------------------------------------------
-au BufNewFile,BufRead *.py
-    \set tabstop=2
-    \set softtabstop=2
-    \set shiftwidth=2
-    \set textwidth=80
-    \set expandtab
-    \set autoindent
-    \set fileformat=unix
+" au BufNewFile,BufRead *.py
+"au FileType python 
+"    \set tabstop=2
+"    \set softtabstop=2
+"    \set shiftwidth=2
+"    \set textwidth=80
+"    \set expandtab
+"    \set autoindent
+"    \set fileformat=unix
 
 
 " enable all Python syntax highlighting features
 let python_highlight_all=1
-
 " indent when moving to the next line while writing code
 set autoindent
-
-" set tabs to have 4 spaces
-" set ts=4
-
+" set tabs to have 2 spaces
+set ts=2
 " expand tabs into spaces
-" set expandtab
-
-" when using the >> or << commands, shift lines by 4 spaces
-" set shiftwidth=4
-
+set expandtab
+" when using the >> or << commands, shift lines by 2 spaces
+set shiftwidth=2
 " show a visual line under the cursor's current line
-" set cursorline
-
+set cursorline
 " show the matching part of the pair for [] {} and ()
-" set showmatch
-
-" set line width to 79
-" set textwidth=79
-
+set showmatch
+" set line width to 99
+set textwidth=99
 
 " End Python specific
 
 " filetype specific settings ----------------------------------------
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 " use help command for help files (:h )
+autocmd Filetype python match Error /\s\+$/
 autocmd FileType help setlocal keywordprg=:help
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags

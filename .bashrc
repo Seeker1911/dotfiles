@@ -43,18 +43,23 @@ source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
 source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 export monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
 # vimspectr colortheme
-[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210curve-dark 
+[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210-dark 
 # return to bash colorscheme after vim exit (if different)
-vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210curve-dark;  clear; }
+vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; }
 # set directory colors
 #eval `dircolors ~/.vimspectr-shell/dircolors`
 # historian ------------------------------------------------------------------------------------------------------------
 alias hist="$HOME/Documents/Programming/historian/hist"
 export hist import >> ~/.profile
 #Pandoc/lynx markdown function-----------------------------------------------------------------------------------------------------------------------
+# Read a markdown file in Lync.
 rmd(){
     pandoc $1 | lynx -stdin
 }
+
+# generate a random password
+randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}
+
 # PATH ------------------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/sbin"

@@ -68,8 +68,10 @@ let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-reposito
 
 " set commands for preferred general settings ---------------------
 
+" set leader key to comma
+let mapleader = ","
 " toggle nerdtree with ctrl+n
-map <C-n> :NERDTreeToggle<CR>
+map <leader> :NERDTreeToggle<CR>
 filetype on                   " required
 set nocompatible              " required
 " dont select numbers in selection
@@ -77,13 +79,11 @@ set mouse=a
 " recursively search in working directory for file names. 
 set path+=$PWD/** 
 set encoding=utf-8
-set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf-8
+set fillchars+=stl:\ ,stlnc:\
 set modelines=0 " fix security exploits
 set wildmenu " autocomplete command menu
 set backupdir=~/.backup
-" set leader key to comma
-let mapleader = ","
 " enable syntax highlighting
 syntax enable
 " show line numbers
@@ -91,7 +91,10 @@ set number
 set ruler
 set list
 set noswapfile
-set infercase
+set ignorecase      "ignore caps when searching
+set smartcase       "unless a capital is used
+set infercase       "smart auto-completion casing
+set wildignorecase  "ignore case on files and directories
 set lazyredraw
 set scrolloff=3
 " ensure ctags can read subdirectories
@@ -120,6 +123,11 @@ nnoremap <CR> :nohlsearch<cr>
 au FocusLost * :wa
 " remap esc. key to jj
 inoremap jj <ESC>
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Python specific -------------------------------------------
 " au BufNewFile,BufRead *.py
@@ -171,7 +179,7 @@ syntax on
 " https://github.com/nightsense/vimspectr
 " colorscheme vimspectrHS-B H=hue, S=saturation, B=background
 " vimspectr carbonized
-let g:vimspectr60flat_dark_StatusLine = 'orange'
+" let g:vimspectr60flat_dark_StatusLine = 'orange'
 " my default dark theme.
 "simplify light theme"
 "colorscheme vimspectrgrey-light
@@ -184,5 +192,7 @@ let g:vimspectr60flat_dark_StatusLine = 'orange'
 " office
 "colorscheme vimspectr60flat-dark 
 colorscheme vimspectrgrey-dark
-"colorscheme vimspectr60-dark
+"colorscheme vimspectrgrey-light
+"colorscheme vimspectr60-dark  
+"
 

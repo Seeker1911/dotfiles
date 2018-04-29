@@ -1,4 +1,3 @@
-# customize display --------------------------------------------------------------------------------------
 # Command Line color prompts ------------------------------------------------------------------------------
 export CLICOLOR=1
 #export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
@@ -6,14 +5,16 @@ export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 #export LSCOLORS=ExFxBxDxCxegedabagacad
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-# symlinks -----------------------------------------------------------------------------------------------
 export GOPATH=$HOME/code/go
 export GOBIN=$HOME/code/go/bin
 export MYSQL_ROOT_PASSWORD='root'
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export rasberry="ssh pi@10.0.0.135"
+# aliases -----------------------------------------------------------------------------------------------
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vim='/usr/local/bin/vim'
+# use hub as default for git https://hub.github.com/
+alias git=hub
 alias python='python'
 alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'
@@ -23,36 +24,28 @@ alias dunnet='emacs -batch -l dunnet'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
-# tmux screen colors.
-# export TERM=screen-256color
-# bash/vim screen colors.
-# export TERM=xterm-256color
-# set up alias for icloud drive
 alias icloud='cd /Library/Mobile Documents/com~apple~CloudDocs'
-# shell history ignores repeat commands
-export HISTCONTROL=ig-noredups
-# increase command history to 1000 (default is 500)
-export HISTSIZE=1000
+# forwar port of server to client browser
+alias monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
 # display long format directory
 alias ll='ls -l'
 #display all dir/ entries that begin with a '.'
 alias l.='ls -d .*'
-# set alias for programming folder
-alias clu='cd ~/Documents/Programming'
+# shell history ignores repeat commands
+export HISTCONTROL=ig-noredups
+# increase command history to 1000 (default is 500)
+export HISTSIZE=5000
+# google cloud SDK
 source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
 source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
-export monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
+# colorschemes ---------------------------------------------------------------------------------
 # vimspectr colortheme
-[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210-dark 
-# return to bash colorscheme after vim exit (if different)
+[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
 vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; }
-# set directory colors
-#eval `dircolors ~/.vimspectr-shell/dircolors`
-# historian ------------------------------------------------------------------------------------------------------------
+# historian -------------------------------------------------------------------------------------------------
 alias hist="$HOME/Documents/Programming/historian/hist"
-export hist import >> ~/.profile
-#Pandoc/lynx markdown function-----------------------------------------------------------------------------------------------------------------------
-# Read a markdown file in Lync.
+export hist import 
+#Pandoc/lynx markdown function-----------------------------------------------------------------------------
 rmd(){
     pandoc $1 | lynx -stdin
 }
@@ -60,7 +53,7 @@ rmd(){
 # generate a random password
 randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}
 
-# PATH ------------------------------------------------------------------------------------------------------------------
+# PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/sbin"
 PATH="/usr/local/bin:$PATH"

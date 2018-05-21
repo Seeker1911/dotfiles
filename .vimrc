@@ -140,27 +140,29 @@ nnoremap <C-H> <C-W><C-H>
 "    \set autoindent
 "    \set fileformat=unix
 
-
-" enable all Python syntax highlighting features
-let python_highlight_all=1
-" indent when moving to the next line while writing code
-set autoindent
-" set tabs to have 2 spaces
-set ts=2
-" expand tabs into spaces
-set expandtab
-" when using the >> or << commands, shift lines by 2 spaces
-set shiftwidth=2
-" show a visual line under the cursor's current line
-set cursorline
-" show the matching part of the pair for [] {} and ()
-set showmatch
-" set line width to 99
-set textwidth=99
+"" enable all Python syntax highlighting features
+"let python_highlight_all=1
+"" indent when moving to the next line while writing code
+"set autoindent
+"" set tabs to have 2 spaces
+"set ts=2
+"" set soft tabstop
+"set sts=2
+"" expand tabs into spaces
+"set expandtab
+"" when using the >> or << commands, shift lines by 2 spaces
+"set shiftwidth=2
+"" show a visual line under the cursor's current line
+"set cursorline
+"" show the matching part of the pair for [] {} and ()
+"set showmatch
+"" set line width to 99
+"set textwidth=99
 
 " End Python specific
 
 " filetype specific settings ----------------------------------------
+filetype plugin indent on
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 " use help command for help files (:h )
 autocmd Filetype python match Error /\s\+$/

@@ -9,7 +9,7 @@ export GOPATH=$HOME/code/go
 export GOBIN=$HOME/code/go/bin
 export MYSQL_ROOT_PASSWORD='root'
 export FZF_DEFAULT_OPTS='--height 40% --border'
-export rasberry="ssh pi@10.0.0.135"
+alias rasberry="ssh pi@10.0.0.135"
 # aliases -----------------------------------------------------------------------------------------------
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vim='/usr/local/bin/vim'
@@ -31,6 +31,8 @@ alias monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
 alias ll='ls -l'
 #display all dir/ entries that begin with a '.'
 alias l.='ls -d .*'
+# source rdr venv
+alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
 # shell history ignores repeat commands
 export HISTCONTROL=ig-noredups
 # increase command history to 1000 (default is 500)
@@ -39,7 +41,7 @@ export HISTSIZE=5000
 source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
 source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 # colorschemes ---------------------------------------------------------------------------------
-# vimspectr colortheme
+# vimspectr colortheme save when exiting vim
 [ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
 vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; }
 # historian -------------------------------------------------------------------------------------------------
@@ -52,6 +54,10 @@ rmd(){
 
 # generate a random password
 randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}
+
+# source secret files --------------------------------------------------------------------------
+[ -f ~/.secrets/.env_vars.sh ] && source ~/.secrets/.env_vars.sh
+[ -f ~/.secrets/.alpha_vantage_key.sh ] && source ~/.secrets/.alpha_vantage_key.sh
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"

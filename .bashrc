@@ -3,13 +3,14 @@ export CLICOLOR=1
 #export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
 export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 #export LSCOLORS=ExFxBxDxCxegedabagacad
+export EDITOR='vim'
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export GOPATH=$HOME/code/go
 export GOBIN=$HOME/code/go/bin
 export MYSQL_ROOT_PASSWORD='root'
 export FZF_DEFAULT_OPTS='--height 40% --border'
-alias rasberry="ssh pi@10.0.0.135"
+export rasberry="ssh pi@10.0.0.135"
 # aliases -----------------------------------------------------------------------------------------------
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vim='/usr/local/bin/vim'
@@ -40,6 +41,7 @@ export HISTSIZE=5000
 # google cloud SDK
 source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
 source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
+source ~/.secrets/secrets
 # colorschemes ---------------------------------------------------------------------------------
 # vimspectr colortheme save when exiting vim
 [ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
@@ -54,10 +56,6 @@ rmd(){
 
 # generate a random password
 randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}
-
-# source secret files --------------------------------------------------------------------------
-[ -f ~/.secrets/.env_vars.sh ] && source ~/.secrets/.env_vars.sh
-[ -f ~/.secrets/.alpha_vantage_key.sh ] && source ~/.secrets/.alpha_vantage_key.sh
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"

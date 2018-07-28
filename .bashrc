@@ -74,3 +74,10 @@ export PATH
 # fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="/usr/local/opt/gettext/bin:$PATH"
+#MYSQL=/usr/local/mysql/bin
+#export PATH=$PATH:$MYSQL
+export DYLD_LIBRARY_PATH=/usr/local/opt/mysql/lib:$DYLD_LIBRARY_PATH
+#sudo ln -s /usr/local/opt/mysql/lib/libmysqlclient.21.dylib /usr/local/lib/libmysqlclient.20.dylib
+#sudo ln -s /usr/local/opt/mysql/lib/libmysqlclient.21.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib
+#ln -s /usr/local/opt/mysql/lib/libmysqlclient.21.dylib /usr/local/lib/libmysqlclient.20.dylib
+ln -s /usr/local/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib

@@ -10,7 +10,7 @@ Plug 'w0rp/ale'
 Plug 'nightsense/vimspectr'
 Plug 'jnurmine/Zenburn'
 Plug 'nvie/vim-flake8'
-Plug 'maralla/completor.vim'
+"Plug 'maralla/completor.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'pangloss/vim-javascript'
 " fix colorscheme problems
@@ -52,7 +52,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
 
 " use tab _tompletion in completor vim
-let g:completor_python_binary = 'usr/bin/python'
+"let g:completor_python_binary = 'usr/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"

@@ -2,7 +2,7 @@
 export CLICOLOR=1
 #export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
 export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
-#export LSCOLORS=ExFxBxDxCxegedabagacad
+export LSCOLORS=ExFxBxDxCxegedabagacad
 export EDITOR='vim'
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -39,8 +39,9 @@ export HISTCONTROL=ig-noredups
 # increase command history to 1000 (default is 500)
 export HISTSIZE=5000
 # google cloud SDK
-source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
-source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
+#source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
+#source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
+#source /Users/meadm1/code/google-cloud-sdk/bin
 source ~/.secrets/secrets
 # colorschemes ---------------------------------------------------------------------------------
 # vimspectr colortheme save when exiting vim
@@ -74,10 +75,29 @@ export PATH
 # fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+# Things I've used to fix mysql and GAE stuff for historical record.
 #MYSQL=/usr/local/mysql/bin
 #export PATH=$PATH:$MYSQL
-export DYLD_LIBRARY_PATH=/usr/local/opt/mysql/lib:$DYLD_LIBRARY_PATH
+#export DYLD_LIBRARY_PATH=/usr/local/opt/mysql/lib:$DYLD_LIBRARY_PATH
 #sudo ln -s /usr/local/opt/mysql/lib/libmysqlclient.21.dylib /usr/local/lib/libmysqlclient.20.dylib
 #sudo ln -s /usr/local/opt/mysql/lib/libmysqlclient.21.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib
 #ln -s /usr/local/opt/mysql/lib/libmysqlclient.21.dylib /usr/local/lib/libmysqlclient.20.dylib
 ln -s /usr/local/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib
+#export CLOUDSDK_ROOT_DIR="~/code/google-cloud-sdk"
+#export APPENGINE_HOME="${CLOUDSDK_ROOT_DIR}/platform/appengine-java-sdk"
+#export GAE_SDK_ROOT="${CLOUDSDK_ROOT_DIR}/platform/google_appengine"
+#
+## The next line enables Java libraries for Google Cloud SDK
+#export CLASSPATH="${APPENGINE_HOME}/lib":${CLASSPATH}
+#
+## The next line enables Python libraries for Google Cloud SDK
+#export PYTHONPATH=${PYTHONPATH}:${GAE_SDK_ROOT}:${GAE_SDK_ROOT}/lib:${GAE_SDK_ROOT}/lib/yaml-3.10/yaml
+
+#LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/meadm1/google-cloud-sdk/path.bash.inc' ]; then source '/Users/meadm1/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/meadm1/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/meadm1/google-cloud-sdk/completion.bash.inc'; fi

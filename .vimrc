@@ -147,6 +147,22 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " filetype specific settings ----------------------------------------
+
+function! SetupEnvironment()
+  let l:path = expand('%:p')
+  if l:path =~ '~/code/raw-data-repository'
+    setlocal expandtab smarttab textwidth=0
+    if &filetype == 'py'
+      setlocal tabstop=2 shiftwidth=2 expandtab textwidth=99
+    else
+      setlocal tabstop=4 shiftwidth=4 expandtab textwidth=99
+    endif
+  elseif l:path =~ '~/code/projects'
+    setlocal tabstop=4 shiftwidth=4 noexpandtab
+  endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
+
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 autocmd!

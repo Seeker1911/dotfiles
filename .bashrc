@@ -34,6 +34,7 @@ alias ll='ls -l'
 alias l.='ls -d .*'
 # source rdr venv
 alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
+alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples'
 # shell history ignores repeat commands
 export HISTCONTROL=ig-noredups
 # increase command history to 1000 (default is 500)
@@ -76,6 +77,7 @@ export PATH
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export GOOGLE_APPLICATION_CREDENTIALS="~/all-of-us-rdr-stable-f3c2d774fd93.json"
 # Things I've used to fix mysql and GAE stuff for historical record.
 #LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
 

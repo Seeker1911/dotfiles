@@ -8,6 +8,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'w0rp/ale'
 " zenburn color schem (add color zenburn to vimrc)
 Plug 'nightsense/vimspectr'
+Plug 'nightsense/snow'
 Plug 'jnurmine/Zenburn'
 Plug 'nvie/vim-flake8'
 "Plug 'maralla/completor.vim'
@@ -88,7 +89,7 @@ highlight PmenuSel ctermbg=5
 au FocusLost * :wa
 " set commands
 set nocompatible              " required
-
+set noundofile
 " dont select numbers in selection
 set mouse=a
 " recursively search in working directory for file names.
@@ -147,21 +148,21 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " filetype specific settings ----------------------------------------
-
-function! SetupEnvironment()
-  let l:path = expand('%:p')
-  if l:path =~ '~/code/raw-data-repository'
-    setlocal expandtab smarttab textwidth=0
-    if &filetype == 'py'
-      setlocal tabstop=2 shiftwidth=2 expandtab textwidth=99
-    else
-      setlocal tabstop=4 shiftwidth=4 expandtab textwidth=99
-    endif
-  elseif l:path =~ '~/code/projects'
-    setlocal tabstop=4 shiftwidth=4 noexpandtab
-  endif
-endfunction
-autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
+au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
+"function! SetupEnvironment()
+"  let l:path = expand('%:p')
+"  if l:path =~ '~/code/raw-data-repository'
+"    setlocal expandtab smarttab textwidth=0
+"    if &filetype == '.py'
+"      setlocal tabstop=2 shiftwidth=2 expandtab textwidth=99
+"    else
+"      setlocal tabstop=4 shiftwidth=4 expandtab textwidth=99
+"    endif
+"  elseif l:path =~ '~/code/projects'
+"    setlocal tabstop=4 shiftwidth=4 noexpandtab
+"  endif
+"endfunction
+"autocmd! BufRead,BufNewFile * call SetupEnvironment()
 
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete

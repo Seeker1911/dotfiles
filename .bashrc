@@ -14,6 +14,7 @@ export rasberry="ssh pi@10.0.0.135"
 # aliases -----------------------------------------------------------------------------------------------
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vim='/usr/local/bin/vim'
+alias mysql@5.7='mysql'
 # use hub as default for git https://hub.github.com/
 alias git=hub
 alias python='python'
@@ -87,5 +88,5 @@ if [ -f '/Users/meadm1/google-cloud-sdk/path.bash.inc' ]; then source '/Users/me
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/meadm1/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/meadm1/google-cloud-sdk/completion.bash.inc'; fi
 if [ ! -L /usr/local/opt/mysql/lib/libmysqlclient.20.dylib ]; then
-	ln -s /usr/local/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib
+	ln -s /usr/local/opt/mysql@5.7/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib 
 fi

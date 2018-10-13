@@ -2,13 +2,12 @@
 export CLICOLOR=1
 #export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
 export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
-export LSCOLORS=ExFxBxDxCxegedabagacad
+#export LSCOLORS=ExFxBxDxCxegedabagacad
 export EDITOR='vim'
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-export GOPATH=$HOME/code/go
-export GOBIN=$HOME/code/go/bin
-export MYSQL_ROOT_PASSWORD='root'
+export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export rasberry="ssh pi@10.0.0.135"
 # aliases -----------------------------------------------------------------------------------------------
@@ -27,18 +26,24 @@ alias play='ls /usr/share/emacs/22.1/lisp/play'
 alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
 alias icloud='cd /Library/Mobile Documents/com~apple~CloudDocs'
-# forwar port of server to client browser
-alias monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com'
-# display long format directory
-alias ll='ls -l'
-#display all dir/ entries that begin with a '.'
-alias l.='ls -d .*'
+alias monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com' # forward port of server to client browser
+alias ll='ls -l' # display long format directory
+alias l.='ls -d .*' #display all dir/ entries that begin with a '.'
+alias lc='ls -c' #List in column mode.
+alias lS='ls -S' #List by size.
+alias ld='ls -d' #List by time and date.
+alias sha='shasum -a 256 ' #Test the checksum of a file.
+alias ping='ping -c 5' #Limit ping to 5 attempts.
+alias www='python -m SimpleHTTPServer 8000' #start python webserver.
+alias speed='speedtest-cli --server 2406 --simple' #run speed test.
+alias ipe='curl ipinfo.io/ip' #Get external ip address
+
 # source rdr venv
 alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
 alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples'
 # shell history ignores repeat commands
 export HISTCONTROL=ig-noredups
-# increase command history to 1000 (default is 500)
+# increase command history (default is 500)
 export HISTSIZE=5000
 # google cloud SDK
 #source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
@@ -62,8 +67,8 @@ randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= 
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
+PATH="${PATH}:/usr/local/bin"
 PATH="${PATH}:/usr/local/sbin"
-PATH="/usr/local/bin:$PATH"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
 # Setting PATH for Python 3.5

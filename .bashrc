@@ -9,7 +9,11 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 40% --border'
-export rasberry="ssh pi@10.0.0.135"
+# shell history ignores repeat commands
+export HISTCONTROL=ig-noredups
+# increase command history (default is 500)
+export HISTSIZE=5000
+
 # aliases -----------------------------------------------------------------------------------------------
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vim='/usr/local/bin/vim'
@@ -27,6 +31,7 @@ alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
 alias icloud='cd /Library/Mobile Documents/com~apple~CloudDocs'
 alias monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@musiccitytalent.com' # forward port of server to client browser
+alias rasberry="ssh pi@10.0.0.135"
 alias ll='ls -l' # display long format directory
 alias l.='ls -d .*' #display all dir/ entries that begin with a '.'
 alias lc='ls -c' #List in column mode.
@@ -43,19 +48,18 @@ fi
 # source rdr venv
 alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
 alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples && cd ../rest-api'
-# shell history ignores repeat commands
-export HISTCONTROL=ig-noredups
-# increase command history (default is 500)
-export HISTSIZE=5000
 # google cloud SDK
 #source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
 #source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 #source /Users/meadm1/code/google-cloud-sdk/bin
 source ~/.secrets/secrets
+
 # colorschemes ---------------------------------------------------------------------------------
-# vimspectr colortheme save when exiting vim
-#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
-#vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; }
+# apply vimspectr theme to shell
+#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210-dark #load vimspectr on shell startup
+#vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; } #restore shell theme on vim exit
+# apply the dark snow theme to your shell
+[ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_light.sh # or use snow_light.sh for light theme
 # historian -------------------------------------------------------------------------------------------------
 alias hist="$HOME/Documents/Programming/historian/hist"
 export hist import 

@@ -75,9 +75,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
-
-
 " end plug in specific ---------------------------------------------
 
 " set leader key to comma
@@ -127,7 +124,10 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 set hlsearch
-
+" set cursor shapes. line/block/underline
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 " maps
 map <leader>n :NERDTreeToggle<CR>
 " use space to fold/unfold
@@ -191,12 +191,44 @@ augroup file_types
 	endif
 augroup END
 
-"------------------------------------------------------
+"colorschemes------------------------------------------------------
 "let g:solarized_termcolors=256
 set t_Co=256
 set background=dark
 syntax on
-colorscheme PaperColor
+set termguicolors "for truecolor support, assuming you have it.
+" you may need the below
+"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" --- nightsense/snow
+colorscheme snow
+" --- papercolor
+" specify options for variant (dark/light) of papercolor theme.
+" transparent_background: 1=terminal background 0=theme background
+"glet g:PaperColor_Theme_Options = {
+"g  \   'theme': {
+"g  \     'default.dark': {
+"g  \       'transparent_background': 1
+"g  \     }
+"g  \   }
+"g  \ }
+"g"Language specific options
+"glet g:PaperColor_Theme_Options = {
+"g\   'language': {
+"g\     'python': {
+"g\       'highlight_builtins' : 1
+"g\     },
+"g\     'cpp': {
+"g\       'highlight_standard_library': 1
+"g\     },
+"g\     'c': {
+"g\       'highlight_builtins' : 1
+"g\     }
+"g\   }
+"g\ }
+"colorscheme PaperColor
+
+" ------------- vimspectr colorscheme 
 " vimspectr methods
 " https://github.com/nightsense/vimspectr
 " colorscheme vimspectrHS-B H=hue, S=saturation, B=background
@@ -211,31 +243,7 @@ colorscheme PaperColor
 " forgotten
 "let g:vimspectr210curve_dark_StatusLine = 'red'
 "colorscheme vimspectr210curve-dark
-" office
-"colorscheme vimspectr60flat-dark
 "colorscheme vimspectrgrey-dark
 "colorscheme vimspectrgrey-light
 "colorscheme vimspectr60-dark
-" specify options for variant (dark/light) of papercolor theme.
-" transparent_background: 1=terminal background 0=theme background
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default.dark': {
-  \       'transparent_background': 1
-  \     }
-  \   }
-  \ }
-"Language specific options
-let g:PaperColor_Theme_Options = {
-\   'language': {
-\     'python': {
-\       'highlight_builtins' : 1
-\     },
-\     'cpp': {
-\       'highlight_standard_library': 1
-\     },
-\     'c': {
-\       'highlight_builtins' : 1
-\     }
-\   }
-\ }
+"colorscheme vimspectr150-dark

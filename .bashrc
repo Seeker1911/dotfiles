@@ -38,7 +38,7 @@ alias www='python -m SimpleHTTPServer 8000' #start python webserver.
 alias speed='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 if [ -d "/Applications/Firefox Developer Edition.app" ]; then
-    alias fire='open -a "/Applications/Firefox Developer Edition.app"'
+    alias fire='open -a "/Applications/Firefox Developer Edition.app" $1'
 fi
 # source rdr venv
 alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
@@ -97,3 +97,12 @@ if [ -f '/Users/meadm1/google-cloud-sdk/completion.bash.inc' ]; then source '/Us
 if [ ! -L /usr/local/opt/mysql/lib/libmysqlclient.20.dylib ]; then
 	ln -s /usr/local/opt/mysql@5.7/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib 
 fi
+
+work() {
+
+    fire https://precisionmedicineinitiative.atlassian.net/secure/RapidBoard.jspa?rapidView=11&projectKey=DA
+    pycharm
+    cd ~/code/raw-data-repository
+    sordr
+}
+

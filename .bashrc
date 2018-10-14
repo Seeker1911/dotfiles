@@ -37,7 +37,9 @@ alias ping='ping -c 5' #Limit ping to 5 attempts.
 alias www='python -m SimpleHTTPServer 8000' #start python webserver.
 alias speed='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
-
+if [ -d "/Applications/Firefox Developer Edition.app" ]; then
+    alias fire='open -a "/Applications/Firefox Developer Edition.app"'
+fi
 # source rdr venv
 alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
 alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples'

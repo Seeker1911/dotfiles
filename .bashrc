@@ -23,6 +23,7 @@ alias vim='/usr/local/bin/vim'
 alias mysql@5.7='mysql'
 # use hub as default for git https://hub.github.com/
 alias git=hub
+alias listen="netstat -nap tcp | grep -i 'listen'"
 alias python='python'
 alias server="python -m simpleHTTPServer 8000"
 alias ls='ls -GFh'

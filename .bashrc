@@ -1,11 +1,12 @@
 # Command Line color prompts ------------------------------------------------------------------------------
-export CLICOLOR=1
 #export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
-export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+# if colorschemes don't overide cli, use these options.
+#export CLICOLOR=1
 #export LSCOLORS=ExFxBxDxCxegedabagacad
-export EDITOR='vim'
 # for dark background
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+#export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 40% --border'
@@ -15,6 +16,8 @@ export HISTCONTROL=ig-noredups
 export HISTSIZE=5000
 
 # aliases -----------------------------------------------------------------------------------------------
+# set to vi keybindings.
+set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 alias vim='/usr/local/bin/vim'
 alias mysql@5.7='mysql'
@@ -59,17 +62,11 @@ source ~/.secrets/secrets
 #[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210-dark #load vimspectr on shell startup
 #vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; } #restore shell theme on vim exit
 # apply the dark snow theme to your shell
-[ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_light.sh # or use snow_light.sh for light theme
+[ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh # or use snow_light.sh for light theme
+
 # historian -------------------------------------------------------------------------------------------------
 alias hist="$HOME/Documents/Programming/historian/hist"
 export hist import 
-#Pandoc/lynx markdown function-----------------------------------------------------------------------------
-rmd(){
-    pandoc $1 | lynx -stdin
-}
-
-# generate a random password
-randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
@@ -102,6 +99,7 @@ if [ ! -L /usr/local/opt/mysql/lib/libmysqlclient.20.dylib ]; then
 	ln -s /usr/local/opt/mysql@5.7/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib 
 fi
 
+# functions to get stuff done
 work() {
 
     fire https://precisionmedicineinitiative.atlassian.net/secure/RapidBoard.jspa?rapidView=11&projectKey=DA
@@ -110,3 +108,10 @@ work() {
     sordr
 }
 
+#Pandoc/lynx markdown function-----------------------------------------------------------------------------
+rmd(){
+    pandoc $1 | lynx -stdin
+}
+
+# generate a random password
+randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}

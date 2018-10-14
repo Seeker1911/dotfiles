@@ -42,7 +42,7 @@ if [ -d "/Applications/Firefox Developer Edition.app" ]; then
 fi
 # source rdr venv
 alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
-alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples'
+alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples && cd ../rest-api'
 # shell history ignores repeat commands
 export HISTCONTROL=ig-noredups
 # increase command history (default is 500)
@@ -54,8 +54,8 @@ export HISTSIZE=5000
 source ~/.secrets/secrets
 # colorschemes ---------------------------------------------------------------------------------
 # vimspectr colortheme save when exiting vim
-[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
-vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; }
+#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
+#vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; }
 # historian -------------------------------------------------------------------------------------------------
 alias hist="$HOME/Documents/Programming/historian/hist"
 export hist import 

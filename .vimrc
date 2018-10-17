@@ -82,8 +82,6 @@ let mapleader = ","
 filetype on                   " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
-" save on focus lost
-au FocusLost * :wa
 " set commands
 set nocompatible              " required
 set noundofile
@@ -146,6 +144,14 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" save on focus lost
+au FocusLost * :wa "Dont need this and below necessarily.
+" Save whenever switching windows or leaving vim. This is useful when running
+" the tests inside vim without having to save all files first.
+au FocusLost,WinLeave * :silent! wa
+
+" Trigger autoread when changing buffers or coming back to vim.
+au FocusGained,BufEnter * :silent! !
 
 " filetype specific settings ----------------------------------------
 au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2

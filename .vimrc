@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align'
 " Python linting and pep checking
 Plug 'w0rp/ale'
+" Make terminal vim and tmux work better with focus events.
+Plug 'tmux-plugins/vim-tmux-focus-events'
 " zenburn color schem (add color zenburn to vimrc)
 Plug 'nightsense/vimspectr'
 Plug 'nightsense/snow'
@@ -82,6 +84,7 @@ let mapleader = ","
 filetype on                   " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
+
 " set commands
 set nocompatible              " required
 set noundofile
@@ -128,14 +131,18 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 " maps
 map <leader>n :NERDTreeToggle<CR>
-" use space to fold/unfold
-nnoremap <space> za
+map <leader>m :MundoToggle<CR>
+map <leader>u :UltiSnipsEdit<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " set up proper paste mode and inherit indent from source, then exit paste mode
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " clear the higlight when hitting return
 nnoremap <CR> :nohlsearch<cr>
+" use space to fold/unfold
+nnoremap <space> za
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
 " remap esc. key to jj
 inoremap jj <ESC>
 inoremap JJ <ESC>

@@ -14,7 +14,9 @@ export FZF_DEFAULT_OPTS='--height 40% --border'
 export HISTCONTROL=ig-noredups
 # increase command history (default is 500)
 export HISTSIZE=5000
-
+# start TMUX by defautl. If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux -2
 # aliases -----------------------------------------------------------------------------------------------
 # set to vi keybindings.
 set -o vi
@@ -26,7 +28,7 @@ alias git=hub
 alias listen="netstat -nap tcp | grep -i 'listen'"
 alias python='python'
 alias server="python -m simpleHTTPServer 8000"
-alias ls='ls -GFh'
+#alias ls='ls -GFh'
 alias tmux='tmux -2'
 alias scratch='vim ~/Documents/Programming/scratchpad.sh'
 alias dunnet='emacs -batch -l dunnet'

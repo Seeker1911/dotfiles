@@ -67,10 +67,6 @@ source ~/.secrets/secrets
 # apply the dark snow theme to your shell
 [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh # or use snow_light.sh for light theme
 
-# historian -------------------------------------------------------------------------------------------------
-alias hist="$HOME/Documents/Programming/historian/hist"
-export hist import 
-
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/bin"
@@ -81,19 +77,19 @@ PATH="$HOME/bin:$PATH"
 # The original version is saved in .bash_profile.pysave
 # added by Anaconda3 5.0.0 installer
 if [ -d $HOME/anaconda3 ]; then
-	export PATH="$HOME/anaconda3/bin:$PATH"
+  PATH="$HOME/anaconda3/bin:$PATH"
 fi
-PATH="$PATH:$HOME/Documents/Programming/historian"
-export PATH
-# fuzzy finder in bash 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export PATH="/usr/local/opt/gettext/bin:$PATH"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
+PATH="/usr/local/opt/gettext/bin:$PATH"
+PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# fuzzy finder in bash 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export GOOGLE_APPLICATION_CREDENTIALS="~/creds.json"
 # Things I've used to fix mysql and GAE stuff for historical record.
 #LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"

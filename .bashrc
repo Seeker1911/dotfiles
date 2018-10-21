@@ -4,7 +4,7 @@
 #export CLICOLOR=1
 #export LSCOLORS=ExFxBxDxCxegedabagacad
 # for dark background
-#export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 export EDITOR='vim'
 export GOPATH=$HOME/go
@@ -14,7 +14,7 @@ export FZF_DEFAULT_OPTS='--height 40% --border'
 export HISTCONTROL=ig-noredups
 # increase command history (default is 500)
 export HISTSIZE=5000
-# start TMUX by defautl. If not running interactively, do not do anything
+# start TMUX by default. If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 [[ -z "$TMUX" ]] && exec tmux -2
 # aliases -----------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ alias git=hub
 alias listen="netstat -nap tcp | grep -i 'listen'"
 alias python='python'
 alias server="python -m simpleHTTPServer 8000"
-#alias ls='ls -GFh'
+alias ls='ls -GFh'
 alias tmux='tmux -2'
 alias scratch='vim ~/Documents/Programming/scratchpad.sh'
 alias dunnet='emacs -batch -l dunnet'
@@ -45,7 +45,7 @@ alias lS='ls -S' #List by size.
 alias ld='ls -d' #List by time and date.
 alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias ping='ping -c 5' #Limit ping to 5 attempts.
-alias www='python -m SimpleHTTPServer 8000' #start python webserver.
+alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speed='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 if [ -d "/Applications/Firefox Developer Edition.app" ]; then
@@ -76,9 +76,9 @@ PATH="$HOME/bin:$PATH"
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 # added by Anaconda3 5.0.0 installer
-if [ -d $HOME/anaconda3 ]; then
-  PATH="$HOME/anaconda3/bin:$PATH"
-fi
+#if [ -d $HOME/anaconda3 ]; then
+#  PATH="$HOME/anaconda3/bin:$PATH"
+#fi
 PATH="/usr/local/opt/gettext/bin:$PATH"
 PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 PYENV_ROOT="$HOME/.pyenv"
@@ -119,3 +119,5 @@ rmd(){
 
 # generate a random password
 randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}
+# Have fun and lolcat EVERYTHING !
+# exec 1> >(lolcat >&2)

@@ -90,7 +90,6 @@ fi
 # fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export GOOGLE_APPLICATION_CREDENTIALS="~/creds.json"
 # Things I've used to fix mysql and GAE stuff for historical record.
 #LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
 

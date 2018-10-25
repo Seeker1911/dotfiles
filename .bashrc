@@ -10,10 +10,15 @@ export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 40% --border'
-# shell history ignores repeat commands
-export HISTCONTROL=ig-noredups
-# increase command history (default is 500)
 export HISTSIZE=5000
+# fix tmux panes history
+shopt -s histappend
+shopt -s histreedit
+shopt -s histverify
+
+HISTCONTROL='ingoreboth'
+PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
+
 # start TMUX by default. If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 [[ -z "$TMUX" ]] && exec tmux -2
@@ -44,6 +49,7 @@ alias lc='ls -c' #List in column mode.
 alias lS='ls -S' #List by size.
 alias ld='ls -d' #List by time and date.
 alias sha='shasum -a 256 ' #Test the checksum of a file.
+alias grep='grep --color -n'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
 alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speed='speedtest-cli --server 2406 --simple' #run speed test.
@@ -110,6 +116,10 @@ work() {
     cd ~/code/raw-data-repository
     sordr
 }
+
+oncall(){
+    fire https://docs.google.com/spreadsheets/d/19perFkhnw99buA4ztU6hT5HxQhAUC3kGVXYxF0NV6yE/
+  }
 
 #Pandoc/lynx markdown function-----------------------------------------------------------------------------
 rmd(){

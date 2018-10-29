@@ -118,7 +118,7 @@ work() {
 }
 
 oncall(){
-    fire https://docs.google.com/spreadsheets/d/19perFkhnw99buA4ztU6hT5HxQhAUC3kGVXYxF0NV6yE/
+    fire https://docs.google.com/spreadsheets/d/19perFkhnw99buA4ztU6hT5HxQhAUC3kGVXYxF0NV6yE/edit?usp=sharing
   }
 
 #Pandoc/lynx markdown function-----------------------------------------------------------------------------

@@ -11,6 +11,7 @@ export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export HISTSIZE=5000
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # fix tmux panes history
 shopt -s histappend
 shopt -s histreedit

@@ -35,7 +35,8 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'simnalamburt/vim-mundo'
 " automatically update tags files that have had 'ctags -R' performed
-Plug 'craigemery/vim-autotag'
+" has error on current version
+"Plug 'craigemery/vim-autotag'
 " using a non-master branch
 " plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 "

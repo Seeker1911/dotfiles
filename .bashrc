@@ -85,7 +85,10 @@ alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_clien
 #source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 #source /Users/meadm1/code/google-cloud-sdk/bin
 source ~/.secrets/secrets
+if [ -f '~/.bin/tmuxinator.bash' ];
+then 
 source ~/.bin/tmuxinator.bash
+fi
 
 # colorschemes ---------------------------------------------------------------------------------
 # apply vimspectr theme to shell

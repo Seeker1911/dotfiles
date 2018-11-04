@@ -1,3 +1,17 @@
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='macos'
+fi
+
+#example
+#if [[ $platform == 'linux' ]]; then
+#alias ls='ls --color=auto'
+#elif [[ $platform == 'macos' ]]; then
+#alias ls='ls -G'
+#fi
 # Command Line color prompts ------------------------------------------------------------------------------
 #export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
 # if colorschemes don't overide cli, use these options.
@@ -6,6 +20,7 @@
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+export SHELL='/bin/bash'
 export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
@@ -34,7 +49,11 @@ alias git=hub
 alias listen="netstat -nap tcp | grep -i 'listen'"
 alias python='python'
 alias server="python -m simpleHTTPServer 8000"
+if [[ $platform == 'linux' ]]; then
+alias ls='ls --color=auto'
+elif [[ $platform == 'macos' ]]; then
 alias ls='ls -GFh'
+fi
 alias tmux='tmux -2'
 alias scratch='vim ~/Documents/Programming/scratchpad.sh'
 alias dunnet='emacs -batch -l dunnet'
@@ -66,6 +85,7 @@ alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_clien
 #source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 #source /Users/meadm1/code/google-cloud-sdk/bin
 source ~/.secrets/secrets
+source ~/.bin/tmuxinator.bash
 
 # colorschemes ---------------------------------------------------------------------------------
 # apply vimspectr theme to shell

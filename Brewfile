@@ -53,10 +53,3 @@ brew "vim"
 brew "zlib"
 # A terminal based graphical activity monitor inspired by gtop and vtop
 brew "cjbassi/gotop/gotop"
-# casks are gui apps
-# Install firefox developer edition
-cask "firefox-developer-edition"
-# Install slack
-cask "slack"
-# Install 1password
-cask "1password"

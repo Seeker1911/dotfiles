@@ -103,12 +103,15 @@ PATH="${PATH}:/usr/local/bin"
 PATH="${PATH}:/usr/local/sbin"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
-# Setting PATH for Python 3.5
-# The original version is saved in .bash_profile.pysave
-# added by Anaconda3 5.0.0 installer
-#if [ -d $HOME/anaconda3 ]; then
-#  PATH="$HOME/anaconda3/bin:$PATH"
-#fi
+
+if [[ $platform == 'linux' ]]; then
+  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+  export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+  PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+fi
+
 PATH="/usr/local/opt/gettext/bin:$PATH"
 PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 PYENV_ROOT="$HOME/.pyenv"
@@ -117,7 +120,37 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# fuzzy finder in bash 
+# from linux bashrc
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+export CLOUD_SDK_REPO=cloud-sdk-jessie
+
+if [[ $platform == 'linux' ]]; then
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    #alias grep='grep --color=auto'
+    #alias fgrep='fgrep --color=auto'
+    #alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+fi
+# end linux bashrc
+
+ #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Things I've used to fix mysql and GAE stuff for historical record.

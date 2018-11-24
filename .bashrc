@@ -24,6 +24,11 @@ export SHELL='/bin/bash'
 export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
+if [[ $platform == 'linux' ]]; then
+  export GOOS=linux
+elif [[ $platform == 'macos' ]]; then
+  export GOOS=mac
+fi
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"

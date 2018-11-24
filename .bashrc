@@ -1,3 +1,4 @@
+# THIS IS A TEST OF WORKING COPY
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then

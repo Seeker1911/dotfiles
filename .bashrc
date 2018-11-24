@@ -49,7 +49,11 @@ fi
 # set to vi keybindings.
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
-alias vim='/usr/local/bin/vim'
+if [[ $platform == 'linux' ]]; then
+  alias vim='/home/linuxbrew/.linuxbrew/bin/vim'
+elif [[ $platform == 'macos' ]]; then
+  alias vim='/usr/local/bin/vim'
+fi
 alias mysql@5.7='mysql'
 # use hub as default for git https://hub.github.com/
 alias git=hub
@@ -91,7 +95,9 @@ alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_clien
 #source /Users/meadm1/code/google-cloud-sdk/completion.bash.inc
 #source /Users/meadm1/code/google-cloud-sdk/path.bash.inc
 #source /Users/meadm1/code/google-cloud-sdk/bin
-source ~/.secrets/secrets
+if [ -f '~/.secrets/secrets' ];then
+  source ~/.secrets/secrets
+fi
 if [ -f '~/.bin/tmuxinator.bash' ];
 then 
 source ~/.bin/tmuxinator.bash

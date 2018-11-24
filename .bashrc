@@ -168,7 +168,7 @@ if [ -f '/Users/meadm1/google-cloud-sdk/path.bash.inc' ]; then source '/Users/me
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/meadm1/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/meadm1/google-cloud-sdk/completion.bash.inc'; fi
-if [ ! -L /usr/local/opt/mysql/lib/libmysqlclient.20.dylib ]; then
+if [ ! -L /usr/local/opt/mysql/lib/libmysqlclient.20.dylib ] && [ -f '/usr/local/opt/mysql/lib/libmysqlclient.20.dylib' ]; then
 	ln -s /usr/local/opt/mysql@5.7/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib 
 fi
 

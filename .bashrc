@@ -1,4 +1,5 @@
 # THIS IS A TEST OF WORKING COPY
+# THIS IS A TEST OF GIT2GO
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then

@@ -41,10 +41,10 @@ HISTCONTROL='ingoreboth'
 PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 
 # start TMUX by default if it exists. If not running interactively, do not do anything
-if command -v tmux &> /dev/null;then 
-[[ $- != *i* ]] && return
-[[ -z "$TMUX" ]] && exec tmux -2
-fi
+#if command -v tmux &> /dev/null;then 
+#[[ $- != *i* ]] && return
+#[[ -z "$TMUX" ]] && exec tmux -2
+#fi
 # aliases -----------------------------------------------------------------------------------------------
 # set to vi keybindings.
 set -o vi

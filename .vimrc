@@ -5,8 +5,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-" Specify a directory for plugins
-" " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -18,6 +16,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'nightsense/vimspectr'
 Plug 'nightsense/snow'
 Plug 'jnurmine/Zenburn'
+" Pythong flake8
 Plug 'nvie/vim-flake8'
 "Plug 'maralla/completor.vim'
 Plug 'NLKNguyen/papercolor-theme'
@@ -40,24 +39,19 @@ Plug 'mhinz/vim-grepper'
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'simnalamburt/vim-mundo'
+" " plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " automatically update tags files that have had 'ctags -R' performed
 " has error on current version
 "Plug 'craigemery/vim-autotag'
 " using a non-master branch
 " plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
-"
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 " plug 'fatih/vim-go', { 'tag': '*' }
-"
 " " plugin options
 " plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-"
-" " plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"
 " " unmanaged plugin (manually installed and updated)
 " plug '~/my-prototype-plugin'
-"
 " " initialize plugin system
 call plug#end()
 
@@ -67,11 +61,11 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
-" Set this in your vimrc file to disabling highlighting in w0rp/ale
+" Disable highlighting in w0rp/ale
 let g:ale_set_highlights = 0
 " use flake8 from virtualenv if it exists.
 let g:ale_python_flake8_glabal = 1
-" Set this. Airline will handle the rest in statusline for messages
+"  Airline will handle the rest in statusline for messages
 let g:airline#extensions#ale#enabled = 1
 " lint
 let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
@@ -86,57 +80,49 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 " end plug in specific ---------------------------------------------
 
-" set leader key to comma
-let mapleader = ","
-filetype on                   " required
+" set options ------------------------------------------------------
+let mapleader = ","	       " set mapleader
+filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
-
-" set commands
-set nocompatible              " required
-set noundofile
-" dont select numbers in selection
-set mouse=a
-" recursively search in working directory for file names.
-set path+=$PWD/**
-set encoding=utf-8
-set termencoding=utf-8
+syntax enable		       " enable syntax highlighting
+set nocompatible	       " required, not vi compatible
+set noundofile		       " don't create undo files
+set mouse=a		       " don't select numbers
+set path+=$PWD/**	       " recursivel search directory for files names
+set encoding=utf-8	       " default encoding
+set termencoding=utf-8	       " default terminal encoding
 set fillchars+=stl:\ ,stlnc:\
-set modelines=0 " fix security exploits
-set wildmenu " autocomplete command menu
-set backupdir=~/.backup
-" enable syntax highlighting
-syntax enable
-" show line numbers
-set number
-set ruler
+set modelines=0		       " fix security exploits
+set wildmenu		       " autocomplete command menu
+set backupdir=~/.backup	       " set backup directory
+set number		       " show line numbers
+set ruler		       " show ruler
 set list
-set noswapfile
-set ignorecase      "ignore caps when searching
-set smartcase       "unless a capital is used
-set infercase       "smart auto-completion casing
-set wildignorecase  "ignore case on files and directories
+set noswapfile                " don't make swapfiles
+set ignorecase		      " ignore caps when searching
+set smartcase		      " unless a capital is used
+set infercase		      " smart auto-completion casing
+set wildignorecase	      " ignore case on files and directories
 set lazyredraw
 set scrolloff=3
-" ensure ctags can read subdirectories
-set tags=tags;/
-set omnifunc=syntaxcomplete#Complete
-" use system clipboard on OSX
-set clipboard=unnamed
-" better word wrapping
-set wrap linebreak nolist
-" enable folding
-set foldenable
-set undodir=~/.backup
+set tags=tags;/               " ctags read subdirectories
+set clipboard=unnamed          " use system clipboard (OS X)
+set wrap linebreak nolist      " improved word wrapping
+set foldenable                 " enable folding
+set undodir=~/.backup          " set vims undo directory
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
-set hlsearch
-" set cursor shapes. line/block/underline
+set hlsearch                   "highlight searches
+set omnifunc=syntaxcomplete#Complete
+
+                               " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-" maps
+
+" maps -----------------------------------------------------
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :MundoToggle<CR>
 map <leader>u :UltiSnipsEdit<CR>
@@ -169,20 +155,6 @@ au FocusGained,BufEnter * :silent! !
 
 " filetype specific settings ----------------------------------------
 au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
-"function! SetupEnvironment()
-"  let l:path = expand('%:p')
-"  if l:path =~ '~/code/raw-data-repository'
-"    setlocal expandtab smarttab textwidth=0
-"    if &filetype == '.py'
-"      setlocal tabstop=2 shiftwidth=2 expandtab textwidth=99
-"    else
-"      setlocal tabstop=4 shiftwidth=4 expandtab textwidth=99
-"    endif
-"  elseif l:path =~ '~/code/projects'
-"    setlocal tabstop=4 shiftwidth=4 noexpandtab
-"  endif
-"endfunction
-"autocmd! BufRead,BufNewFile * call SetupEnvironment()
 
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete

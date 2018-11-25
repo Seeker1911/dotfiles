@@ -91,7 +91,6 @@ alias dunnet='emacs -batch -l dunnet'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
-alias monitor='ssh -L 5000:127.0.0.1:5000 michael_mead@seeker-studios.com' # forward port of server to client browser
 alias rasberry="ssh pi@10.0.0.135"
 alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color -n'

@@ -104,14 +104,8 @@ alias sordr='source $HOME/code/raw-data-repository/rdr_client/venv/bin/activate'
 alias generate_data='cd $HOME/code/raw-data-repository/rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples && cd ../rest-api'
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
-if [ -f '~/.secrets/secrets' ];then
-  source ~/.secrets/secrets
-fi
-if [ -f '~/.bin/tmuxinator.bash' ];
-then 
-source ~/.bin/tmuxinator.bash
-fi
-
+[ -f ~/.secrets/secrets ] && source ~/.secrets/secrets
+[ -f ~/.bin/tmuxinator.bash ] && source ~/.bin/tmuxinator.bash
 #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

@@ -159,6 +159,12 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+if [[ $platform == 'macos' ]]; then
+  # Fix for:
+  #bash: __bp_precmd_invoke_cmd: command not found
+  #bash: __bp_interactive_mode: command not found
+  unset PROMPT_COMMAND
+fi
 
 # FUNCTIONS --------------------------------------------------------------------------------------------------
 Work() {

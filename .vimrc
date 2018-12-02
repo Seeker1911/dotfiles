@@ -8,6 +8,8 @@ endif
 call plug#begin('~/.vim/plugged')
 " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
+" Go support : Run :GoInstallBinaries
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 " Python linting and pep checking
 Plug 'w0rp/ale'
 " Make terminal vim and tmux work better with focus events.

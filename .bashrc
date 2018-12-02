@@ -137,6 +137,7 @@ fi
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
+PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:/usr/local/bin"
 PATH="${PATH}:/usr/local/sbin"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS

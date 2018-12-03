@@ -30,7 +30,7 @@ if [[ $platform == 'linux' ]]; then
   export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
   export CLOUD_SDK_REPO=cloud-sdk-jessie
 elif [[ $platform == 'macos' ]]; then
-  export GOOS=mac
+  export GOOS=darwin
 fi
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export HISTSIZE=5000

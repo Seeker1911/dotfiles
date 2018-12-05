@@ -50,13 +50,15 @@ export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 #fi
 
 # ALIASES -----------------------------------------------------------------------------------------------
+# use neovim by default
 # set to vi keybindings.
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 if [[ $platform == 'linux' ]]; then
   alias vim='/home/linuxbrew/.linuxbrew/bin/vim'
 elif [[ $platform == 'macos' ]]; then
-  alias vim='/usr/local/bin/vim'
+  #alias vim='/usr/local/bin/vim'
+  alias vim='nvim'
 fi
 alias mysql@5.7='mysql'
 # use hub as default for git https://hub.github.com/
@@ -167,9 +169,9 @@ if [[ $platform == 'macos' ]]; then
 fi
 
 # FUNCTIONS --------------------------------------------------------------------------------------------------
-Work() {
+work() {
     fire https://precisionmedicineinitiative.atlassian.net/secure/RapidBoard.jspa?rapidView=11&projectKey=DA
-    pycharm
+    pycharm 1>/dev/null 2>&1
     cd ~/code/raw-data-repository
     sordr
 }
@@ -187,3 +189,4 @@ rmd(){
 randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-16};echo;}
 # Have fun and lolcat EVERYTHING !
 # exec 1> >(lolcat >&2)
+

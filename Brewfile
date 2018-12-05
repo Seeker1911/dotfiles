@@ -49,6 +49,8 @@ brew "reattach-to-user-namespace"
 brew "tmux"
 # Vi 'workalike' with many additional features
 brew "vim"
+# install neovim
+brew "neovim"
 # General-purpose lossless data-compression library
 brew "zlib"
 # A terminal based graphical activity monitor inspired by gtop and vtop

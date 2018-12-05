@@ -55,7 +55,7 @@ export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 if [[ $platform == 'linux' ]]; then
-  alias vim='/home/linuxbrew/.linuxbrew/bin/vim'
+  alias vim='/home/linuxbrew/.linuxbrew/bin/nvim'
 elif [[ $platform == 'macos' ]]; then
   #alias vim='/usr/local/bin/vim'
   alias vim='nvim'

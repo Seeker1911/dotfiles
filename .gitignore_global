@@ -4,3 +4,9 @@
 node_modules
 bower_components
 npm-debug.log
+.DS_Store
+*.idea
+*venv*
+tags
+dev_appservers_logs.db*
+.python-version

@@ -123,7 +123,8 @@ set omnifunc=syntaxcomplete#Complete
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-
+let g:python_host_prog = '$HOME/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '$HOME/.pyenv/versions/neovim3/bin/python'
 " maps -----------------------------------------------------
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :MundoToggle<CR>

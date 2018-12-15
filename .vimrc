@@ -6,6 +6,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.vim/plugged')
+" Language Server Protocol (LSP) support for vim & neovim
+" see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 " Go support : Run :GoInstallBinaries

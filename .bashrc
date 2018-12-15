@@ -190,3 +190,5 @@ randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= 
 # Have fun and lolcat EVERYTHING !
 # exec 1> >(lolcat >&2)
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

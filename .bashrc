@@ -36,6 +36,7 @@ export FZF_DEFAULT_OPTS='--height 40% --border'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # fix tmux panes history
+# append to history file instead of overwrite on exit.
 shopt -s histappend
 shopt -s histreedit
 shopt -s histverify
@@ -95,7 +96,7 @@ alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
 alias rasberry="ssh pi@10.0.0.135"
 alias sha='shasum -a 256 ' #Test the checksum of a file.
-alias grep='grep --color -n'
+alias grep='grep --color'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
 alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speed='speedtest-cli --server 2406 --simple' #run speed test.

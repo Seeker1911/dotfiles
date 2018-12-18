@@ -17,9 +17,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 Plug 'w0rp/ale'
 " Make terminal vim and tmux work better with focus events.
 Plug 'tmux-plugins/vim-tmux-focus-events'
-" zenburn color schem (add color zenburn to vimrc)
+" zenburn color scheme
 Plug 'nightsense/vimspectr'
+" snow colorscheme
 Plug 'nightsense/snow'
+" colorscheme from this guy
+Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plug 'jnurmine/Zenburn'
 " Pythong flake8
 Plug 'nvie/vim-flake8'

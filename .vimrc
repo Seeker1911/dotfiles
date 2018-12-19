@@ -9,11 +9,9 @@ call plug#begin('~/.vim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
-" Python linting and pep checking
+" linting and pep checking
 Plug 'w0rp/ale'
 " Make terminal vim and tmux work better with focus events.
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -21,60 +19,52 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'nightsense/vimspectr'
 " snow colorscheme
 Plug 'nightsense/snow'
-" colorscheme from this guy
+" more colorschemes
 Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plug 'jnurmine/Zenburn'
-" Pythong flake8
-Plug 'nvie/vim-flake8'
-"Plug 'maralla/completor.vim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'pangloss/vim-javascript'
 " fix colorscheme problems
 Plug 'godlygeek/csapprox'
-" " Any valid git URL is allowed
-" " Multiple Plug commands can be written in a single line using | separators
+" Pythong flake8
+Plug 'nvie/vim-flake8'
+" syntax highlighting for js
+Plug 'pangloss/vim-javascript'
+" ultisnips and vim-smippets for completion
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" on-demand loading
+" on-demand loading of nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " git in vim
 Plug 'tpope/vim-fugitive'
+" language pack
 Plug 'sheerun/vim-polyglot'
 " fuzzy finder everywhere
 Plug 'junegunn/fzf.vim'
-" grep search everywhere.
-Plug 'mhinz/vim-grepper'
 " see xterm color table
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'simnalamburt/vim-mundo'
 " " plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" distraction free writing
+Plug 'junegunn/goyo.vim'
 " automatically update tags files that have had 'ctags -R' performed
-" has error on current version
-"Plug 'craigemery/vim-autotag'
+Plug 'craigemery/vim-autotag'
+" go completion
+Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " using a non-master branch
-" plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
+" plug 'name/repo', { 'branch': 'stable' }
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" plug 'fatih/vim-go', { 'tag': '*' }
-" " plugin options
-" plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-" " unmanaged plugin (manually installed and updated)
-" plug '~/my-prototype-plugin'
-" " initialize plugin system
+" plug 'name/repo', { 'tag': 'v.20150303', 'rtp': 'vim' }
 call plug#end()
 
-" use tab _tompletion in completor vim
-"let g:completor_python_binary = 'usr/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 " Disable highlighting in w0rp/ale
-let g:ale_set_highlights = 0
+let g:ale_set_highlights = 1
 " use flake8 from virtualenv if it exists.
-let g:ale_python_flake8_glabal = 1
-"  Airline will handle the rest in statusline for messages
-let g:airline#extensions#ale#enabled = 1
+let g:ale_python_flake8_global = 1
 " lint
 let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
 " ultisnips
@@ -95,7 +85,6 @@ hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
 syntax enable		       " enable syntax highlighting
 set nocompatible	       " required, not vi compatible
-set noundofile		       " don't create undo files
 set mouse=a		       " don't select numbers
 set path+=$PWD/**	       " recursivel search directory for files names
 set encoding=utf-8	       " default encoding
@@ -118,7 +107,8 @@ set tags=tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
 set wrap linebreak nolist      " improved word wrapping
 set foldenable                 " enable folding
-set undodir=~/.backup          " set vims undo directory
+set undofile
+set undodir=~/.vim/undo        " set vims undo directory
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
@@ -135,6 +125,9 @@ let g:python3_host_prog = '$HOME/.pyenv/versions/neovim3/bin/python'
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :MundoToggle<CR>
 map <leader>u :UltiSnipsEdit<CR>
+map <leader>f :Rg<CR>
+"buffers from fzf (start typing to filter list)
+map <leader>b :Buffers<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " set up proper paste mode and inherit indent from source, then exit paste mode
@@ -148,7 +141,7 @@ map <Leader>= <C-w>=
 " remap esc. key to jj
 inoremap jj <ESC>
 inoremap JJ <ESC>
-"split navigations
+"split navigations, doesn't work with tmux.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -164,6 +157,10 @@ au FocusGained,BufEnter * :silent! !
 
 " filetype specific settings ----------------------------------------
 au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
+
+
+" call flake8 on write, default is F-7 to run manually
+autocmd BufWritePost *.py call Flake8()
 
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -248,3 +245,17 @@ colorscheme snow
 "colorscheme vimspectrgrey-light
 "colorscheme vimspectr60-dark
 "colorscheme vimspectr150-dark
+
+function! ProseMode()
+call goyo#execute(0, [])
+set spell noci nosi noai nolist noshowmode noshowcmd
+set complete+=s
+set bg=light
+if !has('gui_running')
+  let g:solarized_termcolors=256
+endif
+colors vimspectrgrey-light
+endfunction
+
+command! ProseMode call ProseMode()
+nmap \p :ProseMode<CR>

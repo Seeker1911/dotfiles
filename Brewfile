@@ -55,3 +55,5 @@ brew "neovim"
 brew "zlib"
 # A terminal based graphical activity monitor inspired by gtop and vtop
 brew "cjbassi/gotop/gotop"
+# ack for searching
+brew "ack"

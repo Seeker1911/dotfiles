@@ -33,6 +33,7 @@ elif [[ $platform == 'macos' ]]; then
   export GOOS=darwin
 fi
 export FZF_DEFAULT_OPTS='--height 40% --border'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smartcase --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # fix tmux panes history
@@ -193,3 +194,9 @@ randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= 
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+git_log() {  
+hash=$(git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |  fzf | awk '{print $1}')
+echo $hash | xclip
+git showtool $hash
+}

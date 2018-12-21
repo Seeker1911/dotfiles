@@ -30,7 +30,7 @@ Plug 'nvie/vim-flake8'
 " syntax highlighting for js
 Plug 'pangloss/vim-javascript'
 " ultisnips and vim-smippets for completion
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " on-demand loading of nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " git in vim
@@ -119,8 +119,8 @@ set omnifunc=syntaxcomplete#Complete
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-let g:python_host_prog = '$HOME/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '$HOME/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
 " maps -----------------------------------------------------
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :MundoToggle<CR>
@@ -259,3 +259,27 @@ endfunction
 
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
+
+" coc.nvim functions and settings
+" coc.nvim function to show documentation
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)

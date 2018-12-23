@@ -46,14 +46,16 @@ export HISTCONTROL='ingoreboth'
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 
 # start TMUX by default if it exists. If not running interactively, do not do anything
-#if command -v tmux &> /dev/null;then 
-#[[ $- != *i* ]] && return
-#[[ -z "$TMUX" ]] && exec tmux -2
-#fi
+if [[ $platform == 'linux' ]]; then
+  if command -v tmux &> /dev/null;then 
+    [[ $- != *i* ]] && return
+    [[ -z "$TMUX" ]] && exec tmux -2
+  fi
+fi
 
 # ALIASES -----------------------------------------------------------------------------------------------
 # use neovim by default
-# set to vi keybindings.
+# set shell to vi keybindings.
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 if [[ $platform == 'linux' ]]; then
@@ -100,7 +102,7 @@ alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
 alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
-alias speed='speedtest-cli --server 2406 --simple' #run speed test.
+alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 
 # source rdr venv
@@ -157,6 +159,7 @@ fi
 
 PATH="/usr/local/opt/gettext/bin:$PATH"
 PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -193,7 +196,6 @@ randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= 
 # exec 1> >(lolcat >&2)
 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 git_log() {  
 hash=$(git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |  fzf | awk '{print $1}')

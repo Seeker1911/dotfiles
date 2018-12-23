@@ -125,6 +125,7 @@ let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :MundoToggle<CR>
 map <leader>u :UltiSnipsEdit<CR>
+" ripgrep is controlled by Coc.nvim but must still be installed seperatly.
 map <leader>f :Rg<CR>
 "buffers from fzf (start typing to filter list)
 map <leader>b :Buffers<CR>

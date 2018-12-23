@@ -57,3 +57,5 @@ brew "zlib"
 brew "cjbassi/gotop/gotop"
 # ack for searching
 brew "ack"
+# ripgrep for faster searching
+brew "ripgrep"

@@ -468,45 +468,38 @@ function randomString {
     echo $(</dev/urandom tr -dc A-Za-z0-9 | head -c $LEN) # generate a random string
 }
 
-Get started in the Linode Cloud.
-Overview
 
-Plans & Pricing
-Features
-Add-Ons
-Managed
-Professional Services
 
-Resources
+work() {
+    fire https://precisionmedicineinitiative.atlassian.net/secure/RapidBoard.jspa?
+rapidView=11&projectKey=DA
+    pycharm 1>/dev/null 2>&1
+    cd ~/code/raw-data-repository
+    sordr
+}
 
-Guides & Tutorials
-Speed Test
-Community
-Chat
-System Status
+oncall(){
+    fire https://docs.google.com/spreadsheets/d/19perFkhnw99buA4ztU6hT5HxQhAUC3kGVXYxF0NV6yE/
+edit?usp=sharing
+  }
 
-Company
+#Pandoc/lynx markdown function
+rmd(){
+    pandoc $1 | lynx -stdin
+}
 
-About Us
-Blog
-Press
-Referral System
-Careers
+# generate a random password
+randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${1:-
+16};echo;}
+# Have fun and lolcat EVERYTHING !
+# exec 1> >(lolcat >&2)
 
-Legal
 
-Customer Agreement
-Terms of Service
-Privacy Policy
-Acceptable Use Policy
 
-Contact Us
+git_log() {
+hash=$(git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |  fzf |
+awk '{print $1}')
+echo $hash | xclip
+git showtool $hash
+}
 
-855-4-LINODE
-(855-454-6633)
-Intl.: +1 609-380-7100
-Email us
-
-© 2018 Linode, LLC
-Security
-Standards & Compliance

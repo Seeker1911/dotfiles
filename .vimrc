@@ -51,6 +51,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'craigemery/vim-autotag'
 " go completion
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'davidhalter/jedi-vim'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
@@ -76,6 +77,33 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+" coc.nvim functions and settings
+" coc.nvim function to show documentation
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
 " end plug in specific ---------------------------------------------
 
 " set options ------------------------------------------------------
@@ -261,26 +289,3 @@ endfunction
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
 
-" coc.nvim functions and settings
-" coc.nvim function to show documentation
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)

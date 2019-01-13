@@ -64,6 +64,7 @@ elif [[ $platform == 'macos' ]]; then
   #alias vim='/usr/local/bin/vim'
   alias vim='nvim'
 fi
+alias pybug="python -m pdb -c continue"
 alias mysql@5.7='mysql'
 # use hub as default for git https://hub.github.com/
 alias git=hub

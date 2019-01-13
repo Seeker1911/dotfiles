@@ -58,16 +58,11 @@ Plug 'davidhalter/jedi-vim'
 " plug 'name/repo', { 'tag': 'v.20150303', 'rtp': 'vim' }
 call plug#end()
 
+let mapleader = ","	       " set mapleader
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
-" Disable highlighting in w0rp/ale
-let g:ale_set_highlights = 1
-" use flake8 from virtualenv if it exists.
-let g:ale_python_flake8_global = 1
-" lint
-let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
 " ultisnips
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -78,8 +73,15 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" Ale settings
+let g:ale_set_highlights = 0
+"let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " coc.nvim functions and settings
-" coc.nvim function to show documentation
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -90,8 +92,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
-
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -107,7 +107,6 @@ nmap <leader>rn <Plug>(coc-rename)
 " end plug in specific ---------------------------------------------
 
 " set options ------------------------------------------------------
-let mapleader = ","	       " set mapleader
 filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
@@ -141,6 +140,7 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 set hlsearch                   "highlight searches
+filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
                                " set cursor shapes. line/block/underline
@@ -150,6 +150,7 @@ let &t_EI = "\<Esc>[2 q"
 let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
 " maps -----------------------------------------------------
+map ; :Files<CR> " open files with RG.
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :MundoToggle<CR>
 map <leader>u :UltiSnipsEdit<CR>
@@ -187,12 +188,13 @@ au FocusGained,BufEnter * :silent! !
 " filetype specific settings ----------------------------------------
 au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
 
+let g:flake8_show_in_gutter=1
+" use flake8 from virtualenv if it exists.
+let g:ale_python_flake8_global = 0
 
 " call flake8 on write, default is F-7 to run manually
 autocmd BufWritePost *.py call Flake8()
 
-filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
 autocmd!
 augroup file_types
 	autocmd!
@@ -229,32 +231,6 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " --- nightsense/snow
 colorscheme snow
-" --- papercolor
-" specify options for variant (dark/light) of papercolor theme.
-" transparent_background: 1=terminal background 0=theme background
-"glet g:PaperColor_Theme_Options = {
-"g  \   'theme': {
-"g  \     'default.dark': {
-"g  \       'transparent_background': 1
-"g  \     }
-"g  \   }
-"g  \ }
-"g"Language specific options
-"glet g:PaperColor_Theme_Options = {
-"g\   'language': {
-"g\     'python': {
-"g\       'highlight_builtins' : 1
-"g\     },
-"g\     'cpp': {
-"g\       'highlight_standard_library': 1
-"g\     },
-"g\     'c': {
-"g\       'highlight_builtins' : 1
-"g\     }
-"g\   }
-"g\ }
-"colorscheme PaperColor
-
 " ------------- vimspectr colorscheme 
 " vimspectr methods
 " https://github.com/nightsense/vimspectr

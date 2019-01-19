@@ -9,10 +9,6 @@ call plug#begin('~/.vim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-"Plug 'autozimu/LanguageClient-neovim', {
-"\ 'branch': 'next',
-"\ 'do': 'bash install.sh',
-"\ }
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 " linting and pep checking
@@ -29,12 +25,8 @@ Plug 'jnurmine/Zenburn'
 Plug 'NLKNguyen/papercolor-theme'
 " fix colorscheme problems
 Plug 'godlygeek/csapprox'
-" Pythong flake8
-Plug 'nvie/vim-flake8'
-" syntax highlighting for js
-Plug 'pangloss/vim-javascript'
 " ultisnips and vim-smippets for completion
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " on-demand loading of nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " git in vim
@@ -47,7 +39,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'simnalamburt/vim-mundo'
-" " plugin outside ~/.vim/plugged with post-update hook
+" plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " distraction free writing
 Plug 'junegunn/goyo.vim'
@@ -55,7 +47,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'craigemery/vim-autotag'
 " go completion
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-Plug 'davidhalter/jedi-vim'
 " Better python folding
 Plug 'tmhedberg/SimpylFold'
 " using a non-master branch
@@ -139,6 +130,7 @@ let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-reposito
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+let b:ale_linters = ['pyflakes', 'flake9', 'pylint']
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],

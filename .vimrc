@@ -9,6 +9,10 @@ call plug#begin('~/.vim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+"Plug 'autozimu/LanguageClient-neovim', {
+"\ 'branch': 'next',
+"\ 'do': 'bash install.sh',
+"\ }
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 " linting and pep checking
@@ -52,46 +56,57 @@ Plug 'craigemery/vim-autotag'
 " go completion
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'davidhalter/jedi-vim'
+" Better python folding
+Plug 'tmhedberg/SimpylFold'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 " plug 'name/repo', { 'tag': 'v.20150303', 'rtp': 'vim' }
 call plug#end()
 
+" maps -----------------------------------------------------
 let mapleader = ","	       " set mapleader
+" open files with RG.
+map ; :Files<CR>
+nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>m :MundoToggle<CR>
+map <leader>u :UltiSnipsEdit<CR>
+" ripgrep is controlled by Coc.nvim but must still be installed seperately.
+map <leader>f :Rg<CR>
+"buffers from fzf (start typing to filter list)
+map <leader>b :Buffers<CR>
+" surround word with "
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+" set up proper paste mode and inherit indent from source, then exit paste mode
+map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+" clear the higlight when hitting return
+nnoremap <CR> :nohlsearch<cr>
+" use space to fold/unfold
+nnoremap <space> za
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
+" remap esc. key to jj
+inoremap jj <ESC>
+inoremap JJ <ESC>
+"split navigations, doesn't work with tmux.
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" resize vim windows
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+" Plugin maps
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-d> <Plug>(ale_go_to_definition)
+nmap <silent> <C-h> <Plug>(ale_hover)
+nmap <silent> <C-i> <Plug>(ale_detail)
 
-" ultisnips
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" Ale settings
-let g:ale_set_highlights = 0
-"let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
-" coc.nvim functions and settings
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -103,10 +118,67 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader> rn <Plug>(coc-rename)
+" coc.nvim functions and settings
+" :CocConfig for options
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Plugin settings ------------------------------------------------------
+"
+" ultisnips settings
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Ale settings
+let g:ale_set_highlights = 1
+let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'python': ['black']
+\}
+
+" COC settings
+" start point for auto installing coc-extensions (WIP)
+let s:coc_extensions = [
+\   'coc-css',
+\   'coc-html',
+\   'coc-json',
+\   'coc-eslint',
+\   'coc-prettier',
+\   'coc-tsserver',
+\   'coc-ultisnips',
+\   'coc-pyls'
+\ ]
+
+if exists('*coc#add_extension')
+  call call('coc#add_extension', s:coc_extensions)
+endif
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+let g:flake8_show_in_gutter=1
+let g:ale_python_flake8_global = 1
+
+" simplyfold settings
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_import = 1
 " end plug in specific ---------------------------------------------
 
-" set options ------------------------------------------------------
+" set preferred values ------------------------------------------------------
 filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
@@ -137,7 +209,7 @@ set foldenable                 " enable folding
 set undofile
 set undodir=~/.vim/undo        " set vims undo directory
 set foldlevelstart=10
-set foldnestmax=10
+set foldnestmax=2
 set foldmethod=indent
 set hlsearch                   "highlight searches
 filetype plugin indent on
@@ -149,33 +221,6 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
-" maps -----------------------------------------------------
-map ; :Files<CR> " open files with RG.
-map <leader>n :NERDTreeToggle<CR>
-map <leader>m :MundoToggle<CR>
-map <leader>u :UltiSnipsEdit<CR>
-" ripgrep is controlled by Coc.nvim but must still be installed seperatly.
-map <leader>f :Rg<CR>
-"buffers from fzf (start typing to filter list)
-map <leader>b :Buffers<CR>
-" surround word with "
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-" set up proper paste mode and inherit indent from source, then exit paste mode
-map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
-" clear the higlight when hitting return
-nnoremap <CR> :nohlsearch<cr>
-" use space to fold/unfold
-nnoremap <space> za
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
-" remap esc. key to jj
-inoremap jj <ESC>
-inoremap JJ <ESC>
-"split navigations, doesn't work with tmux.
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 " save on focus lost
 au FocusLost * :wa "Dont need this and below necessarily.
 " Save whenever switching windows or leaving vim. This is useful when running
@@ -187,10 +232,6 @@ au FocusGained,BufEnter * :silent! !
 
 " filetype specific settings ----------------------------------------
 au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
-
-let g:flake8_show_in_gutter=1
-" use flake8 from virtualenv if it exists.
-let g:ale_python_flake8_global = 0
 
 " call flake8 on write, default is F-7 to run manually
 autocmd BufWritePost *.py call Flake8()
@@ -251,6 +292,7 @@ colorscheme snow
 "colorscheme vimspectr60-dark
 "colorscheme vimspectr150-dark
 
+" functions -----------------------------------------------------
 function! ProseMode()
 call goyo#execute(0, [])
 set spell noci nosi noai nolist noshowmode noshowcmd
@@ -264,4 +306,3 @@ endfunction
 
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
-

@@ -503,3 +503,8 @@ echo $hash | xclip
 git showtool $hash
 }
 
+function install_linters {
+pip install python-language-server[all]
+pip install black
+pip install flake8
+}

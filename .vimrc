@@ -208,8 +208,8 @@ highlight ColorColumn ctermbg=232
 let &colorcolumn="100,".join(range(120,999),",")
 
 
-"let g:python_host_prog = '$HOME/.pyenv/versions/neovim2/bin/python'
-"let g:python3_host_prog = '$HOME/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
 " save on focus lost
 au FocusLost * :wa "Dont need this and below necessarily.
 " Save whenever switching windows or leaving vim. This is useful when running

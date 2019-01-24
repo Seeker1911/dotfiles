@@ -303,3 +303,9 @@ endfunction
 
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" https://github.com/vim-airline/vim-airline/wiki/Screenshots
+let g:airline_solarized_bg='dark'
+let g:airline_theme='minimalist'

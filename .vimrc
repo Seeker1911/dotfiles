@@ -25,8 +25,6 @@ Plug 'jnurmine/Zenburn'
 Plug 'NLKNguyen/papercolor-theme'
 " fix colorscheme problems
 Plug 'godlygeek/csapprox'
-" ultisnips and vim-smippets for completion
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " on-demand loading of nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " git in vim
@@ -62,7 +60,6 @@ map ; :Files<CR>
 nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :MundoToggle<CR>
-map <leader>u :UltiSnipsEdit<CR>
 " ripgrep is controlled by Coc.nvim but must still be installed seperately.
 map <leader>f :Rg<CR>
 "buffers from fzf (start typing to filter list)
@@ -115,13 +112,6 @@ au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Plugin settings ------------------------------------------------------
-"
-" ultisnips settings
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " Ale settings
 let g:ale_set_highlights = 1
@@ -137,6 +127,8 @@ let g:ale_fixers = {
 \}
 
 " COC settings
+"let g:coc_snippet_next = '<TAB>'
+"let g:coc_snippet_prev = '<S-TAB>'
 " start point for auto installing coc-extensions (WIP)
 let s:coc_extensions = [
 \   'coc-css',
@@ -175,6 +167,7 @@ hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
 syntax enable		       " enable syntax highlighting
 set nocompatible	       " required, not vi compatible
+set cursorline		       " show cursorline
 set mouse=a		       " don't select numbers
 set path+=$PWD/**	       " recursivel search directory for files names
 set encoding=utf-8	       " default encoding
@@ -210,6 +203,9 @@ set omnifunc=syntaxcomplete#Complete
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+" highlight line 80 and 120+
+highlight ColorColumn ctermbg=232
+let &colorcolumn="100,".join(range(120,999),",")
 let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
 " save on focus lost

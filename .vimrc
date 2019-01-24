@@ -47,6 +47,8 @@ Plug 'craigemery/vim-autotag'
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Better python folding
 Plug 'tmhedberg/SimpylFold'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
@@ -267,7 +269,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " --- nightsense/snow
 colorscheme snow
-" ------------- vimspectr colorscheme 
+" ------------- vimspectr colorscheme
 " vimspectr methods
 " https://github.com/nightsense/vimspectr
 " colorscheme vimspectrHS-B H=hue, S=saturation, B=background

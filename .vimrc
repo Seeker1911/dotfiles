@@ -49,6 +49,7 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvi
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
@@ -207,7 +208,8 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 " highlight line 80 and 120+
 highlight ColorColumn ctermbg=232
-let &colorcolumn="100,".join(range(120,999),",")
+"let &colorcolumn="100,".join(range(120,999),",")
+let &colorcolumn="100"
 
 
 if glob('/Users/meadm1')
@@ -309,3 +311,4 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " https://github.com/vim-airline/vim-airline/wiki/Screenshots
 let g:airline_solarized_bg='dark'
 let g:airline_theme='minimalist'
+let g:tmuxline_preset = 'nightly_fox'

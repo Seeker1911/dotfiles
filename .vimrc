@@ -178,7 +178,6 @@ set termencoding=utf-8	       " default terminal encoding
 set fillchars+=stl:\ ,stlnc:\
 set modelines=0		       " fix security exploits
 set wildmenu		       " autocomplete command menu
-set backupdir=~/.backup	       " set backup directory
 set number		       " show line numbers
 set ruler		       " show ruler
 set list
@@ -198,7 +197,22 @@ set undodir=~/.vim/undo        " set vims undo directory
 set foldlevelstart=10
 set foldnestmax=2
 set foldmethod=indent
-set hlsearch                   "highlight searches
+set hlsearch                     "highlight searches
+set backup                       " enable backups
+set undodir=~/.vim/tmp/undo/     " undo files
+set backupdir=~/.vim/tmp/backup/ " backups
+set directory=~/.vim/tmp/swap/   " swap files
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
@@ -306,9 +320,36 @@ endfunction
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
 
+" Airline and tmuxline ---------------------------------------------------
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " https://github.com/vim-airline/vim-airline/wiki/Screenshots
-let g:airline_solarized_bg='dark'
+let g:airline_minimalist_bg='dark'
 let g:airline_theme='minimalist'
-let g:tmuxline_preset = 'nightly_fox'
+"let g:tmuxline_preset = 'nightly_fox'
+let g:airline#extensions#tmuxline#enabled = 1
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'x'    : '%a',
+      \'y'    : '%R',
+      \'z'    : '#(whoami)'}
+
+"let g:tmuxline_theme = {
+"    \   'a'    : [ 236, 103 ],
+"    \   'b'    : [ 253, 239 ],
+"    \   'c'    : [ 244, 236 ],
+"    \   'x'    : [ 244, 236 ],
+"    \   'y'    : [ 253, 239 ],
+"    \   'z'    : [ 236, 103 ]
+"    \   'win'  : [ 103, 236 ],
+"    \   'cwin' : [ 236, 103 ],
+"    \   'bg'   : [ 244, 236 ],
+"    \ }
+" values represent: [ FG, BG, ATTR ]
+"   FG ang BG are color codes
+"   ATTR (optional) is a comme-delimited string of one or more of bold, dim, underscore, etc. For details refer to 'message-attr attributes' in tmux man page
+
+

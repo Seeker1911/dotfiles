@@ -49,7 +49,7 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvi
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
@@ -326,30 +326,3 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " https://github.com/vim-airline/vim-airline/wiki/Screenshots
 let g:airline_minimalist_bg='dark'
 let g:airline_theme='minimalist'
-"let g:tmuxline_preset = 'nightly_fox'
-let g:airline#extensions#tmuxline#enabled = 1
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'b'    : '#W',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'x'    : '%a',
-      \'y'    : '%R',
-      \'z'    : '#(whoami)'}
-
-"let g:tmuxline_theme = {
-"    \   'a'    : [ 236, 103 ],
-"    \   'b'    : [ 253, 239 ],
-"    \   'c'    : [ 244, 236 ],
-"    \   'x'    : [ 244, 236 ],
-"    \   'y'    : [ 253, 239 ],
-"    \   'z'    : [ 236, 103 ]
-"    \   'win'  : [ 103, 236 ],
-"    \   'cwin' : [ 236, 103 ],
-"    \   'bg'   : [ 244, 236 ],
-"    \ }
-" values represent: [ FG, BG, ATTR ]
-"   FG ang BG are color codes
-"   ATTR (optional) is a comme-delimited string of one or more of bold, dim, underscore, etc. For details refer to 'message-attr attributes' in tmux man page
-
-

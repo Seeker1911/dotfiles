@@ -5,7 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}

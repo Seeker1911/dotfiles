@@ -105,6 +105,8 @@ alias ping='ping -c 5' #Limit ping to 5 attempts.
 alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
+# https://the.exa.website/docs/command-line-options
+alias exa='exa --long --header' #Better listing of files. -a for dotfiles, -G for grid
 
 # source rdr venv
 alias sordr='source rdr_client/venv/bin/activate'

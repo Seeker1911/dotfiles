@@ -11,5 +11,6 @@ tags
 dev_appservers_logs.db*
 .python-version
 .ctags
+flake8
 .flake8
 .pep8

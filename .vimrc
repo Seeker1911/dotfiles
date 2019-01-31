@@ -49,6 +49,8 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvi
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'rhysd/devdocs.vim'
+
 "Plug 'edkolev/tmuxline.vim'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
@@ -106,7 +108,13 @@ au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+"devdocs
+nnoremap <leader> d <Plug>(devdocs-under-cursor)
+
 " Plugin settings ------------------------------------------------------
+
+"devdocs
+let g:devdocs_host = 'localhost:9292'
 
 " Ale settings
 let g:ale_set_highlights = 1
@@ -132,7 +140,6 @@ let s:coc_extensions = [
 \   'coc-eslint',
 \   'coc-prettier',
 \   'coc-tsserver',
-\   'coc-ultisnips',
 \   'coc-pyls'
 \ ]
 

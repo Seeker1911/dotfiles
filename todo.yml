@@ -1,6 +1,6 @@
 selected: 0
 items:
+- checked: true
+  text: remove ghost account bucket in sandbox after testing
 - checked: false
   text: run backfill sql daily
-- checked: true
-  text: look at my todo !

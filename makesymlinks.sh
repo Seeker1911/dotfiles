@@ -6,17 +6,24 @@
 
 ########## Variables
 
+bindir=~/bin                      # bin directory
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
+configdir=~/.config               # config directory
+nvimdir=~/.config/nvim            # nvim directory
+
 homeFiles="bashrc vim viminfo tmux.conf ctags gitignore_global Xresources"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8"
 nvimFiles="vimrc"
+binFiles="rdrdev.sh"
 
 ##########
 
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 mkdir -p $olddir
+mkdir -p $bindir
+mkdir -p $configdir
 echo "done"
 
 # change to the dotfiles directory
@@ -36,8 +43,15 @@ for file in $configFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.config/$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.config/$file
+    ln -s $dir/$file $configdir/$file
+done
+
+for file in $binFiles; do
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/bin/$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $dir/$file $bindir/$file
 done
 
 # link to init.vim in  favor of nvim
-ln -s $dir/.vimrc ~/.config/nvim/init.vim
+ln -s $dir/.vimrc $nvimdir/init.vim

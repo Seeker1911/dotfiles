@@ -1,31 +1,44 @@
 #! /bin/bash
 
 function setup {
-    tmux new-session -s development -n console -d
-    tmux split-window -v -t development
-    tmux split-window -h -t development
-    tmux select-layout -t development main-horizontal
-    tmux send-keys -t development:1.1 'cd ~/code/raw-data-repository' C-m
-    tmux send-keys -t development:1.1 'source rdr_client/venv/bin/activate' C-m
-    tmux send-keys -t development:1.1 'wtf' C-m
-    tmux send-keys -t development:1.2 'cd ~/code/raw-data-repository' C-m
-    tmux send-keys -t development:1.2 'source rdr_client/venv/bin/activate' C-m
-    tmux send-keys -t development:1.2 'dev_appserver test.yaml' C-m
-    tmux send-keys -t development:1.3 'cd ~/code/raw-data-repository' C-m
-    tmux send-keys -t development:1.3 'source rdr_client/venv/bin/activate' C-m
-    tmux send-keys -t development:1.3 'gcloud alpha interactive' C-m
-    tmux new-window -n editor -t development
-    tmux send-keys -t development:2 'cd ~/code/raw-data-repository' C-m
-    tmux send-keys -t development:2 'source rdr_client/venv/bin/activate' C-m
-    tmux select-window -t development:1
+    tmux new-session -s rdr -n console -d
+    tmux split-window -v -t rdr
+    tmux split-window -h -t rdr
+    tmux split-window -p 30 -h -t rdr:1.1
+    tmux split-window -h -t rdr:1.3
+    #tmux select-layout -t rdr main-horizontal
+    tmux send-keys -t rdr:1.1 'cd ~/code/raw-data-repository' C-m
+    tmux send-keys -t rdr:1.1 'source rdr_client/venv/bin/activate' C-m
+    tmux send-keys -t rdr:1.1 'wtf' C-m
+    tmux send-keys -t rdr:1.2 'cd ~/code/raw-data-repository/rest-api' C-m
+    tmux send-keys -t rdr:1.2 'source rdr_client/venv/bin/activate' C-m
+    tmux send-keys -t rdr:1.2 'dev_appserver.py test.yaml' C-m
+    tmux send-keys -t rdr:1.3 'cd ~/code/raw-data-repository' C-m
+    tmux send-keys -t rdr:1.3 'source rdr_client/venv/bin/activate' C-m
+    tmux send-keys -t rdr:1.3 'gcloud alpha interactive' C-m
+    tmux send-keys -t rdr:1.4 'cd ~/code/raw-data-repository' C-m
+    tmux send-keys -t rdr:1.4 'source rdr_client/venv/bin/activate' C-m
+    tmux send-keys -t rdr:1.4 'git status' C-m
+    tmux send-keys -t rdr:1.5 'cd ~/code/raw-data-repository' C-m
+    tmux send-keys -t rdr:1.5 'source rdr_client/venv/bin/activate' C-m
+    sleep 1
+    tmux send-keys -t rdr:1.5 'cd rest-api' C-m
+    tmux send-keys -t rdr:1.5 './test/run_tests.sh -g $sdk_dir' C-m
+    tmux new-window -n editor -t rdr
+    tmux send-keys -t rdr:2 'cd ~/code/raw-data-repository' C-m
+    tmux send-keys -t rdr:2 'source rdr_client/venv/bin/activate' C-m
+    tmux select-window -t rdr:1
 }
 
-tmux has-session -t development
+tmux has-session -t rdr
 if [ $? != 0 ]
 then
+    tmux detach
     setup
 else
-    tmux kill-session -t development
+    tmux detach
+    tmux kill-session -t rdr
+    setup
 fi
-tmux attach -t development
+tmux attach -t rdr
 

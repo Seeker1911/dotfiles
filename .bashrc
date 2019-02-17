@@ -29,8 +29,9 @@ fi
 # apply the dark snow theme to your shell
 #[ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh # or use snow_light.sh for light theme
 #[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr30-dark
-[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr60-dark
+#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr60-dark
 #[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
+[ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

@@ -1,10 +1,2 @@
-selected: 1
-items:
-- checked: false
-  text: make and deploy rc3
-- checked: true
-  text: run backfill sql daily
-- checked: true
-  text: 'notify #curation of omop etl complete'
-- checked: true
-  text: remove ghost account bucket in sandbox after testing
+selected: -1
+items: []

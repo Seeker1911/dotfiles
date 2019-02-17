@@ -15,10 +15,22 @@ fi
 if [[ $platform == 'linux' ]]; then
 export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 elif [[ $platform == 'macos' ]]; then
-export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+#export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+# gruvbox ps1
+export PS1="\[\033[38;5;196m\]seeker\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+#snow ps1
 #export PS1="\[\033[208m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
-#export PS1="\[\033[38;5;172m\]\u@\w\[$(tput sgr0)\]\$ "
 fi
+
+# colorschemes ----------------------------------------------------------------------------------------------
+# apply vimspectr theme to shell
+#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210-dark #load vimspectr on shell startup
+#vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; } #restore shell theme on vim exit
+# apply the dark snow theme to your shell
+#[ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh # or use snow_light.sh for light theme
+#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr30-dark
+[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr60-dark
+#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -139,15 +151,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-# colorschemes ----------------------------------------------------------------------------------------------
-# apply vimspectr theme to shell
-#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210-dark #load vimspectr on shell startup
-#vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; } #restore shell theme on vim exit
-# apply the dark snow theme to your shell
-[ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh # or use snow_light.sh for light theme
-#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr0-dark
-#[ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
-
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"

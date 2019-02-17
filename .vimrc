@@ -287,8 +287,9 @@ set termguicolors "for truecolor support, assuming you have it.
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " --- nightsense/snow
-colorscheme gruvbox
-"colorscheme snow
+"colorscheme gruvbox
+"let g:gruvbox_contrast_dark = 'soft'
+colorscheme snow
 " ------------- vimspectr colorscheme
 " vimspectr methods
 " https://github.com/nightsense/vimspectr

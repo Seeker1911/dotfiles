@@ -17,7 +17,7 @@ export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 elif [[ $platform == 'macos' ]]; then
 #export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 # gruvbox ps1
-export PS1="\[\033[38;5;196m\]seeker\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+export PS1="\[\033[32m\]seeker\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
 #snow ps1
 #export PS1="\[\033[208m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 fi

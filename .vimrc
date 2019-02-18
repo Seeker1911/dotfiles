@@ -22,6 +22,7 @@ Plug 'nightsense/snow'
 Plug 'nightsense/carbonized'
 Plug 'morhetz/gruvbox'
 " more colorschemes
+Plug 'ajmwagar/vim-deus'
 Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plug 'jnurmine/Zenburn'
 Plug 'NLKNguyen/papercolor-theme'
@@ -290,6 +291,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'soft'
 "colorscheme snow
+"colorscheme deus
 
 " ------------- vimspectr colorscheme
 " vimspectr methods

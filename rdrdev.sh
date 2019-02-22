@@ -11,7 +11,7 @@ function setup {
     tmux send-keys -t rdr:1.1 'source rdr_client/venv/bin/activate' C-m
     tmux send-keys -t rdr:1.1 'wtf' C-m
     tmux send-keys -t rdr:1.2 'cd ~/code/raw-data-repository/rest-api' C-m
-    tmux send-keys -t rdr:1.2 'source rdr_client/venv/bin/activate' C-m
+    tmux send-keys -t rdr:1.2 'source ../rdr_client/venv/bin/activate' C-m
     tmux send-keys -t rdr:1.2 'dev_appserver.py test.yaml' C-m
     tmux send-keys -t rdr:1.3 'cd ~/code/raw-data-repository' C-m
     tmux send-keys -t rdr:1.3 'source rdr_client/venv/bin/activate' C-m

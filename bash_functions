@@ -508,3 +508,7 @@ pip install python-language-server[all]
 pip install black
 pip install flake8
 }
+
+# echo font attributes
+'\e[32;1mbold red\e[0mplain \e[4munderlined'
+

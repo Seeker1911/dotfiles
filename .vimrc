@@ -95,28 +95,55 @@ nnoremap <C-H> <C-W><C-H>
 " resize vim windows
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+" Plugin settings ---------------------------------------------------------
 " Plugin maps
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+" Remap keys for COC
 " Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> [c <Plug>(coc-diagnostic-previous)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
-" Remap keys for coc gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <F4> <plug>(coc-format)
+nmap <F5> <plug>(coc-fix-current)
+nmap <F6> <plug>(coc-diagnostic-info)
 au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
-" coc.nvim functions and settings
-" :CocConfig for options
+autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
 " Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> D :call <SID>show_documentation()<CR>
+
+fun! MapLCKeys()
+  " Don't map for built-in ones
+  if &ft =~ 'vim\|help\|shell'
+    return
+  endif
+
+  " TODO: change
+  " nnoremap <buffer> <F2> :call LanguageClient_contextMenu()<CR>
+  nmap <buffer> <F3> <plug>(coc-rename)
+  nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
+  nmap <buffer> gd <plug>(coc-definition)
+  nmap <buffer> gy <plug>(coc-type-definition)
+  nmap <buffer> gi <Plug>(coc-implementation)
+  nmap <buffer> gr <Plug>(coc-references)
+  nnoremap <buffer> <silent> gD :vsp \| call <plug>(coc-definition)<CR>
+endfun
+
+autocmd FileType * call MapLCKeys()
+
+" fugitive bindings
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>ga :Gwrite<cr>
+nnoremap <leader>gc :Gcommit -v<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gl :Git log<cr>
+nnoremap <leader>gL :Git log -p<cr>
+nnoremap <leader>gr :Grebase -i --autosquash
 
 "devdocs
 nnoremap <leader> d <Plug>(devdocs-under-cursor)
-
-" Plugin settings ------------------------------------------------------
 
 "devdocs
 let g:devdocs_host = 'localhost:9292'
@@ -127,16 +154,16 @@ let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-reposito
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-let b:ale_linters = ['pyflakes', 'flake9', 'pylint']
+let b:ale_linters = {
+      \  'python': ['pyflakes', 'flake9', 'pylint'],
+      \  'sh': ['language_server']
+      \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'python': ['black']
 \}
 
-" COC settings
-"let g:coc_snippet_next = '<TAB>'
-"let g:coc_snippet_prev = '<S-TAB>'
 " start point for auto installing coc-extensions (WIP)
 let s:coc_extensions = [
 \   'coc-css',
@@ -145,7 +172,8 @@ let s:coc_extensions = [
 \   'coc-eslint',
 \   'coc-prettier',
 \   'coc-tsserver',
-\   'coc-pyls'
+\   'coc-pyls',
+\   'coc-yaml'
 \ ]
 
 if exists('*coc#add_extension')
@@ -166,9 +194,9 @@ let g:ale_python_flake8_global = 1
 " simplyfold settings
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 1
-" end plug in specific ---------------------------------------------
+" end plug in specific -------------------------------------------------------
 
-" set preferred values ------------------------------------------------------
+" set preferred defaults ------------------------------------------------------
 filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
@@ -289,7 +317,11 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " --- nightsense/snow
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_dark = "soft"
+let g:gruvbox_improved_strings = 1
+let g:gruvbox_improved_warnings = 1
+"let g:gruvbox_number_column = 'bg1' ?
+"let g:gruvbox_sign_column = 'bg1'
 "colorscheme snow
 "colorscheme deus
 
@@ -304,14 +336,15 @@ let g:gruvbox_contrast_dark = 'soft'
 " Airline and tmuxline ---------------------------------------------------
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 " https://github.com/vim-airline/vim-airline/wiki/Screenshots
 "let g:airline_minimalist_bg='dark'
 "let g:airline_theme='minimalist'
 "let g:airline_theme='snow_dark'
-"let g:airline_theme='distinguished'
-let g:airline_theme='gruvbox'
+let g:airline_theme='distinguished'
+"let g:airline_theme='gruvbox'
 "let g:airline_theme='zenburn'
-
 
 " functions -----------------------------------------------------
 function! ProseMode()

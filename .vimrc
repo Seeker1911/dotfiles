@@ -48,8 +48,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 " automatically update tags files that have had 'ctags -R' performed
 Plug 'craigemery/vim-autotag'
-" go completion
-Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Better python folding
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-airline/vim-airline'
@@ -69,6 +67,9 @@ let mapleader = ","	       " set mapleader
 map ; :Files<CR>
 nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 map <leader>n :NERDTreeToggle<CR>
+let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
+let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
+let NERDTreeNodeDelimiter = "\u263a" " smiley face
 map <leader>m :MundoToggle<CR>
 " ripgrep is controlled by Coc.nvim but must still be installed seperately.
 map <leader>f :Rg<CR>
@@ -112,7 +113,7 @@ nmap <F6> <plug>(coc-diagnostic-info)
 au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
 autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
 " Use K for show documentation in preview window
-nnoremap <silent> D :call <SID>show_documentation()<CR>
+nnoremap <silent> S :call <SID>show_documentation()<CR>
 
 fun! MapLCKeys()
   " Don't map for built-in ones
@@ -345,6 +346,22 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 let g:airline_theme='distinguished'
 "let g:airline_theme='gruvbox'
 "let g:airline_theme='zenburn'
+
+" use Gruvbox theme for fzf colors
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'GruvboxGray'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'GruvboxRed'],
+  \ 'fg+':     ['fg', 'GruvboxGreen'],
+  \ 'bg+':     ['bg', 'GruvboxBg1'],
+  \ 'hl+':     ['fg', 'GruvboxRed'],
+  \ 'info':    ['fg', 'GruvboxOrange'],
+  \ 'prompt':  ['fg', 'GruvboxBlue'],
+  \ 'header':  ['fg', 'GruvboxBlue'],
+  \ 'pointer': ['fg', 'Error'],
+  \ 'marker':  ['fg', 'Error'],
+  \ 'spinner': ['fg', 'Statement'],
+  \ }
 
 " functions -----------------------------------------------------
 function! ProseMode()

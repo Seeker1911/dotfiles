@@ -1,5 +1,6 @@
 {
   "coc.preferences.diagnostic.locationlist": false,
+  "coc.source.emoji.enable": true,
   "pyls.plugins.pydocstyle.enabled": true,
   "pyls.plugins.pyflakes.enabled": true,
   "pyls.plugins.pycodestyle.enabled": true,

@@ -17,7 +17,7 @@ export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 elif [[ $platform == 'macos' ]]; then
 #export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 # gruvbox ps1
-export PS1="\[\033[32m\]seeker\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+export PS1="\[\033[32m\]seeker 🔥\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
 #snow ps1
 #export PS1="\[\033[208m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 fi
@@ -121,7 +121,7 @@ alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
-alias exa='exa --long --header' #Better listing of files. -a for dotfiles, -G for grid
+alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
 
 # source rdr venv
 alias sordr='source rdr_client/venv/bin/activate'

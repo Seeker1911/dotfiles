@@ -25,3 +25,5 @@ ignore =
     # H405: multi line docstring summary not separated with an empty line
     H405,
     # H501: Do not use self.__dict__ for string formatting
+    D102,
+    # D102 Missing docstring in public method

@@ -1,10 +1,4 @@
 selected: 0
 items:
 - checked: false
-  text: discuss redesign of salivary pilot
-- checked: false
-  text: sunny talk at 1030 monday
-- checked: false
-  text: discuss why ptc wants assay pilot
-- checked: true
-  text: DA-911 update on vocabs
+  text: research jupyter hub for ops data api

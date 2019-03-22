@@ -31,7 +31,7 @@ fi
 #[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr30-dark
 #[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr60-dark
 #[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
-[ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
+[ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

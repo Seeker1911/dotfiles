@@ -15,13 +15,11 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 Plug 'w0rp/ale'
 " Make terminal vim and tmux work better with focus events.
 Plug 'tmux-plugins/vim-tmux-focus-events'
-" zenburn color scheme
+" color schemes
 Plug 'nightsense/vimspectr'
-" snow colorscheme
 Plug 'nightsense/snow'
 Plug 'nightsense/carbonized'
 Plug 'morhetz/gruvbox'
-" more colorschemes
 Plug 'ajmwagar/vim-deus'
 Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plug 'jnurmine/Zenburn'
@@ -32,8 +30,6 @@ Plug 'godlygeek/csapprox'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " git in vim
 Plug 'tpope/vim-fugitive'
-" DB tools in vim
-Plug 'tpope/vim-dadbod'
 " language pack
 Plug 'sheerun/vim-polyglot'
 " fuzzy finder everywhere
@@ -112,8 +108,8 @@ nmap <F5> <plug>(coc-fix-current)
 nmap <F6> <plug>(coc-diagnostic-info)
 au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
 autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
-" Use K for show documentation in preview window
-nnoremap <silent> S :call <SID>show_documentation()<CR>
+" Use S for show documentation in preview window
+nnoremap <silent>S :call <SID>show_documentation()<CR>
 
 fun! MapLCKeys()
   " Don't map for built-in ones
@@ -121,22 +117,21 @@ fun! MapLCKeys()
     return
   endif
 
-  " TODO: change
   " nnoremap <buffer> <F2> :call LanguageClient_contextMenu()<CR>
   nmap <buffer> <F3> <plug>(coc-rename)
-  nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
-  nmap <buffer> gd <plug>(coc-definition)
-  nmap <buffer> gy <plug>(coc-type-definition)
-  nmap <buffer> gi <Plug>(coc-implementation)
-  nmap <buffer> gr <Plug>(coc-references)
-  nnoremap <buffer> <silent> gD :vsp \| call <plug>(coc-definition)<CR>
+  nnoremap <buffer> <silent>K :call CocAction('doHover')<CR>
+  nmap <buffer>gd <plug>(coc-definition)
+  nmap <buffer>gy <plug>(coc-type-definition)
+  nmap <buffer>gm <Plug>(coc-implementation)
+  nmap <buffer>gr <Plug>(coc-references)
+  nnoremap <buffer> <silent>gD :vsp \| call <plug>(coc-definition)<CR>
 endfun
 
 autocmd FileType * call MapLCKeys()
 
 " fugitive bindings
 nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>ga :Gwrite<cr>
+nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -v<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gl :Git log<cr>
@@ -144,7 +139,7 @@ nnoremap <leader>gL :Git log -p<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
 
 "devdocs
-nnoremap <leader> d <Plug>(devdocs-under-cursor)
+nnoremap <leader>c <Plug>(devdocs-under-cursor)
 
 "devdocs
 let g:devdocs_host = 'localhost:9292'
@@ -316,9 +311,10 @@ set termguicolors "for truecolor support, assuming you have it.
 " you may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" --- nightsense/snow
+
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = "soft"
+let g:gruvbox_contrast_light = "hard"
 let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1
 "let g:gruvbox_number_column = 'bg1' ?
@@ -377,3 +373,18 @@ endfunction
 
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
+
+function! LightSide()
+  colors snow
+  set background=light
+endfunction
+command! LightSide call LightSide()
+nmap <leader>l :LightSide<CR>
+
+function! DarkSide()
+  colors gruvbox
+  set background=dark
+endfunction
+command! DarkSide call DarkSide()
+nmap <leader>d :DarkSide<CR>
+

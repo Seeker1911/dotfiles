@@ -49,6 +49,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/devdocs.vim'
+Plug 'jremmen/vim-ripgrep'
 
 "Plug 'edkolev/tmuxline.vim'
 " using a non-master branch
@@ -76,7 +77,7 @@ nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " set up proper paste mode and inherit indent from source, then exit paste mode
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " clear the higlight when hitting return
-nnoremap <CR> :nohlsearch<cr>
+nnoremap <leader>h :nohlsearch<cr>
 " use space to fold/unfold
 nnoremap <space> za
 " Adjust viewports to the same size
@@ -93,6 +94,8 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
+nnoremap ]q :cnext
+nnoremap [q :cprevious
 " Plugin settings ---------------------------------------------------------
 " Plugin maps
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -106,28 +109,16 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <F4> <plug>(coc-format)
 nmap <F5> <plug>(coc-fix-current)
 nmap <F6> <plug>(coc-diagnostic-info)
+nmap <buffer> <F3> <plug>(coc-rename)
+nnoremap <leader> <silent>K :call CocAction('doHover')<CR>
+nmap <leader>gd <plug>(coc-definition)
+nmap <leader>gy <plug>(coc-type-definition)
+nmap <leader>gm <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
 au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
 autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
 " Use S for show documentation in preview window
 nnoremap <silent>S :call <SID>show_documentation()<CR>
-
-fun! MapLCKeys()
-  " Don't map for built-in ones
-  if &ft =~ 'vim\|help\|shell'
-    return
-  endif
-
-  " nnoremap <buffer> <F2> :call LanguageClient_contextMenu()<CR>
-  nmap <buffer> <F3> <plug>(coc-rename)
-  nnoremap <buffer> <silent>K :call CocAction('doHover')<CR>
-  nmap <buffer>gd <plug>(coc-definition)
-  nmap <buffer>gy <plug>(coc-type-definition)
-  nmap <buffer>gm <Plug>(coc-implementation)
-  nmap <buffer>gr <Plug>(coc-references)
-  nnoremap <buffer> <silent>gD :vsp \| call <plug>(coc-definition)<CR>
-endfun
-
-autocmd FileType * call MapLCKeys()
 
 " fugitive bindings
 nnoremap <leader>gs :Gstatus<cr>
@@ -145,7 +136,7 @@ nnoremap <leader>c <Plug>(devdocs-under-cursor)
 let g:devdocs_host = 'localhost:9292'
 
 " Ale settings
-let g:ale_set_highlights = 1
+let g:ale_set_highlights = 2
 let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -196,7 +187,7 @@ let g:SimpylFold_fold_import = 1
 filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
-syntax enable		       " enable syntax highlighting
+"syntax enable		       " enable syntax highlighting
 set nocompatible	       " required, not vi compatible
 set cursorline		       " show cursorline
 set mouse=a		       " don't select numbers
@@ -303,8 +294,7 @@ augroup file_types
 augroup END
 
 "colorschemes------------------------------------------------------
-"let g:solarized_termcolors=256
-set t_Co=256
+set t_Co=257
 set background=dark
 syntax on
 set termguicolors "for truecolor support, assuming you have it.
@@ -312,11 +302,11 @@ set termguicolors "for truecolor support, assuming you have it.
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-colorscheme gruvbox
 let g:gruvbox_contrast_dark = "soft"
 let g:gruvbox_contrast_light = "hard"
 let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1
+colorscheme gruvbox
 "let g:gruvbox_number_column = 'bg1' ?
 "let g:gruvbox_sign_column = 'bg1'
 "colorscheme snow

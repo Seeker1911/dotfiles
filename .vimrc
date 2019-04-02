@@ -267,10 +267,11 @@ set termguicolors "for truecolor support, assuming you have it.
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-let g:gruvbox_contrast_dark = "soft"
-let g:gruvbox_contrast_light = "hard"
-let g:gruvbox_improved_strings = 1
-let g:gruvbox_improved_warnings = 1
+let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_light="hard"
+let g:gruvbox_improved_strings=1
+let g:gruvbox_improved_warnings=1
+let g:gruvbox_termcolors=256
 colorscheme gruvbox
 " Airline and tmuxline ---------------------------------------------------
 let g:airline#extensions#tabline#left_sep = ' '

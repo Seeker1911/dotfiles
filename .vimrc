@@ -60,18 +60,22 @@ call plug#end()
 
 " maps -----------------------------------------------------
 let mapleader = ","	       " set mapleader
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+inoremap jj <ESC>
+inoremap JJ <ESC>
 " open files with RG.
 map ; :Files<CR>
-nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 map <leader>n :NERDTreeToggle<CR>
-let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
-let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
-let NERDTreeNodeDelimiter = "\u263a" " smiley face
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
 map <leader>m :MundoToggle<CR>
 " ripgrep is controlled by Coc.nvim but must still be installed seperately.
 map <leader>f :Rg<CR>
 "buffers from fzf (start typing to filter list)
 map <leader>b :Buffers<CR>
+nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " set up proper paste mode and inherit indent from source, then exit paste mode
@@ -80,11 +84,6 @@ map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 nnoremap <leader>h :nohlsearch<cr>
 " use space to fold/unfold
 nnoremap <space> za
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
-" remap esc. key to jj
-inoremap jj <ESC>
-inoremap JJ <ESC>
 "split navigations, doesn't work with tmux.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -96,14 +95,9 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 nnoremap ]q :cnext
 nnoremap [q :cprevious
-" Plugin settings ---------------------------------------------------------
-" Plugin maps
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
 
 " Remap keys for COC
-" Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-previous)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <F4> <plug>(coc-format)
@@ -132,6 +126,9 @@ nnoremap <leader>gr :Grebase -i --autosquash
 "devdocs
 nnoremap <leader>c <Plug>(devdocs-under-cursor)
 
+let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
+let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
+let NERDTreeNodeDelimiter = "\u263a" " smiley face
 "devdocs
 let g:devdocs_host = 'localhost:9292'
 
@@ -307,31 +304,12 @@ let g:gruvbox_contrast_light = "hard"
 let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1
 colorscheme gruvbox
-"let g:gruvbox_number_column = 'bg1' ?
-"let g:gruvbox_sign_column = 'bg1'
-"colorscheme snow
-"colorscheme deus
-
-" ------------- vimspectr colorscheme
-" vimspectr methods
-" https://github.com/nightsense/vimspectr
-" colorscheme vimspectrHS-B H=hue, S=saturation, B=background
-"colorscheme vimspectrgrey-light
-"let g:vimspectr60flat_dark_StatusLine = 'orange'
-"colorscheme vimspectr60-dark
-
 " Airline and tmuxline ---------------------------------------------------
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-" https://github.com/vim-airline/vim-airline/wiki/Screenshots
-"let g:airline_minimalist_bg='dark'
-"let g:airline_theme='minimalist'
-"let g:airline_theme='snow_dark'
 let g:airline_theme='distinguished'
-"let g:airline_theme='gruvbox'
-"let g:airline_theme='zenburn'
 
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {
@@ -351,16 +329,15 @@ let g:fzf_colors = {
 
 " functions -----------------------------------------------------
 function! ProseMode()
-call goyo#execute(0, [])
-set spell noci nosi noai nolist noshowmode noshowcmd
-set complete+=s
-set bg=light
-if !has('gui_running')
-  let g:solarized_termcolors=256
-endif
-colors vimspectrgrey-light
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+  set bg=light
+  if !has('gui_running')
+    let g:solarized_termcolors=256
+  endif
+  colors vimspectrgrey-light
 endfunction
-
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
 

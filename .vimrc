@@ -66,11 +66,12 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
 " open files with RG.
-map ; :Files<CR>
 map <leader>n :NERDTreeToggle<CR>
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
 map <leader>m :MundoToggle<CR>
+" set up proper paste mode and inherit indent from source, then exit paste mode
+map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " ripgrep is controlled by Coc.nvim but must still be installed seperately.
 map <leader>f :Rg<CR>
 "buffers from fzf (start typing to filter list)
@@ -78,8 +79,6 @@ map <leader>b :Buffers<CR>
 nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-" set up proper paste mode and inherit indent from source, then exit paste mode
-map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " clear the higlight when hitting return
 nnoremap <leader>h :nohlsearch<cr>
 " use space to fold/unfold
@@ -89,31 +88,15 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap ; :Files<CR>
 " resize vim windows
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-
 nnoremap ]q :cnext
 nnoremap [q :cprevious
-
-
-" Remap keys for COC
-nmap <silent> [c <Plug>(coc-diagnostic-previous)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-nmap <F4> <plug>(coc-format)
-nmap <F5> <plug>(coc-fix-current)
-nmap <F6> <plug>(coc-diagnostic-info)
-nmap <buffer> <F3> <plug>(coc-rename)
 nnoremap <leader> <silent>K :call CocAction('doHover')<CR>
-nmap <leader>gd <plug>(coc-definition)
-nmap <leader>gy <plug>(coc-type-definition)
-nmap <leader>gm <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
-autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
 " Use S for show documentation in preview window
 nnoremap <silent>S :call <SID>show_documentation()<CR>
-
 " fugitive bindings
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gw :Gwrite<cr>
@@ -122,10 +105,23 @@ nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gL :Git log -p<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
-
-"devdocs
 nnoremap <leader>c <Plug>(devdocs-under-cursor)
+" Remap keys for COC
+nmap <silent> [c <Plug>(coc-diagnostic-previous)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <F4> <plug>(coc-format)
+nmap <F5> <plug>(coc-fix-current)
+nmap <F6> <plug>(coc-diagnostic-info)
+nmap <buffer> <F3> <plug>(coc-rename)
+nmap <leader>gd <plug>(coc-definition)
+nmap <leader>gy <plug>(coc-type-definition)
+nmap <leader>gm <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
 
+" set cursor shapes. line/block/underline
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
 let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
 let NERDTreeNodeDelimiter = "\u263a" " smiley face
@@ -147,31 +143,6 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'python': ['black']
 \}
-
-" start point for auto installing coc-extensions (WIP)
-let s:coc_extensions = [
-\   'coc-css',
-\   'coc-html',
-\   'coc-json',
-\   'coc-eslint',
-\   'coc-prettier',
-\   'coc-tsserver',
-\   'coc-pyls',
-\   'coc-yaml'
-\ ]
-
-if exists('*coc#add_extension')
-  call call('coc#add_extension', s:coc_extensions)
-endif
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 let g:flake8_show_in_gutter=1
 let g:ale_python_flake8_global = 1
 
@@ -231,11 +202,6 @@ endif
 
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
-
-                               " set cursor shapes. line/block/underline
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
 " highlight line 80 and 120+
 highlight ColorColumn ctermbg=232
 "let &colorcolumn="100,".join(range(120,999),",")
@@ -264,6 +230,8 @@ au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 
 
 " call flake8 on write, default is F-7 to run manually
 autocmd BufWritePost *.py call Flake8()
+au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
+autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
 
 autocmd!
 augroup file_types
@@ -340,6 +308,31 @@ function! ProseMode()
 endfunction
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
+
+" start point for auto installing coc-extensions (WIP)
+let s:coc_extensions = [
+\   'coc-css',
+\   'coc-html',
+\   'coc-json',
+\   'coc-eslint',
+\   'coc-prettier',
+\   'coc-tsserver',
+\   'coc-pyls',
+\   'coc-yaml'
+\ ]
+
+if exists('*coc#add_extension')
+  call call('coc#add_extension', s:coc_extensions)
+endif
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 
 function! LightSide()
   colors snow

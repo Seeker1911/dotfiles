@@ -35,7 +35,7 @@ fi
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-export SHELL='/bin/bash'
+export SHELL='/bin/sh'
 export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
@@ -84,7 +84,6 @@ alias pybug="python -m pdb -c continue"
 # use hub as default for git https://hub.github.com/
 alias git=hub
 alias listen="netstat -nap tcp | grep -i 'listen'"
-alias server="python -m simpleHTTPServer 8000"
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then
       test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -117,6 +116,7 @@ alias rasberry="ssh pi@10.0.0.135"
 alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
+alias server="python -m simpleHTTPServer 8000"
 alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address

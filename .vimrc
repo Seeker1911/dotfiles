@@ -40,6 +40,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'simnalamburt/vim-mundo'
 " plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " distraction free writing
 Plug 'junegunn/goyo.vim'
 " automatically update tags files that have had 'ctags -R' performed
@@ -269,7 +270,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
-let g:gruvbox_improved_strings=1
+let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_termcolors=256
 colorscheme gruvbox

@@ -9,7 +9,7 @@ function setup {
     #tmux select-layout -t rdr main-horizontal
     tmux send-keys -t rdr:1.1 'cd ~/code/raw-data-repository' C-m
     tmux send-keys -t rdr:1.1 'source rdr_client/venv/bin/activate' C-m
-    tmux send-keys -t rdr:1.1 'wtf' C-m
+    tmux send-keys -t rdr:1.1 'wtf -c~/.config/wtf/liteconfig.yml' C-m
     tmux send-keys -t rdr:1.2 'cd ~/code/raw-data-repository/rest-api' C-m
     tmux send-keys -t rdr:1.2 'source ../rdr_client/venv/bin/activate' C-m
     tmux send-keys -t rdr:1.2 'dev_appserver.py test.yaml' C-m

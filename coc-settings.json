@@ -7,14 +7,9 @@
   "pyls.plugins.jedi_symbols.enabled": true,
   "pyls.plugins.jedi_completion.enabled": true,
   "pyls.configurationSources": ["pycodestyle", "pyflakes"],
-  "pyls.plugins.pydocstyle.ignore": ["D103", "D213", "D100", "D101"],
+  "pyls.plugins.pydocstyle.ignore": ["D102", "D103", "D213", "D100", "D101", "D401", "D403"],
   "pyls.plugins.pycodestyle.ignore": ["E111", "E121", "E501"],
   "languageserver": {
-    "python": {
-      "command": "pyls",
-      "filetypes": ["python"],
-      "trace.server": "verbose"
-   },
    "sh": {
         "command": "bash-language-server",
         "filetypes": ["sh"],

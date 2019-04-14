@@ -51,7 +51,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/devdocs.vim'
 Plug 'jremmen/vim-ripgrep'
-
+Plug 'ryanoasis/vim-devicons'
 "Plug 'edkolev/tmuxline.vim'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
@@ -125,7 +125,6 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
 let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
-let NERDTreeNodeDelimiter = "\u263a" " smiley face
 "devdocs
 let g:devdocs_host = 'localhost:9292'
 
@@ -157,12 +156,14 @@ filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
 "syntax enable		       " enable syntax highlighting
+set encoding=utf8
+set termencoding=utf-8	       " default terminal encoding
+set guifont=Hack\ Nerd\ Font\:h11
+let g:airline_powerline_fonts = 1
 set nocompatible	       " required, not vi compatible
 set cursorline		       " show cursorline
 set mouse=a		       " don't select numbers
 set path+=$PWD/**	       " recursivel search directory for files names
-set encoding=utf-8	       " default encoding
-set termencoding=utf-8	       " default terminal encoding
 set fillchars+=stl:\ ,stlnc:\
 set modelines=0		       " fix security exploits
 set wildmenu		       " autocomplete command menu

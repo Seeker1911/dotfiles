@@ -27,3 +27,5 @@ ignore =
     # H501: Do not use self.__dict__ for string formatting
     D102,
     # D102 Missing docstring in public method
+    D403,
+    # first line of docstring should be captialized

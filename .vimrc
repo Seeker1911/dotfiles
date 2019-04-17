@@ -1,5 +1,5 @@
-" vim-plug  https://github.com/junegunn/vim-plug for docs.
-" install Plugged if it doesn't exist
+" vim-plug  https://github.com/junegunn/vim-plug for docs.  install Plugged if
+" it doesn't exist
 if empty(glob('~/.config/nvim/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -45,8 +45,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 " automatically update tags files that have had 'ctags -R' performed
 Plug 'craigemery/vim-autotag'
-" Better python folding
-Plug 'tmhedberg/SimpylFold'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/devdocs.vim'
@@ -77,13 +75,16 @@ map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <leader>f :Rg<CR>
 "buffers from fzf (start typing to filter list)
 map <leader>b :Buffers<CR>
-nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " clear the higlight when hitting return
-nnoremap <leader>h :nohlsearch<cr>
+nnoremap <nowait> <silent> <leader>h :nohlsearch<cr>
 " use space to fold/unfold
 nnoremap <space> za
+" open all folds
+nnoremap <leader>r zR
+" close all folds
+nnoremap <leader>z zM
 "split navigations, doesn't work with tmux.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -95,6 +96,9 @@ nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap ]q :cnext
 nnoremap [q :cprevious
+nnoremap ]l :lnext
+nnoremap [l :lprevious
+nnoremap <leader>c <Plug>(devdocs-under-cursor)
 nnoremap <leader> <silent>K :call CocAction('doHover')<CR>
 " Use S for show documentation in preview window
 nnoremap <silent>S :call <SID>show_documentation()<CR>
@@ -102,23 +106,23 @@ nnoremap <silent>S :call <SID>show_documentation()<CR>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -v<cr>
-nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gD :Gdiff<cr>
 nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gL :Git log -p<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
-nnoremap <leader>c <Plug>(devdocs-under-cursor)
+nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 " Remap keys for COC
+nmap <leader>gd <plug>(coc-definition)
+nmap <leader>gt <plug>(coc-type-definition)
+nmap <leader>gm <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
 nmap <silent> [c <Plug>(coc-diagnostic-previous)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <buffer> <F3> <plug>(coc-rename)
 nmap <F4> <plug>(coc-format)
 nmap <F5> <plug>(coc-fix-current)
 nmap <F6> <plug>(coc-diagnostic-info)
-nmap <buffer> <F3> <plug>(coc-rename)
-nmap <leader>gd <plug>(coc-definition)
-nmap <leader>gy <plug>(coc-type-definition)
-nmap <leader>gm <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-
+vmap <leader>f  <Plug>(coc-format-selected)
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -129,7 +133,15 @@ let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
 let g:devdocs_host = 'localhost:9292'
 
 " Ale settings
-let g:ale_set_highlights = 2
+let g:ale_set_highlights = 1
+let g:ale_set_signs = 1
+
+" todo: get symbols
+"let g:ale_sign_error = 
+"let g:ale_sign_warning = 
+"let g:ale_sign_info = 
+"let g:ale_sign_style_error = 
+"let g:ale_sign_style_warning = 
 let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -141,14 +153,11 @@ let b:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'python': ['black']
+\   'python': ['autopep8']
 \}
 let g:flake8_show_in_gutter=1
 let g:ale_python_flake8_global = 1
 
-" simplyfold settings
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_import = 1
 " end plug in specific -------------------------------------------------------
 
 " set preferred defaults ------------------------------------------------------
@@ -183,9 +192,10 @@ set wrap linebreak nolist      " improved word wrapping
 set foldenable                 " enable folding
 set undofile
 set undodir=~/.vim/undo        " set vims undo directory
-set foldlevelstart=10
+set foldlevel=0
+"set foldlevelstart=10
 set foldnestmax=2
-set foldmethod=indent
+"set foldmethod=indent
 set hlsearch                     "highlight searches
 set backup                       " enable backups
 set undodir=~/.vim/tmp/undo/     " undo files

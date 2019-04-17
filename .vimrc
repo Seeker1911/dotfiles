@@ -192,10 +192,10 @@ set wrap linebreak nolist      " improved word wrapping
 set foldenable                 " enable folding
 set undofile
 set undodir=~/.vim/undo        " set vims undo directory
-set foldlevel=0
+set foldlevel=1
 "set foldlevelstart=10
 set foldnestmax=2
-"set foldmethod=indent
+set foldmethod=indent
 set hlsearch                     "highlight searches
 set backup                       " enable backups
 set undodir=~/.vim/tmp/undo/     " undo files

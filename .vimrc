@@ -78,7 +78,8 @@ map <leader>b :Buffers<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " clear the higlight when hitting return
-nnoremap <nowait> <silent> <leader>h :nohlsearch<cr>
+nnoremap <nowait> <silent> <leader>h :set hlsearch<cr>
+nnoremap <nowait> <silent> <leader>nh :set nohlsearch<cr>
 " use space to fold/unfold
 nnoremap <space> za
 " open all folds
@@ -196,7 +197,7 @@ set foldlevel=1
 "set foldlevelstart=10
 set foldnestmax=2
 set foldmethod=indent
-set hlsearch                     "highlight searches
+set nohlsearch                     "highlight searches
 set backup                       " enable backups
 set undodir=~/.vim/tmp/undo/     " undo files
 set backupdir=~/.vim/tmp/backup/ " backups

@@ -48,7 +48,7 @@ elif [[ $platform == 'macos' ]]; then
   export GOOS=darwin
 fi
 export FZF_DEFAULT_OPTS='--height 40% --border'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smartcase --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # fix tmux panes history

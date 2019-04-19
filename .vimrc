@@ -50,6 +50,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/devdocs.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ryanoasis/vim-devicons'
+Plug 'shougo/denite.nvim'
 "Plug 'edkolev/tmuxline.vim'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
@@ -71,8 +72,10 @@ map <Leader>= <C-w>=
 map <leader>m :MundoToggle<CR>
 " set up proper paste mode and inherit indent from source, then exit paste mode
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
-" ripgrep is controlled by Coc.nvim but must still be installed seperately.
-map <leader>f :Rg<CR>
+" ripgrep fzf under cursor
+map <leader>F :Rg<CR>
+map <leader>f :Files<CR>
+
 "buffers from fzf (start typing to filter list)
 map <leader>b :Buffers<CR>
 " surround word with "
@@ -91,7 +94,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap ; :Files<CR>
 " resize vim windows
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
@@ -123,7 +125,15 @@ nmap <buffer> <F3> <plug>(coc-rename)
 nmap <F4> <plug>(coc-format)
 nmap <F5> <plug>(coc-fix-current)
 nmap <F6> <plug>(coc-diagnostic-info)
-vmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>gf  <Plug>(coc-format-selected)
+
+" -------------- Denite -----------------------------------
+" <ctrl>o to navigate floating windows in normal mode
+nmap ; :Denite buffer -split=floating -winrow=1<CR>
+nmap <leader>t :Denite file/rec -split=floating -winrow=1<CR>
+nnoremap <leader>g :<C-u>Denite grep:. -no-empty -mode=normal<CR>
+nnoremap <leader>j :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
+
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -202,6 +212,7 @@ set backup                       " enable backups
 set undodir=~/.vim/tmp/undo/     " undo files
 set backupdir=~/.vim/tmp/backup/ " backups
 set directory=~/.vim/tmp/swap/   " swap files
+set rtp+=/usr/local/opt/fzf
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")

@@ -80,7 +80,6 @@ map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-" clear the higlight when hitting return
 nnoremap <nowait> <silent> <leader>h :set hlsearch<cr>
 nnoremap <nowait> <silent> <leader>nh :set nohlsearch<cr>
 " use space to fold/unfold
@@ -226,9 +225,7 @@ endif
 
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
-" highlight line 80 and 120+
 highlight ColorColumn ctermbg=232
-"let &colorcolumn="100,".join(range(120,999),",")
 let &colorcolumn="100"
 
 
@@ -251,6 +248,7 @@ au FocusGained,BufEnter * :silent! !
 
 " filetype specific settings ----------------------------------------
 au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
+au BufRead,BufNewFile,BufEnter ~/raw-data-repository/* setlocal ts=2 sts=2 sw=2
 
 " call flake8 on write, default is F-7 to run manually
 autocmd BufWritePost *.py call Flake8()

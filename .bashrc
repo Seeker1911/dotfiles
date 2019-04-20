@@ -51,6 +51,7 @@ export FZF_DEFAULT_OPTS='--height 40% --border'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 # fix tmux panes history
 # append to history file instead of overwrite on exit.
 shopt -s histappend

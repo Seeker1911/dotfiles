@@ -65,7 +65,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
-" open files with RG.
 map <leader>n :NERDTreeToggle<CR>
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -237,6 +236,7 @@ elseif glob('/home/michael_mead')
   let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 endif
 
+iabbrev snoop import pysnooper<CR>@pysnooper.snoop()
 " save on focus lost
 au FocusLost * :wa "Dont need this and below necessarily.
 " Save whenever switching windows or leaving vim. This is useful when running

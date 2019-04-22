@@ -11,6 +11,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 configdir=~/.config               # config directory
 nvimdir=~/.config/nvim            # nvim directory
+alacrittydir=~/.config/alacritty            # nvim directory
 
 homeFiles="bashrc vim viminfo tmux.conf ctags gitignore_global Xresources"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8"
@@ -34,24 +35,26 @@ echo "done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $homeFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
+    mv ~/.$file $olddir
     echo "Creating symlink to $file in home directory."
     ln -s $dir/.$file ~/.$file
 done
 
 for file in $configFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.config/$file ~/dotfiles_old/
+    mv ~/.config/$file $olddir
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file $configdir/$file
 done
 
 for file in $binFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/bin/$file ~/dotfiles_old/
+    mv ~/bin/$file ~$olddir
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file $bindir/$file
 done
 
 # link to init.vim in  favor of nvim
 ln -s $dir/.vimrc $nvimdir/init.vim
+# link alaccritty config
+ln -s $dir/alacritty.yml $alacrittydir/alacritty.yml

@@ -4,7 +4,7 @@ function setup {
     tmux new-session -s rdr -n console -d
     tmux split-window -v -t rdr
     tmux split-window -h -t rdr
-    tmux split-window -p 70 -h -t rdr:1.1
+    tmux split-window -p 30 -h -t rdr:1.1
     tmux split-window -h -t rdr:1.3
     #tmux select-layout -t rdr main-horizontal
     tmux send-keys -t rdr:1.1 'cd ~/code/raw-data-repository' C-m
@@ -27,12 +27,11 @@ function setup {
 tmux has-session -t rdr
 if [ $? != 0 ]
 then
-    tmux detach &>/dev/null
+    tmux detach
     setup
 else
-    tmux detach &>/dev/null
+    tmux detach
     tmux kill-session -t rdr
     setup
 fi
 tmux attach -t rdr
-

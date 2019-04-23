@@ -186,3 +186,6 @@ if [[ $platform == 'macos' ]]; then
   #bash: __bp_interactive_mode: command not found
   unset PROMPT_COMMAND
 fi
+
+CFLAGS="-I$(brew --prefix openssl)/include" \
+LDFLAGS="-L$(brew --prefix openssl)/lib" \

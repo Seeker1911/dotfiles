@@ -9,6 +9,10 @@
   "pyls.configurationSources": ["pycodestyle", "pyflakes"],
   "pyls.plugins.pydocstyle.ignore": ["D102", "D103", "D203", "D213", "D100", "D101", "D401", "D403"],
   "pyls.plugins.pycodestyle.ignore": ["E111", "E121", "E501"],
+  "diagnostic.errorSign": "⤫",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "λ",
+  "diagnostic.hintSign": "•",
   "languageserver": {
    "sh": {
         "command": "bash-language-server",

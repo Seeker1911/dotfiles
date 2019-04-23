@@ -12,7 +12,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 " linting and pep checking
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 " Make terminal vim and tmux work better with focus events.
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " color schemes

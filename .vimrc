@@ -8,11 +8,11 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 " linting and pep checking
-"Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 " Make terminal vim and tmux work better with focus events.
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " color schemes
@@ -144,19 +144,21 @@ let g:devdocs_host = 'localhost:9292'
 " Ale settings
 let g:ale_set_highlights = 1
 let g:ale_set_signs = 1
+highlight ALEWarning ctermbg=DarkMagenta
 
-" todo: get symbols
-"let g:ale_sign_error = 
-"let g:ale_sign_warning = 
-"let g:ale_sign_info = 
+let g:ale_sign_error = "⤫"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "•"
+"let g:ale_sign_info = "λ"
 "let g:ale_sign_style_error = 
 "let g:ale_sign_style_warning = 
-let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
+"let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
+let g:ale_python_pylint_use_global = 0
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
 let b:ale_linters = {
-      \  'python': ['pyflakes', 'flake9', 'pylint'],
+      \  'python': [],
       \  'sh': ['language_server']
       \}
 let g:ale_fixers = {
@@ -298,8 +300,9 @@ colorscheme gruvbox
 " Airline and tmuxline ---------------------------------------------------
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+let g:airline#extensions#ale#enabled = 1
+"let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+"let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 let g:airline_theme='distinguished'
 
 " use Gruvbox theme for fzf colors

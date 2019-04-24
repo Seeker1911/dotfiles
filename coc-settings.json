@@ -9,18 +9,30 @@
   "pyls.configurationSources": ["pycodestyle", "pyflakes"],
   "pyls.plugins.pydocstyle.ignore": ["D102", "D103", "D203", "D213", "D100", "D101", "D401", "D403"],
   "pyls.plugins.pycodestyle.ignore": ["E111", "E121", "E501"],
+  "python.linting.lintOnSave": true,
   "python.linting.pylintEnabled": true,
-  "python.jediEnabled": true,
-  "python.linting.pylintPath": "pylint",
-  "diagnostic.errorSign": "⤫",
+  "python.linting.ignorePatterns": [],
+  "python.linting.pylintArgs": [],
+  "python.autoComplete.addBrackets": true,
+  "python.autoComplete.extraPaths": ["~/.google-cloud-sdk"],
   "diagnostic.warningSign": "⚠",
-  "diagnostic.infoSign": "λ",
+  "diagnostic.errorSign": ">>",
   "diagnostic.hintSign": "•",
+  "diagnostic.infoSign": "λ",
+  "diagnostic.displayByAle": false,
+  "diagnostic.locationlist": true,
+  "diagnostic.enableSign": true,
+  "diagnostic.maxWindowHeight": 8,
   "languageserver": {
    "sh": {
         "command": "bash-language-server",
         "filetypes": ["sh"],
         "args": ["start"]
+   },
+   "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
    }
- }
+  }
 }

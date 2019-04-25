@@ -8,7 +8,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 " linting and pep checking
@@ -144,7 +144,6 @@ let g:devdocs_host = 'localhost:9292'
 " Ale settings
 let g:ale_set_highlights = 1
 let g:ale_set_signs = 1
-highlight ALEWarning ctermbg=DarkMagenta
 
 let g:ale_sign_error = "⤫"
 let g:ale_sign_warning = "⚠"
@@ -175,6 +174,9 @@ let g:ale_python_flake8_global = 1
 filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
+highlight link CocErrorSign GruvboxRed
+highlight link CocWanringSign GruvboxOrange
+highlight link CocInfoSign GruvboxBlue
 "syntax enable		       " enable syntax highlighting
 set encoding=utf8
 set termencoding=utf-8	       " default terminal encoding
@@ -207,12 +209,15 @@ set foldlevel=1
 "set foldlevelstart=10
 set foldnestmax=2
 set foldmethod=indent
-set nohlsearch                     "highlight searches
+set nohlsearch
 set backup                       " enable backups
 set undodir=~/.vim/tmp/undo/     " undo files
 set backupdir=~/.vim/tmp/backup/ " backups
 set directory=~/.vim/tmp/swap/   " swap files
 set rtp+=/usr/local/opt/fzf
+set diffopt+=hiddenoff           " no diff on hidden buffer
+set diffopt+=iwhiteall           " ignore whitespace on diff
+
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
@@ -301,8 +306,8 @@ colorscheme gruvbox
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ale#enabled = 1
-"let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-"let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 let g:airline_theme='distinguished'
 
 " use Gruvbox theme for fzf colors

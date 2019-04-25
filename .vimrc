@@ -51,7 +51,6 @@ Plug 'rhysd/devdocs.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ryanoasis/vim-devicons'
 Plug 'shougo/denite.nvim'
-"Plug 'edkolev/tmuxline.vim'
 " using a non-master branch
 " plug 'name/repo', { 'branch': 'stable' }
 " " using a tagged release; wildcard allowed (requires git 1.9.2 or above)
@@ -60,6 +59,8 @@ call plug#end()
 
 " maps -----------------------------------------------------
 let mapleader = ","	       " set mapleader
+vmap <leader>c :s/^/#/g<CR>
+vmap <leader>" :s/^/"/g<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
@@ -74,8 +75,7 @@ map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " ripgrep fzf under cursor
 map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
-
-"buffers from fzf (start typing to filter list)
+"buffers from fzf
 map <leader>b :Buffers<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
@@ -92,16 +92,13 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-" resize vim windows
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap ]q :cnext
 nnoremap [q :cprevious
 nnoremap ]l :lnext
 nnoremap [l :lprevious
-nnoremap <leader>c <Plug>(devdocs-under-cursor)
 nnoremap <leader> <silent>K :call CocAction('doHover')<CR>
-" Use S for show documentation in preview window
 nnoremap <silent>S :call <SID>show_documentation()<CR>
 " fugitive bindings
 nnoremap <leader>gs :Gstatus<cr>
@@ -112,7 +109,7 @@ nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gL :Git log -p<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
 nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
-" Remap keys for COC
+
 nmap <leader>gd <plug>(coc-definition)
 nmap <leader>gt <plug>(coc-type-definition)
 nmap <leader>gm <Plug>(coc-implementation)
@@ -136,48 +133,16 @@ nnoremap <leader>j :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
-let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
-"devdocs
-let g:devdocs_host = 'localhost:9292'
+"let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
+"let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
 
-" Ale settings
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-
-let g:ale_sign_error = "⤫"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "•"
-"let g:ale_sign_info = "λ"
-"let g:ale_sign_style_error = 
-"let g:ale_sign_style_warning = 
-"let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
-let g:ale_python_pylint_use_global = 0
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-let b:ale_linters = {
-      \  'python': [],
-      \  'sh': ['language_server']
-      \}
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'python': ['autopep8']
-\}
-let g:flake8_show_in_gutter=1
-let g:ale_python_flake8_global = 1
-
-" end plug in specific -------------------------------------------------------
-
-" set preferred defaults ------------------------------------------------------
 filetype on                    " required
 hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
 highlight link CocErrorSign GruvboxRed
 highlight link CocWanringSign GruvboxOrange
 highlight link CocInfoSign GruvboxBlue
-"syntax enable		       " enable syntax highlighting
+highlight ColorColumn ctermbg=232
 set encoding=utf8
 set termencoding=utf-8	       " default terminal encoding
 set guifont=Hack\ Nerd\ Font\:h11
@@ -206,7 +171,6 @@ set foldenable                 " enable folding
 set undofile
 set undodir=~/.vim/undo        " set vims undo directory
 set foldlevel=1
-"set foldlevelstart=10
 set foldnestmax=2
 set foldmethod=indent
 set nohlsearch
@@ -218,22 +182,11 @@ set rtp+=/usr/local/opt/fzf
 set diffopt+=hiddenoff           " no diff on hidden buffer
 set diffopt+=iwhiteall           " ignore whitespace on diff
 
-" Make those folders automatically if they don't already exist.
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
-endif
-if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
-endif
-if !isdirectory(expand(&directory))
-    call mkdir(expand(&directory), "p")
-endif
-
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
-highlight ColorColumn ctermbg=232
+"set omnifunc=syntaxcomplete#Complete
 let &colorcolumn="100"
 
+iabbrev snoop import pysnooper<CR>@pysnooper.snoop()
 
 if glob('/Users/meadm1')
   let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
@@ -243,90 +196,21 @@ elseif glob('/home/michael_mead')
   let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 endif
 
-iabbrev snoop import pysnooper<CR>@pysnooper.snoop()
-" save on focus lost
-au FocusLost * :wa "Dont need this and below necessarily.
-" Save whenever switching windows or leaving vim. This is useful when running
-" the tests inside vim without having to save all files first.
-au FocusLost,WinLeave * :silent! wa
-
-" Trigger autoread when changing buffers or coming back to vim.
-au FocusGained,BufEnter * :silent! !
-
-" filetype specific settings ----------------------------------------
-au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
-au BufRead,BufNewFile,BufEnter ~/raw-data-repository/* setlocal ts=2 sts=2 sw=2
-
-" call flake8 on write, default is F-7 to run manually
-autocmd BufWritePost *.py call Flake8()
-au! FileType {.py} nn <silent> <buffer> gd :call CocAction("jumpDefinition")<CR>
-autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
-
-autocmd!
-augroup file_types
-	autocmd!
-	autocmd FileType python set omnifunc=pythoncomplete#Complete
-	" use help command for help files (:h )
-	autocmd Filetype python match Error /\s\+$/
-	autocmd FileType help setlocal keywordprg=:help
-	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-	" colorschemeiling white space on save, useful for some filetypes ;)
-	fun! CleanExtraSpaces()
-	    let save_cursor = getpos(".")
-	    let old_query = getreg('/')
-	    silent! %s/\s\+$//e
-	    call setpos('.', save_cursor)
-	    call setreg('/', old_query)
-	endfun
-
-	if has("autocmd")
-	    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-	endif
-augroup END
-
-"colorschemes------------------------------------------------------
-set t_Co=257
-set background=dark
-syntax on
-set termguicolors "for truecolor support, assuming you have it.
-" you may need the below especially with tmux
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-let g:gruvbox_contrast_dark="soft"
-let g:gruvbox_contrast_light="hard"
-let g:gruvbox_improved_strings=0
-let g:gruvbox_improved_warnings=1
-let g:gruvbox_termcolors=256
-colorscheme gruvbox
-" Airline and tmuxline ---------------------------------------------------
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#ale#enabled = 1
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-let g:airline_theme='distinguished'
-
-" use Gruvbox theme for fzf colors
-let g:fzf_colors = {
-  \ 'fg':      ['fg', 'GruvboxGray'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'GruvboxRed'],
-  \ 'fg+':     ['fg', 'GruvboxGreen'],
-  \ 'bg+':     ['bg', 'GruvboxBg1'],
-  \ 'hl+':     ['fg', 'GruvboxRed'],
-  \ 'info':    ['fg', 'GruvboxOrange'],
-  \ 'prompt':  ['fg', 'GruvboxBlue'],
-  \ 'header':  ['fg', 'GruvboxBlue'],
-  \ 'pointer': ['fg', 'Error'],
-  \ 'marker':  ['fg', 'Error'],
-  \ 'spinner': ['fg', 'Statement'],
-  \ }
-
 " functions -----------------------------------------------------
+function! LightSide()
+  colors snow
+  set background=light
+endfunction
+command! LightSide call LightSide()
+nmap <leader>l :LightSide<CR>
+
+function! DarkSide()
+  colors gruvbox
+  set background=dark
+endfunction
+command! DarkSide call DarkSide()
+nmap <leader>d :DarkSide<CR>
+
 function! ProseMode()
   call goyo#execute(0, [])
   set spell noci nosi noai nolist noshowmode noshowcmd
@@ -364,18 +248,154 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
 
-function! LightSide()
-  colors snow
-  set background=light
+
+" call flake8 on write, default is F-7 to run manually
+autocmd BufWritePost *.py call Flake8()
+au! FileType {.py} nn <silent> <buffer> gd :call CocAction('jumpDefinition')<CR>
+autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
+autocmd!
+" save on focus lost
+"au FocusLost * :wa "Dont need this and below necessarily.
+" Save whenever switching windows or leaving vim. This is useful when running
+" the tests inside vim without having to save all files first.
+"au FocusLost,WinLeave * :silent! wa
+
+" Trigger autoread when changing buffers or coming back to vim.
+"au FocusGained,BufEnter * :silent! !
+
+" filetype specific settings ----------------------------------------
+"au BufRead,BufNewFile,BufEnter ~/code/raw-data-repository/* setlocal ts=2 sts=2 sw=2
+"au BufRead,BufNewFile,BufEnter ~/raw-data-repository/* setlocal ts=2 sts=2 sw=2
+
+
+"augroup file_types
+"	autocmd!
+"	autocmd FileType python set omnifunc=pythoncomplete#Complete
+"	" use help command for help files (:h )
+"	autocmd Filetype python match Error /\s\+$/
+"	autocmd FileType help setlocal keywordprg=:help
+"	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"	autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"
+"	" colorschemeiling white space on save, useful for some filetypes ;)
+"	fun! CleanExtraSpaces()
+"	    let save_cursor = getpos(".")
+"	    let old_query = getreg('/')
+"	    silent! %s/\s\+$//e
+"	    call setpos('.', save_cursor)
+"	    call setreg('/', old_query)
+"	endfun
+"
+"	if has("autocmd")
+"	    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+"	endif
+"augroup END
+" Ale settings
+"let g:ale_set_highlights = 1
+"let g:ale_set_signs = 1
+"
+"let g:ale_sign_error = "⤫"
+"let g:ale_sign_warning = "⚠"
+"let g:ale_sign_info = "•"
+""let g:ale_sign_info = "λ"
+""let g:ale_sign_style_error = 
+""let g:ale_sign_style_warning = 
+""let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
+"let g:ale_python_pylint_use_global = 0
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+"let b:ale_linters = {
+"      \  'python': [],
+"      \  'sh': ['language_server']
+"      \}
+"let g:ale_fixers = {
+"\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+"\   'javascript': ['eslint'],
+"\   'python': ['autopep8']
+"\}
+"let g:flake8_show_in_gutter=1
+"let g:ale_python_flake8_global = 1
+
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W' . info['warning'])
+  endif
+  return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
 endfunction
-command! LightSide call LightSide()
-nmap <leader>l :LightSide<CR>
+"Add `%{StatusDiagnostic()}` to your 'statusline' option
 
-function! DarkSide()
-  colors gruvbox
-  set background=dark
-endfunction
-command! DarkSide call DarkSide()
-nmap <leader>d :DarkSide<CR>
+nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
+nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
 
+fun! s:smoothScroll(up)
+  execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
+  redraw
+  for l:count in range(3, &scroll, 2)
+    sleep 7m
+    execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
+    redraw
+  endfor
+  " bring the cursor in the middle of screen 
+  execute "normal M"
+endf
+"colorschemes------------------------------------------------------
+set t_Co=257
+set background=dark
+syntax on
+set termguicolors "for truecolor support, assuming you have it.
+" may need the below especially with tmux
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_light="hard"
+let g:gruvbox_improved_strings=0
+let g:gruvbox_improved_warnings=1
+let g:gruvbox_termcolors=256
+colorscheme gruvbox
+" Airline and tmuxline ---------------------------------------------------
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#ale#enabled = 1
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+let g:airline_theme='distinguished'
+
+let airline#extensions#coc#error_symbol = 'Error:'
+let airline#extensions#coc#error_symbol = 'Warning:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" use Gruvbox theme for fzf colors
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'GruvboxGray'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'GruvboxRed'],
+  \ 'fg+':     ['fg', 'GruvboxGreen'],
+  \ 'bg+':     ['bg', 'GruvboxBg1'],
+  \ 'hl+':     ['fg', 'GruvboxRed'],
+  \ 'info':    ['fg', 'GruvboxOrange'],
+  \ 'prompt':  ['fg', 'GruvboxBlue'],
+  \ 'header':  ['fg', 'GruvboxBlue'],
+  \ 'pointer': ['fg', 'Error'],
+  \ 'marker':  ['fg', 'Error'],
+  \ 'spinner': ['fg', 'Statement'],
+  \ }

@@ -59,3 +59,5 @@ brew "cjbassi/gotop/gotop"
 brew "ack"
 # ripgrep for faster searching
 brew "ripgrep"
+# required for cht.sh
+brew "rlwrap"

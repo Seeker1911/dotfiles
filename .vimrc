@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'dbeniamine/cheat.sh-vim'
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 " linting and pep checking
@@ -58,7 +59,8 @@ Plug 'shougo/denite.nvim'
 call plug#end()
 
 " maps -----------------------------------------------------
-let mapleader = ","	       " set mapleader
+let mapleader = ","
+let maplocalleader = "\\"
 vmap <leader>c :s/^/#/g<CR>
 vmap <leader>" :s/^/"/g<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -120,6 +122,14 @@ nmap <buffer> <F3> <plug>(coc-rename)
 nmap <F4> <plug>(coc-format)
 nmap <F5> <plug>(coc-fix-current)
 nmap <F6> <plug>(coc-diagnostic-info)
+"cheat.sh bindings
+" open in buffer
+nmap <leader>kb <leader>KB
+" replace text
+nmap <leader>kr <leader>KR
+" paste answer
+nmap <leader>kp <leader>KP
+
 vmap <leader>gf  <Plug>(coc-format-selected)
 
 " -------------- Denite -----------------------------------
@@ -135,6 +145,7 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 "let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
 "let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
+let g:CheatSheetShowCommentsByDefault=1
 
 filetype on                    " required
 hi NonText ctermbg=NONE

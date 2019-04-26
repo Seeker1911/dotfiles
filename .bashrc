@@ -52,6 +52,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
+export CHTSH_QUERY_OPTIONS="style=native"
 # fix tmux panes history
 # append to history file instead of overwrite on exit.
 shopt -s histappend
@@ -127,6 +128,7 @@ alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles
 # source rdr venv
 alias sordr='source rdr_client/venv/bin/activate'
 alias generate_data='cd rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples && cd ../rest-api'
+alias cheat='cht.sh --shell'
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh

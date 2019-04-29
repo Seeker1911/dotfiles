@@ -1,3 +1,4 @@
+# Removes those pesky files you forgot to put into gitignore
  ## came from the second answer on this post:
  #http://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files
  #expects a branch name

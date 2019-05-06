@@ -14,3 +14,4 @@ dev_appservers_logs.db*
 flake8
 .flake8
 .pep8
+.vscode/

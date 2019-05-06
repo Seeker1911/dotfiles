@@ -111,7 +111,7 @@ nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gL :Git log -p<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
 nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
-
+nnoremap <leader>print oprint('\n')<CR>print('**********************')<CR>print(), '<<<<'<CR>print('**********************')<ESC>k^wa
 nmap <leader>gd <plug>(coc-definition)
 nmap <leader>gt <plug>(coc-type-definition)
 nmap <leader>gm <Plug>(coc-implementation)
@@ -175,7 +175,7 @@ set infercase		      " smart auto-completion casing
 set wildignorecase	      " ignore case on files and directories
 set lazyredraw
 set scrolloff=3
-set tags=tags;/               " ctags read subdirectories
+set tags=./tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
 set wrap linebreak nolist      " improved word wrapping
 set foldenable                 " enable folding
@@ -410,3 +410,4 @@ let g:fzf_colors = {
   \ 'marker':  ['fg', 'Error'],
   \ 'spinner': ['fg', 'Statement'],
   \ }
+

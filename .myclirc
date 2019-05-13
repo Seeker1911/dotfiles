@@ -41,7 +41,7 @@ table_format = ascii
 # friendly, monokai, paraiso, colorful, murphy, bw, pastie, paraiso, trac, default,
 # fruity.
 # Screenshots at http://mycli.net/syntax
-syntax_style = fruity
+syntax_style = vim
 
 # Keybindings: Possible values: emacs, vi.
 # Emacs mode: Ctrl-A is home, Ctrl-E is end. All emacs keybindings are available in the REPL.
@@ -69,7 +69,7 @@ prompt = "\t \u@\h:\d>> "
 prompt_continuation = "👉 "
 
 # Skip intro info on startup and outro info on exit
-less_chatty = False
+less_chatty = True
 
 # Use alias from --login-path instead of host name in prompt
 login_path_as_host = False
@@ -84,11 +84,11 @@ keyword_casing = auto
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
 # Completion menus.
-Token.Menu.Completions.Completion.Current = "bg:#00aaaa #000000"
-Token.Menu.Completions.Completion = "bg:#008888 #ffffff"
-Token.Menu.Completions.MultiColumnMeta = "bg:#aaffff #000000"
+Token.Menu.Completions.Completion.Current = "bg:#fe8019 #282828"
+Token.Menu.Completions.Completion = "bg:#d65d0e #fbf1c7"
+Token.Menu.Completions.MultiColumnMeta = "bg:#aaffff #282828"
 Token.Menu.Completions.ProgressButton = "bg:#003333"
-Token.Menu.Completions.ProgressBar = "bg:#00aaaa"
+Token.Menu.Completions.ProgressBar = "bg:#fb4934"
 
 # Query results
 Token.Output.Header = bold

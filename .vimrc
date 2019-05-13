@@ -127,6 +127,8 @@ nmap <F6> <plug>(coc-diagnostic-info)
 nmap <leader>kb <leader>KB
 " replace text
 nmap <leader>kr <leader>KR
+" replace text w/o comments
+nmap <leader>kc <leader>KC
 " paste answer
 nmap <leader>kp <leader>KP
 

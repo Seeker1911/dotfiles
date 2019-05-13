@@ -61,6 +61,7 @@ shopt -s histverify
 
 export HISTCONTROL='ingoreboth'
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
+export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 
 # start TMUX by default if it exists. If not running interactively, do not do anything
 if [[ $platform == 'linux' ]]; then

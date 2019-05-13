@@ -1,63 +1,137 @@
-# specify a directory to install
-cask_args appdir: "/Applications"
-tap "caskroom/homebrew-cask" || true
+tap "caskroom/fonts"
 tap "cjbassi/gotop"
 tap "homebrew/bundle"
+tap "homebrew/cask"
 tap "homebrew/core"
-brew "git"
+tap "homebrew/services"
+tap "koekeishiya/formulae"
+tap "timescale/tap"
+# Portable ASCII art graphics library
+brew "aalib"
+# Search tool like grep, but optimized for programmers
+brew "ack"
 # Strip or convert ANSI codes into HTML, (La)Tex, RTF, or BBCode
 brew "ansifilter"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Draw boxes around text
+brew "boxes"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext", link: true
+# Library for command-line editing
+brew "readline"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Interpreted, interactive, object-oriented programming language
+brew "python", link: false
+# Tiling window manager for macOS based on plugin architecture
+brew "chunkwm", args: ["HEAD"]
 # Cross-platform make
 brew "cmake"
+# Utility that creates projects from templates
+brew "cookiecutter"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Configurable talking characters in ASCII art
+brew "cowsay"
 # Reimplementation of ctags(1)
 brew "ctags"
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose", link: false
+# Text mode web browser
+brew "elinks"
+# Modern replacement for 'ls'
+brew "exa"
+# Command-line outline and bitmap font editor/converter
+brew "fontforge"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU compiler collection
+brew "gcc"
+# Distributed revision control system
+brew "git"
+# Git extension for versioning large files
+brew "git-lfs"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Open-source build automation tool based on the Groovy and Kotlin DSL
+brew "gradle"
+# Gorgeous metric visualizations and dashboards for timeseries databases
+brew "grafana"
+# JavaScript Task Runner
+brew "grunt-cli"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Add GitHub support to git on the command-line
 brew "hub"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# SSL/TLS cryptography library
-brew "openssl"
+# Convert pixel information into colored ASCII art
+brew "libcaca"
 # Rainbows and unicorns in your console!
-brew "lolcat"
+brew "lolcat", link: false
 # Text-based web browser
 brew "lynx"
-# Library for command-line editing
-brew "readline"
-# Command-line interface for SQLite
-brew "sqlite"
 # Scalable distributed version control system
 brew "mercurial"
+# Remote terminal application
+brew "mosh"
+# UNIX movie player
+brew "mplayer"
+# CLI for MySQL with auto-completion and syntax highlighting
+brew "mycli"
+# MySQL database connector for C applications
+brew "mysql-connector-c"
 # Open source relational database management system
-brew "mysql"
+brew "mysql@5.7", restart_service: true
 # Fast, highly customisable system info script
 brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# Python dependency management tool
+brew "pipenv"
+# Object-relational database system
+brew "postgresql", restart_service: true
 # Python version management
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
 # Alternative to pyenv for managing virtualenvs
 brew "pyenv-virtualenvwrapper"
-# Interpreted, interactive, object-oriented programming language
-brew "python"
+# File browser
+brew "ranger"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Readline wrapper: adds readline support to tools that lack it
+brew "rlwrap"
+# User interface to the TELNET protocol (built from macOS Sierra sources)
+brew "telnet"
+# An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL.
+brew "timescaledb"
 # Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
 # Vi 'workalike' with many additional features
 brew "vim"
-# install neovim
-brew "neovim"
+# Pager/text based browser
+brew "w3m"
+# Internet file retriever
+brew "wget"
+# JavaScript package manager
+brew "yarn"
+# Download YouTube videos from the command-line
+brew "youtube-dl"
 # General-purpose lossless data-compression library
 brew "zlib"
 # A terminal based graphical activity monitor inspired by gtop and vtop
 brew "cjbassi/gotop/gotop"
-# ack for searching
-brew "ack"
-# ripgrep for faster searching
-brew "ripgrep"
-# required for cht.sh
-brew "rlwrap"
+cask "caskroom/fonts/font-hack-nerd-font"

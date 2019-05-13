@@ -371,7 +371,7 @@ fun! s:smoothScroll(up)
   execute "normal M"
 endf
 "colorschemes------------------------------------------------------
-set t_Co=257
+set t_Co=256
 set background=dark
 syntax on
 set termguicolors "for truecolor support, assuming you have it.

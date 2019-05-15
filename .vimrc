@@ -8,12 +8,13 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 " Language Server Protocol (LSP) support for vim & neovim
 " see the wiki: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" linting and pep checking
+Plug 'w0rp/ale'
 Plug 'dbeniamine/cheat.sh-vim'
+Plug 'davidhalter/jedi-vim'
 " Go support : Run :GoInstallBinaries
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
-" linting and pep checking
-"Plug 'w0rp/ale'
 " Make terminal vim and tmux work better with focus events.
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " color schemes
@@ -112,6 +113,7 @@ nnoremap <leader>gL :Git log -p<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
 nnoremap <leader>gf :GFiles -co --exclude-per-directory=.gitignore<CR>
 nnoremap <leader>print oprint('\n')<CR>print('**********************')<CR>print(), '<<<<'<CR>print('**********************')<ESC>k^wa
+nnoremap <leader>i oimport ipdb; ipdb.set_trace()<ESC>
 nmap <leader>gd <plug>(coc-definition)
 nmap <leader>gt <plug>(coc-type-definition)
 nmap <leader>gm <Plug>(coc-implementation)
@@ -315,32 +317,45 @@ autocmd!
 "	    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 "	endif
 "augroup END
+" Jedi settings
+autocmd FileType python setlocal completeopt-=preview
+" 1= buffer, 2=commmandline (better under history)
+let g:jedi#show_call_signatures = "1"
+"defaults, here for reference.
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 " Ale settings
-"let g:ale_set_highlights = 1
-"let g:ale_set_signs = 1
-"
-"let g:ale_sign_error = "⤫"
-"let g:ale_sign_warning = "⚠"
-"let g:ale_sign_info = "•"
-""let g:ale_sign_info = "λ"
-""let g:ale_sign_style_error = 
-""let g:ale_sign_style_warning = 
-""let g:ale_python_pylint_options = '--rcfile /Users/meadm1/code/raw-data-repository/rdr_client/venv/bin/pylint'
-"let g:ale_python_pylint_use_global = 0
-"let g:ale_echo_msg_error_str = 'E'
-"let g:ale_echo_msg_warning_str = 'W'
-"let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-"let b:ale_linters = {
-"      \  'python': [],
-"      \  'sh': ['language_server']
-"      \}
-"let g:ale_fixers = {
-"\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-"\   'javascript': ['eslint'],
-"\   'python': ['autopep8']
-"\}
-"let g:flake8_show_in_gutter=1
-"let g:ale_python_flake8_global = 1
+let g:ale_completion_enabled = 0
+let g:ale_python_pylint_use_global = 1
+"let g:ale_python_pylint_options = "--init-hook='import sys;
+"sys.path.append(\'.\')'"
+let g:ale_set_highlights = 1
+let g:ale_set_signs = 1
+let g:ale_sign_error = "⤫"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "•"
+let g:ale_sign_info = "λ"
+"let g:ale_sign_style_error = 
+"let g:ale_sign_style_warning = 
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+let b:ale_linters = {
+      \  'python': ['pylint'],
+      \  'sh': ['language_server']
+      \}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'python': ['autopep8']
+\}
+let g:flake8_show_in_gutter=1
+let g:ale_python_flake8_global = 1
 
 function! StatusDiagnostic() abort
   let info = get(b:, 'coc_diagnostic_info', {})
@@ -389,8 +404,8 @@ colorscheme gruvbox
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ale#enabled = 1
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+"let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+"let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 let g:airline_theme='distinguished'
 
 let airline#extensions#coc#error_symbol = 'Error:'

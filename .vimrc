@@ -87,9 +87,9 @@ nnoremap <nowait> <silent> <leader>nh :set nohlsearch<cr>
 " use space to fold/unfold
 nnoremap <space> za
 " open all folds
-"nnoremap <leader>r zR
+nnoremap <leader>zr zR
 " close all folds
-nnoremap <leader>z zM
+nnoremap <leader>zm zM
 "split navigations, doesn't work with tmux.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>

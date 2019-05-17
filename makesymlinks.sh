@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # DEPRECATED: in favor of Go setup script.
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################

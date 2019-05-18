@@ -6,31 +6,15 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    platform='macos'
 fi
 
-# COLOR PROMPTS ------------------------------------------------------------------------------
-#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ " # a full PS1 prompt
-# if colorschemes don't overide cli, use these options.
-#export CLICOLOR=1
-#export LSCOLORS=ExFxBxDxCxegedabagacad
 # for dark background
 if [[ $platform == 'linux' ]]; then
 export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 elif [[ $platform == 'macos' ]]; then
-#export PS1="\[\033[32m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 # gruvbox ps1
 export PS1="\[\033[32m\]seeker 🔥\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
 #snow ps1
 #export PS1="\[\033[208m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
 fi
-
-# colorschemes ----------------------------------------------------------------------------------------------
-# apply vimspectr theme to shell
-#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr210-dark #load vimspectr on shell startup
-#vim(){ sh -c "vim $*"; sh ~/.vimspectr-shell/vimspectr210-dark;  clear; } #restore shell theme on vim exit
-# apply the dark snow theme to your shell
-#[ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh # or use snow_light.sh for light theme
-#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr30-dark
-#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr60-dark
-#[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectrgrey-dark
 [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
@@ -71,19 +55,15 @@ if [[ $platform == 'linux' ]]; then
   fi
 fi
 
-# ALIASES -----------------------------------------------------------------------------------------------
-# use neovim by default
 # set shell to vi keybindings.
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
 if [[ $platform == 'linux' ]]; then
   alias vim='/home/linuxbrew/.linuxbrew/bin/nvim'
 elif [[ $platform == 'macos' ]]; then
-  #alias vim='/usr/local/bin/vim'
   alias vim='nvim'
 fi
 alias pybug="python -m pdb -c continue"
-#alias mysql@5.7='mysql'
 # use hub as default for git https://hub.github.com/
 alias git=hub
 alias listen="netstat -nap tcp | grep -i 'listen'"
@@ -125,9 +105,6 @@ alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
 alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
-
-# source rdr venv
-alias sordr='source rdr_client/venv/bin/activate'
 alias generate_data='cd rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples && cd ../rest-api'
 alias cheat='cht.sh --shell'
 
@@ -162,6 +139,7 @@ PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:/usr/local/bin"
 PATH="${PATH}:/usr/local/sbin"
+PATH="${PATH}:${HOME}/go/bin"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
 

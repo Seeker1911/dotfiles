@@ -78,7 +78,6 @@ let &t_EI = "\<Esc>[2 q"
 set encoding=utf8
 set termencoding=utf-8	       " default terminal encoding
 set guifont=Hack\ Nerd\ Font\:h11
-let g:airline_powerline_fonts = 1
 set nocompatible	       " required, not vi compatible
 set cursorline		       " show cursorline
 set mouse=a		       " don't select numbers
@@ -163,6 +162,7 @@ endif
 autocmd FileType python setlocal completeopt-=preview
 " 1= buffer, 2=commmandline (better under history)
 let g:jedi#show_call_signatures = "1"
+let g:jedi#popup_select_first = 0
 "defaults, here for reference.
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -226,6 +226,7 @@ let g:gruvbox_improved_warnings=1
 let g:gruvbox_termcolors=256
 colorscheme gruvbox
 " Airline and tmuxline ---------------------------------------------------
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ale#enabled = 1

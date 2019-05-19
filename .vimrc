@@ -1,26 +1,26 @@
 if empty(glob('~/.config/nvim/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+      silent !curl -fLo ~/.config/nvim/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-Plug 'w0rp/ale'
-Plug 'davidhalter/jedi-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'morhetz/gruvbox'
-Plug 'godlygeek/csapprox'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'guns/xterm-color-table.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'simnalamburt/vim-mundo'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'craigemery/vim-autotag'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jremmen/vim-ripgrep'
-Plug 'ryanoasis/vim-devicons'
+      Plug 'w0rp/ale'
+      Plug 'davidhalter/jedi-vim'
+      Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
+      Plug 'tmux-plugins/vim-tmux-focus-events'
+      Plug 'morhetz/gruvbox'
+      Plug 'godlygeek/csapprox'
+      Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+      Plug 'guns/xterm-color-table.vim'
+      Plug 'airblade/vim-gitgutter'
+      Plug 'simnalamburt/vim-mundo'
+      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+      Plug 'junegunn/fzf.vim'
+      Plug 'craigemery/vim-autotag'
+      Plug 'vim-airline/vim-airline'
+      Plug 'vim-airline/vim-airline-themes'
+      Plug 'jremmen/vim-ripgrep'
+      Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 filetype plugin indent on
@@ -46,6 +46,8 @@ map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
+nmap <leader>l :LightSide<CR>
+nmap <leader>d :DarkSide<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <nowait> <silent> <leader>h :set hlsearch<cr>
@@ -65,6 +67,9 @@ nnoremap [l :lprevious
 nnoremap <silent>S :call <SID>show_documentation()<CR>
 nnoremap <leader>print oprint('\n')<CR>print('**********************')<CR>print(), '<<<<'<CR>print('**********************')<ESC>k^wa
 nnoremap <leader>i oimport ipdb; ipdb.set_trace()<ESC>
+nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
+nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
+
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -111,26 +116,24 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 
 if glob('/Users/meadm1')
-  let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
-  let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
+    let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
+    let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
 elseif glob('/home/michael_mead')
-  let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
-  let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
+    let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
+    let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 endif
 
 function! LightSide()
-  colors snow
-  set background=light
-endfunction
+    colors snow
+    set background=light
+    endfunction
 command! LightSide call LightSide()
-nmap <leader>l :LightSide<CR>
 
 function! DarkSide()
-  colors gruvbox
-  set background=dark
-endfunction
+    colors gruvbox
+    set background=dark
+    endfunction
 command! DarkSide call DarkSide()
-nmap <leader>d :DarkSide<CR>
 
 function! ProseMode()
   call goyo#execute(0, [])
@@ -179,7 +182,7 @@ let g:ale_set_signs = 1
 let g:ale_sign_error = "⤫"
 let g:ale_sign_warning = "⚠"
 let g:ale_sign_info = "•"
-let g:ale_sign_info = "λ"
+let g:ale_sign_hint = "λ"
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
@@ -189,26 +192,23 @@ let b:ale_linters = {
       \  'go': ['golint', 'gofmt', 'gopls']
       \}
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'python': ['autopep8'],
-\   'go': ['gofmt', 'goimports']
-\}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['eslint'],
+      \   'python': ['autopep8'],
+      \   'go': ['gofmt', 'goimports']
+      \}
 let g:ale_python_flake8_global = 1
 
-nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
-nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
-
 fun! s:smoothScroll(up)
-  execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
-  redraw
-  for l:count in range(3, &scroll, 2)
-    sleep 7m
     execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
     redraw
-  endfor
-  " bring the cursor in the middle of screen 
-  execute "normal M"
+    for l:count in range(3, &scroll, 2)
+      sleep 7m
+      execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
+      redraw
+    endfor
+    " bring the cursor in the middle of screen 
+    execute "normal M"
 endf
 
 "colorschemes------------------------------------------------------
@@ -219,7 +219,6 @@ set termguicolors "for truecolor support, assuming you have it.
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
 let g:gruvbox_improved_strings=0
@@ -231,11 +230,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='distinguished'
-
-let airline#extensions#coc#error_symbol = 'Error:'
-let airline#extensions#coc#error_symbol = 'Warning:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'GruvboxGray'],

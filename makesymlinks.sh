@@ -16,7 +16,7 @@ alacrittydir=~/.config/alacritty            # nvim directory
 homeFiles="bashrc vim viminfo tmux.conf ctags gitignore_global gitconfig Xresources"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc"
 nvimFiles="vimrc"
-binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh"
+binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh"
 
 ##########
 

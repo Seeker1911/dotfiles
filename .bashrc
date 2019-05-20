@@ -8,14 +8,19 @@ fi
 
 # for dark background
 if [[ $platform == 'linux' ]]; then
-export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+    # gruvbox ps1
+    export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
 elif [[ $platform == 'macos' ]]; then
-# gruvbox ps1
-export PS1="\[\033[32m\]seeker 🔥\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-#snow ps1
-#export PS1="\[\033[208m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+    # gruvbox ps1
+    export PS1="\[\033[32m\]seeker 🔥\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
+    #snow ps1 - for when I want to use light theme
+#    [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh
+#    [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_light.sh
+#    export PS1="\[\033[208m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
+#    eval `dircolors ~/.vim/plugged/snow/shell/dircolors`
 fi
-[ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

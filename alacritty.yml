@@ -86,7 +86,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: Hack Nerd Font
+    family: FuraCode Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -97,24 +97,23 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: monospace
-
+    family: FuraCode Nerd Font Mono
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Bold
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Italic
 
   # Point size
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -153,18 +152,21 @@ persistent_logging: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
+
 # Colors (Gruvbox dark)
 colors:
   # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
-    background: '0x282828'
+    background: '0x32302f'
     # soft contrast: background = '0x32302f'
     foreground: '0xebdbb2'
-
+  cursor:
+    text: '0x2E3440'
+    cursor: '0xebdbb2'
   # Normal colors
   normal:
-    black:   '0x282828'
+    black:   '0x1e1e1e'
     red:     '0xcc241d'
     green:   '0x98971a'
     yellow:  '0xd79921'
@@ -184,83 +186,102 @@ colors:
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
     
+# Colors (Gruvbox light)
 #colors:
 #  # Default colors
 #  primary:
-#    background: '0x282828'
-#    foreground: '0xfbf1c7'
+#    # hard contrast: background = '0xf9f5d7'
+#    background: '0xfbf1c7'
+#    # soft contrast: background = '0xf2e5bc'
+#    foreground: '0x3c3836'
 #
 #  # Normal colors
 #  normal:
-#    black:   '0x0f0e0d'
-#    red:     '0x845336'
-#    green:   '0x73704a'
-#    yellow:  '0xa17e3e'
-#    blue:    '0x43454f'
-#    magenta: '0x604848'
-#    cyan:    '0x5c6652'
-#    white:   '0xa18b62'
+#    black:   '0xfbf1c7'
+#    red:     '0xcc241d'
+#    green:   '0x98971a'
+#    yellow:  '0xd79921'
+#    blue:    '0x458588'
+#    magenta: '0xb16286'
+#    cyan:    '0x689d6a'
+#    white:   '0x7c6f64'
 #
 #  # Bright colors
 #  bright:
-#    black:   '0x383332'
-#    red:     '0x8c4f4a'
-#    green:   '0x898471'
-#    yellow:  '0xc8b491'
-#    blue:    '0x65788f'
-#    magenta: '0x755e4a'
-#    cyan:    '0x718062'
-#    white:   '0xbc9d66'
+#    black:   '0x928374'
+#    red:     '0x9d0006'
+#    green:   '0x79740e'
+#    yellow:  '0xb57614'
+#    blue:    '0x076678'
+#    magenta: '0x8f3f71'
+#    cyan:    '0x427b58'
+#    white:   '0x3c3836'
 
-# Colors
+
+# Colors (PaperColor - Light)
 #colors:
-  #Default colors
+#  # Default colors
 #  primary:
-#    background: '0x282828'
-#    foreground: '0xeaeaea'
+#    background: '0xEEEEEE'
+#    foreground: '0x4D4D4C'
 #
-#    #Bright and dim foreground colors
-#    
-##     The dimmed foreground color is calculated automatically if it is not present.
-##     If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-##     is `false`, the normal foreground color will be used.
-#    dim_foreground: '0x9a9a9a'
-#    bright_foreground: '0xffffff'
-#
-##   Cursor colors
-##  
-##   Colors which should be used to draw the terminal cursor. If these are unset,
-##   the cursor color will be the inverse of the cell color.
-#  cursor:
-#    text: '0x000000'
-#    cursor: '0xffffff'
-#
-##   Normal colors
+#  # Normal colors
 #  normal:
-#    black:   '0x000000'
-#    red:     '0xd54e53'
-#    green:   '0xb9ca4a'
-#    yellow:  '0xe6c547'
-#    blue:    '0x7aa6da'
-#    magenta: '0xc397d8'
-#    cyan:    '0x70c0ba'
-#    white:   '0xeaeaea'
+#    black:   '0xEDEDED'
+#    red:     '0xD7005F'
+#    green:   '0x718C00'
+#    yellow:  '0xD75F00'
+#    blue:    '0x4271AE'
+#    magenta: '0x8959A8'
+#    cyan:    '0x3E999F'
+#    white:   '0x4D4D4C'
 #
-##   Bright colors
+#  # Bright colors
 #  bright:
-#    black:   '0x666666'
-#    red:     '0xff3334'
-#    green:   '0x9ec400'
-#    yellow:  '0xe7c547'
-#    blue:    '0x7aa6da'
-#    magenta: '0xb77ee0'
-#    cyan:    '0x54ced6'
-#    white:   '0xffffff'
+#    black:   '0x969694'
+#    red:     '0xD7005F'
+#    green:   '0x718C00'
+#    yellow:  '0xD75F00'
+#    blue:    '0x4271AE'
+#    magenta: '0x8959A8'
+#    cyan:    '0x3E999F'
+#    white:   '0xF5F5F5'
+
+# Colors (Nord)
+#colors:
+#   # Default colors
+#   primary:
+#     background: '0x2E3440'
+#     foreground: '0xD8DEE9'
+#   cursor:
+#     text: '0x2E3440'
+#     cursor: '0xD8DEE9'
+#   # Normal colors
+#   normal:
+#     black:   '0x3B4252'
+#     red:     '0xBF616A'
+#     green:   '0xA3BE8C'
+#     yellow:  '0xEBCB8B'
+#     blue:    '0x81A1C1'
+#     magenta: '0xB48EAD'
+#     cyan:    '0x88C0D0'
+#     white:   '0xE5E9F0'
 #
-##   Dim colors
-##  
-##   If the dim colors are not set, they will be calculated automatically based
-##   on the `normal` colors.
+#   # Bright colors
+#   bright:
+#     black:   '0x4C566A'
+#     red:     '0xBF616A'
+#     green:   '0xA3BE8C'
+#     yellow:  '0xEBCB8B'
+#     blue:    '0x81A1C1'
+#     magenta: '0xB48EAD'
+#     cyan:    '0x8FBCBB'
+#     white:   '0xECEFF4'
+#
+#   Dim colors
+#  
+#   If the dim colors are not set, they will be calculated automatically based
+#   on the `normal` colors.
 #  dim:
 #    black:   '0x000000'
 #    red:     '0x8c3336'
@@ -279,7 +300,7 @@ colors:
   # Example:
   #   `- { index: 16, color: '0xff00ff' }`
   #
-  indexed_colors: []
+  #indexed_colors: []
 
 # Visual Bell
 #

@@ -5,6 +5,7 @@ if empty(glob('~/.config/nvim/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'w0rp/ale'
+      Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -126,6 +127,7 @@ endif
 function! LightSide()
     colors snow
     set background=light
+    let g:airline_theme='snow_light'
     endfunction
 command! LightSide call LightSide()
 
@@ -220,12 +222,13 @@ set termguicolors "for truecolor support, assuming you have it.
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+colorscheme gruvbox
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_termcolors=256
-colorscheme gruvbox
+let g:gruvbox_italic=1
 " Airline and tmuxline ---------------------------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '

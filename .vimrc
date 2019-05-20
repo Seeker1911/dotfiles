@@ -113,6 +113,7 @@ set diffopt+=iwhiteall           " ignore whitespace on diff
 let &colorcolumn="100"
 set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+set backspace=indent,eol,start
 
 if glob('/Users/meadm1')
     let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'

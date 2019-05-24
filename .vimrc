@@ -178,6 +178,7 @@ let g:jedi#rename_command = "<leader>r"
 " Ale settings
 let g:ale_completion_enabled = 1
 let g:ale_python_pylint_use_global = 1
+let g:ale_python_flake8_global = 1
 "let g:ale_python_pylint_options = "--init-hook='import sys;
 "sys.path.append(\'.\')'"
 let g:ale_set_highlights = 1
@@ -200,7 +201,6 @@ let g:ale_fixers = {
       \   'python': ['autopep8'],
       \   'go': ['gofmt', 'goimports']
       \}
-let g:ale_python_flake8_global = 1
 
 fun! s:smoothScroll(up)
     execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")

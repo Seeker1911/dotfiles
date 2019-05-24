@@ -38,7 +38,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
-map <leader>n :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<CR>
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
 map <leader>m :MundoToggle<CR>
@@ -101,7 +101,7 @@ set wrap linebreak nolist      " improved word wrapping
 set foldenable                 " enable folding
 set undofile
 set undodir=~/.vim/undo        " set vims undo directory
-set foldlevel=1
+set foldlevel=10
 set foldnestmax=2
 set foldmethod=indent
 set nohlsearch
@@ -176,7 +176,7 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 
 " Ale settings
-let g:ale_completion_enabled = 0
+let g:ale_completion_enabled = 1
 let g:ale_python_pylint_use_global = 1
 "let g:ale_python_pylint_options = "--init-hook='import sys;
 "sys.path.append(\'.\')'"

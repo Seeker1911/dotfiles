@@ -4,9 +4,10 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-      Plug 'w0rp/ale'
+"      Plug 'w0rp/ale'
+      Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'nightsense/snow', {'on': 'LightSide'}
-      Plug 'davidhalter/jedi-vim'
+"      Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'morhetz/gruvbox'
@@ -116,13 +117,16 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set backspace=indent,eol,start
 
-if glob('/Users/meadm1')
-    let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
-    let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
-elseif glob('/home/michael_mead')
-    let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
-    let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
-endif
+let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
+"let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
+"if glob('/Users/meadm1')
+"    let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
+"    let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
+"elseif glob('/home/michael_mead')
+"    let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
+"    let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
+"endif
 
 function! LightSide()
     colors snow
@@ -162,45 +166,45 @@ if !isdirectory(expand(&directory))
 endif
 
 " Jedi settings
-autocmd FileType python setlocal completeopt-=preview
+"autocmd FileType python setlocal completeopt-=preview
 " 1= buffer, 2=commmandline (better under history)
-let g:jedi#show_call_signatures = "1"
-let g:jedi#popup_select_first = 0
-"defaults, here for reference.
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-
+"let g:jedi#show_call_signatures = "1"
+"let g:jedi#popup_select_first = 0
+""defaults, here for reference.
+"let g:jedi#goto_command = "<leader>d"
+"let g:jedi#goto_assignments_command = "<leader>g"
+"let g:jedi#goto_definitions_command = ""
+"let g:jedi#documentation_command = "K"
+"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#rename_command = "<leader>r"
+" COC settings
 " Ale settings
-let g:ale_completion_enabled = 1
-let g:ale_python_pylint_use_global = 1
-let g:ale_python_flake8_global = 1
+"let g:ale_completion_enabled = 1
+"let g:ale_python_pylint_use_global = 1
+"let g:ale_python_flake8_global = 1
 "let g:ale_python_pylint_options = "--init-hook='import sys;
 "sys.path.append(\'.\')'"
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-let g:ale_sign_error = "⤫"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "•"
-let g:ale_sign_hint = "λ"
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-let b:ale_linters = {
-      \  'python': ['pylint'],
-      \  'sh': ['language_server'],
-      \  'go': ['golint', 'gofmt', 'gopls']
-      \}
-let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'javascript': ['eslint'],
-      \   'python': ['autopep8'],
-      \   'go': ['gofmt', 'goimports']
-      \}
+"let g:ale_set_highlights = 1
+"let g:ale_set_signs = 1
+"let g:ale_sign_error = "⤫"
+"let g:ale_sign_warning = "⚠"
+"let g:ale_sign_info = "•"
+"let g:ale_sign_hint = "λ"
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+"let b:ale_linters = {
+"      \  'python': ['pylint'],
+"      \  'sh': ['language_server'],
+"      \  'go': ['golint', 'gofmt', 'gopls']
+"      \}
+"let g:ale_fixers = {
+"      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+"      \   'javascript': ['eslint'],
+"      \   'python': ['autopep8'],
+"      \   'go': ['gofmt', 'goimports']
+"      \}
 
 fun! s:smoothScroll(up)
     execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
@@ -233,7 +237,7 @@ let g:gruvbox_italic=1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#ale#enabled = 1
+"let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='distinguished'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {

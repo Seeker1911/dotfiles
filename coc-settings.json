@@ -1,7 +1,7 @@
 {
   "coc.source.emoji.enable": true,
   "coc.preferences.previewAutoClose": true,
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.venvPath": "~/.pyenv",
   "python.formatting.provider": "autopep8",
   "python.autoComplete.addBrackets": false,
@@ -17,6 +17,12 @@
   "diagnostic.enableSign": true,
   "diagnostic.maxWindowHeight": 25,
   "suggest.enablePreview": true,
+  "suggest.snippetIndicator": "►",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "--►",
+  "codeLens.enable": true,
+  "coc.preferences.jumpCommand": "vsplit",
   "languageserver": {
    "sh": {
         "command": "bash-language-server",

@@ -110,13 +110,14 @@ set backup                       " enable backups
 set undodir=~/.vim/tmp/undo/     " undo files
 set backupdir=~/.vim/tmp/backup/ " backups
 set directory=~/.vim/tmp/swap/   " swap files
+set noswapfile
 set diffopt+=hiddenoff           " no diff on hidden buffer
 set diffopt+=iwhiteall           " ignore whitespace on diff
 let &colorcolumn="100"
 set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set backspace=indent,eol,start
-
+" neovim only 
 let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 "let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'

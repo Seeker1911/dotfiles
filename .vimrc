@@ -113,7 +113,7 @@ set directory=~/.vim/tmp/swap/   " swap files
 set noswapfile
 set diffopt+=hiddenoff           " no diff on hidden buffer
 set diffopt+=iwhiteall           " ignore whitespace on diff
-let &colorcolumn="100"
+let &colorcolumn="120"
 set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set backspace=indent,eol,start
@@ -183,7 +183,7 @@ let g:jedi#rename_command = "<leader>r"
 
 " Ale settings
 let g:ale_completion_enabled = 1
-let g:ale_python_pylint_use_global = 1
+let g:ale_python_pylint_use_global = 0
 let g:ale_python_flake8_global = 1
 "let g:ale_python_pylint_options = "--init-hook='import sys;
 "sys.path.append(\'.\')'"

@@ -102,7 +102,7 @@ alias dunnet='emacs -batch -l dunnet'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
-alias rasberry="ssh pi@10.0.0.135"
+alias raspberry="ssh pi@10.0.0.135"
 alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
@@ -176,5 +176,5 @@ if [[ $platform == 'macos' ]]; then
   unset PROMPT_COMMAND
 fi
 
-CFLAGS="-I$(brew --prefix openssl)/include" \
-LDFLAGS="-L$(brew --prefix openssl)/lib" \
+CFLAGS="-I$(brew --prefix openssl)/include"
+LDFLAGS="-L$(brew --prefix openssl)/lib" 

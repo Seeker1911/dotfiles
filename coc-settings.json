@@ -5,7 +5,7 @@
   "python.venvPath": "~/.pyenv",
   "python.formatting.provider": "autopep8",
   "python.autoComplete.addBrackets": false,
-  "python.linting.enabled": true,
+  "python.linting.enabled": false,
   "python.linting.pylintUseMinimalCheckers": true,
   "python.linting.pylintArgs": ["--disable-msg","C0330"],
   "diagnostic.errorSign": "⤫",

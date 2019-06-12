@@ -4,7 +4,7 @@
   //"python.jediEnabled": true,
   "python.venvPath": "~/.pyenv",
   "python.formatting.provider": "autopep8",
-  "python.autoComplete.addBrackets": true,
+  "python.autoComplete.addBrackets": false,
   //"python.linting.enabled": true,
   //"python.linting.pylintUseMinimalCheckers": true,
   //"python.linting.pylintArgs": ["--disable-msg","C0330"],

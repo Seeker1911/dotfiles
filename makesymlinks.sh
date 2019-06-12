@@ -12,7 +12,7 @@ configdir=~/.config               # config directory
 nvimdir=~/.config/nvim            # nvim directory
 alacrittydir=~/.config/alacritty            # nvim directory
 
-homeFiles="bashrc vim viminfo tmux.conf ctags global_gitignore gitconfig Xresources"    # list of files/folders to symlink in homedir
+homeFiles="bashrc vim viminfo tmux.conf tags global_gitignore gitconfig Xresources"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc"
 nvimFiles="vimrc"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh"
@@ -43,17 +43,17 @@ for file in $configFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.config/$file $olddir
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file $configdir/$file
+    ln -s $dir/linters/$file $configdir/$file
 done
 
 for file in $binFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/bin/$file ~$olddir
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file $bindir/$file
+    ln -s $dir/utils/$file $bindir/$file
 done
 
 # link to init.vim in  favor of nvim
 ln -s $dir/.vimrc $nvimdir/init.vim
 # link alaccritty config
-ln -s $dir/alacritty.yml $alacrittydir/alacritty.yml
+ln -s $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

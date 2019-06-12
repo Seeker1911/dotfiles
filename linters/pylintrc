@@ -8,7 +8,7 @@
 init-hook="from pylint.config import find_pylintrc; \
     import os; \
     import sys; \
-    sys.path = [x for x in sys.path if 'python2.7' in x]; \
+    sys.path = [x for x in sys.path if 'python' in x]; \
     sdk_bin_dir = [p for p in set(os.environ['PATH'].split(os.pathsep)) if os.path.exists(os.path.join(p, 'gcloud'))][0]; \
     ae_dir = os.path.join(sdk_bin_dir, '..', 'platform', 'google_appengine'); \
     sys.path.insert(0, ae_dir); \
@@ -47,7 +47,8 @@ load-plugins=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=C0111
+disable=C0111,
+        w0311
 
 
 [REPORTS]

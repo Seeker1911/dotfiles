@@ -4,7 +4,7 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-      Plug 'w0rp/ale'
+"      Plug 'w0rp/ale'
       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'davidhalter/jedi-vim'
@@ -26,9 +26,10 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 filetype plugin indent on
-hi NonText ctermbg=NONE
+"hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232
+highlight SignColumn ctermbg=256
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -71,6 +72,46 @@ nnoremap <leader>print oprint('\n')<CR>print('**********************')<CR>print(
 nnoremap <leader>i oimport ipdb; ipdb.set_trace()<ESC>
 nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
 nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
+
+" COC settings
+nmap <leader>rn <Plug>(coc-rename)
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+" coc open browser current file
+nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
+" navigate chunks of current buffer
+nmap <silent> [g <Plug>(coc-git-prevchunk)
+nmap <silent> ]g <Plug>(coc-git-nextchunk)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit ad current position
+nmap gc <Plug>(coc-git-commit)
+" Show all diagnostics
+nnoremap <silent> <space>a :<C-u>CocList diagnostics<CR>
+" Manage extensions
+nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+" Show commands
+nnoremap <silent> <space>c :<C-u>CocList commands<CR>
+" Find symbol of current document
+nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+" Search workspace symbols
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<CR>
+" Do default action for next item.
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
@@ -120,14 +161,6 @@ set backspace=indent,eol,start
 " neovim only 
 let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
-"let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
-"if glob('/Users/meadm1')
-"    let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
-"    let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
-"elseif glob('/home/michael_mead')
-"    let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
-"    let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
-"endif
 
 function! LightSide()
     colors snow
@@ -179,8 +212,6 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
-" COC settings
-
 " Ale settings
 let g:ale_completion_enabled = 1
 let g:ale_python_pylint_use_global = 0

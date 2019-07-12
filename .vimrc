@@ -4,8 +4,8 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-"      Plug 'w0rp/ale'
-      Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+      Plug 'w0rp/ale'
+      "Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
@@ -74,48 +74,48 @@ nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
 nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
 
 " COC settings
-nmap <leader>rn <Plug>(coc-rename)
+"nmap <leader>rn <Plug>(coc-rename)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+"nmap <leader>qf  <Plug>(coc-fix-current)
 " coc open browser current file
-nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
+"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
 " navigate chunks of current buffer
-nmap <silent> [g <Plug>(coc-git-prevchunk)
-nmap <silent> ]g <Plug>(coc-git-nextchunk)
-nmap <silent> [d <Plug>(coc-diagnostic-prev)
-nmap <silent> ]d <Plug>(coc-diagnostic-next)
+"nmap <silent> [g <Plug>(coc-git-prevchunk)
+"nmap <silent> ]g <Plug>(coc-git-nextchunk)
+"nmap <silent> [d <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]d <Plug>(coc-diagnostic-next)
 "" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
 " Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
+"vmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
 " show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
+"nmap gs <Plug>(coc-git-chunkinfo)
 " show commit ad current position
-nmap gc <Plug>(coc-git-commit)
+"nmap gc <Plug>(coc-git-commit)
 " Show config
-nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
 " Show info
-nnoremap <silent> <space>i :<C-u>CocInfo<CR>
+"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
 " Show all diagnostics
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
+"nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
 " Manage extensions
-nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+"nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
 " Show commands
-nnoremap <silent> <space>c :<C-u>CocList commands<CR>
+"nnoremap <silent> <space>c :<C-u>CocList commands<CR>
 " Find symbol of current document
-nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
 " Search workspace symbols
-nnoremap <silent> <space>s :<C-u>CocList -I symbols<CR>
+"noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 " Do default action for next item.
-nnoremap <silent> <space>j :<C-u>CocNext<CR>
+"nnoremap <silent> <space>j :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+"nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"

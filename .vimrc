@@ -84,7 +84,7 @@ nmap <silent> [g <Plug>(coc-git-prevchunk)
 nmap <silent> ]g <Plug>(coc-git-nextchunk)
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
-" Remap keys for gotos
+"" Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -96,6 +96,10 @@ vmap <leader>f  <Plug>(coc-format-selected)
 nmap gs <Plug>(coc-git-chunkinfo)
 " show commit ad current position
 nmap gc <Plug>(coc-git-commit)
+" Show config
+nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+" Show info
+nnoremap <silent> <space>i :<C-u>CocInfo<CR>
 " Show all diagnostics
 nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
 " Manage extensions

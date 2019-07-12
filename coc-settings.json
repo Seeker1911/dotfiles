@@ -22,7 +22,7 @@
   "diagnostic.virtualText": false,
   "diagnostic.virtualTextPrefix": "--►",
   "codeLens.enable": true,
-  "coc.preferences.jumpCommand": "vsplit",
+  "coc.preferences.jumpCommand": "drop",
   "git.changedSign.hlGroup": "DiffChange",
   "git.enableGutters": false,
   "languageserver": {

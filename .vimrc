@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'vim-airline/vim-airline-themes'
       Plug 'jremmen/vim-ripgrep'
       Plug 'ryanoasis/vim-devicons'
+      Plug 'tpope/vim-fugitive'
+      Plug 'majutsushi/tagbar'
 call plug#end()
 
 filetype plugin indent on
@@ -41,6 +43,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
 map <leader>t :NERDTreeToggle<CR>
+nmap <leader>T :TagbarToggle<CR>
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
 map <leader>m :MundoToggle<CR>
@@ -49,8 +52,8 @@ map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
-nmap <leader>l :LightSide<CR>
-nmap <leader>d :DarkSide<CR>
+nmap <LocalLeader>l :LightSide<CR>
+nmap <LocalLeader>d :DarkSide<CR>
 " surround word with "
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <nowait> <silent> <leader>h :set hlsearch<cr>
@@ -73,49 +76,7 @@ nnoremap <leader>i oimport ipdb; ipdb.set_trace()<ESC>
 nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
 nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
 
-" COC settings
-"nmap <leader>rn <Plug>(coc-rename)
-" Fix autofix problem of current line
-"nmap <leader>qf  <Plug>(coc-fix-current)
-" coc open browser current file
-"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
-" navigate chunks of current buffer
-"nmap <silent> [g <Plug>(coc-git-prevchunk)
-"nmap <silent> ]g <Plug>(coc-git-nextchunk)
-"nmap <silent> [d <Plug>(coc-diagnostic-prev)
-"nmap <silent> ]d <Plug>(coc-diagnostic-next)
-"" Remap keys for gotos
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-" Remap for format selected region
-"vmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
-" show chunk diff at current position
-"nmap gs <Plug>(coc-git-chunkinfo)
-" show commit ad current position
-"nmap gc <Plug>(coc-git-commit)
-" Show config
-"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
-" Show info
-"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
-" Show all diagnostics
-"nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
-" Manage extensions
-"nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
-" Show commands
-"nnoremap <silent> <space>c :<C-u>CocList commands<CR>
-" Find symbol of current document
-"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
-" Search workspace symbols
-"noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
-" Resume latest coc list
-"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-" Do default action for next item.
-"nnoremap <silent> <space>j :<C-u>CocNext<CR>
-" Do default action for previous item.
-"nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
@@ -190,7 +151,7 @@ function! ProseMode()
   colors vimspectrgrey-light
 endfunction
 command! ProseMode call ProseMode()
-nmap \p :ProseMode<CR>
+nmap <LocalLeader>p :ProseMode<CR>
 
 " Make these folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
@@ -206,18 +167,18 @@ endif
 " Jedi settings
 autocmd FileType python setlocal completeopt-=preview
 " 1= buffer, 2=commmandline (better under history)
-let g:jedi#show_call_signatures = "1"
-let g:jedi#popup_select_first = 0
-"defaults, here for reference.
+let g:jedi#show_call_signatures = "2"
+let g:jedi#popup_select_first = 1
 let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_definitions_command = "<leader>D"
 let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<TAB>"
 let g:jedi#rename_command = "<leader>r"
+let g:jedi#use_tabs_not_buffers = 1
 " Ale settings
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 let g:ale_python_pylint_use_global = 0
 let g:ale_python_flake8_global = 1
 "let g:ale_python_pylint_options = "--init-hook='import sys;
@@ -242,6 +203,17 @@ let g:ale_fixers = {
       \   'python': ['autopep8'],
       \   'go': ['gofmt', 'goimports']
       \}
+
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 fun! s:smoothScroll(up)
     execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
@@ -292,3 +264,48 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Statement'],
   \ }
 
+
+""---------- old COC settings in case I ever go back ------------------
+" COC settings
+"nmap <leader>rn <Plug>(coc-rename)
+" Fix autofix problem of current line
+"nmap <leader>qf  <Plug>(coc-fix-current)
+" coc open browser current file
+"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
+" navigate chunks of current buffer
+"nmap <silent> [g <Plug>(coc-git-prevchunk)
+"nmap <silent> ]g <Plug>(coc-git-nextchunk)
+"nmap <silent> [d <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]d <Plug>(coc-diagnostic-next)
+"" Remap keys for gotos
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+" Remap for format selected region
+"vmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
+" show chunk diff at current position
+"nmap gs <Plug>(coc-git-chunkinfo)
+" show commit ad current position
+"nmap gc <Plug>(coc-git-commit)
+" Show config
+"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+" Show info
+"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
+" Show all diagnostics
+"nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
+" Manage extensions
+"nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+" Show commands
+"nnoremap <silent> <space>c :<C-u>CocList commands<CR>
+" Find symbol of current document
+"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+" Search workspace symbols
+"noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
+" Resume latest coc list
+"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+" Do default action for next item.
+"nnoremap <silent> <space>j :<C-u>CocNext<CR>
+" Do default action for previous item.
+"nnoremap <silent> <space>k :<C-u>CocPrev<CR>

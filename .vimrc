@@ -39,7 +39,7 @@ vmap <leader>c :s/^/#/g<CR>
 vmap <leader>" :s/^/"/g<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<CR>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
 map <leader>t :NERDTreeToggle<CR>
@@ -82,7 +82,8 @@ nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not found' messages
+set shortmess+=c
 set encoding=utf8
 set termencoding=utf-8	       " default terminal encoding
 set guifont=Hack\ Nerd\ Font\:h11
@@ -164,6 +165,9 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
 " Jedi settings
 autocmd FileType python setlocal completeopt-=preview
 " 1= buffer, 2=commmandline (better under history)

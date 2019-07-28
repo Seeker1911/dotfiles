@@ -178,5 +178,3 @@ fi
 
 CFLAGS="-I$(brew --prefix openssl)/include"
 LDFLAGS="-L$(brew --prefix openssl)/lib" 
-#RDR_PROJECT="$HOME/raw-data-repository"
-#export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT/rdr_common:$RDR_PROJECT/rdr_client

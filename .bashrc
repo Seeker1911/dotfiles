@@ -42,7 +42,7 @@ export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
-#export CLOUDSDK_PYTHON=/usr/bin/python
+export CLOUDSDK_PYTHON=/usr/bin/python
 
 # fix tmux panes history
 # append to history file instead of overwrite on exit.
@@ -178,3 +178,5 @@ fi
 
 CFLAGS="-I$(brew --prefix openssl)/include"
 LDFLAGS="-L$(brew --prefix openssl)/lib" 
+#RDR_PROJECT="$HOME/raw-data-repository"
+#export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT/rdr_common:$RDR_PROJECT/rdr_client

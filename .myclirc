@@ -122,3 +122,4 @@ FROM   information_schema.tables
 WHERE  TABLE_SCHEMA = 'rdr'
 AND TABLE_NAME = 'site''''
 update_time_participant = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'rdr' AND TABLE_NAME = 'site'"
+test = select participant_id from participant limit 1

@@ -128,11 +128,12 @@ set backspace=indent,eol,start
 let uname = substitute(system('uname'), '\n', '', '')
 if uname == 'Linux'
 	let g:python_host_prog = '/home/linuxbrew/.linuxbrew/bin/python'
+	let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 else "Mac
-	let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
+	let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
+	let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
 endif
 
-let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 
 function! LightSide()
     colors snow

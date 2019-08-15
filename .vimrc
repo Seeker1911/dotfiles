@@ -125,8 +125,14 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set backspace=indent,eol,start
 " neovim only 
-let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
+let uname = substitute(system('uname'), '\n', '', '')
+if uname == 'Linux'
+	let g:python_host_prog = '/home/linuxbrew/.linuxbrew/bin/python'
+else "Mac
+	let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
+endif
+
+let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 
 function! LightSide()
     colors snow

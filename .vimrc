@@ -5,7 +5,7 @@ if empty(glob('~/.config/nvim/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'w0rp/ale'
-      "Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+      Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
@@ -171,6 +171,9 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
+if has('nvim-0.3.2') || has("patch-8.1.0360")
+  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+endif
 
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect

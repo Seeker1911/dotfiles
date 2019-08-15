@@ -42,7 +42,7 @@ export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
-export CLOUDSDK_PYTHON=/usr/bin/python
+#export CLOUDSDK_PYTHON=/Users/meadm1/google-cloud-sdk/venv/bin/python
 
 # fix tmux panes history
 # append to history file instead of overwrite on exit.
@@ -115,6 +115,7 @@ alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles
 alias generate_data='cd rdr_client && ./run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples && cd ../rest-api'
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
+alias cg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh

@@ -36,7 +36,7 @@ for file in $homeFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.$file $olddir
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/.$file ~/.$file
+    ln -s $dir/$file ~/.$file
 done
 
 for file in $configFiles; do
@@ -54,6 +54,6 @@ for file in $binFiles; do
 done
 
 # link to init.vim in  favor of nvim
-ln -s $dir/.vimrc $nvimdir/init.vim
+ln -s $dir/vimrc $nvimdir/init.vim
 # link alaccritty config
 ln -s $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

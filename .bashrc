@@ -13,7 +13,7 @@ if [[ $platform == 'linux' ]]; then
     [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
 elif [[ $platform == 'macos' ]]; then
     # gruvbox ps1
-    export PS1="\[\033[32m\]seeker 🔥\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
     [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
     #snow ps1 - for when I want to use light theme
 #    [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh
@@ -73,6 +73,15 @@ fi
 alias pybug="python -m pdb -c continue"
 # use hub as default for git https://hub.github.com/
 alias git=hub
+
+function gitpr {
+    if [ "$#" -ne 1 ]; then
+	echo "Requires commit message"
+	return 1;
+    fi
+    git pull-request -po -r rennat,robabram,wangy70 -m "$1"
+  }
+
 alias listen="netstat -nap tcp | grep -i 'listen'"
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then
@@ -106,8 +115,8 @@ alias raspberry="ssh pi@10.0.0.135"
 alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
-alias server="python -m simpleHTTPServer 8000"
-alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
+alias www="python -m simpleHTTPServer 8000"
+alias www2='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options

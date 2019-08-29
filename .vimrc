@@ -14,7 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'godlygeek/csapprox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'guns/xterm-color-table.vim'
-      Plug 'airblade/vim-gitgutter'
+      "Plug 'airblade/vim-gitgutter'
       Plug 'simnalamburt/vim-mundo'
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'

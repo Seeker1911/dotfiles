@@ -36,24 +36,24 @@ for file in $homeFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.$file $olddir
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+    ln -sf $dir/$file ~/.$file
 done
 
 for file in $configFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.config/$file $olddir
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/linters/$file $configdir/$file
+    ln -sf $dir/linters/$file $configdir/$file
 done
 
 for file in $binFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/bin/$file ~$olddir
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/utils/$file $bindir/$file
+    ln -sf $dir/utils/$file $bindir/$file
 done
 
 # link to init.vim in  favor of nvim
-ln -s $dir/vimrc $nvimdir/init.vim
+ln -sf $dir/vimrc $nvimdir/init.vim
 # link alaccritty config
-ln -s $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
+ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

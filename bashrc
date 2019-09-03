@@ -79,7 +79,7 @@ function gitpr {
 	echo "Requires commit message"
 	return 1;
     fi
-    git pull-request -po -r rennat,robabram,wangy70 -m "$1"
+    git pull-request -po -b devel -r rennat,robabram,wangy70 -m "$1"
   }
 
 alias listen="netstat -nap tcp | grep -i 'listen'"

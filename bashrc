@@ -79,7 +79,7 @@ function gitpr {
 	echo "Requires commit message"
 	return 1;
     fi
-    git pull-request -po -b devel -r rennat,robabram,wangy70 -m "$1"
+    git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
   }
 
 alias listen="netstat -nap tcp | grep -i 'listen'"
@@ -172,6 +172,7 @@ fi
 PATH="/usr/local/opt/gettext/bin:$PATH"
 PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+PATH=$PATH:/usr/local/opt/rabbitmq/sbin
 PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then

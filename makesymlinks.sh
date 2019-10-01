@@ -12,7 +12,7 @@ configdir=~/.config               # config directory
 nvimdir=~/.config/nvim            # nvim directory
 alacrittydir=~/.config/alacritty            # nvim directory
 
-homeFiles="bashrc vim viminfo tmux.conf tags global_gitignore gitconfig Xresources"    # list of files/folders to symlink in homedir
+homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf tags global_gitignore gitconfig Xresources ideavimrc"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc"
 nvimFiles="vimrc"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh"

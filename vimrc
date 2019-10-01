@@ -66,10 +66,10 @@ nnoremap <leader>zr zR
 nnoremap <leader>zm zM
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-nnoremap ]c :cnext
-nnoremap [c :cprevious
-nnoremap ]l :lnext
-nnoremap [l :lprevious
+nnoremap ]c :cnext <CR>
+nnoremap [c :cprevious <CR>
+nnoremap ]l :lnext <CR>
+nnoremap [l :lprevious <CR>
 nnoremap <silent>S :call <SID>show_documentation()<CR>
 nnoremap <leader>print oprint('\n')<CR>print('**********************')<CR>print(), '<<<<'<CR>print('**********************')<ESC>k^wa
 nnoremap <leader>i oimport ipdb; ipdb.set_trace()<ESC>
@@ -190,7 +190,7 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<TAB>"
 let g:jedi#rename_command = "<leader>r"
-let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#use_tabs_not_buffers = 0
 " Ale settings
 let g:ale_completion_enabled = 0
 let g:ale_python_pylint_use_global = 0
@@ -277,39 +277,39 @@ let g:fzf_colors = {
 " coc open browser current file
 "nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
 " navigate chunks of current buffer
-"nmap <silent> [g <Plug>(coc-git-prevchunk)
-"nmap <silent> ]g <Plug>(coc-git-nextchunk)
-"nmap <silent> [d <Plug>(coc-diagnostic-prev)
-"nmap <silent> ]d <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-git-prevchunk)
+nmap <silent> ]g <Plug>(coc-git-nextchunk)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
 "" Remap keys for gotos
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 " Remap for format selected region
 "vmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
 " show chunk diff at current position
-"nmap gs <Plug>(coc-git-chunkinfo)
+nmap gs <Plug>(coc-git-chunkinfo)
 " show commit ad current position
-"nmap gc <Plug>(coc-git-commit)
+nmap gc <Plug>(coc-git-commit)
 " Show config
-"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+nnoremap <silent> <space>g :<C-u>CocConfig<CR>
 " Show info
-"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
+nnoremap <silent> <space>i :<C-u>CocInfo<CR>
 " Show all diagnostics
-"nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
 " Manage extensions
-"nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
 " Show commands
-"nnoremap <silent> <space>c :<C-u>CocList commands<CR>
+nnoremap <silent> <space>c :<C-u>CocList commands<CR>
 " Find symbol of current document
-"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+nnoremap <silent> <space>o :<C-u>CocList outline<CR>
 " Search workspace symbols
-"noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
+noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
 " Resume latest coc list
-"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 " Do default action for next item.
-"nnoremap <silent> <space>j :<C-u>CocNext<CR>
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
 " Do default action for previous item.
-"nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>

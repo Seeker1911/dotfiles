@@ -1,6 +1,6 @@
 *.un~
 **/.DS_Store
-.idea
+**/.idea
 .editor_config
 node_modules
 bower_components

@@ -187,5 +187,22 @@ if [[ $platform == 'macos' ]]; then
   unset PROMPT_COMMAND
 fi
 
+export RDR_PROJECT=~/PycharmProjects/raw-data-repository
+
+function rdr {
+  source $RDR_PROJECT/venv/bin/activate
+  export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT/rdr_common:$RDR_PROJECT/rdr_client
+  cd $RDR_PROJECT/rest-api
+  . tools/tool_libs/tools.bash
+}
+
+function rdr3 { 
+  export GCP_PROJECT=all-of-us-rdr-local 
+  export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT
+  #source $RDR_PROJECT/venv37/bin/activate
+  cd $RDR_PROJECT
+  . rdr_service/tools/tool_libs/tools.bash
+}
+
 CFLAGS="-I$(brew --prefix openssl)/include"
 LDFLAGS="-L$(brew --prefix openssl)/lib" 

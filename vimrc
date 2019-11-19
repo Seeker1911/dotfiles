@@ -4,10 +4,10 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-      Plug 'w0rp/ale'
+      "Plug 'w0rp/ale'
       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'nightsense/snow', {'on': 'LightSide'}
-      Plug 'davidhalter/jedi-vim'
+      "Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'morhetz/gruvbox'
@@ -70,7 +70,6 @@ nnoremap ]c :cnext <CR>
 nnoremap [c :cprevious <CR>
 nnoremap ]l :lnext <CR>
 nnoremap [l :lprevious <CR>
-nnoremap <silent>S :call <SID>show_documentation()<CR>
 nnoremap <leader>print oprint('\n')<CR>print('**********************')<CR>print(), '<<<<'<CR>print('**********************')<ESC>k^wa
 nnoremap <leader>i oimport ipdb; ipdb.set_trace()<ESC>
 nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
@@ -199,10 +198,10 @@ let g:ale_python_flake8_global = 1
 "sys.path.append(\'.\')'"
 let g:ale_set_highlights = 1
 let g:ale_set_signs = 1
-let g:ale_sign_error = "⤫"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "•"
-let g:ale_sign_hint = "λ"
+let g:ale_sign_error = "•⤫"
+let g:ale_sign_warning = "•⚠"
+let g:ale_sign_info = "••"
+let g:ale_sign_hint = "•λ"
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
@@ -218,6 +217,61 @@ let g:ale_fixers = {
       \   'go': ['gofmt', 'goimports']
       \}
 
+
+" COC settings
+"nmap <leader>rn <Plug>(coc-rename)
+" Fix autofix problem of current line
+"nmap <leader>qf  <Plug>(coc-fix-current)
+" coc open browser current file
+"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
+" navigate chunks of current buffer
+nmap <silent> [g <Plug>(coc-git-prevchunk)
+nmap <silent> ]g <Plug>(coc-git-nextchunk)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
+"" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Remap for format selected region
+"vmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit ad current position
+nmap gc <Plug>(coc-git-commit)
+" Show config
+nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+" Show info
+nnoremap <silent> <space>i :<C-u>CocInfo<CR>
+" Show all diagnostics
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
+" Manage extensions
+nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+" Show commands
+nnoremap <silent> <space>c :<C-u>CocList commands<CR>
+" Find symbol of current document
+nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+" Search workspace symbols
+noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+" Do default action for next item.
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 fun! s:smoothScroll(up)
     execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
@@ -268,48 +322,3 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Statement'],
   \ }
 
-
-""---------- old COC settings in case I ever go back ------------------
-" COC settings
-"nmap <leader>rn <Plug>(coc-rename)
-" Fix autofix problem of current line
-"nmap <leader>qf  <Plug>(coc-fix-current)
-" coc open browser current file
-"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
-" navigate chunks of current buffer
-nmap <silent> [g <Plug>(coc-git-prevchunk)
-nmap <silent> ]g <Plug>(coc-git-nextchunk)
-nmap <silent> [d <Plug>(coc-diagnostic-prev)
-nmap <silent> ]d <Plug>(coc-diagnostic-next)
-"" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Remap for format selected region
-"vmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
-" show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
-" show commit ad current position
-nmap gc <Plug>(coc-git-commit)
-" Show config
-nnoremap <silent> <space>g :<C-u>CocConfig<CR>
-" Show info
-nnoremap <silent> <space>i :<C-u>CocInfo<CR>
-" Show all diagnostics
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
-" Manage extensions
-nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
-" Show commands
-nnoremap <silent> <space>c :<C-u>CocList commands<CR>
-" Find symbol of current document
-nnoremap <silent> <space>o :<C-u>CocList outline<CR>
-" Search workspace symbols
-noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-" Do default action for next item.
-nnoremap <silent> <space>j :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k :<C-u>CocPrev<CR>

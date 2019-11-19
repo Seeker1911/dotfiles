@@ -187,7 +187,7 @@ if [[ $platform == 'macos' ]]; then
   unset PROMPT_COMMAND
 fi
 
-export RDR_PROJECT=~/PycharmProjects/raw-data-repository
+export RDR_PROJECT=~/raw-data-repository
 
 function rdr {
   source $RDR_PROJECT/venv/bin/activate

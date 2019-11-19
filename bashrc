@@ -13,7 +13,7 @@ if [[ $platform == 'linux' ]]; then
     [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
 elif [[ $platform == 'macos' ]]; then
     # gruvbox ps1
-    export PS1="\[\033[32m\]seeker 🔥\[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
     [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
     #snow ps1 - for when I want to use light theme
 #    [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh
@@ -73,6 +73,15 @@ fi
 alias pybug="python -m pdb -c continue"
 # use hub as default for git https://hub.github.com/
 alias git=hub
+
+function gitpr {
+    if [ "$#" -ne 1 ]; then
+	echo "Requires commit message"
+	return 1;
+    fi
+    git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
+  }
+
 alias listen="netstat -nap tcp | grep -i 'listen'"
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then
@@ -106,8 +115,8 @@ alias raspberry="ssh pi@10.0.0.135"
 alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
-alias server="python -m simpleHTTPServer 8000"
-alias www='python -m SimpleHTTPServer 8000' #start python 2 webserver.
+alias www="python -m simpleHTTPServer 8000"
+alias www2='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
@@ -163,6 +172,7 @@ fi
 PATH="/usr/local/opt/gettext/bin:$PATH"
 PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+PATH=$PATH:/usr/local/opt/rabbitmq/sbin
 PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -176,6 +186,23 @@ if [[ $platform == 'macos' ]]; then
   #bash: __bp_interactive_mode: command not found
   unset PROMPT_COMMAND
 fi
+
+export RDR_PROJECT=~/raw-data-repository
+
+function rdr {
+  source $RDR_PROJECT/venv/bin/activate
+  export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT/rdr_common:$RDR_PROJECT/rdr_client
+  cd $RDR_PROJECT/rest-api
+  . tools/tool_libs/tools.bash
+}
+
+function rdr3 { 
+  export GCP_PROJECT=all-of-us-rdr-local 
+  export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT
+  #source $RDR_PROJECT/venv37/bin/activate
+  cd $RDR_PROJECT
+  . rdr_service/tools/tool_libs/tools.bash
+}
 
 CFLAGS="-I$(brew --prefix openssl)/include"
 LDFLAGS="-L$(brew --prefix openssl)/lib" 

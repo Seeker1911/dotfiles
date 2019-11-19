@@ -1,6 +1,6 @@
 *.un~
-.DS_Store
-.idea
+**/.DS_Store
+**/.idea
 .editor_config
 node_modules
 bower_components
@@ -15,3 +15,4 @@ flake8
 .flake8
 .pep8
 .vscode/
+.vim/

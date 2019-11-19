@@ -123,3 +123,7 @@ WHERE  TABLE_SCHEMA = 'rdr'
 AND TABLE_NAME = 'site''''
 update_time_participant = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'rdr' AND TABLE_NAME = 'site'"
 test = select participant_id from participant limit 1
+consent-file-drop; = '''\T csv; \o file.csv; 
+select p.participant_id pmi_id, SUBSTRING_INDEX(s.google_group, '-', -1) paired_site from participant p
+left join site s on p.site_id = s.site_id
+where p.hpo_id = 15'''

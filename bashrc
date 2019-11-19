@@ -49,6 +49,7 @@ export CHTSH_QUERY_OPTIONS="style=native"
 shopt -s histappend
 shopt -s histreedit
 shopt -s histverify
+shopt -s cdspell
 
 export HISTCONTROL='ingoreboth'
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"

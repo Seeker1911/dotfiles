@@ -157,7 +157,7 @@ if [[ $platform == 'linux' ]]; then
   export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
   export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
   export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
-  PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  export PATH="/home/michael_mead/.pyenv/bin:$PATH"
 fi
 
 PATH="/usr/local/opt/gettext/bin:$PATH"

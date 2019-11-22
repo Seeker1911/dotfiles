@@ -6,7 +6,9 @@ endif
 call plug#begin('~/.config/nvim/plugged')
       "Plug 'w0rp/ale'
       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+      Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
+      Plug 'NLKNguyen/papercolor-theme'
       "Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -24,6 +26,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'jremmen/vim-ripgrep'
       Plug 'ryanoasis/vim-devicons'
       Plug 'tpope/vim-fugitive'
+      Plug 'tpope/vim-commentary'
       Plug 'majutsushi/tagbar'
 call plug#end()
 
@@ -137,7 +140,7 @@ endif
 function! LightSide()
     colors snow
     set background=light
-    let g:airline_theme='snow_light'
+    let g:airline_theme='papercolor'
     endfunction
 command! LightSide call LightSide()
 
@@ -179,6 +182,8 @@ endif
 set completeopt=noinsert,menuone,noselect
 " Jedi settings
 autocmd FileType python setlocal completeopt-=preview
+" Write buffer before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 1
 " 1= buffer, 2=commmandline (better under history)
 let g:jedi#show_call_signatures = "2"
 let g:jedi#popup_select_first = 1
@@ -238,9 +243,10 @@ nmap <silent> gr <Plug>(coc-references)
 "vmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
 " show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
+"TODO: remap coc git !!!!!!!!!!!!!1
+"nmap gs <Plug>(coc-git-chunkinfo)
 " show commit ad current position
-nmap gc <Plug>(coc-git-commit)
+"nmap gc <Plug>(coc-git-commit)
 " Show config
 nnoremap <silent> <space>g :<C-u>CocConfig<CR>
 " Show info
@@ -287,13 +293,30 @@ endf
 
 "colorschemes------------------------------------------------------
 set t_Co=256
-set background=dark
+
+let iterm_profile = $ITERM_PROFILE
+if iterm_profile == "gruvbox dark"
+    set background=dark
+    colorscheme gruvbox
+  elseif iterm_profile == "gruvbox light"
+    set background=light
+    colorscheme gruvbox
+  elseif iterm_profile == "snow light"
+    set background=light
+    colorscheme snow
+  elseif iterm_profile == "snow night"
+    set background=dark
+    colorscheme snow
+  else 				"default
+    set background=dark
+    colorscheme gruvbox
+endif
+
 syntax on
 set termguicolors "for truecolor support, assuming you have it.
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-colorscheme gruvbox
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
 let g:gruvbox_improved_strings=0

@@ -15,11 +15,6 @@ elif [[ $platform == 'macos' ]]; then
     # gruvbox ps1
     export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
     [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-    #snow ps1 - for when I want to use light theme
-#    [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh
-#    [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_light.sh
-#    export PS1="\[\033[208m\]seeker\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
-#    eval `dircolors ~/.vim/plugged/snow/shell/dircolors`
 fi
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
@@ -189,6 +184,7 @@ if [[ $platform == 'macos' ]]; then
 fi
 
 export RDR_PROJECT=~/raw-data-repository
+export RDR_ACCOUNT="michael.mead@pmi-ops.org"
 
 function rdr {
   source $RDR_PROJECT/venv/bin/activate
@@ -205,5 +201,37 @@ function rdr3 {
   . rdr_service/tools/tool_libs/tools.bash
 }
 
+function testy {
+  python -m unittest discover -s tests -p test_$@*
+}
+
 CFLAGS="-I$(brew --prefix openssl)/include"
 LDFLAGS="-L$(brew --prefix openssl)/lib" 
+
+function sith {
+  if [[ $platform == 'macos' ]]; then
+            echo -ne "\033]50;SetProfile=gruvbox dark\a"
+            export ITERM_PROFILE="gruvbox dark"
+  fi
+}
+
+function jedi {
+  if [[ $platform == 'macos' ]]; then
+            echo -ne "\033]50;SetProfile=gruvbox light\a"
+            export ITERM_PROFILE="gruvbox light"
+  fi
+}
+
+function snow {
+  if [[ $platform == 'macos' ]]; then
+          echo -ne "\033]50;SetProfile=snow light\a"
+          export ITERM_PROFILE="snow light"
+  fi
+}
+
+function night {
+  if [[ $platform == 'macos' ]]; then
+          echo -ne "\033]50;SetProfile=snow night\a"
+          export ITERM_PROFILE="snow night"
+  fi
+}

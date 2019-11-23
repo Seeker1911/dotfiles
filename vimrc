@@ -80,6 +80,23 @@ nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
 
 nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
+" Make these folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+if has('nvim-0.3.2') || has("patch-8.1.0360")
+  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+endif
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -163,28 +180,11 @@ endfunction
 command! ProseMode call ProseMode()
 nmap <LocalLeader>p :ProseMode<CR>
 
-" Make these folders automatically if they don't already exist.
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
-endif
-if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
-endif
-if !isdirectory(expand(&directory))
-    call mkdir(expand(&directory), "p")
-endif
-
-if has('nvim-0.3.2') || has("patch-8.1.0360")
-  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
-endif
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
 " Jedi settings
 autocmd FileType python setlocal completeopt-=preview
 " Write buffer before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 1
-" 1= buffer, 2=commmandline (better under history)
+" 1= buffer, 2=commmandline (better undo history)
 let g:jedi#show_call_signatures = "2"
 let g:jedi#popup_select_first = 1
 let g:jedi#goto_command = "<leader>d"
@@ -243,7 +243,7 @@ nmap <silent> gr <Plug>(coc-references)
 "vmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
 " show chunk diff at current position
-"TODO: remap coc git !!!!!!!!!!!!!1
+"TODO: remap coc git !!!!!!!!!!!!!
 "nmap gs <Plug>(coc-git-chunkinfo)
 " show commit ad current position
 "nmap gc <Plug>(coc-git-commit)
@@ -279,7 +279,7 @@ function! s:show_documentation()
   endif
 endfunction
 
-fun! s:smoothScroll(up)
+function! s:smoothScroll(up)
     execute "normal " . (a:up ? "\<c-y>" : "\<c-e>")
     redraw
     for l:count in range(3, &scroll, 2)

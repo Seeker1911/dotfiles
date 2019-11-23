@@ -205,9 +205,6 @@ function testy {
   python -m unittest discover -s tests -p test_$@*
 }
 
-CFLAGS="-I$(brew --prefix openssl)/include"
-LDFLAGS="-L$(brew --prefix openssl)/lib" 
-
 function sith {
   if [[ $platform == 'macos' ]]; then
             echo -ne "\033]50;SetProfile=gruvbox dark\a"
@@ -235,3 +232,7 @@ function night {
           export ITERM_PROFILE="snow night"
   fi
 }
+
+CFLAGS="-I$(brew --prefix openssl)/include"
+LDFLAGS="-L$(brew --prefix openssl)/lib" 
+

@@ -80,6 +80,50 @@ nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
 
 nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
+" COC settings
+nmap <leader>rn <Plug>(coc-rename)
+" Fix autofix problem of current line
+"nmap <leader>qf  <Plug>(coc-fix-current)
+" coc open browser current file
+nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
+" navigate chunks of current buffer
+nmap <silent> [g <Plug>(coc-git-prevchunk)
+nmap <silent> ]g <Plug>(coc-git-nextchunk)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Show all diagnostics
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
+" Manage extensions
+nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+" Show commands
+nnoremap <silent> <space>c :<C-u>CocList commands<CR>
+" Search workspace symbols
+noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
+" Do default action for next item.
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+" Remap for format selected region
+"vmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
+" show chunk diff at current position
+" Show config
+"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+" Show info
+"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
+" Find symbol of current document
+"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+" Use K to show documentation in preview window
+" Resume latest coc list
+"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 " Make these folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
@@ -143,6 +187,9 @@ let &colorcolumn="120"
 set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set backspace=indent,eol,start
+set cmdheight=2 "better display for messages
+set updatetime=300 "smaller updatetime for cursorhold
+set shortmess+=c " don't give |ins-completion-menu| messages.
 " neovim only 
 let uname = substitute(system('uname'), '\n', '', '')
 if uname == 'Linux'
@@ -222,54 +269,6 @@ let g:ale_fixers = {
       \   'go': ['gofmt', 'goimports']
       \}
 
-
-" COC settings
-"nmap <leader>rn <Plug>(coc-rename)
-" Fix autofix problem of current line
-"nmap <leader>qf  <Plug>(coc-fix-current)
-" coc open browser current file
-"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
-" navigate chunks of current buffer
-nmap <silent> [g <Plug>(coc-git-prevchunk)
-nmap <silent> ]g <Plug>(coc-git-nextchunk)
-nmap <silent> [d <Plug>(coc-diagnostic-prev)
-nmap <silent> ]d <Plug>(coc-diagnostic-next)
-"" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Remap for format selected region
-"vmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
-" show chunk diff at current position
-"TODO: remap coc git !!!!!!!!!!!!!
-"nmap gs <Plug>(coc-git-chunkinfo)
-" show commit ad current position
-"nmap gc <Plug>(coc-git-commit)
-" Show config
-nnoremap <silent> <space>g :<C-u>CocConfig<CR>
-" Show info
-nnoremap <silent> <space>i :<C-u>CocInfo<CR>
-" Show all diagnostics
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
-" Manage extensions
-nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
-" Show commands
-nnoremap <silent> <space>c :<C-u>CocList commands<CR>
-" Find symbol of current document
-nnoremap <silent> <space>o :<C-u>CocList outline<CR>
-" Search workspace symbols
-noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-" Do default action for next item.
-nnoremap <silent> <space>j :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k :<C-u>CocPrev<CR>
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

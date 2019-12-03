@@ -27,6 +27,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'ryanoasis/vim-devicons'
       Plug 'tpope/vim-fugitive'
       Plug 'tpope/vim-commentary'
+      Plug 'tpope/vim-rhubarb'
       Plug 'majutsushi/tagbar'
 call plug#end()
 
@@ -188,7 +189,7 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set backspace=indent,eol,start
 set cmdheight=2 "better display for messages
-set updatetime=300 "smaller updatetime for cursorhold
+set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set shortmess+=c " don't give |ins-completion-menu| messages.
 " neovim only 
 let uname = substitute(system('uname'), '\n', '', '')

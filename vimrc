@@ -12,7 +12,8 @@ call plug#begin('~/.config/nvim/plugged')
       "Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
-      Plug 'morhetz/gruvbox'
+      "Plug 'morhetz/gruvbox'
+      Plug 'lifepillar/vim-gruvbox8'
       Plug 'godlygeek/csapprox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'guns/xterm-color-table.vim'
@@ -29,6 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-rhubarb'
       Plug 'majutsushi/tagbar'
+      Plug 'vim/killersheep'
 call plug#end()
 
 filetype plugin indent on
@@ -125,6 +127,11 @@ nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+" neovim `terminal` mappings
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n> "quit built in term
+endif
+
 " Make these folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
@@ -210,7 +217,7 @@ function! LightSide()
 command! LightSide call LightSide()
 
 function! DarkSide()
-    colors gruvbox
+    colors gruvbox8
     set background=dark
     endfunction
 command! DarkSide call DarkSide()
@@ -297,10 +304,10 @@ set t_Co=256
 let iterm_profile = $ITERM_PROFILE
 if iterm_profile == "gruvbox dark"
     set background=dark
-    colorscheme gruvbox
+    colorscheme gruvbox8
   elseif iterm_profile == "gruvbox light"
     set background=light
-    colorscheme gruvbox
+    colorscheme gruvbox8
   elseif iterm_profile == "snow light"
     set background=light
     colorscheme snow
@@ -309,7 +316,7 @@ if iterm_profile == "gruvbox dark"
     colorscheme snow
   else 				"default
     set background=dark
-    colorscheme gruvbox
+    colorscheme gruvbox8
 endif
 
 syntax on

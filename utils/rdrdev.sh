@@ -37,7 +37,7 @@ function setup {
 
 
 
-if !tmux has-session -t rdr; then
+if ! tmux has-session -t rdr; then
 #exec tmux new-session -s rdr -d
 # other setup commands before attaching....​
     tmux detach

@@ -12,8 +12,8 @@ call plug#begin('~/.config/nvim/plugged')
       "Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
-      "Plug 'morhetz/gruvbox'
-      Plug 'lifepillar/vim-gruvbox8'
+      Plug 'morhetz/gruvbox'
+      "Plug 'lifepillar/vim-gruvbox8'
       Plug 'godlygeek/csapprox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'guns/xterm-color-table.vim'
@@ -217,7 +217,7 @@ function! LightSide()
 command! LightSide call LightSide()
 
 function! DarkSide()
-    colors gruvbox8
+    colors gruvbox
     set background=dark
     endfunction
 command! DarkSide call DarkSide()
@@ -304,19 +304,19 @@ set t_Co=256
 let iterm_profile = $ITERM_PROFILE
 if iterm_profile == "gruvbox dark"
     set background=dark
-    colorscheme gruvbox8
-  elseif iterm_profile == "gruvbox light"
+    colorscheme gruvbox
+elseif iterm_profile == "gruvbox light"
     set background=light
-    colorscheme gruvbox8
-  elseif iterm_profile == "snow light"
+    colorscheme gruvbox
+elseif iterm_profile == "snow light"
     set background=light
     colorscheme snow
-  elseif iterm_profile == "snow night"
+elseif iterm_profile == "snow night"
     set background=dark
     colorscheme snow
-  else 				"default
+else 				"default
     set background=dark
-    colorscheme gruvbox8
+    colorscheme gruvbox
 endif
 
 syntax on

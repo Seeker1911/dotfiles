@@ -95,9 +95,12 @@ nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> td <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+"coc action
+nnoremap <silent> <space>a :<C-u>CocAction<CR>
 " Show all diagnostics
 nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
 " Manage extensions

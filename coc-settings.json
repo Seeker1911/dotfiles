@@ -1,7 +1,7 @@
 {
   "coc.source.emoji.enable": true,
   "coc.preferences.previewAutoClose": true,
-  //"python.jediEnabled": true,
+  "python.jediEnabled": true,
   //"python.linting.pylintUseMinimalCheckers": true,
   //"python.linting.pylintArgs": ["--disable-msg","C0330"],
   "python.venvPath": "~/.pyenv",

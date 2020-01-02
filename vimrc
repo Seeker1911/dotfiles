@@ -5,11 +5,12 @@ if empty(glob('~/.config/nvim/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
       "Plug 'w0rp/ale'
+      "Plug 'davidhalter/jedi-vim'
+      "Plug 'airblade/vim-gitgutter'
       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
-      "Plug 'davidhalter/jedi-vim'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'morhetz/gruvbox'
@@ -17,7 +18,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'godlygeek/csapprox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'guns/xterm-color-table.vim'
-      "Plug 'airblade/vim-gitgutter'
       Plug 'simnalamburt/vim-mundo'
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
@@ -30,7 +30,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-rhubarb'
       Plug 'majutsushi/tagbar'
-      Plug 'vim/killersheep'
 call plug#end()
 
 filetype plugin indent on

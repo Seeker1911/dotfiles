@@ -75,8 +75,8 @@ nnoremap ]c :cnext <CR>
 nnoremap [c :cprevious <CR>
 nnoremap ]l :lnext <CR>
 nnoremap [l :lprevious <CR>
-nnoremap <leader>print oprint('\n')<CR>print('**********************')<CR>print(), '<<<<'<CR>print('**********************')<ESC>k^wa
-nnoremap <leader>i oimport ipdb; ipdb.set_trace()<ESC>
+nnoremap <leader>print oprint('\n')<CR>print('*'*10)<CR>print(), '<<<<'<CR>print('*'*10)<ESC>k^wa
+nnoremap <leader>pdb oimport ipdb; ipdb.set_trace()<ESC>
 nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
 nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
 

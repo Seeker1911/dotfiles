@@ -25,6 +25,9 @@
   "coc.preferences.jumpCommand": "drop",
   "git.changedSign.hlGroup": "DiffChange",
   "git.enableGutters": false,
+  "coc.source.gocode.enable":true,
+  "go.enable":true,
+  "go.trace.server":"verbose",
   "languageserver": {
    "sh": {
         "command": "bash-language-server",
@@ -32,10 +35,10 @@
         "args": ["start"]
    },
    "golang": {
-      "command": "gopls",
+      "command": "/Users/meadm1/go/bin/gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
-        "args": ["start"],
+        "args": ["serve"],
 	"ignoredRootPaths": ["~"]
    }
   }

@@ -34,8 +34,6 @@ call plug#end()
 let mapleader = ","
 let maplocalleader = "\\"
 
-"filetypes
-filetype plugin indent on
 source $HOME/dotfiles/vim/filehandling.vimrc
 source $HOME/dotfiles/vim/autocommands.vimrc
 source $HOME/dotfiles/vim/hi.vimrc

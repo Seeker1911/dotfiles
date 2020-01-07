@@ -1,3 +1,4 @@
+" For plugin specific mappings see plugins.vimrc
 " maps =================================
 map <leader>t :NERDTreeToggle<CR>
 " Adjust viewports to the same size
@@ -12,9 +13,6 @@ nmap <LocalLeader>l :LightSide<CR>
 nmap <LocalLeader>d :DarkSide<CR>
 nmap <leader>T :TagbarToggle<CR>
 nmap <LocalLeader>p :ProseMode<CR>
-
-" visual maps ==================================
-vmap <leader>" :s/^/"/g<CR>
 
 " insert maps ==================================
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"

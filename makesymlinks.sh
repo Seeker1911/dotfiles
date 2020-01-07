@@ -15,7 +15,7 @@ vimfiledir=~/dotfiles/vim
 
 homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc"
-vimFiles="hi coc colors remaps plugins settings function filehandling autocommands"
+#vimFiles="hi coc colors remaps plugins settings function filehandling autocommands"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh"
 
 ##########
@@ -54,11 +54,11 @@ for file in $binFiles; do
     ln -sf $dir/utils/$file $bindir/$file
 done
 
-for file in $vimFiles; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv $nvimdir/$file.vimrc ~$olddir
-    echo "Creating symlink to $file in nvim directory."
-    ln -sf $vimfiledir/$file.vimrc $nvimdir/$file.vimrc
+# for file in $vimFiles; do
+#     echo "Moving any existing dotfiles from ~ to $olddir"
+#     mv $nvimdir/$file.vimrc ~$olddir
+#     echo "Creating symlink to $file in nvim directory."
+#     ln -sf $vimfiledir/$file.vimrc $nvimdir/$file.vimrc
 done
 # link to init.vim in  favor of nvim
 ln -sf $dir/vimrc $nvimdir/init.vim

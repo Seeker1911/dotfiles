@@ -9,10 +9,7 @@ map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
-nmap <LocalLeader>l :LightSide<CR>
-nmap <LocalLeader>d :DarkSide<CR>
 nmap <leader>T :TagbarToggle<CR>
-nmap <LocalLeader>p :ProseMode<CR>
 
 " insert maps ==================================
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -39,6 +36,4 @@ nnoremap [c :cprevious <CR>
 nnoremap ]l :lnext <CR>
 nnoremap [l :lprevious <CR>
 nnoremap <leader>pdb oimport ipdb; ipdb.set_trace()<ESC>
-nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
-nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
 

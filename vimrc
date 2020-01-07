@@ -19,6 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'simnalamburt/vim-mundo'
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
+      Plug 'junegunn/goyo.vim'
       Plug 'craigemery/vim-autotag'
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
@@ -43,3 +44,4 @@ source $HOME/dotfiles/vim/plugins.vimrc
 source $HOME/dotfiles/vim/coc.vimrc "coc gets its own
 source $HOME/dotfiles/vim/remaps.vimrc
 source $HOME/dotfiles/vim/colors.vimrc
+

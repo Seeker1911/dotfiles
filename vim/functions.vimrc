@@ -2,15 +2,17 @@ function! LightSide()
     colors snow
     set background=light
     let g:airline_theme='papercolor'
-    endfunction
+endfunction
 command! LightSide call LightSide()
 
 function! DarkSide()
     colors gruvbox
     set background=dark
     let g:airline_theme='distinguished'
-    endfunction
+endfunction
 command! DarkSide call DarkSide()
+nmap <LocalLeader>l :LightSide<CR>
+nmap <LocalLeader>d :DarkSide<CR>
 
 function! ProseMode()
   call goyo#execute(0, [])
@@ -20,9 +22,11 @@ function! ProseMode()
   if !has('gui_running')
     let g:solarized_termcolors=256
   endif
-  colors vimspectrgrey-light
+  set background=light
+  colors gruvbox
 endfunction
 command! ProseMode call ProseMode()
+nmap <LocalLeader>p :ProseMode<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -42,5 +46,6 @@ function! s:smoothScroll(up)
     endfor
     " bring the cursor in the middle of screen 
     execute "normal M"
-endf
-
+endfunction
+nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<CR>
+nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<CR>

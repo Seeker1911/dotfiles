@@ -6,7 +6,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
       "Plug 'w0rp/ale'
       "Plug 'davidhalter/jedi-vim'
-      "Plug 'airblade/vim-gitgutter'
       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
@@ -14,7 +13,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'morhetz/gruvbox'
-      "Plug 'lifepillar/vim-gruvbox8'
       Plug 'godlygeek/csapprox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'guns/xterm-color-table.vim'
@@ -30,9 +28,18 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-rhubarb'
       Plug 'majutsushi/tagbar'
+      "Plug 'neovim/nvim-lsp'
 call plug#end()
 
+"filetypes
 filetype plugin indent on
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+autocmd FileType python setlocal completeopt-=preview
+
+"highlights
 "hi NonText ctermbg=NONE
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232
@@ -40,7 +47,7 @@ highlight SignColumn ctermbg=256
 
 let mapleader = ","
 let maplocalleader = "\\"
-vmap <leader>c :s/^/#/g<CR>
+
 vmap <leader>" :s/^/"/g<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -53,6 +60,7 @@ nmap <leader>T :TagbarToggle<CR>
 map <Leader>= <C-w>=
 map <leader>m :MundoToggle<CR>
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+
 " ripgrep fzf find word under cursor in nearby files.
 map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
@@ -75,12 +83,9 @@ nnoremap ]c :cnext <CR>
 nnoremap [c :cprevious <CR>
 nnoremap ]l :lnext <CR>
 nnoremap [l :lprevious <CR>
-nnoremap <leader>print oprint('\n')<CR>print('*'*10)<CR>print(), '<<<<'<CR>print('*'*10)<ESC>k^wa
 nnoremap <leader>pdb oimport ipdb; ipdb.set_trace()<ESC>
 nnoremap <silent> <c-u> :call <sid>smoothScroll(1)<cr>
 nnoremap <silent> <c-d> :call <sid>smoothScroll(0)<cr>
-
-nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
 " COC settings
 nmap <leader>rn <Plug>(coc-rename)
@@ -114,20 +119,24 @@ nnoremap <silent> <space>j :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 " Remap for format selected region
-"vmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
-" show chunk diff at current position
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 " Show config
-"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+nnoremap <silent> <space>g :<C-u>CocConfig<CR>
 " Show info
-"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
+nnoremap <silent> <space>i :<C-u>CocInfo<CR>
 " Find symbol of current document
-"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
-" Use K to show documentation in preview window
+nnoremap <silent> <space>o :<C-u>CocList outline<CR>
 " Resume latest coc list
-"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+" Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+"go maps
+au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_def_mapping_enabled = 0 "Let language client handle goto
 
 " neovim `terminal` mappings
 if has('nvim')
@@ -158,7 +167,7 @@ let &t_EI = "\<Esc>[2 q"
 " suppress the annoying 'match x of y', 'The only match' and 'Pattern not found' messages
 set shortmess+=c
 set encoding=utf8
-set termencoding=utf-8	       " default terminal encoding
+"set termencoding=utf-8	       " default terminal encoding
 set guifont=Hack\ Nerd\ Font\:h11
 set nocompatible	       " required, not vi compatible
 set cursorline		       " show cursorline
@@ -200,6 +209,11 @@ set backspace=indent,eol,start
 set cmdheight=2 "better display for messages
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set shortmess+=c " don't give |ins-completion-menu| messages.
+
+" Write buffer before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 1
+" 1= buffer, 2=commmandline (better undo history)
+
 " neovim only 
 let uname = substitute(system('uname'), '\n', '', '')
 if uname == 'Linux'
@@ -238,10 +252,6 @@ command! ProseMode call ProseMode()
 nmap <LocalLeader>p :ProseMode<CR>
 
 " Jedi settings
-autocmd FileType python setlocal completeopt-=preview
-" Write buffer before navigating from Vim to tmux pane
-let g:tmux_navigator_save_on_switch = 1
-" 1= buffer, 2=commmandline (better undo history)
 let g:jedi#show_call_signatures = "2"
 let g:jedi#popup_select_first = 1
 let g:jedi#goto_command = "<leader>d"
@@ -278,7 +288,18 @@ let g:ale_fixers = {
       \   'python': ['autopep8'],
       \   'go': ['gofmt', 'goimports']
       \}
-
+"vim-go settings
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 1 " highlight same variables
+let g:go_fmt_command = "goimports" "autoimport
+let g:go_auto_type_info = 1
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -336,7 +357,7 @@ let g:gruvbox_italic=1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='distinguished'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {

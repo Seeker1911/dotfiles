@@ -5,7 +5,7 @@ if empty(glob('~/.config/nvim/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
       "Plug 'w0rp/ale'
-      "Plug 'davidhalter/jedi-vim'
+      Plug 'davidhalter/jedi-vim'
       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
@@ -28,8 +28,14 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-fugitive'
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-rhubarb'
+      Plug 'tpope/vim-dadbod'
       Plug 'majutsushi/tagbar'
       "Plug 'neovim/nvim-lsp'
+      " Plug 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': 'bash install.sh',
+    " \ 'for': ['javascript', 'go', 'python'],
+    " \ }
 call plug#end()
 
 let mapleader = ","

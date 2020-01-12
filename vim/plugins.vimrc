@@ -55,4 +55,17 @@ let g:go_fmt_command = "goimports" "autoimport
 let g:go_auto_type_info = 1
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
-let g:go_def_mapping_enabled = 0 "Let language client handle goto
+let g:go_def_mapping_enabled = 1
+" language server configs
+" let g:LanguageClient_serverCommands = {
+"     \ 'python': ['~/.pyenv/shims/pyls'],
+"     \ 'go': ['~/go/bin/gopls'],
+"     \ }
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" " Or map each action separately
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" " ale configs
+" let g:ale_completion_enabled = 1

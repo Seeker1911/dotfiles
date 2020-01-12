@@ -1,9 +1,11 @@
 {
   "coc.source.emoji.enable": true,
   "coc.preferences.previewAutoClose": true,
+  "coc.source.gocode.enable":true,
+  "coc.source.tag.enable":true,
+  "coc.source.gocode.filetypes":["*.go"],
+  "coc.preferences.jumpCommand": "drop",
   "python.jediEnabled": true,
-  //"python.linting.pylintUseMinimalCheckers": true,
-  //"python.linting.pylintArgs": ["--disable-msg","C0330"],
   "python.venvPath": "~/.pyenv",
   "python.formatting.provider": "autopep8",
   "python.autoComplete.addBrackets": true,
@@ -16,30 +18,29 @@
   "diagnostic.locationlist": true,
   "diagnostic.enableSign": true,
   "diagnostic.maxWindowHeight": 25,
-  "suggest.enablePreview": true,
-  "suggest.snippetIndicator": "►",
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualText": false,
   "diagnostic.virtualTextPrefix": "--►",
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.enablePreview": true,
+  "suggest.snippetIndicator": "►",
   "codeLens.enable": true,
-  "coc.preferences.jumpCommand": "drop",
   "git.changedSign.hlGroup": "DiffChange",
   "git.enableGutters": false,
-  "coc.source.gocode.enable":true,
   "go.enable":true,
-  "go.trace.server":"verbose",
+  "go.trace.server":"messages",
   "languageserver": {
    "sh": {
         "command": "bash-language-server",
         "filetypes": ["sh"],
         "args": ["start"]
    },
-   "golang": {
-      "command": "/Users/meadm1/go/bin/gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-        "args": ["serve"],
-	"ignoredRootPaths": ["~"]
-   }
+   //"golang": {
+   //   "command": "/Users/meadm1/go/bin/gopls",
+    //  "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+     // "filetypes": ["go"],
+      //  "args": ["serve"],
+//	"ignoredRootPaths": ["~"]
+ //  }
   }
 }

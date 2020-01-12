@@ -14,7 +14,8 @@ nmap <leader>T :TagbarToggle<CR>
 " insert maps ==================================
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
 

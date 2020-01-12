@@ -112,7 +112,6 @@ alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color'
 alias ping='ping -c 5' #Limit ping to 5 attempts.
 alias www="python -m simpleHTTPServer 8000"
-alias www2='python -m SimpleHTTPServer 8000' #start python 2 webserver.
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
@@ -183,22 +182,16 @@ if [[ $platform == 'macos' ]]; then
   unset PROMPT_COMMAND
 fi
 
-export RDR_PROJECT=~/raw-data-repository
-export RDR_ACCOUNT="michael.mead@pmi-ops.org"
 
-function rdr {
-  source $RDR_PROJECT/venv/bin/activate
-  export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT/rdr_common:$RDR_PROJECT/rdr_client
-  cd $RDR_PROJECT/rest-api
-  . tools/tool_libs/tools.bash
-}
-
-function rdr3 { 
+function rdr { 
+  export RDR_PROJECT=~/raw-data-repository
+  export RDR_ACCOUNT="michael.mead@pmi-ops.org"
   export GCP_PROJECT=all-of-us-rdr-local 
   export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT
   #source $RDR_PROJECT/venv37/bin/activate
-  cd $RDR_PROJECT
-  . rdr_service/tools/tool_libs/tools.bash
+  #cd $RDR_PROJECT
+  #. rdr_service/tools/tool_libs/tools.bash
+  source $RDR_PROJECT/rdr_service/tools/tool_libs/tools.bash
 }
 
 function testy {

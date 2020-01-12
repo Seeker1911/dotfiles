@@ -1,10 +1,11 @@
 {
   "coc.source.emoji.enable": true,
   "coc.preferences.previewAutoClose": true,
-  "coc.source.gocode.enable":true,
   "coc.source.tag.enable":true,
-  "coc.source.gocode.filetypes":["*.go"],
   "coc.preferences.jumpCommand": "drop",
+  "coc.preferences.hoverTarget": "echo",
+  "suggest.echodocSupport": true,
+  "suggest.floatEnable": true,
   "python.jediEnabled": true,
   "python.venvPath": "~/.pyenv",
   "python.formatting.provider": "autopep8",
@@ -35,12 +36,12 @@
         "filetypes": ["sh"],
         "args": ["start"]
    },
-   //"golang": {
-   //   "command": "/Users/meadm1/go/bin/gopls",
-    //  "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-     // "filetypes": ["go"],
-      //  "args": ["serve"],
-//	"ignoredRootPaths": ["~"]
- //  }
+//   "golang": {
+//      "command": "/Users/meadm1/go/bin/gopls",
+//      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+//      "filetypes": ["go"],
+//      "args": ["serve"],
+//	    "ignoredRootPaths": ["~"]
+//  }
   }
 }

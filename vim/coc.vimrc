@@ -3,6 +3,7 @@ nmap <leader>rn <Plug>(coc-rename)
 "nmap <leader>qf  <Plug>(coc-fix-current)
 " coc open browser current file
 nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
+nnoremap <leader>ct <Plug>(coc-terminal-toggle)
 " navigate chunks of current buffer
 nmap <silent> [g <Plug>(coc-git-prevchunk)
 nmap <silent> ]g <Plug>(coc-git-nextchunk)
@@ -13,7 +14,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>ct <Plug>(coc-terminal-toggle)
 "coc action
  nnoremap <silent> <space>a :<C-u>CocAction<CR>
 " Show all diagnostics

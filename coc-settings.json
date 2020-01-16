@@ -20,7 +20,7 @@
   "diagnostic.enableSign": true,
   "diagnostic.maxWindowHeight": 25,
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.virtualText": false,
+  "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": "--►",
   "suggest.triggerAfterInsertEnter": true,
   "suggest.enablePreview": true,

@@ -30,6 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-rhubarb'
       Plug 'tpope/vim-dadbod'
       Plug 'majutsushi/tagbar'
+      Plug 'rhysd/git-messenger.vim'
       "Plug 'neovim/nvim-lsp'
       " Plug 'autozimu/LanguageClient-neovim', {
     " \ 'branch': 'next',

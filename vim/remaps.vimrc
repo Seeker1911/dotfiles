@@ -10,6 +10,7 @@ map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
 nmap <leader>T :TagbarToggle<CR>
+nmap <Leader>gm <Plug>(git-messenger)
 
 " insert maps ==================================
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -37,4 +38,3 @@ nnoremap [c :cprevious <CR>
 nnoremap ]l :lnext <CR>
 nnoremap [l :lprevious <CR>
 nnoremap <leader>pdb oimport ipdb; ipdb.set_trace()<ESC>
-

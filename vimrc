@@ -7,30 +7,30 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
       Plug 'davidhalter/jedi-vim'
       Plug 'ncm2/float-preview.nvim'
-      "Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
       Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
-      "Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'morhetz/gruvbox'
-      "Plug 'godlygeek/csapprox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-      "Plug 'guns/xterm-color-table.vim'
-      "Plug 'simnalamburt/vim-mundo'
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
-      "Plug 'junegunn/goyo.vim'
       Plug 'craigemery/vim-autotag'
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
-      "Plug 'jremmen/vim-ripgrep'
       Plug 'ryanoasis/vim-devicons'
       Plug 'tpope/vim-fugitive'
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-rhubarb'
       Plug 'tpope/vim-dadbod'
       Plug 'majutsushi/tagbar'
+      "Plug 'guns/xterm-color-table.vim'
+      "Plug 'tmux-plugins/vim-tmux-focus-events'
+      "Plug 'godlygeek/csapprox'
+      "Plug 'simnalamburt/vim-mundo'
+      "Plug 'junegunn/goyo.vim'
+      "Plug 'jremmen/vim-ripgrep'
+      "Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       "Plug 'rhysd/git-messenger.vim'
       if has('nvim')
           Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

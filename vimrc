@@ -4,9 +4,10 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-      "Plug 'w0rp/ale'
+      Plug 'dense-analysis/ale'
       Plug 'davidhalter/jedi-vim'
-      Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+      Plug 'ncm2/float-preview.nvim'
+      "Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
@@ -31,6 +32,15 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-dadbod'
       Plug 'majutsushi/tagbar'
       Plug 'rhysd/git-messenger.vim'
+      if has('nvim')
+          Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+      else
+          Plug 'Shougo/deoplete.nvim'
+          Plug 'roxma/nvim-yarp'
+          Plug 'roxma/vim-hug-neovim-rpc'
+      endif
+      Plug 'deoplete-plugins/deoplete-jedi'
+
       "Plug 'neovim/nvim-lsp'
       " Plug 'autozimu/LanguageClient-neovim', {
     " \ 'branch': 'next',
@@ -48,7 +58,7 @@ source $HOME/dotfiles/vim/hi.vimrc
 source $HOME/dotfiles/vim/settings.vimrc
 source $HOME/dotfiles/vim/functions.vimrc
 source $HOME/dotfiles/vim/plugins.vimrc
-source $HOME/dotfiles/vim/coc.vimrc "coc gets its own
+" source $HOME/dotfiles/vim/coc.vimrc "coc gets its own
 source $HOME/dotfiles/vim/remaps.vimrc
 source $HOME/dotfiles/vim/colors.vimrc
 

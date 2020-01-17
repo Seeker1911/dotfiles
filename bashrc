@@ -188,6 +188,7 @@ function rdr {
   export RDR_ACCOUNT="michael.mead@pmi-ops.org"
   export GCP_PROJECT=all-of-us-rdr-local 
   export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT
+  export PYTHONBREAKPOINT="pudb.set_trace"
   #source $RDR_PROJECT/venv37/bin/activate
   #cd $RDR_PROJECT
   #. rdr_service/tools/tool_libs/tools.bash
@@ -195,7 +196,7 @@ function rdr {
 }
 
 function testy {
-  python -m unittest discover -s tests -p test_$@*
+  python -m unittest discover -s tests -p -k test_$@*
 }
 
 function sith {

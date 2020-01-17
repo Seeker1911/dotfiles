@@ -3,7 +3,7 @@ let g:tmux_navigator_save_on_switch = 1
 " 1= buffer, 2=commmandline (better undo history)
 
 " Jedi settings ======================================================
-let g:jedi#show_call_signatures = "2"
+let g:jedi#show_call_signatures = 1
 let g:jedi#popup_select_first = 1
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_definitions_command = "<leader>D"
@@ -13,24 +13,24 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<TAB>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#completions_enabled = 0 "in favor of deoplete-jedi
 
 " Ale settings ======================================================
-let g:ale_completion_enabled = 0
-let g:ale_python_pylint_use_global = 0
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:ale_python_pylint_use_global = 1
 let g:ale_python_flake8_global = 1
-"let g:ale_python_pylint_options = "--init-hook='import sys;
-"sys.path.append(\'.\')'"
 let g:ale_set_highlights = 1
 let g:ale_set_signs = 1
-let g:ale_sign_error = "•⤫"
-let g:ale_sign_warning = "•⚠"
-let g:ale_sign_info = "••"
-let g:ale_sign_hint = "•λ"
+let g:ale_sign_error = "⤫"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "•"
+let g:ale_sign_hint = "λ"
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
 let b:ale_linters = {
-      \  'python': ['pylint'],
+      \  'python': ['pylint', 'flake8', 'pyls'],
       \  'sh': ['language_server'],
       \  'go': ['golint', 'gofmt', 'gopls']
       \}
@@ -56,6 +56,39 @@ let g:go_auto_type_info = 1
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_def_mapping_enabled = 1
+let g:float_preview#docked = 0 "float-preview
+
+" deoplete options ===================================================
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 1
+
+
+" fzf floating window
+" let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,prompt:0,pointer:12,marker:4,spinner:11,header:-1 --layout=reverse  --margin=1,2'
+" let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+" function! FloatingFZF()
+"   let buf = nvim_create_buf(v:false, v:true)
+"   call setbufvar(buf, '&signcolumn', 'no')
+
+"   let height = float2nr(10)
+"   let width = float2nr(90)
+"   let horizontal = float2nr((&columns - width) / 2)
+"   let vertical = 1
+
+"   let opts = {
+"         \ 'relative': 'editor',
+"         \ 'row': vertical,
+"         \ 'col': horizontal,
+"         \ 'width': width,
+"         \ 'height': height,
+"         \ 'style': 'minimal'
+"         \ }
+
+"   call nvim_open_win(buf, v:true, opts)
+" endfunction
+
+
 " language server configs
 " let g:LanguageClient_serverCommands = {
 "     \ 'python': ['~/.pyenv/shims/pyls'],

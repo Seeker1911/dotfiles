@@ -1,20 +1,23 @@
 source ~/.vimrc
 
+inoremap jj <ESC>
 nnoremap ,a :action GotoAction<CR>
 vnoremap ,a :action GotoAction<CR>
 nnoremap ,e :action SearchEverywhere<CR>
 nnoremap ,f :action FindInPath<CR>
 nnoremap ,s :action FileStructurePopup<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
 
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gi :action GotoImplementation<CR>
+nnoremap ,d :action GotoDeclaration<CR>
+nnoremap ,s :action GotoSuperMethod<CR>
+nnoremap ,i :action GotoImplementation<CR>
 nnoremap gb :action JumpToLastChange<CR>
 
 nnoremap U :action FindUsages<CR>
 
-nnoremap == :action ReformatCode<CR>
-vnoremap == :action ReformatCode<CR>
+nnoremap ,r :action ReformatCode<CR>
+vnoremap ,r :action ReformatCode<CR>
 
 nnoremap gcc :action CommentByLineComment<CR>
 vnoremap gcc :action CommentByLineComment<CR>

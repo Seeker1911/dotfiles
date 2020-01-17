@@ -1,3 +1,4 @@
+let $NVIM_COC_LOG_LEVEL = 'debug'
 nmap <leader>rn <Plug>(coc-rename)
 " Fix autofix problem of current line
 "nmap <leader>qf  <Plug>(coc-fix-current)

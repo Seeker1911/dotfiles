@@ -1,5 +1,5 @@
 " IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect,longest
+"set completeopt+=noinsert,menu,noselect,longest,preview
 " set cursor shapes. line/block/underline
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -67,5 +67,5 @@ if uname == 'Linux'
 	let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 else "Mac
 	let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
-	let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim3/bin/python'
+	let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim/bin/python'
 endif

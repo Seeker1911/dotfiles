@@ -61,11 +61,12 @@ fi
 # set shell to vi keybindings.
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
-if [[ $platform == 'linux' ]]; then
-  alias vim='/home/linuxbrew/.linuxbrew/bin/nvim'
-elif [[ $platform == 'macos' ]]; then
-  alias vim='nvim'
-fi
+alias vim='nvim'
+# if [[ $platform == 'linux' ]]; then
+#   alias vim='/usr/bin/nvim'
+# elif [[ $platform == 'macos' ]]; then
+#   alias vim='nvim'
+# fi
 alias pybug="python -m pdb -c continue"
 # use hub as default for git https://hub.github.com/
 alias git=hub
@@ -196,7 +197,7 @@ function rdr {
 }
 
 function testy {
-  python -m unittest discover -s tests -p -k test_$@*
+  python -m unittest discover -s tests -f -p *$@*
 }
 
 function sith {
@@ -230,3 +231,7 @@ function night {
 CFLAGS="-I$(brew --prefix openssl)/include"
 LDFLAGS="-L$(brew --prefix openssl)/lib" 
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

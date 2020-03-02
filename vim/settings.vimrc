@@ -16,7 +16,6 @@ set modelines=0		       " fix security exploits
 set wildmenu		       " autocomplete command menu
 set number		       " show line numbers
 set ruler		       " show ruler
-set list
 set ignorecase		      " ignore caps when searching
 set smartcase		      " unless a capital is used
 set infercase		      " smart auto-completion casing

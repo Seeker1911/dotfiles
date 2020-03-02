@@ -6,7 +6,7 @@
   "coc.preferences.hoverTarget": "echo",
   "suggest.echodocSupport": true,
   "suggest.floatEnable": true,
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.venvPath": "~/.pyenv",
   "python.formatting.provider": "autopep8",
   "python.autoComplete.addBrackets": true,

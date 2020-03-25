@@ -24,6 +24,7 @@ RUN apt-get update && \
       nnn \
       python \
       python3.7 \
+      python3.8 \
       python-dev \
       python-pip \
       python3-dev \
@@ -128,9 +129,9 @@ RUN /root/.tmux/plugins/tpm/scripts/install_plugins.sh
 #RUN tmux kill-server
 
 # install pyenv
-/* RUN git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv */
-/* ENV PYENV_ROOT $HOME/.pyenv */
-/* ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH */
+#RUN git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+#ENV PYENV_ROOT $HOME/.pyenv
+#ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 
 #RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> .bashrc
 #RUN echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .bashrc

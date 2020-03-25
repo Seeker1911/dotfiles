@@ -158,11 +158,11 @@ PATH="${PATH}:${HOME}/go/bin"
 PATH="$HOME/bin:$PATH"
 
 if [[ $platform == 'linux' ]]; then
-  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-  export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
-  export PATH="/home/michael_mead/.pyenv/bin:$PATH"
+  #export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  #export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+  #export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+  #export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+  export PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
 PATH="/usr/local/opt/gettext/bin:$PATH"

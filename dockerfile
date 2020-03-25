@@ -127,6 +127,25 @@ RUN tmux new-session -d
 RUN /root/.tmux/plugins/tpm/scripts/install_plugins.sh
 #RUN tmux kill-server
 
+# install pyenv
+/* RUN git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv */
+/* ENV PYENV_ROOT $HOME/.pyenv */
+/* ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH */
+
+#RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> .bashrc
+#RUN echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .bashrc
+#RUN echo 'eval "$(pyenv init -)"' >> .bashrc
+
+#RUN pyenv install 2.7.6
+#RUN pyenv install 3.7.8
+#RUN pyenv install 3.8.2
+#RUN pyenv global 3.7.6
+#RUN pyenv rehash
+# setup pyenv virtualenv
+#RUN git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
+#RUN pyenv virtualenv 3.7.8 neovim3
+#RUN pyenv virtualenv 2.7.6 neovim2
+
 # Add additional configs
 ADD tmux.conf /root/.tmux.conf
 ADD bashrc /root/.bashrc
@@ -134,7 +153,8 @@ ADD linters/pylintrc $CONFIG_DIR/pylintrc
 ADD Brewfile $CONFIG_DIR/Brewfile
 ADD coc-settings.json $CONFIG_DIR/nvim/coc-settings.json
 
-WORKDIR /src
+#WORKDIR /src
+WORKDIR /root
 
 VOLUME /src
 VOLUME /root

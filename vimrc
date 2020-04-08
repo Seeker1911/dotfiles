@@ -6,7 +6,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
       Plug 'davidhalter/jedi-vim'
-      " Plug 'ncm2/float-preview.nvim'
+      Plug 'ncm2/float-preview.nvim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'

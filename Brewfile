@@ -1,5 +1,6 @@
 tap "caskroom/fonts"
 tap "cjbassi/gotop"
+tap "github/gh"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
@@ -12,6 +13,8 @@ brew "aalib"
 brew "ack"
 # Strip or convert ANSI codes into HTML, (La)Tex, RTF, or BBCode
 brew "ansifilter"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Draw boxes around text
@@ -46,6 +49,12 @@ brew "docker-compose", link: false
 brew "elinks"
 # Modern replacement for 'ls'
 brew "exa"
+# Asynchronous event library
+brew "libevent"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Generic library support script
+brew "libtool"
 # Command-line outline and bitmap font editor/converter
 brew "fontforge"
 # Infamous electronic fortune-cookie generator
@@ -64,6 +73,8 @@ brew "gnupg"
 brew "gradle"
 # Gorgeous metric visualizations and dashboards for timeseries databases
 brew "grafana"
+# Platform built on V8 to build network applications
+brew "node"
 # JavaScript Task Runner
 brew "grunt-cli"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -73,25 +84,29 @@ brew "hub"
 # Convert pixel information into colored ASCII art
 brew "libcaca"
 # Rainbows and unicorns in your console!
-brew "lolcat", link: false
+brew "lolcat"
+# Package manager for the Lua programming language
+brew "luarocks"
 # Text-based web browser
 brew "lynx"
 # Scalable distributed version control system
 brew "mercurial"
 # Remote terminal application
 brew "mosh"
+# Message broker implementing the MQTT protocol
+brew "mosquitto"
 # UNIX movie player
 brew "mplayer"
 # CLI for MySQL with auto-completion and syntax highlighting
 brew "mycli"
-# MySQL database connector for C applications
-brew "mysql-connector-c"
+# Open source relational database management system
+brew "mysql-client"
 # Open source relational database management system
 brew "mysql@5.7", restart_service: true
 # Fast, highly customisable system info script
 brew "neofetch"
 # Ambitious Vim-fork focused on extensibility and agility
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Python dependency management tool
@@ -104,6 +119,8 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 # Alternative to pyenv for managing virtualenvs
 brew "pyenv-virtualenvwrapper"
+# Messaging broker
+brew "rabbitmq", restart_service: true
 # File browser
 brew "ranger"
 # Reattach process (e.g., tmux) to background
@@ -112,7 +129,7 @@ brew "reattach-to-user-namespace"
 brew "ripgrep"
 # Readline wrapper: adds readline support to tools that lack it
 brew "rlwrap"
-# User interface to the TELNET protocol (built from macOS Sierra sources)
+# User interface to the TELNET protocol
 brew "telnet"
 # An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL.
 brew "timescaledb"
@@ -134,4 +151,8 @@ brew "youtube-dl"
 brew "zlib"
 # A terminal based graphical activity monitor inspired by gtop and vtop
 brew "cjbassi/gotop/gotop"
-cask "caskroom/fonts/font-hack-nerd-font"
+# GitHub CLI
+brew "github/gh/gh"
+cask "alacritty"
+cask "font-hack-nerd-font"
+cask "mysql-connector-python"

@@ -15,11 +15,12 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
-      Plug 'craigemery/vim-autotag'
+      "Plug 'craigemery/vim-autotag'
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
       Plug 'ryanoasis/vim-devicons'
       Plug 'tpope/vim-fugitive'
+      Plug 'tpope/vim-obsession'
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-rhubarb'
       Plug 'tpope/vim-dadbod'
@@ -37,7 +38,7 @@ call plug#begin('~/.config/nvim/plugged')
       \ 'do': 'bash install.sh',
       \ }
       if has('nvim')
-          Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+          "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
       else
           Plug 'Shougo/deoplete.nvim'
           Plug 'roxma/nvim-yarp'
@@ -114,12 +115,15 @@ let g:fzf_colors = {
 
 
 let uname = substitute(system('uname'), '\n', '', '')
+let home = system('whoami')
 if uname == 'Linux'
-	let g:python_host_prog = '/$PYENV_ROOT/versions/neovim2/bin/python'
-	let g:python3_host_prog = '/$PYENV_ROOT/versions/neovim3/bin/python'
+	let g:python_host_prog = 'home/versions/neovim2/bin/python'
+	let g:python3_host_prog = 'home/versions/neovim3/bin/python'
 else "Mac
-	let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
-	let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim/bin/python'
+	"let g:python_host_prog = 'Users/mmead4/.pyenv/versions/neovim2/bin/python'
+	"let g:python3_host_prog = 'Users/mmead4/.pyenv/versions/neovim3/bin/python'
+	let g:python_host_prog = '~/.pyenv/versions/2.7.15/envs/neovim2/bin/python'
+	let g:python3_host_prog = '~/.pyenv/versions/3.8.2/envs/neovim3/bin/python'
 endif
 
 
@@ -243,7 +247,7 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/Users/meadm1/.pyenv/shims/pyls'],
+    \ 'python': ['/Users/mmead4/.pyenv/shims/pyls'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
 

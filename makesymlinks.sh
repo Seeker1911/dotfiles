@@ -59,7 +59,6 @@ done
 #     mv $nvimdir/$file.vimrc ~$olddir
 #     echo "Creating symlink to $file in nvim directory."
 #     ln -sf $vimfiledir/$file.vimrc $nvimdir/$file.vimrc
-done
 # link to init.vim in  favor of nvim
 ln -sf $dir/vimrc $nvimdir/init.vim
 # link alaccritty config

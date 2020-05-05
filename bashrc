@@ -46,7 +46,6 @@ shopt -s histreedit
 shopt -s histverify
 shopt -s cdspell
 
-export HISTCONTROL='ingoreboth'
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 
@@ -61,15 +60,13 @@ fi
 # set shell to vi keybindings.
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
-alias vim='nvim'
+alias vim='~/.config/nvim/nvim-osx64/bin/nvim'
 # if [[ $platform == 'linux' ]]; then
 #   alias vim='/usr/bin/nvim'
 # elif [[ $platform == 'macos' ]]; then
 #   alias vim='nvim'
 # fi
 alias pybug="python -m pdb -c continue"
-# use hub as default for git https://hub.github.com/
-alias git=hub
 
 function gitpr {
     if [ "$#" -ne 1 ]; then
@@ -153,6 +150,7 @@ PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:/usr/local/bin"
 PATH="${PATH}:/usr/local/sbin"
+PATH="${PATH}:/usr/local/liquibase-4.0.0-beta1"
 PATH="${PATH}:${HOME}/go/bin"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
@@ -165,12 +163,12 @@ if [[ $platform == 'linux' ]]; then
   export PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
-PATH="/usr/local/opt/gettext/bin:$PATH"
-PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-PATH=$PATH:/usr/local/opt/rabbitmq/sbin
-PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# PATH="/usr/local/opt/gettext/bin:$PATH"
+# PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+# PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# PATH=$PATH:/usr/local/opt/rabbitmq/sbin
+# PYENV_ROOT="usr/local/bin/pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
@@ -183,18 +181,9 @@ if [[ $platform == 'macos' ]]; then
   unset PROMPT_COMMAND
 fi
 
-
-function rdr { 
-  export RDR_PROJECT=~/raw-data-repository
-  export RDR_ACCOUNT="michael.mead@pmi-ops.org"
-  export GCP_PROJECT=all-of-us-rdr-local 
-  export PYTHONPATH=$PYTHONPATH:$RDR_PROJECT
-  export PYTHONBREAKPOINT="pudb.set_trace"
-  #source $RDR_PROJECT/venv37/bin/activate
-  #cd $RDR_PROJECT
-  #. rdr_service/tools/tool_libs/tools.bash
-  source $RDR_PROJECT/rdr_service/tools/tool_libs/tools.bash
-}
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  source "${VIRTUAL_ENV}/bin/activate"
+fi
 
 function testy {
   python -m unittest discover -s tests -f -p *$@*
@@ -235,3 +224,36 @@ LDFLAGS="-L$(brew --prefix openssl)/lib"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Run something, muting output or redirecting it to the debug stream
+# depending on the value of _ARC_DEBUG.
+__python_argcomplete_run() {
+    if [[ -z "$_ARC_DEBUG" ]]; then
+        "$@" 8>&1 9>&2 1>/dev/null 2>&1
+    else
+        "$@" 8>&1 9>&2 1>&9 2>&1
+    fi
+}
+
+_python_argcomplete() {
+    local IFS=$'\013'
+    local SUPPRESS_SPACE=0
+    if compopt +o nospace 2> /dev/null; then
+        SUPPRESS_SPACE=1
+    fi
+    COMPREPLY=( $(IFS="$IFS" \
+                  COMP_LINE="$COMP_LINE" \
+                  COMP_POINT="$COMP_POINT" \
+                  COMP_TYPE="$COMP_TYPE" \
+                  _ARGCOMPLETE_COMP_WORDBREAKS="$COMP_WORDBREAKS" \
+                  _ARGCOMPLETE=1 \
+                  _ARGCOMPLETE_SUPPRESS_SPACE=$SUPPRESS_SPACE \
+                  __python_argcomplete_run "$1") )
+    if [[ $? != 0 ]]; then
+        unset COMPREPLY
+    elif [[ $SUPPRESS_SPACE == 1 ]] && [[ "$COMPREPLY" =~ [=/:]$ ]]; then
+        compopt -o nospace
+    fi
+}
+# register python argcomplete for airflow
+complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow

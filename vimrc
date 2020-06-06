@@ -6,11 +6,11 @@ endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
       Plug 'davidhalter/jedi-vim'
-      Plug 'ncm2/float-preview.nvim'
+      " Plug 'ncm2/float-preview.nvim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
-      Plug 'fatih/vim-go' ", { 'do': ':GoUpdateBinaries'}
+      "Plug 'fatih/vim-go' ", { 'do': ':GoUpdateBinaries'}
       Plug 'morhetz/gruvbox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -48,7 +48,7 @@ call plug#end()
 
 let mapleader = ","
 let maplocalleader = "\\"
-
+let g:go_version_warning = 0
 "source $HOME/dotfiles/vim/filehandling.vimrc
 "source $HOME/dotfiles/vim/autocommands.vimrc
 "source $HOME/dotfiles/vim/hi.vimrc
@@ -115,8 +115,9 @@ let g:fzf_colors = {
 
 let uname = substitute(system('uname'), '\n', '', '')
 if uname == 'Linux'
-	let g:python_host_prog = '/$PYENV_ROOT/versions/neovim2/bin/python'
-	let g:python3_host_prog = '/$PYENV_ROOT/versions/neovim3/bin/python'
+	"let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
+	let g:python_host_prog = '/home/michael_mead/.pyenv/versions/neovim2/bin/python'
+	let g:python3_host_prog = '/home/michael_mead/.pyenv/versions/neovim3/bin/python'
 else "Mac
 	let g:python_host_prog = '/Users/meadm1/.pyenv/versions/neovim2/bin/python'
 	let g:python3_host_prog = '/Users/meadm1/.pyenv/versions/neovim/bin/python'
@@ -278,4 +279,4 @@ augroup END
 let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
-let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingLevel = 'INFO'

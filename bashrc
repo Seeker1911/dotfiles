@@ -210,13 +210,14 @@ function night {
 }
 
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
+CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
 if [[ $platform == 'linux' ]]; then
-  alias vim='~/.config/nvim/nvim.appimage'
+  # alias vim='~/.config/nvim/nvim.appimage'
+  alias vim=$CUSTOM_NVIM_PATH
 elif [[ $platform == 'macos' ]]; then
   alias vim='nvim'
 fi
 
-CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

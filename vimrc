@@ -6,7 +6,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
       Plug 'davidhalter/jedi-vim'
-      " Plug 'ncm2/float-preview.nvim'
+      Plug 'ncm2/float-preview.nvim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
@@ -30,8 +30,12 @@ call plug#begin('~/.config/nvim/plugged')
       "Plug 'simnalamburt/vim-mundo'
       "Plug 'junegunn/goyo.vim'
       "Plug 'jremmen/vim-ripgrep'
-      Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+      " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       "Plug 'rhysd/git-messenger.vim'
+      Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
       if has('nvim')
           Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
       else
@@ -55,6 +59,7 @@ let maplocalleader = "\\"
 "source $HOME/dotfiles/vim/remaps.vimrc
 "source $HOME/dotfiles/vim/colors.vimrc
 
+set hidden
 set encoding=utf8
 set nocompatible	       " required, not vi compatible
 set modelines=0		       " fix security exploits
@@ -163,48 +168,114 @@ else 				"default
 endif
 
 "---------------------- COC settings --------------------------------
-let $NVIM_COC_LOG_LEVEL = 'debug'
-let g:coc_global_extensions = ['coc-python']
-nmap <leader>rn <Plug>(coc-rename)
-" Fix autofix problem of current line
-"nmap <leader>qf  <Plug>(coc-fix-current)
-" coc open browser current file
-nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
-nnoremap <leader>ct <Plug>(coc-terminal-toggle)
-" navigate chunks of current buffer
-nmap <silent> [g <Plug>(coc-git-prevchunk)
-nmap <silent> ]g <Plug>(coc-git-nextchunk)
-nmap <silent> [d <Plug>(coc-diagnostic-prev)
-nmap <silent> ]d <Plug>(coc-diagnostic-next)
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-"coc action
- nnoremap <silent> <space>a :<C-u>CocAction<CR>
-" Show all diagnostics
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
-" Manage extensions
-nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
-" Show commands
-nnoremap <silent> <space>c :<C-u>CocList commands<CR>
-" Search workspace symbols
-noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
-" Do default action for next item.
-nnoremap <silent> <space>j :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k :<C-u>CocPrev<CR>
-" Remap for format selected region need to fix
-"vmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
-" Show config
-nnoremap <silent> <space>g :<C-u>CocConfig<CR>
-" Show info
-nnoremap <silent> <space>i :<C-u>CocInfo<CR>
-" Find symbol of current document
-nnoremap <silent> <space>o :<C-u>CocList outline<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-imap <C-l> <Plug>(coc-snippets-expand)
+"let $NVIM_COC_LOG_LEVEL = 'debug'
+"let g:coc_global_extensions = ['coc-python']
+"nmap <leader>rn <Plug>(coc-rename)
+"" Fix autofix problem of current line
+""nmap <leader>qf  <Plug>(coc-fix-current)
+"" coc open browser current file
+"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
+"nnoremap <leader>ct <Plug>(coc-terminal-toggle)
+"" navigate chunks of current buffer
+"nmap <silent> [g <Plug>(coc-git-prevchunk)
+"nmap <silent> ]g <Plug>(coc-git-nextchunk)
+"nmap <silent> [d <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]d <Plug>(coc-diagnostic-next)
+"" Remap keys for gotos
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+""coc action
+" nnoremap <silent> <space>a :<C-u>CocAction<CR>
+"" Show all diagnostics
+"nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
+"" Manage extensions
+"nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+"" Show commands
+"nnoremap <silent> <space>c :<C-u>CocList commands<CR>
+"" Search workspace symbols
+"noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
+"" Do default action for next item.
+"nnoremap <silent> <space>j :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+"" Remap for format selected region need to fix
+""vmap <leader>f  <Plug>(coc-format-selected)
+""nmap <leader>f  <Plug>(coc-format-selected)
+"" Show config
+"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
+"" Show info
+"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
+"" Find symbol of current document
+"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+"" Resume latest coc list
+"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+"imap <C-l> <Plug>(coc-snippets-expand)
 
+
+let g:ale_sign_column_always = 1
+let g:ale_python_pylint_use_global = 1
+let g:ale_python_flake8_global = 1
+let g:ale_set_highlights = 1
+let g:ale_set_signs = 1
+let g:ale_sign_error = "⤫"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "•"
+let g:ale_sign_hint = "λ"
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+let b:ale_linters = {
+      \  'python': ['pylint', 'flake8', 'pyls'],
+      \  'sh': ['language_server'],
+      \  'go': ['golint', 'gofmt', 'gopls']
+      \}
+let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['eslint'],
+      \   'python': ['autopep8'],
+      \   'go': ['gofmt', 'goimports']
+      \}
+
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/Users/meadm1/.pyenv/shims/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+
+" deoplete options ===================================================
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 1
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+function SetLSPShortcuts()
+  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <leader>la :call LanguageClient#textDocument_codeAction()<CR>
+  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+augroup LSP
+  autocmd!
+  autocmd FileType cpp,c,python,js,go call SetLSPShortcuts()
+augroup END
+
+let g:LanguageClient_hoverPreview = 'always'
+let g:LanguageClient_useFloatingHover = 1
+let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
+let g:LanguageClient_loggingLevel = 'DEBUG'

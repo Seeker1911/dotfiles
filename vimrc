@@ -18,7 +18,6 @@ call plug#begin('~/.config/nvim/plugged')
       "Plug 'craigemery/vim-autotag'
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
-      Plug 'ryanoasis/vim-devicons'
       Plug 'tpope/vim-fugitive'
       Plug 'tpope/vim-obsession'
       Plug 'tpope/vim-commentary'
@@ -45,6 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
           Plug 'roxma/vim-hug-neovim-rpc'
       endif
       Plug 'deoplete-plugins/deoplete-jedi'
+      Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 let mapleader = ","
@@ -77,6 +77,10 @@ set foldlevel=10
 set foldnestmax=2
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
+set guifont=JetBrains\ Mono:h13
+" set guifont=DroidSansMono\ Nerd\ Font:h11
+" " or:
+" set guifont=DroidSansMono_Nerd_Font:h11
 syntax on
 
 set termguicolors "for truecolor support, assuming you have it.
@@ -283,3 +287,5 @@ let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
 let g:LanguageClient_loggingLevel = 'DEBUG'
+" dont show inline errors" Valid Options: "All" | "No" | "CodeLens" | "Diagnostics"
+let g:LanguageClient_useVirtualText = "CodeLens"

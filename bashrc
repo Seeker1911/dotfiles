@@ -19,6 +19,7 @@ fi
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export TERM="xterm-256color"
 export SHELL='/bin/sh'
 export EDITOR='vim'
 export GOPATH=$HOME/go
@@ -126,7 +127,10 @@ alias cg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Things I've used to fix mysql and GAE stuff for historical record.
-#LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
+LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
+# when getting compiler errors running the below command allowed it to install regardless of having the above LDFLAGS already set.
+# env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" pip --no-cache install psycopg2
+
 
 # UPDATE PATH FOR THE GOOGLE CLOUD SDK.
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then source "$HOME/google-cloud-sdk/path.bash.inc"; fi
@@ -164,7 +168,7 @@ if [[ $platform == 'linux' ]]; then
 fi
 
 # PATH="/usr/local/opt/gettext/bin:$PATH"
-# PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+ PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 # PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # PATH=$PATH:/usr/local/opt/rabbitmq/sbin
 # PYENV_ROOT="usr/local/bin/pyenv"
@@ -193,6 +197,8 @@ function sith {
   if [[ $platform == 'macos' ]]; then
             echo -ne "\033]50;SetProfile=gruvbox dark\a"
             export ITERM_PROFILE="gruvbox dark"
+	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
   fi
 }
 
@@ -207,6 +213,8 @@ function snow {
   if [[ $platform == 'macos' ]]; then
           echo -ne "\033]50;SetProfile=snow light\a"
           export ITERM_PROFILE="snow light"
+	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
   fi
 }
 
@@ -257,3 +265,7 @@ _python_argcomplete() {
 }
 # register python argcomplete for airflow
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
+set completion-ignore-case on
+set show-all-if-ambiguous on
+#TAB: menu-complete
+export PYTHONPATH="${PYTHONPATH}:/Users/mmead4/prepay-de-hphc"

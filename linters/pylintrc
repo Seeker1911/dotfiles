@@ -9,12 +9,13 @@ init-hook="from pylint.config import find_pylintrc; \
     import os; \
     import sys; \
     sys.path = [x for x in sys.path if 'python' in x]; \
+    sys.path.append("/Users/mmead4/prepay-de-hphc"); \
 #    sdk_bin_dir = [p for p in set(os.environ['PATH'].split(os.pathsep)) if os.path.exists(os.path.join(p, 'gcloud'))][0]; \
 #    ae_dir = os.path.join(sdk_bin_dir, '..', 'platform', 'google_appengine'); \
 #    sys.path.insert(0, ae_dir); \
 #    lib_dir = os.path.join(ae_dir, 'lib'); \
 #    sys.path.extend([os.path.join(lib_dir, x) for x in os.listdir(lib_dir)]) if os.path.exists(lib_dir) else None; \
-#    "
+    "
 
 # Profiled execution.
 profile=no
@@ -151,7 +152,7 @@ ignore-imports=no
 [MISCELLANEOUS]
 
 # List of note tags to take in consideration, separated by a comma.
-notes=FIXME,XXX,TODO,NOTE
+notes=FIXME,XXX,NOTE
 
 
 [VARIABLES]

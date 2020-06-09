@@ -1,7 +1,9 @@
 [core]
 	excludesfile = /Users/meadm1/.gitignore_global
 [user]
-	name = michael mead
+	name = mmead4
 	email = michael.mead@optum.com
 [init]
 	templatedir = ~/.git_template
+[credential]
+	helper = osxkeychain

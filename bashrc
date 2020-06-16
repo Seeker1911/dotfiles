@@ -19,6 +19,9 @@ fi
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+# Set CLICOLOR if you want Ansi Colors in iTerm2 
+export CLICOLOR=1
+# Set colors to match iTerm2 Terminal Colors
 export TERM="xterm-256color"
 export SHELL='/bin/sh'
 export EDITOR='vim'
@@ -213,8 +216,8 @@ function snow {
   if [[ $platform == 'macos' ]]; then
           echo -ne "\033]50;SetProfile=snow light\a"
           export ITERM_PROFILE="snow light"
-	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
+	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
   fi
 }
 
@@ -222,6 +225,8 @@ function night {
   if [[ $platform == 'macos' ]]; then
           echo -ne "\033]50;SetProfile=snow night\a"
           export ITERM_PROFILE="snow night"
+	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_dark.sh
   fi
 }
 

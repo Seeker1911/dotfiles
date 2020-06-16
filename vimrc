@@ -44,7 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
           Plug 'roxma/vim-hug-neovim-rpc'
       endif
       Plug 'deoplete-plugins/deoplete-jedi'
-      Plug 'ryanoasis/vim-devicons'
+      Plug 'ryanoasis/vim-devicons' " always last
 call plug#end()
 
 let mapleader = ","
@@ -77,7 +77,8 @@ set foldlevel=10
 set foldnestmax=2
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
-set guifont=JetBrains\ Mono:h13
+set guifont=JetBrains\ Mono:h12
+set guifont=Fira\ Code:h12
 " set guifont=DroidSansMono\ Nerd\ Font:h11
 " " or:
 " set guifont=DroidSansMono_Nerd_Font:h11
@@ -98,7 +99,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='distinguished'
+let g:airline_theme='snow_dark'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'GruvboxGray'],
@@ -264,7 +265,7 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-function SetLSPShortcuts()
+function! SetLSPShortcuts()
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
   nnoremap <leader>la :call LanguageClient#textDocument_codeAction()<CR>
   nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>

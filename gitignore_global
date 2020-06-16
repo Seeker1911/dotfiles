@@ -1,11 +1,10 @@
 *.un~
 **/.DS_Store
-**/.idea
+.idea/
 .editor_config
 node_modules
 bower_components
 npm-debug.log
-*.idea
 *venv*
 tags
 dev_appservers_logs.db*

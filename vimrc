@@ -162,15 +162,19 @@ let iterm_profile = $ITERM_PROFILE
 if iterm_profile == "gruvbox dark"
     set background=dark
     colorscheme gruvbox
+    let g:airline_theme='snow_dark'
 elseif iterm_profile == "gruvbox light"
     set background=light
     colorscheme gruvbox
+    let g:airline_theme='snow_light'
 elseif iterm_profile == "snow light"
     set background=light
     colorscheme snow
+    let g:airline_theme='snow_light'
 elseif iterm_profile == "snow night"
     set background=dark
     colorscheme snow
+    let g:airline_theme='snow_dark'
 else 				"default
     set background=dark
     colorscheme gruvbox

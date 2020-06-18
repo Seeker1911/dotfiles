@@ -202,6 +202,7 @@ function sith {
             export ITERM_PROFILE="gruvbox dark"
 	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
 	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
+	    tmux source ~/dotfiles/tmux.conf
   fi
 }
 
@@ -209,6 +210,7 @@ function jedi {
   if [[ $platform == 'macos' ]]; then
             echo -ne "\033]50;SetProfile=gruvbox light\a"
             export ITERM_PROFILE="gruvbox light"
+	    tmux source ~/dotfiles/tmux_light.conf
   fi
 }
 
@@ -218,6 +220,7 @@ function snow {
           export ITERM_PROFILE="snow light"
 	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
 	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
+	  tmux source ~/dotfiles/tmux_light.conf
   fi
 }
 
@@ -227,6 +230,7 @@ function night {
           export ITERM_PROFILE="snow night"
 	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
 	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_dark.sh
+	  tmux source ~/dotfiles/tmux.conf
   fi
 }
 

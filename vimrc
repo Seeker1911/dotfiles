@@ -166,7 +166,7 @@ if iterm_profile == "gruvbox dark"
 elseif iterm_profile == "gruvbox light"
     set background=light
     colorscheme gruvbox
-    let g:airline_theme='snow_light'
+    let g:airline_theme='gruvbox'
 elseif iterm_profile == "snow light"
     set background=light
     colorscheme snow

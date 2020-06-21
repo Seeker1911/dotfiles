@@ -18,6 +18,7 @@ elif [[ $platform == 'macos' ]]; then
 fi
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
+export NVIM_LOG_FILE='~/.local/share/nvim/log'
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # Set CLICOLOR if you want Ansi Colors in iTerm2 
 export CLICOLOR=1
@@ -118,10 +119,9 @@ alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
 alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
-alias generate_data='rdr_service/rdr_client/run_client.sh generate_fake_data.py --num_participants 20 --include_physical_measurements --include_biobank_orders --create_biobank_samples'
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
-alias cg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
+alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh
@@ -185,6 +185,8 @@ if [[ $platform == 'macos' ]]; then
   # Fix for:
   #bash: __bp_precmd_invoke_cmd: command not found
   #bash: __bp_interactive_mode: command not found
+  CFLAGS="-I$(brew --prefix openssl)/include"
+  LDFLAGS="-L$(brew --prefix openssl)/lib" 
   unset PROMPT_COMMAND
 fi
 
@@ -234,8 +236,14 @@ function night {
   fi
 }
 
-CFLAGS="-I$(brew --prefix openssl)/include"
-LDFLAGS="-L$(brew --prefix openssl)/lib" 
+# use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
+CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
+if [[ $platform == 'linux' ]]; then
+  # alias vim='~/.config/nvim/nvim.appimage'
+  alias vim=$CUSTOM_NVIM_PATH
+elif [[ $platform == 'macos' ]]; then
+  alias vim='nvim'
+fi
 
 
 export NVM_DIR="$HOME/.nvm"

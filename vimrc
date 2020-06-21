@@ -6,7 +6,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
       Plug 'davidhalter/jedi-vim'
-      Plug 'ncm2/float-preview.nvim'
+      " Plug 'ncm2/float-preview.nvim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
@@ -25,10 +25,10 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-dadbod'
       Plug 'majutsushi/tagbar'
       "Plug 'guns/xterm-color-table.vim'
-      "Plug 'tmux-plugins/vim-tmux-focus-events'
-      "Plug 'godlygeek/csapprox'
-      "Plug 'simnalamburt/vim-mundo'
-      "Plug 'junegunn/goyo.vim'
+      Plug 'tmux-plugins/vim-tmux-focus-events'
+      Plug 'godlygeek/csapprox'
+      Plug 'simnalamburt/vim-mundo'
+      "Plug 'junegunn/goyo.vim' "distraction free writing
       "Plug 'jremmen/vim-ripgrep'
       " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       "Plug 'rhysd/git-messenger.vim'
@@ -49,7 +49,7 @@ call plug#end()
 
 let mapleader = ","
 let maplocalleader = "\\"
-
+let g:go_version_warning = 0
 "source $HOME/dotfiles/vim/filehandling.vimrc
 "source $HOME/dotfiles/vim/autocommands.vimrc
 "source $HOME/dotfiles/vim/hi.vimrc

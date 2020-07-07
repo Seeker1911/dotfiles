@@ -122,6 +122,10 @@ alias generate_data='rdr_service/rdr_client/run_client.sh generate_fake_data.py 
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
 alias cg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
+alias cleangit='git branch | grep -v "master" | xargs git branch -D'
+
+# alias sql='~/bin/sqlcl/bin/sql'
+alias sql='~/bin/sqlcl/bin/sql SYS/OracleDocker@localhost/XE AS SYSDBA'
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh
@@ -278,3 +282,5 @@ set completion-ignore-case on
 set show-all-if-ambiguous on
 #TAB: menu-complete
 export PYTHONPATH="${PYTHONPATH}:/Users/mmead4/prepay-de-hphc"
+
+eval "$(starship init bash)"

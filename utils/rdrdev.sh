@@ -1,5 +1,6 @@
 #! /bin/bash
 
+
 function setup {
     tmux new-session -s rdr -n console -d
     tmux split-window -v -t rdr

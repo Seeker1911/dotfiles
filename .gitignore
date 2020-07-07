@@ -1,3 +1,8 @@
 .vim/
 .idea/
 *.log
+neovim3
+.python-version
+
+viminfo
+nvim_log*

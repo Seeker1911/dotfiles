@@ -65,12 +65,25 @@ fi
 # set shell to vi keybindings.
 set -o vi
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
-alias vim='~/.config/nvim/nvim-osx64/bin/nvim'
+# alias vim='~/.config/nvim/nvim-osx64/bin/nvim'
 # if [[ $platform == 'linux' ]]; then
 #   alias vim='/usr/bin/nvim'
 # elif [[ $platform == 'macos' ]]; then
 #   alias vim='nvim'
 # fi
+CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
+if [[ $platform == 'linux' ]]; then
+  # alias vim='~/.config/nvim/nvim.appimage'
+  alias vim=$CUSTOM_NVIM_PATH
+elif [[ $platform == 'macos' ]]; then
+  alias vim='nvim'
+fi
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 alias pybug="python -m pdb -c continue"
 
 function gitpr {
@@ -237,18 +250,6 @@ function night {
 }
 
 # use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
-CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
-if [[ $platform == 'linux' ]]; then
-  # alias vim='~/.config/nvim/nvim.appimage'
-  alias vim=$CUSTOM_NVIM_PATH
-elif [[ $platform == 'macos' ]]; then
-  alias vim='nvim'
-fi
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Run something, muting output or redirecting it to the debug stream
 # depending on the value of _ARC_DEBUG.

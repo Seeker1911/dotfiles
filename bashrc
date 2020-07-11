@@ -285,5 +285,5 @@ _python_argcomplete() {
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 set completion-ignore-case on
 set show-all-if-ambiguous on
-#TAB: menu-complete
-export PYTHONPATH="${PYTHONPATH}:/Users/mmead4/prepay-de-hphc"
+
+eval "$(starship init bash)"

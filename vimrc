@@ -28,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'godlygeek/csapprox'
       Plug 'simnalamburt/vim-mundo'
+      Plug 'mhinz/vim-startify'
       "Plug 'junegunn/goyo.vim' "distraction free writing
       "Plug 'jremmen/vim-ripgrep'
       " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}

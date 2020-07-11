@@ -75,6 +75,9 @@ brew "yarn"
 brew "youtube-dl"
 brew "zlib"
 brew "cjbassi/gotop/gotop"
+#starship PS1
+brew "starship"
+# GitHub CLI
 brew "github/gh/gh"
 brew "timescale/tap/timescaledb"
 cask "alacritty"

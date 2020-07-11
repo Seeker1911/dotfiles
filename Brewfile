@@ -151,6 +151,8 @@ brew "youtube-dl"
 brew "zlib"
 # A terminal based graphical activity monitor inspired by gtop and vtop
 brew "cjbassi/gotop/gotop"
+#starship PS1
+brew "starship"
 # GitHub CLI
 brew "github/gh/gh"
 cask "alacritty"

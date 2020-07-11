@@ -14,7 +14,7 @@ alacrittydir=~/.config/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
 homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template"    # list of files/folders to symlink in homedir
-configFiles="pycodestyle flake8 pylintrc"
+configFiles="pycodestyle flake8 pylintrc starship.toml"
 #vimFiles="hi coc colors remaps plugins settings function filehandling autocommands"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh"
 
@@ -25,6 +25,7 @@ echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 mkdir -p $olddir
 mkdir -p $bindir
 mkdir -p $configdir
+mkdir -p $nvimdir
 echo "done"
 
 # change to the dotfiles directory

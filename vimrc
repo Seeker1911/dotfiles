@@ -5,8 +5,12 @@ if empty(glob('~/.config/nvim/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
-      Plug 'davidhalter/jedi-vim'
+      " Plug 'davidhalter/jedi-vim'
       " Plug 'ncm2/float-preview.nvim'
+      Plug 'ncm2/ncm2'
+      Plug 'ncm2/ncm2-jedi'
+      Plug 'roxma/nvim-yarp'
+
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
@@ -38,7 +42,7 @@ call plug#begin('~/.config/nvim/plugged')
       \ 'do': 'bash install.sh',
       \ }
       if has('nvim')
-          "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+          " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
       else
           Plug 'Shougo/deoplete.nvim'
           Plug 'roxma/nvim-yarp'
@@ -51,17 +55,10 @@ call plug#end()
 let mapleader = ","
 let maplocalleader = "\\"
 let g:go_version_warning = 0
-"source $HOME/dotfiles/vim/filehandling.vimrc
-"source $HOME/dotfiles/vim/autocommands.vimrc
-"source $HOME/dotfiles/vim/hi.vimrc
-"source $HOME/dotfiles/vim/settings.vimrc
-"source $HOME/dotfiles/vim/functions.vimrc
-"source $HOME/dotfiles/vim/plugins.vimrc
-"source $HOME/dotfiles/vim/coc.vimrc "coc gets its own
-"source $HOME/dotfiles/vim/remaps.vimrc
-"source $HOME/dotfiles/vim/colors.vimrc
 
 set hidden
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
 set encoding=utf8
 set nocompatible	       " required, not vi compatible
 set modelines=0		       " fix security exploits
@@ -123,13 +120,13 @@ let g:fzf_colors = {
 let uname = substitute(system('uname'), '\n', '', '')
 let home = system('whoami')
 if uname == 'Linux'
-	let g:python_host_prog = 'home/versions/neovim2/bin/python'
-	let g:python3_host_prog = 'home/versions/neovim3/bin/python'
+	let g:python_host_prog = expand('home/versions/neovim2/bin/python')
+	let g:python3_host_prog = expand('home/versions/neovim3/bin/python')
 else "Mac
 	"let g:python_host_prog = 'Users/mmead4/.pyenv/versions/neovim2/bin/python'
 	"let g:python3_host_prog = 'Users/mmead4/.pyenv/versions/neovim3/bin/python'
-	let g:python_host_prog = '~/.pyenv/versions/2.7.15/envs/neovim2/bin/python'
-	let g:python3_host_prog = '~/.pyenv/versions/3.8.2/envs/neovim3/bin/python'
+	let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
+	let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
 endif
 
 
@@ -155,7 +152,6 @@ nnoremap <nowait> <silent> <leader>nh :set nohlsearch<cr>
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232
 highlight SignColumn ctermbg=256
-highlight link CocErrorSign GruvboxRed
 
 set t_Co=256
 
@@ -181,53 +177,17 @@ else 				"default
     colorscheme gruvbox
 endif
 
-"---------------------- COC settings --------------------------------
-"let $NVIM_COC_LOG_LEVEL = 'debug'
-"let g:coc_global_extensions = ['coc-python']
-"nmap <leader>rn <Plug>(coc-rename)
-"" Fix autofix problem of current line
-""nmap <leader>qf  <Plug>(coc-fix-current)
-"" coc open browser current file
-"nnoremap <leader>bo :call CocAction('runCommand', 'git.browserOpen')<CR>
-"nnoremap <leader>ct <Plug>(coc-terminal-toggle)
-"" navigate chunks of current buffer
-"nmap <silent> [g <Plug>(coc-git-prevchunk)
-"nmap <silent> ]g <Plug>(coc-git-nextchunk)
-"nmap <silent> [d <Plug>(coc-diagnostic-prev)
-"nmap <silent> ]d <Plug>(coc-diagnostic-next)
-"" Remap keys for gotos
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-""coc action
-" nnoremap <silent> <space>a :<C-u>CocAction<CR>
-"" Show all diagnostics
-"nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
-"" Manage extensions
-"nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
-"" Show commands
-"nnoremap <silent> <space>c :<C-u>CocList commands<CR>
-"" Search workspace symbols
-"noremap <silent> <space>s :<C-u>CocList -I symbols<CR>
-"" Do default action for next item.
-"nnoremap <silent> <space>j :<C-u>CocNext<CR>
-"" Do default action for previous item.
-"nnoremap <silent> <space>k :<C-u>CocPrev<CR>
-"" Remap for format selected region need to fix
-""vmap <leader>f  <Plug>(coc-format-selected)
-""nmap <leader>f  <Plug>(coc-format-selected)
-"" Show config
-"nnoremap <silent> <space>g :<C-u>CocConfig<CR>
-"" Show info
-"nnoremap <silent> <space>i :<C-u>CocInfo<CR>
-"" Find symbol of current document
-"nnoremap <silent> <space>o :<C-u>CocList outline<CR>
-"" Resume latest coc list
-"nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-"imap <C-l> <Plug>(coc-snippets-expand)
 
+" Language server ===================================================
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['~/.pyenv/shims/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
 
+" ale ===================================================
 let g:ale_sign_column_always = 1
 let g:ale_python_pylint_use_global = 1
 let g:ale_python_flake8_global = 1
@@ -253,13 +213,8 @@ let g:ale_fixers = {
       \}
 
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['~/.pyenv/shims/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " deoplete options ===================================================
 let g:deoplete#enable_at_startup = 1
@@ -277,7 +232,6 @@ function! SetLSPShortcuts()
   nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
   nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
   nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
   nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
   nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>

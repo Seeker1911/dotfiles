@@ -75,11 +75,6 @@ set foldlevel=10
 set foldnestmax=2
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
-set guifont=JetBrains\ Mono:h12
-set guifont=Fira\ Code:h12
-" set guifont=DroidSansMono\ Nerd\ Font:h11
-" " or:
-" set guifont=DroidSansMono_Nerd_Font:h11
 syntax on
 
 set termguicolors "for truecolor support, assuming you have it.
@@ -123,8 +118,6 @@ if uname == 'Linux'
 	let g:python_host_prog = expand('home/versions/neovim2/bin/python')
 	let g:python3_host_prog = expand('home/versions/neovim3/bin/python')
 else "Mac
-	"let g:python_host_prog = 'Users/mmead4/.pyenv/versions/neovim2/bin/python'
-	"let g:python3_host_prog = 'Users/mmead4/.pyenv/versions/neovim3/bin/python'
 	let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
 	let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
 endif

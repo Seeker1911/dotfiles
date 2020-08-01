@@ -19,7 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
-      "Plug 'craigemery/vim-autotag'
+      Plug 'luochen1990/rainbow'
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
       Plug 'tpope/vim-fugitive'
@@ -28,11 +28,12 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-rhubarb'
       Plug 'tpope/vim-dadbod'
       Plug 'majutsushi/tagbar'
-      "Plug 'guns/xterm-color-table.vim'
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'godlygeek/csapprox'
       Plug 'simnalamburt/vim-mundo'
       Plug 'mhinz/vim-startify'
+      "Plug 'craigemery/vim-autotag'
+      "Plug 'guns/xterm-color-table.vim'
       "Plug 'junegunn/goyo.vim' "distraction free writing
       "Plug 'jremmen/vim-ripgrep'
       " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -81,6 +82,7 @@ set termguicolors "for truecolor support, assuming you have it.
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:rainbow_active=1
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
 let g:gruvbox_improved_strings=0
@@ -131,6 +133,7 @@ map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
 nmap <leader>T :TagbarToggle<CR>
+nmap <leader>r :RainbowToggle<CR>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -171,15 +174,6 @@ else 				"default
 endif
 
 
-" Language server ===================================================
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['~/.pyenv/shims/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
-
 " ale ===================================================
 let g:ale_sign_column_always = 1
 let g:ale_python_pylint_use_global = 1
@@ -212,6 +206,18 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 " deoplete options ===================================================
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
+
+
+" Language server ===================================================
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['~/.pyenv/shims/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+
+" language client ===================================================
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>

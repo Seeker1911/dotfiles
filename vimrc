@@ -76,9 +76,11 @@ set foldlevel=10
 set foldnestmax=2
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
+set wrap!
 syntax on
 
 set termguicolors "for truecolor support, assuming you have it.
+set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -214,7 +216,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['~/.pyenv/shims/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ 'go': ['~/go/bin/gopls'],
     \ }
 
 " language client ===================================================

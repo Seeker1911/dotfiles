@@ -10,6 +10,7 @@ nnoremap ]d :action GotoNextError<CR>
 nnoremap [d :action GotoPreviousError<CR>
 
 nnoremap ,d :action GotoDeclaration<CR>
+nnoremap ,ld :action GotoDeclaration<CR>
 nnoremap ,s :action GotoSuperMethod<CR>
 nnoremap ,i :action GotoImplementation<CR>
 nnoremap gb :action JumpToLastChange<CR>

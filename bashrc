@@ -18,6 +18,7 @@ elif [[ $platform == 'macos' ]]; then
 fi
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
+export MYVIMRC='~/dotfiles/vimrc'
 export NVIM_LOG_FILE='~/.local/share/nvim/log'
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # Set CLICOLOR if you want Ansi Colors in iTerm2 
@@ -131,9 +132,14 @@ alias www="python -m simpleHTTPServer 8000"
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
-alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
+#alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
+alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
+alias cleangit='git branch | grep -v "master" | xargs git branch -D'
+
+# alias sql='~/bin/sqlcl/bin/sql'
+alias sql='~/bin/sqlcl/bin/sql SYS/OracleDocker@localhost/XE AS SYSDBA'
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------

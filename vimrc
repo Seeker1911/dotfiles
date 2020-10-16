@@ -38,6 +38,9 @@ call plug#begin('~/.config/nvim/plugged')
       "Plug 'jremmen/vim-ripgrep'
       " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
       "Plug 'rhysd/git-messenger.vim'
+      Plug 'voldikss/vim-floaterm'
+      Plug 'voldikss/fzf-floaterm'
+      Plug 'windwp/vim-floaterm-repl'
       Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
@@ -78,9 +81,12 @@ set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
 syntax on
-
 set termguicolors "for truecolor support, assuming you have it.
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+
+" command Exec set splitright | vnew | set filetype=sh | read !sh #
+
+
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -129,6 +135,8 @@ endif
 
 
 map <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>uc :FloatermRepl<CR>
+vnoremap <leader>uc :FloatermRepl<CR>
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " ripgrep fzf find word under cursor in nearby files.
 map <leader>F :Rg<CR>
@@ -150,6 +158,7 @@ nnoremap <nowait> <silent> <leader>nh :set nohlsearch<cr>
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232
 highlight SignColumn ctermbg=256
+highlight CursorColumn ctermbg=3
 
 set t_Co=256
 
@@ -202,8 +211,10 @@ let g:ale_fixers = {
       \}
 
 
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
+if has('nvim')
+	" enable ncm2 for all buffers
+	autocmd BufEnter * call ncm2#enable_for_buffer()
+endif
 
 " deoplete options ===================================================
 let g:deoplete#enable_at_startup = 1

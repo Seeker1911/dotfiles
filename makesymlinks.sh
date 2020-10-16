@@ -62,5 +62,6 @@ done
 #     ln -sf $vimfiledir/$file.vimrc $nvimdir/$file.vimrc
 # link to init.vim in  favor of nvim
 ln -sf $dir/vimrc $nvimdir/init.vim
+#ln -sf $dir/vimrc ~/.vimrc
 # link alaccritty config
 ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

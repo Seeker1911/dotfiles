@@ -32,12 +32,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'godlygeek/csapprox'
       Plug 'simnalamburt/vim-mundo'
       Plug 'mhinz/vim-startify'
-      "Plug 'craigemery/vim-autotag'
-      "Plug 'guns/xterm-color-table.vim'
-      "Plug 'junegunn/goyo.vim' "distraction free writing
-      "Plug 'jremmen/vim-ripgrep'
-      " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-      "Plug 'rhysd/git-messenger.vim'
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
@@ -52,14 +46,14 @@ call plug#begin('~/.config/nvim/plugged')
           Plug 'roxma/nvim-yarp'
           Plug 'roxma/vim-hug-neovim-rpc'
       endif
-      Plug 'deoplete-plugins/deoplete-jedi'
+      " Plug 'deoplete-plugins/deoplete-jedi'
       Plug 'ryanoasis/vim-devicons' " always last
 call plug#end()
-
 let mapleader = ","
 let maplocalleader = "\\"
 let g:go_version_warning = 0
 
+syntax on
 set hidden
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
@@ -80,12 +74,8 @@ set foldnestmax=2
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
-syntax on
 set termguicolors "for truecolor support, assuming you have it.
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
-
-" command Exec set splitright | vnew | set filetype=sh | read !sh #
-
 
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -119,9 +109,6 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Statement'],
   \ }
 
-
-
-
 let uname = substitute(system('uname'), '\n', '', '')
 let home = system('whoami')
 if uname == 'Linux'
@@ -132,9 +119,10 @@ else "Mac
 	let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
 endif
 
-
-
 map <leader>t :NERDTreeToggle<CR>
+" Floaterm repl
+let g:floaterm_keymap_toggle = '<F12>'
+" Floaterm repl run code
 nnoremap <leader>uc :FloatermRepl<CR>
 vnoremap <leader>uc :FloatermRepl<CR>
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
@@ -166,7 +154,7 @@ let iterm_profile = $ITERM_PROFILE
 if iterm_profile == "gruvbox dark"
     set background=dark
     colorscheme gruvbox
-    let g:airline_theme='snow_dark'
+    let g:airline_theme='gruvbox'
 elseif iterm_profile == "gruvbox light"
     set background=light
     colorscheme gruvbox
@@ -235,17 +223,16 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 function! SetLSPShortcuts()
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
   nnoremap <leader>la :call LanguageClient#textDocument_codeAction()<CR>
   nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
   nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
   nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
   nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
   nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
   nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 endfunction()
@@ -258,6 +245,6 @@ augroup END
 let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
-let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingLevel = 'INFO'
 " dont show inline errors" Valid Options: "All" | "No" | "CodeLens" | "Diagnostics"
 let g:LanguageClient_useVirtualText = "CodeLens"

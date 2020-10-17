@@ -213,9 +213,6 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
 
-function testy {
-  python -m unittest discover -s tests -f -p *$@*
-}
 
 function sith {
   if [[ $platform == 'macos' ]]; then
@@ -231,6 +228,7 @@ function jedi {
   if [[ $platform == 'macos' ]]; then
             echo -ne "\033]50;SetProfile=gruvbox light\a"
             export ITERM_PROFILE="gruvbox light"
+	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
 	    tmux source ~/dotfiles/tmux_light.conf
   fi
 }
@@ -289,7 +287,7 @@ _python_argcomplete() {
 }
 # register python argcomplete for airflow
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
+
 set completion-ignore-case on
 set show-all-if-ambiguous on
-
 eval "$(starship init bash)"

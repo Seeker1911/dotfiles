@@ -17,6 +17,20 @@ elif [[ $platform == 'macos' ]]; then
     [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
 fi
 
+
+# fix tmux panes history
+# append to history file instead of overwrite on exit.
+shopt -s histappend
+shopt -s histreedit
+shopt -s histverify
+shopt -s cdspell
+
+# set shell to vi keybindings.
+set -o vi
+set completion-ignore-case on
+set show-all-if-ambiguous on
+
+
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export MYVIMRC='~/dotfiles/vimrc'
@@ -30,74 +44,29 @@ export SHELL='/bin/sh'
 export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
-if [[ $platform == 'linux' ]]; then
-  export GOOS=linux
-  # colored GCC warnings and errors
-  export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-  export CLOUD_SDK_REPO=cloud-sdk-jessie
-elif [[ $platform == 'macos' ]]; then
-  export GOOS=darwin
-fi
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
-#export CLOUDSDK_PYTHON=/Users/meadm1/google-cloud-sdk/venv/bin/python
-
-# fix tmux panes history
-# append to history file instead of overwrite on exit.
-shopt -s histappend
-shopt -s histreedit
-shopt -s histverify
-shopt -s cdspell
-
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 
-# start TMUX by default if it exists. If not running interactively, do not do anything
-if [[ $platform == 'linux' ]]; then
-  if command -v tmux &> /dev/null;then 
-    [[ $- != *i* ]] && return
-    [[ -z "$TMUX" ]] && exec tmux -2
-  fi
-fi
-
-# set shell to vi keybindings.
-set -o vi
-# use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
-# alias vim='~/.config/nvim/nvim-osx64/bin/nvim'
-# if [[ $platform == 'linux' ]]; then
-#   alias vim='/usr/bin/nvim'
-# elif [[ $platform == 'macos' ]]; then
-#   alias vim='nvim'
-# fi
-CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
-if [[ $platform == 'linux' ]]; then
-  # alias vim='~/.config/nvim/nvim.appimage'
-  alias vim=$CUSTOM_NVIM_PATH
-elif [[ $platform == 'macos' ]]; then
-  alias vim='nvim'
-fi
-
-
+# node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias pybug="python -m pdb -c continue"
-
-function gitpr {
-    if [ "$#" -ne 1 ]; then
-	echo "Requires commit message"
-	return 1;
-    fi
-    git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
-  }
-
-alias listen="netstat -nap tcp | grep -i 'listen'"
 if [[ $platform == 'linux' ]]; then
+  # alias vim='~/.config/nvim/nvim.appimage'
+  CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
+  alias vim=$CUSTOM_NVIM_PATH
+  # start TMUX by default if it exists. If not running interactively, do not do anything
+  if command -v tmux &> /dev/null;then 
+    [[ $- != *i* ]] && return
+    [[ -z "$TMUX" ]] && exec tmux -2
+  fi
   if [ -x /usr/bin/dircolors ]; then
       test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
       alias ls='ls --color=auto'
@@ -107,19 +76,32 @@ if [[ $platform == 'linux' ]]; then
       alias fgrep='fgrep --color=auto'
       alias egrep='egrep --color=auto'
   fi
-
+  export GOOS=linux
+  # colored GCC warnings and errors
+  export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+  export CLOUD_SDK_REPO=cloud-sdk-jessie
 elif [[ $platform == 'macos' ]]; then
+  alias vim='nvim'
   alias ls='ls -GFh'
   alias ll='ls -l' # display long format directory
   alias l.='ls -d .*' #display all dir/ entries that begin with a '.'
   alias lc='ls -c' #List in column mode.
   alias lS='ls -S' #List by size.
   alias lt='ls -ltr' #List by time and date.
-  alias icloud='cd /Library/Mobile Documents/com~apple~CloudDocs'
+  export GOOS=darwin
   if [ -d "/Applications/Firefox Developer Edition.app" ]; then
       alias fire='open -a "/Applications/Firefox Developer Edition.app" $1'
   fi
+  # Fix for:
+  #bash: __bp_precmd_invoke_cmd: command not found
+  #bash: __bp_interactive_mode: command not found
+  CFLAGS="-I$(brew --prefix openssl)/include"
+  LDFLAGS="-L$(brew --prefix openssl)/lib" 
+  unset PROMPT_COMMAND
 fi
+
+alias listen="netstat -nap tcp | grep -i 'listen'"
+alias pybug="python -m pdb -c continue"
 alias tmux='tmux -2'
 alias dunnet='emacs -batch -l dunnet'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
@@ -146,6 +128,7 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh
 [ -f ~/.bin/tmuxinator.bash ] && source ~/.bin/tmuxinator.bash
+
 #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -190,24 +173,15 @@ if [[ $platform == 'linux' ]]; then
   export PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
-# PATH="/usr/local/opt/gettext/bin:$PATH"
- PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-# PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # PATH=$PATH:/usr/local/opt/rabbitmq/sbin
-# PYENV_ROOT="usr/local/bin/pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
+
+# pyenv ----------------------------------------------------------------------------------------------------
+PYENV_ROOT="usr/local/bin/pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
-fi
-
-if [[ $platform == 'macos' ]]; then
-  # Fix for:
-  #bash: __bp_precmd_invoke_cmd: command not found
-  #bash: __bp_interactive_mode: command not found
-  CFLAGS="-I$(brew --prefix openssl)/include"
-  LDFLAGS="-L$(brew --prefix openssl)/lib" 
-  unset PROMPT_COMMAND
 fi
 
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
@@ -215,6 +189,7 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 fi
 
 
+# functions ----------------------------------------------------------------------------------------------------
 function sith {
   if [[ $platform == 'macos' ]]; then
             echo -ne "\033]50;SetProfile=gruvbox dark\a"
@@ -254,7 +229,15 @@ function night {
   fi
 }
 
-# use the homebrew vim 8 instead of system vim (system vim is at /usr/bin/vim)
+
+function gitpr {
+    if [ "$#" -ne 1 ]; then
+	echo "Requires commit message"
+	return 1;
+    fi
+    git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
+  }
+
 
 # Run something, muting output or redirecting it to the debug stream
 # depending on the value of _ARC_DEBUG.
@@ -289,6 +272,4 @@ _python_argcomplete() {
 # register python argcomplete for airflow
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
-set completion-ignore-case on
-set show-all-if-ambiguous on
 eval "$(starship init bash)"

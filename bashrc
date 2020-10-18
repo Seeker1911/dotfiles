@@ -18,6 +18,7 @@ elif [[ $platform == 'macos' ]]; then
 fi
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
+export BASH_SILENCE_DEPRECATION_WARNING=1
 export MYVIMRC='~/dotfiles/vimrc'
 export NVIM_LOG_FILE='~/.local/share/nvim/log'
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

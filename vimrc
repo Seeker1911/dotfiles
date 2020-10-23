@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
+      Plug 'rakr/vim-two-firewatch'
       Plug 'fatih/vim-go' ", { 'do': ':GoUpdateBinaries'}
       Plug 'morhetz/gruvbox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }

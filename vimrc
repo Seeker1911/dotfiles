@@ -5,18 +5,15 @@ if empty(glob('~/.config/nvim/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
-      " Plug 'davidhalter/jedi-vim'
-      " Plug 'ncm2/float-preview.nvim'
       Plug 'ncm2/ncm2'
       Plug 'ncm2/ncm2-jedi'
       Plug 'roxma/nvim-yarp'
-
       Plug 'christoomey/vim-tmux-navigator'
+      Plug 'morhetz/gruvbox'
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
       Plug 'rakr/vim-two-firewatch'
       Plug 'fatih/vim-go' ", { 'do': ':GoUpdateBinaries'}
-      Plug 'morhetz/gruvbox'
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
@@ -41,14 +38,16 @@ call plug#begin('~/.config/nvim/plugged')
       \ 'do': 'bash install.sh',
       \ }
       if has('nvim')
-          " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+          Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
       else
           Plug 'Shougo/deoplete.nvim'
           Plug 'roxma/nvim-yarp'
           Plug 'roxma/vim-hug-neovim-rpc'
       endif
-      " Plug 'deoplete-plugins/deoplete-jedi'
       Plug 'ryanoasis/vim-devicons' " always last
+      " Plug 'deoplete-plugins/deoplete-jedi'
+      " Plug 'davidhalter/jedi-vim'
+      " Plug 'ncm2/float-preview.nvim'
 call plug#end()
 let mapleader = ","
 let maplocalleader = "\\"
@@ -136,13 +135,12 @@ nmap <leader>r :RainbowToggle<CR>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<CR>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
 
-nnoremap <nowait> <silent> <leader>h :set hlsearch<cr>
-nnoremap <nowait> <silent> <leader>nh :set nohlsearch<cr>
+let hlstate=0
+nnoremap <leader>h :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
 
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232
@@ -220,22 +218,20 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 " language client ===================================================
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
 function! SetLSPShortcuts()
+  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+  nnoremap <silent>K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <silent>gd :call LanguageClient#textDocument_definition()<CR>
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
   nnoremap <leader>la :call LanguageClient#textDocument_codeAction()<CR>
   nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
   nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
   nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
   nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
   nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 endfunction()
 
 augroup LSP
@@ -247,5 +243,5 @@ let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
 let g:LanguageClient_loggingLevel = 'INFO'
-" dont show inline errors" Valid Options: "All" | "No" | "CodeLens" | "Diagnostics"
+" dont show inline errors" Valid Options:" "All" | "No" | "CodeLens" | "Diagnostics"
 let g:LanguageClient_useVirtualText = "CodeLens"

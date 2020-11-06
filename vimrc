@@ -4,10 +4,6 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-      Plug 'dense-analysis/ale'
-      Plug 'ncm2/ncm2'
-      Plug 'ncm2/ncm2-jedi'
-      Plug 'roxma/nvim-yarp'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
       Plug 'nightsense/snow', {'on': 'LightSide'}
@@ -33,21 +29,27 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
+      " Plug 'deoplete-plugins/deoplete-jedi'
+      " Plug 'davidhalter/jedi-vim'
+      " Plug 'ncm2/float-preview.nvim'
+      " Plug 'davidhalter/jedi-vim'
+      Plug 'dense-analysis/ale'
+      Plug 'ncm2/ncm2'
+      Plug 'ncm2/ncm2-jedi'
+      Plug 'roxma/nvim-yarp'
       Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
       \ }
       if has('nvim')
-          Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+          " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	  " Plug 'deoplete-plugins/deoplete-jedi'
       else
-          Plug 'Shougo/deoplete.nvim'
-          Plug 'roxma/nvim-yarp'
-          Plug 'roxma/vim-hug-neovim-rpc'
+          " Plug 'Shougo/deoplete.nvim'
+          " Plug 'roxma/nvim-yarp'
+          " Plug 'roxma/vim-hug-neovim-rpc'
       endif
       Plug 'ryanoasis/vim-devicons' " always last
-      " Plug 'deoplete-plugins/deoplete-jedi'
-      " Plug 'davidhalter/jedi-vim'
-      " Plug 'ncm2/float-preview.nvim'
 call plug#end()
 let mapleader = ","
 let maplocalleader = "\\"
@@ -76,6 +78,8 @@ set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more
 set wrap!
 set termguicolors "for truecolor support, assuming you have it.
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+set splitright
+
 
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -140,7 +144,7 @@ inoremap jj <ESC>
 inoremap JJ <ESC>
 
 let hlstate=0
-nnoremap <leader>h :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+nnoremap <silent> <leader>h :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
 
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232
@@ -186,7 +190,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
 let b:ale_linters = {
-      \  'python': ['pylint', 'flake8', 'pyls'],
+      \  'python': ['pylint', 'flake8', 'pyls', 'mypy'],
       \  'sh': ['language_server'],
       \  'go': ['golint', 'gofmt', 'gopls']
       \}
@@ -205,7 +209,7 @@ endif
 
 " deoplete options ===================================================
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 1
+" let g:deoplete#sources#jedi#show_docstring = 1
 
 
 " Language server ===================================================
@@ -213,7 +217,7 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['~/.pyenv/shims/pyls'],
+    \ 'python': ['~/.pyenv/shims/pyls', '-v'],
     \ 'go': ['~/go/bin/gopls'],
     \ }
 
@@ -242,6 +246,13 @@ augroup END
 let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
-let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_loggingLevel = 'DEBUG'
 " dont show inline errors" Valid Options:" "All" | "No" | "CodeLens" | "Diagnostics"
 let g:LanguageClient_useVirtualText = "CodeLens"
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif

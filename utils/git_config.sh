@@ -18,3 +18,4 @@ git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 git config --global diff-so-fancy.rulerWidth 47    # git log's commit header width
 git config --bool --global diff-so-fancy.markEmptyLines false
+git config --global credential.helper osxkeychain

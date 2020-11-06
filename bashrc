@@ -162,6 +162,8 @@ PATH="${PATH}:/usr/local/bin"
 PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local/liquibase-4.0.0-beta1"
 PATH="${PATH}:${HOME}/go/bin"
+PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
+export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="$HOME/bin:$PATH"
 
@@ -173,10 +175,17 @@ if [[ $platform == 'linux' ]]; then
   export PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
-# PATH=$PATH:/usr/local/opt/rabbitmq/sbin
+# If you need to have openssl@1.1 first in your PATH run:
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+# For pkg-config to find openssl@1.1 you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+# This magically fixes psycopg2 install error madness, the above did not.
+export LIBRARY_PATH=$LIBRARY_PATH:"/usr/local/opt/openssl/lib/"
 
 # pyenv ----------------------------------------------------------------------------------------------------
 PYENV_ROOT="usr/local/bin/pyenv"
+# PYENV_ROOT="~/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then

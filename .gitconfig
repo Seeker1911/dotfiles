@@ -2,7 +2,7 @@
 	helper = osxkeychain
 [user]
 	name = michael.mead
-	email = michael.mead@vanderbilt.edu
+	email = michaelmead007@icloud.com
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input

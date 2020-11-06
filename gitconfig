@@ -1,7 +1,7 @@
 [core]
 	excludesfile = /Users/michaelmead/.gitignore_global
 [user]
-	name = mmead4
+	name = michael mead
 	email = michaelmead007@icloud.com
 [init]
 	templatedir = ~/.git_template

@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'nightsense/snow', {'on': 'LightSide'}
       Plug 'NLKNguyen/papercolor-theme'
       Plug 'rakr/vim-two-firewatch'
+      Plug 'kkga/vim-envy'
       Plug 'fatih/vim-go' ", { 'do': ':GoUpdateBinaries'}
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -170,6 +171,14 @@ elseif iterm_profile == "snow night"
     set background=dark
     colorscheme snow
     let g:airline_theme='snow_dark'
+elseif iterm_profile == "envy"
+    set background=light
+    colorscheme envy
+    let g:airline_theme='snow_light'
+elseif iterm_profile == "firewatch"
+    set background=dark
+    colorscheme two-firewatch
+    let g:airline_theme='twofirewatch'
 else 				"default
     set background=dark
     colorscheme gruvbox

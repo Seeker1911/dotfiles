@@ -239,6 +239,25 @@ function night {
 }
 
 
+function envy {
+  if [[ $platform == 'macos' ]]; then
+          echo -ne "\033]50;SetProfile=envy\a"
+          export ITERM_PROFILE="envy"
+	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
+	  tmux source ~/dotfiles/tmux_light.conf
+  fi
+}
+function firewatch {
+  if [[ $platform == 'macos' ]]; then
+            echo -ne "\033]50;SetProfile=firewatch\a"
+            export ITERM_PROFILE="firewatch"
+	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
+	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
+	    tmux source ~/dotfiles/tmux.conf
+  fi
+}
+
 function gitpr {
     if [ "$#" -ne 1 ]; then
 	echo "Requires commit message"

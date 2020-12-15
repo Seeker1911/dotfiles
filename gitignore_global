@@ -59,3 +59,4 @@ Thumbs.db
 docker-compose-local.yml
 package-lock.json
 yarn.lock
+Session.vim

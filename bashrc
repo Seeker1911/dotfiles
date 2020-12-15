@@ -115,11 +115,11 @@ alias www="python -m simpleHTTPServer 8000"
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
-#alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
-alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
+alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
+# alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
-alias cleangit='git branch | grep -v "master" | xargs git branch -D'
+alias cleangit='git branch | grep -v "master" | grep -v "dev" | xargs git branch -D'
 
 # alias sql='~/bin/sqlcl/bin/sql'
 alias sql='~/bin/sqlcl/bin/sql SYS/OracleDocker@localhost/XE AS SYSDBA'
@@ -127,6 +127,7 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh
+[ -f ~/.profile ] && source ~/.profile
 [ -f ~/.bin/tmuxinator.bash ] && source ~/.bin/tmuxinator.bash
 
 #fuzzy finder in bash 
@@ -266,6 +267,9 @@ function gitpr {
     git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
   }
 
+function cleanswap {
+	rm ~/.local/share/nvim/swap/*
+}
 
 # Run something, muting output or redirecting it to the debug stream
 # depending on the value of _ARC_DEBUG.
@@ -301,3 +305,5 @@ _python_argcomplete() {
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
 eval "$(starship init bash)"
+source "$HOME/.cargo/env"
+source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash

@@ -4,6 +4,7 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
+      Plug 'rizzatti/dash.vim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
       Plug 'nightsense/snow', {'on': 'LightSide'}
@@ -30,26 +31,14 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
-      " Plug 'deoplete-plugins/deoplete-jedi'
-      " Plug 'davidhalter/jedi-vim'
-      " Plug 'ncm2/float-preview.nvim'
-      " Plug 'davidhalter/jedi-vim'
       Plug 'dense-analysis/ale'
       Plug 'ncm2/ncm2'
       Plug 'ncm2/ncm2-jedi'
       Plug 'roxma/nvim-yarp'
       Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
-      if has('nvim')
-          " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	  " Plug 'deoplete-plugins/deoplete-jedi'
-      else
-          " Plug 'Shougo/deoplete.nvim'
-          " Plug 'roxma/nvim-yarp'
-          " Plug 'roxma/vim-hug-neovim-rpc'
-      endif
+	      \ 'branch': 'next',
+	      \ 'do': 'bash install.sh',
+	      \ }
       Plug 'ryanoasis/vim-devicons' " always last
 call plug#end()
 let mapleader = ","
@@ -58,6 +47,7 @@ let g:go_version_warning = 0
 
 syntax on
 set hidden
+set expandtab
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
 set encoding=utf8
@@ -80,7 +70,6 @@ set wrap!
 set termguicolors "for truecolor support, assuming you have it.
 set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
-
 
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

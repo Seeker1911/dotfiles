@@ -16,7 +16,7 @@ vimfiledir=~/dotfiles/vim
 homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc starship.toml"
 vimFiles="autoload/plug.vim"
-binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh"
+binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh aws_function.sh"
 
 ##########
 

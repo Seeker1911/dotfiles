@@ -40,9 +40,9 @@ renamed = "👅"
 deleted = "✘ "
 
 [python]
-pyenv_version_name = true
+pyenv_version_name = false
 pyenv_prefix = ""
 
 [directory]
-truncation_length = 8
+truncation_length = 10
 truncation_symbol = "…/"

@@ -4,6 +4,7 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
+      Plug 'puremourning/vimspector'
       Plug 'rizzatti/dash.vim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
@@ -23,6 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-rhubarb'
       Plug 'tpope/vim-dadbod'
+      Plug 'tpope/vim-dispatch'
       Plug 'majutsushi/tagbar'
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'godlygeek/csapprox'
@@ -74,6 +76,8 @@ set splitright
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_base_dir=expand( '$HOME/.config/vimspector-config' )
 let g:rainbow_active=1
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
@@ -115,9 +119,9 @@ endif
 
 map <leader>t :NERDTreeToggle<CR>
 " Floaterm repl
-let g:floaterm_keymap_toggle = '<F12>'
+nnoremap <leader>uc :FloatermToggle<CR>
+nnoremap <localleader>t :FloatermToggle<CR>
 " Floaterm repl run code
-nnoremap <leader>uc :FloatermRepl<CR>
 vnoremap <leader>uc :FloatermRepl<CR>
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " ripgrep fzf find word under cursor in nearby files.
@@ -254,3 +258,12 @@ if executable('pyls')
         \ 'whitelist': ['python'],
         \ })
 endif
+
+" Vimspector ==========================================================
+nmap <leader>vc <Plug>VimspectorContinue
+nmap <leader>vs <Plug>VimspectorStop
+nmap <leader>vr <Plug>VimspectorReset
+nmap <leader>vR <Plug>VimspectorRestart
+nmap <leader>vt <Plug>VimspectorToggleBreakpoint
+nmap <leader>vo <Plug>VimspectorStepOver
+

@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'NLKNguyen/papercolor-theme'
       Plug 'rakr/vim-two-firewatch'
       Plug 'kkga/vim-envy'
-      Plug 'fatih/vim-go' ", { 'do': ':GoUpdateBinaries'}
+      Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
       Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
@@ -70,7 +70,7 @@ set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
 set termguicolors "for truecolor support, assuming you have it.
-set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+" set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
 
 " may need the below especially with tmux
@@ -137,8 +137,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
 
-let hlstate=0
-nnoremap <silent> <leader>h :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+nnoremap <silent> <leader>H set hlsearch
+nnoremap <silent> <leader>h set nohlsearch
 
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232

@@ -166,6 +166,7 @@ PATH="${PATH}:${HOME}/go/bin"
 PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
+PATH="${PATH}:${HOME}/bin/flyway-7.3.2"
 PATH="$HOME/bin:$PATH"
 
 if [[ $platform == 'linux' ]]; then

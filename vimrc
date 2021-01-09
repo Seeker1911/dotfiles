@@ -137,8 +137,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap jj <ESC>
 inoremap JJ <ESC>
 
-nnoremap <silent> <leader>H set hlsearch
-nnoremap <silent> <leader>h set nohlsearch
+nnoremap <silent> <leader>H :set hlsearch<CR>
+nnoremap <silent> <leader>h :set nohlsearch<CR>
 
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232

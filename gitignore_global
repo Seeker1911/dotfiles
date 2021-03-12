@@ -1,3 +1,5 @@
+# General #
+###################
 *.un~
 **/.DS_Store
 .idea/
@@ -15,6 +17,7 @@ flake8
 .pep8
 .vscode/
 .vim/
+Session.vim
 
 # Compiled source #
 ###################
@@ -42,8 +45,6 @@ flake8
 # Logs and databases #
 ######################
 *.log
-*.sql
-*.sqlite
 
 # OS generated files #
 ######################
@@ -55,9 +56,8 @@ flake8
 ehthumbs.db
 Thumbs.db
 
-####Ipro specific
-docker-compose-local.yml
+# Ipro specific #
+######################
 package-lock.json
 yarn.lock
-Session.vim
 .vimspector.json

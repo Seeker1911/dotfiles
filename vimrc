@@ -64,14 +64,16 @@ set wildignorecase	      " ignore case on files and directories
 set tags=./tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
 set foldenable                 " enable folding
-set foldlevel=10
-set foldnestmax=2
+set foldlevel=4
+set foldnestmax=6
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
 set termguicolors "for truecolor support, assuming you have it.
 " set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
+set shiftwidth=4
+set shiftround
 
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -139,6 +141,10 @@ inoremap JJ <ESC>
 
 nnoremap <silent> <leader>H :set hlsearch<CR>
 nnoremap <silent> <leader>h :set nohlsearch<CR>
+
+" tnoremap <Esc> <C-\><C-n>
+" tnoremap jj <C-\><C-n>
+
 
 highlight PmenuSel ctermbg=5
 highlight ColorColumn ctermbg=232
@@ -244,6 +250,18 @@ augroup LSP
   autocmd!
   autocmd FileType cpp,c,python,js,go call SetLSPShortcuts()
 augroup END
+
+
+function! OpenURLUnderCursor()
+  let s:uri = expand('<cWORD>')
+  let s:uri = substitute(s:uri, '?', '\\?', '')
+  let s:uri = shellescape(s:uri, 1)
+  if s:uri != ''
+    silent exec "!open '".s:uri."'"
+    :redraw!
+  endif
+endfunction
+nnoremap gx :call OpenURLUnderCursor()<CR>
 
 let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_useFloatingHover = 1

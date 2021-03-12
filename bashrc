@@ -32,6 +32,7 @@ set show-all-if-ambiguous on
 
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
+export XDG_CONFIG_HOME='~/.config'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export MYVIMRC='~/dotfiles/vimrc'
 export NVIM_LOG_FILE='~/.local/share/nvim/log'
@@ -48,7 +49,7 @@ export FZF_DEFAULT_OPTS='--height 40% --border'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=false
 export CHTSH_QUERY_OPTIONS="style=native"
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'

@@ -32,10 +32,10 @@ set show-all-if-ambiguous on
 
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
-export XDG_CONFIG_HOME='~/.config'
+export XDG_CONFIG_HOME=~/.config
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export MYVIMRC='~/dotfiles/vimrc'
-export NVIM_LOG_FILE='~/.local/share/nvim/log'
+export MYVIMRC=~/dotfiles/vimrc
+export NVIM_LOG_FILE=~/.local/share/nvim/log
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # Set CLICOLOR if you want Ansi Colors in iTerm2 
 export CLICOLOR=1
@@ -221,6 +221,12 @@ function jedi {
   fi
 }
 
+function snow2 {
+    echo "color snow" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply papercolor_light.yaml
+}
+
 function snow {
   if [[ $platform == 'macos' ]]; then
           echo -ne "\033]50;SetProfile=snow light\a"
@@ -309,3 +315,9 @@ complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 eval "$(starship init bash)"
 source "$HOME/.cargo/env"
 source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+LIGHT_COLOR='base16-gruvbox-light-soft.yml'
+DARK_COLOR='base16-gruvbox-dark-soft.yml'
+
+alias day="alacritty-colorscheme -V apply $LIGHT_COLOR"
+alias night="alacritty-colorscheme -V apply $DARK_COLOR"
+alias toggle="alacritty-colorscheme -V toggle $LIGHT_COLOR $DARK_COLOR"

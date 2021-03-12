@@ -285,3 +285,6 @@ nmap <leader>vR <Plug>VimspectorRestart
 nmap <leader>vt <Plug>VimspectorToggleBreakpoint
 nmap <leader>vo <Plug>VimspectorStepOver
 
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif

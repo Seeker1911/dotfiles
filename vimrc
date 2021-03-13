@@ -4,8 +4,6 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-      Plug 'puremourning/vimspector'
-      Plug 'rizzatti/dash.vim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
       Plug 'nightsense/snow', {'on': 'LightSide'}
@@ -27,7 +25,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tpope/vim-dispatch'
       Plug 'majutsushi/tagbar'
       Plug 'tmux-plugins/vim-tmux-focus-events'
-      Plug 'godlygeek/csapprox'
       Plug 'simnalamburt/vim-mundo'
       Plug 'mhinz/vim-startify'
       Plug 'voldikss/vim-floaterm'
@@ -120,11 +117,12 @@ else "Mac
 endif
 
 map <leader>t :NERDTreeToggle<CR>
-" Floaterm repl
+" Floaterm terminal
 nnoremap <leader>uc :FloatermToggle<CR>
 nnoremap <localleader>t :FloatermToggle<CR>
 " Floaterm repl run code
 vnoremap <leader>uc :FloatermRepl<CR>
+
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " ripgrep fzf find word under cursor in nearby files.
 map <leader>F :Rg<CR>
@@ -152,36 +150,8 @@ highlight SignColumn ctermbg=256
 highlight CursorColumn ctermbg=3
 
 set t_Co=256
-
-let iterm_profile = $ITERM_PROFILE
-if iterm_profile == "gruvbox dark"
-    set background=dark
-    colorscheme gruvbox
-    let g:airline_theme='gruvbox'
-elseif iterm_profile == "gruvbox light"
-    set background=light
-    colorscheme gruvbox
-    let g:airline_theme='gruvbox'
-elseif iterm_profile == "snow light"
-    set background=light
-    colorscheme snow
-    let g:airline_theme='snow_light'
-elseif iterm_profile == "snow night"
-    set background=dark
-    colorscheme snow
-    let g:airline_theme='snow_dark'
-elseif iterm_profile == "envy"
-    set background=light
-    colorscheme envy
-    let g:airline_theme='snow_light'
-elseif iterm_profile == "firewatch"
-    set background=dark
-    colorscheme two-firewatch
-    let g:airline_theme='twofirewatch'
-else 				"default
-    set background=dark
-    colorscheme gruvbox
-endif
+set background=dark
+colorscheme gruvbox
 
 
 " ale ===================================================

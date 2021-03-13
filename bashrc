@@ -202,70 +202,24 @@ fi
 
 
 # functions ----------------------------------------------------------------------------------------------------
-function sith {
-  if [[ $platform == 'macos' ]]; then
-            echo -ne "\033]50;SetProfile=gruvbox dark\a"
-            export ITERM_PROFILE="gruvbox dark"
-	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-	    tmux source ~/dotfiles/tmux.conf
-  fi
-}
-
 function jedi {
-  if [[ $platform == 'macos' ]]; then
-            echo -ne "\033]50;SetProfile=gruvbox light\a"
-            export ITERM_PROFILE="gruvbox light"
-	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-	    tmux source ~/dotfiles/tmux_light.conf
-  fi
+    echo "color gruvbox" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply gruvbox_light.yaml
 }
 
-function snow2 {
+function sith {
+    echo "color gruvbox" > ~/.vimrc_background
+    echo "set background=dark" >> ~/.vimrc_background
+    alacritty-colorscheme apply gruvbox_dark.yaml
+}
+
+function snow {
     echo "color snow" > ~/.vimrc_background
     echo "set background=light" >> ~/.vimrc_background
     alacritty-colorscheme apply papercolor_light.yaml
 }
 
-function snow {
-  if [[ $platform == 'macos' ]]; then
-          echo -ne "\033]50;SetProfile=snow light\a"
-          export ITERM_PROFILE="snow light"
-	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
-	  tmux source ~/dotfiles/tmux_light.conf
-  fi
-}
-
-function night {
-  if [[ $platform == 'macos' ]]; then
-          echo -ne "\033]50;SetProfile=snow night\a"
-          export ITERM_PROFILE="snow night"
-	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_dark.sh
-	  tmux source ~/dotfiles/tmux.conf
-  fi
-}
-
-
-function envy {
-  if [[ $platform == 'macos' ]]; then
-          echo -ne "\033]50;SetProfile=envy\a"
-          export ITERM_PROFILE="envy"
-	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
-	  tmux source ~/dotfiles/tmux_light.conf
-  fi
-}
-function firewatch {
-  if [[ $platform == 'macos' ]]; then
-            echo -ne "\033]50;SetProfile=firewatch\a"
-            export ITERM_PROFILE="firewatch"
-	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-	    tmux source ~/dotfiles/tmux.conf
-  fi
-}
 
 function gitpr {
     if [ "$#" -ne 1 ]; then

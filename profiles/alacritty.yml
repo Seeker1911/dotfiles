@@ -44,7 +44,7 @@ window:
   decorations: buttonless
 
   # When true, alacritty starts maximized.
-  start_maximized: true
+  window.startup_mode: true
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -125,10 +125,10 @@ font:
   use_thin_strokes: true
 
 # Display the time it takes to redraw each frame.
-render_timer: false
+debug.render_timer: false
 
 # Keep the log file after quitting Alacritty.
-persistent_logging: false
+debug.persistent_logging: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -500,37 +500,35 @@ key_bindings:
   - {key: F12, mods: Super, chars: "\e[24;3~"}
   - {key: NumpadEnter, chars: "\n"}
 colors:
-  # COLORSCHEME: gruvbox_light.yaml
+  # COLORSCHEME: papercolor_light.yaml
   # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
-    background: '0xfbf1c7'
-    # soft contrast: background = '0xf2e5bc'
-    foreground: '0x3c3836'
+    background: '0xeeeeee'
+    foreground: '0x878787'
 
-  # Normal colors
   cursor:
     text: '0xeeeeee'
     cursor: '0x878787'
 
   # Normal colors
   normal:
-    black: '0xfbf1c7'
-    red: '0xcc241d'
-    green: '0x98971a'
-    yellow: '0xd79921'
-    blue: '0x458588'
-    magenta: '0xb16286'
-    cyan: '0x689d6a'
-    white: '0x7c6f64'
+    black: '0xeeeeee'
+    red: '0xaf0000'
+    green: '0x008700'
+    yellow: '0x5f8700'
+    blue: '0x0087af'
+    magenta: '0x878787'
+    cyan: '0x005f87'
+    white: '0x444444'
 
   # Bright colors
   bright:
-    black: '0x928374'
-    red: '0x9d0006'
-    green: '0x79740e'
-    yellow: '0xb57614'
-    blue: '0x076678'
-    magenta: '0x8f3f71'
-    cyan: '0x427b58'
-    white: '0x3c3836'
+    black: '0xbcbcbc'
+    red: '0xd70000'
+    green: '0xd70087'
+    yellow: '0x8700af'
+    blue: '0xd75f00'
+    magenta: '0xd75f00'
+    cyan: '0x005faf'
+    white: '0x005f87'

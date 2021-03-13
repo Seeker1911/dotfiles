@@ -30,7 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
-      " Plug 'dense-analysis/ale'
+      Plug 'dense-analysis/ale'
       Plug 'ncm2/ncm2'
       Plug 'ncm2/ncm2-jedi'
       Plug 'roxma/nvim-yarp'
@@ -155,29 +155,29 @@ colorscheme gruvbox
 
 
 " ale ===================================================
-" let g:ale_sign_column_always = 1
-" let g:ale_python_pylint_use_global = 1
-" let g:ale_python_flake8_global = 1
-" let g:ale_set_highlights = 1
-" let g:ale_set_signs = 1
-" let g:ale_sign_error = "⤫"
-" let g:ale_sign_warning = "⚠"
-" let g:ale_sign_info = "•"
-" let g:ale_sign_hint = "λ"
-" let g:ale_echo_msg_error_str = 'E'
-" let g:ale_echo_msg_warning_str = 'W'
-" let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-" let b:ale_linters = {
-"       \  'python': ['pylint', 'flake8', 'pyls', 'mypy'],
-"       \  'sh': ['language_server'],
-"       \  'go': ['golint', 'gofmt', 'gopls']
-"       \}
-" let g:ale_fixers = {
-"       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-"       \   'javascript': ['eslint'],
-"       \   'python': ['autopep8'],
-"       \   'go': ['gofmt', 'goimports']
-"       \}
+let g:ale_sign_column_always = 1
+let g:ale_python_pylint_use_global = 1
+let g:ale_python_flake8_global = 1
+let g:ale_set_highlights = 1
+let g:ale_set_signs = 1
+let g:ale_sign_error = "⤫"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "•"
+let g:ale_sign_hint = "λ"
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+let b:ale_linters = {
+      \  'python': ['pylint', 'flake8', 'pyls', 'mypy'],
+      \  'sh': ['language_server'],
+      \  'go': ['golint', 'gofmt', 'gopls']
+      \}
+let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['eslint'],
+      \   'python': ['autopep8'],
+      \   'go': ['gofmt', 'goimports']
+      \}
 
 
 if has('nvim')

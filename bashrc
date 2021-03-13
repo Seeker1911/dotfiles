@@ -216,6 +216,23 @@ function snow {
     alacritty-colorscheme apply papercolor_light.yaml
 }
 
+function remedy {
+    echo "color gruvbox" > ~/.vimrc_background
+    echo "set background=dark" >> ~/.vimrc_background
+    alacritty-colorscheme apply remedy_dark.yaml
+}
+
+function solar {
+    echo "color two-firewatch" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply solarized_light.yaml
+}
+
+function envy {
+    echo "color envy" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply pencil_light.yaml
+}
 
 function gitpr {
     if [ "$#" -ne 1 ]; then

@@ -116,7 +116,7 @@ alias www="python -m simpleHTTPServer 8000"
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
-alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
+# alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
 # alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'

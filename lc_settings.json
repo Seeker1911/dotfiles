@@ -1,0 +1,7 @@
+{
+    "name": "pyls",
+    "description": "Python language server",
+    "pyls.plugins.pydocstyle.enabled": true,
+    "pyls.plugins.pycodestyle.ignore": ["W291"],
+    "pyls.plugins.pycodestyle.maxLineLength": 120
+}

@@ -222,14 +222,16 @@ let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
 let g:LanguageClient_loggingLevel = 'DEBUG'
 " dont show inline errors" Valid Options:" "All" | "No" | "CodeLens" | "Diagnostics"
-let g:LanguageClient_useVirtualText = "All"
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
+let g:LanguageClient_useVirtualText = "CodeLens"
+let g:LanguageClient_settingsPath = "~/.config/lc_settings.json"
+" needed for neovim LSP but not languageClient-neovim
+" if executable('pyls')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->['pyls']},
+"         \ 'whitelist': ['python'],
+"         \ })
+" endif
 
 
 function! OpenURLUnderCursor()

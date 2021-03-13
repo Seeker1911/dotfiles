@@ -30,7 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
-      Plug 'dense-analysis/ale'
+      " Plug 'dense-analysis/ale'
       Plug 'ncm2/ncm2'
       Plug 'ncm2/ncm2-jedi'
       Plug 'roxma/nvim-yarp'
@@ -45,7 +45,7 @@ let maplocalleader = "\\"
 let g:go_version_warning = 0
 
 syntax on
-set hidden
+set hidden " required for operations modifying multiple buffers like rename from LSP
 set expandtab
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
@@ -61,7 +61,7 @@ set wildignorecase	      " ignore case on files and directories
 set tags=./tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
 set foldenable                 " enable folding
-set foldlevel=4
+set foldlevel=6
 set foldnestmax=6
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
@@ -155,29 +155,29 @@ colorscheme gruvbox
 
 
 " ale ===================================================
-let g:ale_sign_column_always = 1
-let g:ale_python_pylint_use_global = 1
-let g:ale_python_flake8_global = 1
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-let g:ale_sign_error = "⤫"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "•"
-let g:ale_sign_hint = "λ"
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-let b:ale_linters = {
-      \  'python': ['pylint', 'flake8', 'pyls', 'mypy'],
-      \  'sh': ['language_server'],
-      \  'go': ['golint', 'gofmt', 'gopls']
-      \}
-let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'javascript': ['eslint'],
-      \   'python': ['autopep8'],
-      \   'go': ['gofmt', 'goimports']
-      \}
+" let g:ale_sign_column_always = 1
+" let g:ale_python_pylint_use_global = 1
+" let g:ale_python_flake8_global = 1
+" let g:ale_set_highlights = 1
+" let g:ale_set_signs = 1
+" let g:ale_sign_error = "⤫"
+" let g:ale_sign_warning = "⚠"
+" let g:ale_sign_info = "•"
+" let g:ale_sign_hint = "λ"
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+" let b:ale_linters = {
+"       \  'python': ['pylint', 'flake8', 'pyls', 'mypy'],
+"       \  'sh': ['language_server'],
+"       \  'go': ['golint', 'gofmt', 'gopls']
+"       \}
+" let g:ale_fixers = {
+"       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+"       \   'javascript': ['eslint'],
+"       \   'python': ['autopep8'],
+"       \   'go': ['gofmt', 'goimports']
+"       \}
 
 
 if has('nvim')
@@ -185,17 +185,12 @@ if has('nvim')
 	autocmd BufEnter * call ncm2#enable_for_buffer()
 endif
 
-" deoplete options ===================================================
-let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources#jedi#show_docstring = 1
-
-
 " Language server ===================================================
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['~/.pyenv/shims/pyls', '-v'],
+    \ 'python': ['~/.pyenv/shims/pyls'],
     \ 'go': ['~/go/bin/gopls'],
     \ }
 
@@ -222,17 +217,6 @@ augroup LSP
 augroup END
 
 
-function! OpenURLUnderCursor()
-  let s:uri = expand('<cWORD>')
-  let s:uri = substitute(s:uri, '?', '\\?', '')
-  let s:uri = shellescape(s:uri, 1)
-  if s:uri != ''
-    silent exec "!open '".s:uri."'"
-    :redraw!
-  endif
-endfunction
-nnoremap gx :call OpenURLUnderCursor()<CR>
-
 let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
@@ -247,13 +231,17 @@ if executable('pyls')
         \ })
 endif
 
-" Vimspector ==========================================================
-nmap <leader>vc <Plug>VimspectorContinue
-nmap <leader>vs <Plug>VimspectorStop
-nmap <leader>vr <Plug>VimspectorReset
-nmap <leader>vR <Plug>VimspectorRestart
-nmap <leader>vt <Plug>VimspectorToggleBreakpoint
-nmap <leader>vo <Plug>VimspectorStepOver
+
+function! OpenURLUnderCursor()
+  let s:uri = expand('<cWORD>')
+  let s:uri = substitute(s:uri, '?', '\\?', '')
+  let s:uri = shellescape(s:uri, 1)
+  if s:uri != ''
+    silent exec "!open '".s:uri."'"
+    :redraw!
+  endif
+endfunction
+nnoremap gx :call OpenURLUnderCursor()<CR>
 
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background

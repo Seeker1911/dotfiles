@@ -45,7 +45,7 @@ export SHELL='/bin/sh'
 export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
-export FZF_DEFAULT_OPTS='--height 40% --border'
+export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -171,15 +171,11 @@ PATH="${PATH}:${HOME}/bin/flyway-7.3.2"
 PATH="$HOME/bin:$PATH"
 
 if [[ $platform == 'linux' ]]; then
-  #export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  #export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-  #export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-  #export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
-  export PATH="$HOME/.pyenv/bin:$PATH"
+  PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
 # If you need to have openssl@1.1 first in your PATH run:
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # For pkg-config to find openssl@1.1 you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
@@ -266,12 +262,6 @@ _python_argcomplete() {
 # register python argcomplete for airflow
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 source "$HOME/.cargo/env"
-source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
-LIGHT_COLOR='base16-gruvbox-light-soft.yml'
-DARK_COLOR='base16-gruvbox-dark-soft.yml'
-
-alias day="alacritty-colorscheme -V apply $LIGHT_COLOR"
-alias night="alacritty-colorscheme -V apply $DARK_COLOR"
-alias toggle="alacritty-colorscheme -V toggle $LIGHT_COLOR $DARK_COLOR"
+[ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash

@@ -66,7 +66,9 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: JetBrainsMono Nerd Font
+    # family: JetBrains Mono NL
+    # family: Hack Nerd Font Mono
+    family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -79,7 +81,7 @@ font:
     # value specified for the normal font.
     family: Menlo
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: JetBrains Mono
 
   # Italic font face
   italic:
@@ -87,7 +89,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Menlo
+    family: JetBrains Mono
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -122,7 +124,7 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # Display the time it takes to redraw each frame.
 debug.render_timer: false
@@ -263,7 +265,10 @@ cursor:
 
 # Live config reload (changes require restart)
 live_config_reload: true
-
+shell:
+    program: /usr/local/bin/tmux
+    args:
+     - -u # force UTF-8 in tmux
 # Shell
 #
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.

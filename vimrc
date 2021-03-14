@@ -46,6 +46,7 @@ let g:go_version_warning = 0
 
 syntax on
 set hidden " required for operations modifying multiple buffers like rename from LSP
+set mouse=a
 set expandtab
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
@@ -128,6 +129,7 @@ map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <leader>F :Rg<CR>
 map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
+nmap <leader>c :Commands<CR>
 nmap <leader>T :TagbarToggle<CR>
 nmap <leader>r :RainbowToggle<CR>
 
@@ -225,13 +227,13 @@ let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_useVirtualText = "CodeLens"
 let g:LanguageClient_settingsPath = "~/.config/lc_settings.json"
 " needed for neovim LSP but not languageClient-neovim
-" if executable('pyls')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'pyls',
-"         \ 'cmd': {server_info->['pyls']},
-"         \ 'whitelist': ['python'],
-"         \ })
-" endif
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 
 
 function! OpenURLUnderCursor()

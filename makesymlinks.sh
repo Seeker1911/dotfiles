@@ -62,7 +62,7 @@ done
 
 for file in $vimFiles; do
     mkdir -p ~/vim/autoload
-    ln -sf $vimfiledir/$file ~/vim/autoload/$file
+    cp $vimfiledir/$file ~/vim/autoload/$file
 done
 
 # link to init.vim in  favor of nvim

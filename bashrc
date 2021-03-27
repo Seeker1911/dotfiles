@@ -59,14 +59,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [[ $platform == 'linux' ]]; then
-  # alias vim='~/.config/nvim/nvim.appimage'
-  CUSTOM_NVIM_PATH="~/bin/nvim.appimage"
-  alias vim=$CUSTOM_NVIM_PATH
-  # start TMUX by default if it exists. If not running interactively, do not do anything
-  if command -v tmux &> /dev/null;then 
-    [[ $- != *i* ]] && return
-    [[ -z "$TMUX" ]] && exec tmux -2
-  fi
   if [ -x /usr/bin/dircolors ]; then
       test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
       alias ls='ls --color=auto'
@@ -81,7 +73,6 @@ if [[ $platform == 'linux' ]]; then
   export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
   export CLOUD_SDK_REPO=cloud-sdk-jessie
 elif [[ $platform == 'macos' ]]; then
-  alias vim='nvim'
   alias ls='ls -GFh'
   alias ll='ls -l' # display long format directory
   alias l.='ls -d .*' #display all dir/ entries that begin with a '.'
@@ -100,6 +91,7 @@ elif [[ $platform == 'macos' ]]; then
   unset PROMPT_COMMAND
 fi
 
+alias vim='nvim'
 alias listen="netstat -nap tcp | grep -i 'listen'"
 alias pybug="python -m pdb -c continue"
 alias tmux='tmux -2'
@@ -133,20 +125,7 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Things I've used to fix mysql and GAE stuff for historical record.
 LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
-# when getting compiler errors running the below command allowed it to install regardless of having the above LDFLAGS already set.
-# env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" pip --no-cache install psycopg2
-
-
-# UPDATE PATH FOR THE GOOGLE CLOUD SDK.
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then source "$HOME/google-cloud-sdk/path.bash.inc"; fi
-
-# ENABLES SHELL COMMAND COMPLETION FOR GCLOUD.
-if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then source "$HOME/google-cloud-sdk/completion.bash.inc"; fi
-if [ ! -L /usr/local/opt/mysql/lib/libmysqlclient.20.dylib ] && [ -f '/usr/local/opt/mysql/lib/libmysqlclient.20.dylib' ]; then
-	ln -s /usr/local/opt/mysql@5.7/lib/libmysqlclient.20.dylib /usr/local/opt/mysql/lib/libmysqlclient.20.dylib 
-fi
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -170,24 +149,19 @@ PATH="${PATH}:${HOME}/bin/flyway-7.3.2"
 PATH="$HOME/bin:$PATH"
 
 if [[ $platform == 'linux' ]]; then
-  #export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  #export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-  #export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-  #export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
   export PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
-# If you need to have openssl@1.1 first in your PATH run:
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
 # For pkg-config to find openssl@1.1 you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 # This magically fixes psycopg2 install error madness, the above did not.
 export LIBRARY_PATH=$LIBRARY_PATH:"/usr/local/opt/openssl/lib/"
+export XDG_CONFIG_HOME="$HOME/.config"
+# /home/seeker/.pyenv/versions/3.9.1/envs/neovim3/bin/aws_completer
 
 # pyenv ----------------------------------------------------------------------------------------------------
 PYENV_ROOT="usr/local/bin/pyenv"
-# PYENV_ROOT="~/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -199,6 +173,11 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
 
+source "$HOME/.cargo/env"
+
+if [[ $platform == 'macos' ]]; then
+        source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+fi
 
 # functions ----------------------------------------------------------------------------------------------------
 function sith {
@@ -305,6 +284,4 @@ _python_argcomplete() {
 # register python argcomplete for airflow
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
-eval "$(starship init bash)"
-source "$HOME/.cargo/env"
-source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+# eval "$(starship init bash)"

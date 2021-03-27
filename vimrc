@@ -4,7 +4,6 @@ if empty(glob('~/.config/nvim/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.config/nvim/plugged')
-      Plug 'puremourning/vimspector'
       Plug 'rizzatti/dash.vim'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
@@ -29,7 +28,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'godlygeek/csapprox'
       Plug 'simnalamburt/vim-mundo'
-      Plug 'mhinz/vim-startify'
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
@@ -43,6 +41,9 @@ call plug#begin('~/.config/nvim/plugged')
 	      \ }
       Plug 'ryanoasis/vim-devicons' " always last
 call plug#end()
+set background=dark
+colorscheme gruvbox
+
 let mapleader = ","
 let maplocalleader = "\\"
 let g:go_version_warning = 0
@@ -69,15 +70,13 @@ set foldnestmax=2
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
-set termguicolors "for truecolor support, assuming you have it.
+" set termguicolors "for truecolor support, assuming you have it.
 " set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
 
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimspector_base_dir=expand( '$HOME/.config/vimspector-config' )
 let g:rainbow_active=1
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
@@ -107,15 +106,10 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Statement'],
   \ }
 
-let uname = substitute(system('uname'), '\n', '', '')
-let home = system('whoami')
-if uname == 'Linux'
-	let g:python_host_prog = expand('home/versions/neovim2/bin/python')
-	let g:python3_host_prog = expand('home/versions/neovim3/bin/python')
-else "Mac
-	let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
-	let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
-endif
+let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 map <leader>t :NERDTreeToggle<CR>
 " Floaterm repl
@@ -146,37 +140,6 @@ highlight SignColumn ctermbg=256
 highlight CursorColumn ctermbg=3
 
 set t_Co=256
-
-let iterm_profile = $ITERM_PROFILE
-if iterm_profile == "gruvbox dark"
-    set background=dark
-    colorscheme gruvbox
-    let g:airline_theme='gruvbox'
-elseif iterm_profile == "gruvbox light"
-    set background=light
-    colorscheme gruvbox
-    let g:airline_theme='gruvbox'
-elseif iterm_profile == "snow light"
-    set background=light
-    colorscheme snow
-    let g:airline_theme='snow_light'
-elseif iterm_profile == "snow night"
-    set background=dark
-    colorscheme snow
-    let g:airline_theme='snow_dark'
-elseif iterm_profile == "envy"
-    set background=light
-    colorscheme envy
-    let g:airline_theme='snow_light'
-elseif iterm_profile == "firewatch"
-    set background=dark
-    colorscheme two-firewatch
-    let g:airline_theme='twofirewatch'
-else 				"default
-    set background=dark
-    colorscheme gruvbox
-endif
-
 
 " ale ===================================================
 let g:ale_sign_column_always = 1
@@ -209,9 +172,9 @@ if has('nvim')
 	autocmd BufEnter * call ncm2#enable_for_buffer()
 endif
 
-" deoplete options ===================================================
-let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources#jedi#show_docstring = 1
+" " deoplete options ===================================================
+" let g:deoplete#enable_at_startup = 1
+" " let g:deoplete#sources#jedi#show_docstring = 1
 
 
 " Language server ===================================================
@@ -220,7 +183,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['~/.pyenv/shims/pyls', '-v'],
-    \ 'go': ['~/go/bin/gopls'],
+    \ 'go': ['gopls'],
     \ }
 
 " language client ===================================================
@@ -258,12 +221,4 @@ if executable('pyls')
         \ 'whitelist': ['python'],
         \ })
 endif
-
-" Vimspector ==========================================================
-nmap <leader>vc <Plug>VimspectorContinue
-nmap <leader>vs <Plug>VimspectorStop
-nmap <leader>vr <Plug>VimspectorReset
-nmap <leader>vR <Plug>VimspectorRestart
-nmap <leader>vt <Plug>VimspectorToggleBreakpoint
-nmap <leader>vo <Plug>VimspectorStepOver
 

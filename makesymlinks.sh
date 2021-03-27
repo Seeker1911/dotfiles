@@ -13,7 +13,7 @@ nvimdir=~/.config/nvim            # nvim directory
 alacrittydir=~/.config/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
-homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template"    # list of files/folders to symlink in homedir
+homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc starship.toml"
 vimFiles="autoload/plug.vim"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh aws_function.sh"
@@ -55,13 +55,13 @@ for file in $binFiles; do
     ln -sf $dir/utils/$file $bindir/$file
 done
 
+mkdir -p ~/.vim/autoload
 for file in $vimFiles; do
-    mkdir -p ~/vim/autoload
-    ln -sf $vimfiledir/$file ~/vim/autoload/$file
+    ln -sf $vimfiledir/$file ~/.vim/autoload/$file
 done
 
 # link to init.vim in  favor of nvim
 ln -sf $dir/vimrc $nvimdir/init.vim
-#ln -sf $dir/vimrc ~/.vimrc
+ln -sf $dir/vimrc ~/.vimrc
 # link alaccritty config
 ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

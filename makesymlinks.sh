@@ -62,7 +62,6 @@ done
 
 mkdir -p ~/.vim/autoload
 for file in $vimFiles; do
-    mkdir -p ~/vim/autoload
     cp $vimfiledir/$file ~/vim/autoload/$file
 done
 

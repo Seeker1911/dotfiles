@@ -124,8 +124,8 @@ if uname == 'Linux'
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
     let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
 else "Mac
-	let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
-	let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
 endif
 
 map <leader>t :NERDTreeToggle<CR>

@@ -49,7 +49,7 @@ export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-# export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=false
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=false
 export CHTSH_QUERY_OPTIONS="style=native"
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
@@ -167,16 +167,18 @@ export XDG_CONFIG_HOME="$HOME/.config"
 PYENV_ROOT="usr/local/bin/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-#   eval "$(pyenv virtualenv-init -)"
-# fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
-# if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-#   source "${VIRTUAL_ENV}/bin/activate"
-# fi
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  source "${VIRTUAL_ENV}/bin/activate"
+fi
 
-source "$HOME/.cargo/env"
+if [[ -f $HOME/.cargo/env ]]; then
+    source "$HOME/.cargo/env"
+fi
 
 if [[ $platform == 'macos' ]]; then
         source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
@@ -265,5 +267,4 @@ _python_argcomplete() {
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
 # eval "$(starship init bash)"
-source "$HOME/.cargo/env"
 [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash

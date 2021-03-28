@@ -1,4 +1,4 @@
-# Don't print a new line at the start of the prompt
+# print a new line at the start of the prompt
 add_newline = true
 
 # Replace the "❯" symbol in the prompt with "➜"
@@ -16,7 +16,7 @@ disabled = true
 full_symbol = "🔋"
 
 [git_branch]
-symbol = "🌱 "
+symbol = " "
 style = "bold blue"
 
 [git_commit]

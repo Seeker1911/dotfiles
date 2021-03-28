@@ -2,7 +2,12 @@
 # DEPRECATED: in favor of Go setup script. (unless you just want symlinks)
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
-
+if [[ -z "${XDG_CONFIG_HOME}" ]]; then
+    echo "no config home"
+    export XDG_CONFIG_HOME=~/.config
+else
+    echo "has config home"
+fi
 ########## Variables
 
 bindir=~/bin                      # bin directory
@@ -13,8 +18,8 @@ nvimdir=~/.config/nvim            # nvim directory
 alacrittydir=~/.config/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
-homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc"    # list of files/folders to symlink in homedir
-configFiles="pycodestyle flake8 pylintrc starship.toml"
+homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template"    # list of files/folders to symlink in homedir
+configFiles="pycodestyle flake8 pylintrc starship.toml lc_settings.json"
 vimFiles="autoload/plug.vim"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh aws_function.sh"
 
@@ -57,11 +62,15 @@ done
 
 mkdir -p ~/.vim/autoload
 for file in $vimFiles; do
-    ln -sf $vimfiledir/$file ~/.vim/autoload/$file
+    mkdir -p ~/vim/autoload
+    cp $vimfiledir/$file ~/vim/autoload/$file
 done
 
 # link to init.vim in  favor of nvim
 ln -sf $dir/vimrc $nvimdir/init.vim
-ln -sf $dir/vimrc ~/.vimrc
+# ln -sf $dir/vimrc ~/.vimrc
 # link alaccritty config
 ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
+#ln -sf $dir/vimrc ~/.vimrc
+# copy alaccritty config, bug with alacritty-colors prevents symnlinks form working
+# cp $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

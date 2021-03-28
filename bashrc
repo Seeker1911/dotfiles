@@ -32,9 +32,10 @@ set show-all-if-ambiguous on
 
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
+export XDG_CONFIG_HOME=~/.config
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export MYVIMRC='~/dotfiles/vimrc'
-export NVIM_LOG_FILE='~/.local/share/nvim/log'
+export MYVIMRC=~/dotfiles/vimrc
+export NVIM_LOG_FILE=~/.local/share/nvim/log
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # Set CLICOLOR if you want Ansi Colors in iTerm2 
 export CLICOLOR=1
@@ -44,11 +45,11 @@ export SHELL='/bin/sh'
 export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
-export FZF_DEFAULT_OPTS='--height 40% --border'
+export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
+# export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=false
 export CHTSH_QUERY_OPTIONS="style=native"
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
@@ -107,7 +108,7 @@ alias www="python -m simpleHTTPServer 8000"
 alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
-alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
+# alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
 # alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
@@ -149,10 +150,12 @@ PATH="${PATH}:${HOME}/bin/flyway-7.3.2"
 PATH="$HOME/bin:$PATH"
 
 if [[ $platform == 'linux' ]]; then
-  export PATH="$HOME/.pyenv/bin:$PATH"
+  PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# If you need to have openssl@1.1 first in your PATH run:
+PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
 # For pkg-config to find openssl@1.1 you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 # This magically fixes psycopg2 install error madness, the above did not.
@@ -164,14 +167,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 PYENV_ROOT="usr/local/bin/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+# fi
 
-if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-  source "${VIRTUAL_ENV}/bin/activate"
-fi
+# if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+#   source "${VIRTUAL_ENV}/bin/activate"
+# fi
 
 source "$HOME/.cargo/env"
 
@@ -180,63 +183,40 @@ if [[ $platform == 'macos' ]]; then
 fi
 
 # functions ----------------------------------------------------------------------------------------------------
-function sith {
-  if [[ $platform == 'macos' ]]; then
-            echo -ne "\033]50;SetProfile=gruvbox dark\a"
-            export ITERM_PROFILE="gruvbox dark"
-	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-	    tmux source ~/dotfiles/tmux.conf
-  fi
+function jedi {
+    echo "color gruvbox" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply gruvbox_light.yaml
 }
 
-function jedi {
-  if [[ $platform == 'macos' ]]; then
-            echo -ne "\033]50;SetProfile=gruvbox light\a"
-            export ITERM_PROFILE="gruvbox light"
-	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-	    tmux source ~/dotfiles/tmux_light.conf
-  fi
+function sith {
+    echo "color gruvbox" > ~/.vimrc_background
+    echo "set background=dark" >> ~/.vimrc_background
+    alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
 function snow {
-  if [[ $platform == 'macos' ]]; then
-          echo -ne "\033]50;SetProfile=snow light\a"
-          export ITERM_PROFILE="snow light"
-	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
-	  tmux source ~/dotfiles/tmux_light.conf
-  fi
+    echo "color snow" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply papercolor_light.yaml
 }
 
-function night {
-  if [[ $platform == 'macos' ]]; then
-          echo -ne "\033]50;SetProfile=snow night\a"
-          export ITERM_PROFILE="snow night"
-	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_dark.sh
-	  tmux source ~/dotfiles/tmux.conf
-  fi
+function remedy {
+    echo "color gruvbox" > ~/.vimrc_background
+    echo "set background=dark" >> ~/.vimrc_background
+    alacritty-colorscheme apply remedy_dark.yaml
 }
 
+function solar {
+    echo "color two-firewatch" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply solarized_light.yaml
+}
 
 function envy {
-  if [[ $platform == 'macos' ]]; then
-          echo -ne "\033]50;SetProfile=envy\a"
-          export ITERM_PROFILE="envy"
-	  export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	  [ -n "$PS1" ] && sh ~/.config/nvim/plugged/snow/shell/snow_light.sh
-	  tmux source ~/dotfiles/tmux_light.conf
-  fi
-}
-function firewatch {
-  if [[ $platform == 'macos' ]]; then
-            echo -ne "\033]50;SetProfile=firewatch\a"
-            export ITERM_PROFILE="firewatch"
-	    export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-	    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-	    tmux source ~/dotfiles/tmux.conf
-  fi
+    echo "color envy" > ~/.vimrc_background
+    echo "set background=light" >> ~/.vimrc_background
+    alacritty-colorscheme apply pencil_light.yaml
 }
 
 function gitpr {
@@ -285,3 +265,5 @@ _python_argcomplete() {
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
 # eval "$(starship init bash)"
+source "$HOME/.cargo/env"
+[ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash

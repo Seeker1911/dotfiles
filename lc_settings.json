@@ -1,0 +1,12 @@
+{
+    "name": "pyls",
+    "description": "Python language server",
+    "pyls.configurationSources": ["pycodestyle", "pyflakes", "pylint"],
+    "pyls.plugins.pydocstyle.enabled": true,
+    "pyls.plugins.pycodestyle.ignore": ["W291"],
+    "pyls.plugins.pycodestyle.maxLineLength": 120,
+    "pyls.plugins.pylint.enabled": true,
+    "pyls.plugins.pylint.args": [],
+    "pyls.plugins.pylint.executable": "~/.pyenv/3.8.2/envs/neovim3/bin/pylint",
+    "pyls.plugins.pyflakes.enabled": true,
+}

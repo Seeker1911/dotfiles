@@ -116,15 +116,13 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Statement'],
   \ }
 
-" let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
-" let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let uname = substitute(system('uname'), '\n', '', '')
 let home = system('whoami')
 if uname == 'Linux'
-	let g:python_host_prog = expand('home/versions/neovim2/bin/python')
-	let g:python3_host_prog = expand('home/versions/neovim3/bin/python')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
 else "Mac
 	let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
 	let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')

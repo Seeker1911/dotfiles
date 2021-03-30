@@ -1,5 +1,6 @@
 [core]
 	excludesfile = /Users/michaelmead/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
 	name = michael mead
 	email = michaelmead007@icloud.com
@@ -7,3 +8,20 @@
 	templatedir = ~/.git_template
 [credential]
 	helper = osxkeychain
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+	rulerWidth = 47
+	markEmptyLines = false

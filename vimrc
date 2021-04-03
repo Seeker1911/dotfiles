@@ -34,6 +34,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
       Plug 'ncm2/ncm2'
       Plug 'ncm2/ncm2-jedi'
+      Plug 'ncm2/ncm2-path'
       Plug 'roxma/nvim-yarp'
       Plug 'autozimu/LanguageClient-neovim', {
 	      \ 'branch': 'next',

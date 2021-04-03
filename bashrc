@@ -101,6 +101,7 @@ elif [[ $platform == 'macos' ]]; then
   unset PROMPT_COMMAND
 fi
 
+alias XBAR="/Users/michaelmead/Library/Application Support/xbar/plugins"
 alias listen="netstat -nap tcp | grep -i 'listen'"
 alias pybug="python -m pdb -c continue"
 alias tmux='tmux -2'

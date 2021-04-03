@@ -196,7 +196,7 @@ let b:ale_linters = {
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \   'javascript': ['eslint'],
-      \   'python': ['autopep8'],
+      \   'python': ['autopep8', 'pyright', 'mypy', 'pyls'],
       \   'go': ['gofmt', 'goimports']
       \}
 

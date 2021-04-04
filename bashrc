@@ -93,6 +93,7 @@ elif [[ $platform == 'macos' ]]; then
 fi
 
 alias vim='nvim'
+alias XBAR="/Users/michaelmead/Library/Application Support/xbar/plugins"
 alias listen="netstat -nap tcp | grep -i 'listen'"
 alias pybug="python -m pdb -c continue"
 alias tmux='tmux -2'

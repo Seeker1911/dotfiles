@@ -265,9 +265,9 @@ cursor:
 # Live config reload (changes require restart)
 live_config_reload: true
 shell:
-    program: /usr/local/bin/tmux
-    args:
-     - -u # force UTF-8 in tmux
+  program: /usr/local/bin/tmux
+  args:
+    - -u  # force UTF-8 in tmux
 # Shell
 #
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
@@ -504,37 +504,35 @@ key_bindings:
   - {key: F12, mods: Super, chars: "\e[24;3~"}
   - {key: NumpadEnter, chars: "\n"}
 colors:
-  # COLORSCHEME: gruvbox_dark.yaml
+  # COLORSCHEME: papercolor_light.yaml
   # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
-    background: '0x282828'
-    # soft contrast: background = '0x32302f'
-    foreground: '0xebdbb2'
+    background: '0xeeeeee'
+    foreground: '0x878787'
 
-  # Normal colors
   cursor:
     text: '0xeeeeee'
     cursor: '0x878787'
 
   # Normal colors
   normal:
-    black: '0x282828'
-    red: '0xcc241d'
-    green: '0x98971a'
-    yellow: '0xd79921'
-    blue: '0x458588'
-    magenta: '0xb16286'
-    cyan: '0x689d6a'
-    white: '0xa89984'
+    black: '0xeeeeee'
+    red: '0xaf0000'
+    green: '0x008700'
+    yellow: '0x5f8700'
+    blue: '0x0087af'
+    magenta: '0x878787'
+    cyan: '0x005f87'
+    white: '0x444444'
 
   # Bright colors
   bright:
-    black: '0x928374'
-    red: '0xfb4934'
-    green: '0xb8bb26'
-    yellow: '0xfabd2f'
-    blue: '0x83a598'
-    magenta: '0xd3869b'
-    cyan: '0x8ec07c'
-    white: '0xebdbb2'
+    black: '0xbcbcbc'
+    red: '0xd70000'
+    green: '0xd70087'
+    yellow: '0x8700af'
+    blue: '0xd75f00'
+    magenta: '0xd75f00'
+    cyan: '0x005faf'
+    white: '0x005f87'

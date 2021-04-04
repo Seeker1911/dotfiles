@@ -3,7 +3,7 @@ if empty(glob('~/.config/nvim/plug.vim'))
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-let g:ale_disable_lsp = 1
+" let g:ale_disable_lsp = 1
 call plug#begin('~/.config/nvim/plugged')
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
@@ -33,6 +33,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'dense-analysis/ale'
       Plug 'ncm2/ncm2'
       Plug 'ncm2/ncm2-jedi'
+      Plug 'ncm2/ncm2-path'
       Plug 'roxma/nvim-yarp'
       Plug 'autozimu/LanguageClient-neovim', {
 	      \ 'branch': 'next',
@@ -196,7 +197,7 @@ let b:ale_linters = {
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \   'javascript': ['eslint'],
-      \   'python': ['autopep8', 'pyright', 'mypy', 'pyls'],
+      \   'python': ['autopep8', 'pylint', 'pyls', 'mypy', 'pyright'],
       \   'go': ['gofmt', 'goimports']
       \}
 

@@ -60,13 +60,16 @@ for file in $binFiles; do
     ln -sf $dir/utils/$file $bindir/$file
 done
 
+mkdir -p ~/.vim/autoload
 for file in $vimFiles; do
-    mkdir -p ~/vim/autoload
     cp $vimfiledir/$file ~/vim/autoload/$file
 done
 
 # link to init.vim in  favor of nvim
 ln -sf $dir/vimrc $nvimdir/init.vim
+# ln -sf $dir/vimrc ~/.vimrc
+# link alaccritty config
+ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
 #ln -sf $dir/vimrc ~/.vimrc
 # copy alaccritty config, bug with alacritty-colors prevents symnlinks form working
-cp $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
+# cp $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

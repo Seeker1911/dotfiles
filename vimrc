@@ -27,7 +27,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'majutsushi/tagbar'
       Plug 'tmux-plugins/vim-tmux-focus-events'
       Plug 'simnalamburt/vim-mundo'
-      Plug 'mhinz/vim-startify'
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
@@ -42,6 +41,9 @@ call plug#begin('~/.config/nvim/plugged')
 	      \ }
       Plug 'ryanoasis/vim-devicons' " always last
 call plug#end()
+set background=dark
+colorscheme gruvbox
+
 let mapleader = ","
 let maplocalleader = "\\"
 let g:go_version_warning = 0
@@ -69,7 +71,7 @@ set foldnestmax=6
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
-set termguicolors "for truecolor support, assuming you have it.
+" set termguicolors "for truecolor support, assuming you have it.
 " set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
 set shiftwidth=4
@@ -86,8 +88,6 @@ colorscheme gruvbox
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimspector_base_dir=expand( '$HOME/.config/vimspector-config' )
 let g:rainbow_active=1
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
@@ -117,14 +117,16 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Statement'],
   \ }
 
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 let uname = substitute(system('uname'), '\n', '', '')
 let home = system('whoami')
 if uname == 'Linux'
-	let g:python_host_prog = expand('home/versions/neovim2/bin/python')
-	let g:python3_host_prog = expand('home/versions/neovim3/bin/python')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
 else "Mac
-	let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
-	let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
 endif
 
 map <leader>t :NERDTreeToggle<CR>
@@ -253,7 +255,6 @@ if executable('pyls')
         \ 'whitelist': ['python'],
         \ })
 endif
-
 
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background

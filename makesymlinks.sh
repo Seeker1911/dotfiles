@@ -12,10 +12,10 @@ fi
 
 bindir=~/bin                      # bin directory
 dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
-configdir=~/.config               # config directory
-nvimdir=~/.config/nvim            # nvim directory
-alacrittydir=~/.config/alacritty            # nvim directory
+olddir=~/.dotfiles_old             # old dotfiles backup directory
+configdir=$XDG_CONFIG_HOME               # config directory
+nvimdir=$XDG_CONFIG_HOME/nvim            # nvim directory
+alacrittydir=$XDG_CONFIG_HOME/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
 homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template"    # list of files/folders to symlink in homedir
@@ -48,21 +48,21 @@ done
 
 for file in $configFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.config/$file $olddir
+    mv $XDG_CONFIG_HOME/$file $olddir
     echo "Creating symlink to $file in home directory."
     ln -sf $dir/linters/$file $configdir/$file
 done
 
 for file in $binFiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/bin/$file ~$olddir
+    mv ~/bin/$file $olddir
     echo "Creating symlink to $file in home directory."
     ln -sf $dir/utils/$file $bindir/$file
 done
 
 mkdir -p ~/.vim/autoload
 for file in $vimFiles; do
-    cp $vimfiledir/$file ~/vim/autoload/$file
+    cp $vimfiledir/$file ~/vim/$file
 done
 
 # link to init.vim in  favor of nvim

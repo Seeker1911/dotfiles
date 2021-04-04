@@ -190,7 +190,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
 let b:ale_linters = {
-      \  'python': ['pylint', 'pyright', 'flake8', 'pyls', 'mypy'],
+      \  'python': ['pylint', 'pyright', 'pyls', 'mypy'],
       \  'sh': ['language_server'],
       \  'go': ['golint', 'gofmt', 'gopls']
       \}

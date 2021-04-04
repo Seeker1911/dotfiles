@@ -31,11 +31,14 @@ nano
 neofetch
 neovim
 net-tools
+nodejs
+npm
 openssh
 patch
 pkgconf
 pyenv
 python-pynvim
+ripgrep
 rust
 sudo
 sysstat

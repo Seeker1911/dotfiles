@@ -1,6 +1,5 @@
 [core]
 	excludesfile = /Users/michaelmead/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
 	name = michael mead
 	email = michaelmead007@icloud.com
@@ -22,6 +21,3 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[diff-so-fancy]
-	rulerWidth = 47
-	markEmptyLines = false

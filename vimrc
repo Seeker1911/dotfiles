@@ -41,8 +41,6 @@ call plug#begin('~/.config/nvim/plugged')
 	      \ }
       Plug 'ryanoasis/vim-devicons' " always last
 call plug#end()
-set background=dark
-colorscheme gruvbox
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -66,12 +64,12 @@ set wildignorecase	      " ignore case on files and directories
 set tags=./tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
 set foldenable                 " enable folding
-set foldlevel=6
-set foldnestmax=6
+set foldlevel=2
+set foldnestmax=4
 set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
-" set termguicolors "for truecolor support, assuming you have it.
+set termguicolors "for truecolor support, assuming you have it.
 " set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
 set shiftwidth=4
@@ -81,19 +79,22 @@ set undodir=~/.vim/undodir
 set undofile
 set t_Co=256
 set background=dark
-colorscheme gruvbox
 
 
 
 " may need the below especially with tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_tags_command = 'ctags -R'
 let g:rainbow_active=1
 let g:gruvbox_contrast_dark="soft"
-let g:gruvbox_contrast_light="hard"
+let g:gruvbox_contrast_light="medium"
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_termcolors=256
+let g:gruvbox_italicize_strings=1
 let g:gruvbox_italic=1
 " Airline and tmuxline ---------------------------------------------------
 let g:airline_powerline_fonts = 1
@@ -132,7 +133,11 @@ endif
 map <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>uc :FloatermToggle<CR>
 nnoremap <localleader>t :FloatermToggle<CR>
-vnoremap <leader>uc :FloatermRepl<CR>
+nnoremap <localleader>h :FloatermHide<CR>
+nnoremap <localleader>b :Floaterms<CR>
+nnoremap <localleader>n :FloatermNew<CR>
+vnoremap <localleader>r :FloatermRepl<CR>
+
 
 map <leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " ripgrep fzf find word under cursor in nearby files.
@@ -152,8 +157,25 @@ inoremap JJ <ESC>
 nnoremap <silent> <leader>H :set hlsearch<CR>
 nnoremap <silent> <leader>h :set nohlsearch<CR>
 
-" tnoremap <Esc> <C-\><C-n>
-" tnoremap jj <C-\><C-n>
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  " Send literal ESC
+  tnoremap <M-[> <Esc>
+  tnoremap <C-v><Esc> <Esc>
+" To use `ALT+{h,j,k,l}` to navigate windows from any mode: >
+  tnoremap <A-h> <C-\><C-N><C-w>h
+  tnoremap <A-j> <C-\><C-N><C-w>j
+  tnoremap <A-k> <C-\><C-N><C-w>k
+  tnoremap <A-l> <C-\><C-N><C-w>l
+  inoremap <A-h> <C-\><C-N><C-w>h
+  inoremap <A-j> <C-\><C-N><C-w>j
+  inoremap <A-k> <C-\><C-N><C-w>k
+  inoremap <A-l> <C-\><C-N><C-w>l
+  nnoremap <A-h> <C-w>h
+  nnoremap <A-j> <C-w>j
+  nnoremap <A-k> <C-w>k
+  nnoremap <A-l> <C-w>l
+endif
 
 
 highlight PmenuSel ctermbg=5
@@ -161,6 +183,8 @@ highlight ColorColumn ctermbg=232
 highlight SignColumn ctermbg=256
 highlight CursorColumn ctermbg=3
 
+set background=dark
+colorscheme gruvbox
 
 function! OpenURLUnderCursor()
   let s:uri = expand('<cWORD>')
@@ -179,7 +203,7 @@ let g:ale_floating_window_border = []
 let g:ale_completion_autoimport = 1
 let g:ale_sign_column_always = 1
 let g:ale_python_pylint_use_global = 1
-let g:ale_python_flake8_global = 1
+" let g:ale_python_flake8_global = 1
 let g:ale_set_highlights = 1
 let g:ale_set_signs = 1
 let g:ale_sign_error = "⤫"

@@ -15,6 +15,7 @@ elif [[ $platform == 'macos' ]]; then
     # gruvbox ps1
     export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
     [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
+
 fi
 
 

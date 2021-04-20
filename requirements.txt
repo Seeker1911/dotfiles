@@ -65,7 +65,7 @@ prettytable==2.0.0
 prompt-toolkit==3.0.8
 psutil==5.7.3
 ptyprocess==0.6.0
-py==1.9.0
+py==1.10.0
 pyasn1==0.4.8
 pycodestyle==2.6.0
 pycparser==2.20

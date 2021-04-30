@@ -93,7 +93,7 @@ PyYAML==5.4
 requests==2.24.0
 rfc3986==1.4.0
 rope==0.17.0
-rsa==4.6
+rsa==4.7
 ruamel.yaml==0.16.13
 ruamel.yaml.clib==0.2.2
 s3transfer==0.3.4

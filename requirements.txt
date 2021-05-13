@@ -69,7 +69,7 @@ py==1.10.0
 pyasn1==0.4.8
 pycodestyle==2.6.0
 pycparser==2.20
-pydantic==1.6.1
+pydantic==1.6.2
 pydocstyle==5.0.2
 pyflakes==2.2.0
 Pygments==2.7.4

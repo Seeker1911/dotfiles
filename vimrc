@@ -63,10 +63,10 @@ set infercase		      " smart auto-completion casing
 set wildignorecase	      " ignore case on files and directories
 set tags=./tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
-set foldenable                 " enable folding
-set foldlevel=2
-set foldnestmax=4
-set foldmethod=indent
+" set foldenable                 " enable folding
+" set foldlevel=2
+" set foldnestmax=4
+" set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
 set termguicolors "for truecolor support, assuming you have it.
@@ -129,6 +129,8 @@ else "Mac
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
     let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
 endif
+
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'javascript']
 
 map <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>uc :FloatermToggle<CR>
@@ -216,12 +218,13 @@ let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
 let b:ale_linters = {
       \  'python': ['pylint', 'pyright', 'pyls', 'mypy'],
       \  'sh': ['language_server'],
-      \  'go': ['golint', 'gofmt', 'gopls']
+      \  'go': ['golint', 'gofmt', 'gopls'],
+      \  'javascript': ['eslint']
       \}
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \   'javascript': ['eslint'],
-      \   'python': ['autopep8', 'pylint', 'pyls', 'mypy', 'pyright'],
+      \   'python': ['autopep8', 'autoimport', 'yapf'],
       \   'go': ['gofmt', 'goimports']
       \}
 
@@ -260,7 +263,7 @@ endfunction()
 
 augroup LSP
   autocmd!
-  autocmd FileType cpp,c,python,js,go call SetLSPShortcuts()
+  autocmd FileType cpp,c,python,javascript,go call SetLSPShortcuts()
 augroup END
 
 

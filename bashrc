@@ -145,7 +145,10 @@ PATH="${PATH}:/usr/local/bin"
 PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local/liquibase-4.0.0-beta1"
 PATH="${PATH}:${HOME}/go/bin"
+PATH="${PATH}:${HOME}/.npm"
+PATH="${PATH}:${HOME}/.node-gyp"
 PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
+
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
 PATH="${PATH}:${HOME}/bin/flyway-7.3.2"
@@ -221,6 +224,10 @@ function envy {
     echo "color envy" > ~/.vimrc_background
     echo "set background=light" >> ~/.vimrc_background
     alacritty-colorscheme apply pencil_light.yaml
+}
+
+function color {
+    pyenv shell neovim3 && $1 && pyenv shell --unset
 }
 
 function gitpr {

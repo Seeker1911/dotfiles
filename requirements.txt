@@ -28,7 +28,7 @@ ecdsa==0.14.1
 execnet==1.7.1
 fabric==2.6.0
 fancycompleter==0.9.1
-fastapi==0.61.0
+fastapi==0.65.2
 flake8==3.8.3
 greenlet==0.4.16
 h11==0.9.0
@@ -65,11 +65,11 @@ prettytable==2.0.0
 prompt-toolkit==3.0.8
 psutil==5.7.3
 ptyprocess==0.6.0
-py==1.9.0
+py==1.10.0
 pyasn1==0.4.8
 pycodestyle==2.6.0
 pycparser==2.20
-pydantic==1.6.1
+pydantic==1.6.2
 pydocstyle==5.0.2
 pyflakes==2.2.0
 Pygments==2.7.4
@@ -93,7 +93,7 @@ PyYAML==5.4
 requests==2.24.0
 rfc3986==1.4.0
 rope==0.17.0
-rsa==4.6
+rsa==4.7
 ruamel.yaml==0.16.13
 ruamel.yaml.clib==0.2.2
 s3transfer==0.3.4
@@ -109,11 +109,11 @@ typed-ast==1.4.1
 typing-extensions==3.7.4.3
 typing-inspect==0.6.0
 ujson==4.0.1
-urllib3==1.26.4
+urllib3==1.26.5
 uvicorn==0.11.8
 uvloop==0.14.0
 wcwidth==0.2.5
-websockets==8.1
+websockets==9.1
 wmctrl==0.3
 wrapt==1.12.1
 yapf==0.30.0

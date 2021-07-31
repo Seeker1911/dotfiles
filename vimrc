@@ -1,5 +1,5 @@
-if empty(glob('~/.config/nvim/plug.vim'))
-      silent !curl -fLo ~/.config/nvim/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/site/autoload/plug.vim'))
+      silent !curl -fLo ~/.config/nvim/site/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -30,16 +30,17 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
-      Plug 'dense-analysis/ale'
+      " Plug 'dense-analysis/ale'
       Plug 'ncm2/ncm2'
       Plug 'ncm2/ncm2-jedi'
       Plug 'ncm2/ncm2-path'
       Plug 'roxma/nvim-yarp'
-      Plug 'autozimu/LanguageClient-neovim', {
-	      \ 'branch': 'next',
-	      \ 'do': 'bash install.sh',
-	      \ }
-      Plug 'ryanoasis/vim-devicons' " always last
+      Plug 'neovim/nvim-lspconfig'
+      Plug 'hrsh7th/nvim-compe'
+      " Plug 'autozimu/LanguageClient-neovim', {
+	      " \ 'branch': 'next',
+	      " \ 'do': 'bash install.sh',
+	      " \ }
 call plug#end()
 
 let mapleader = ","
@@ -51,7 +52,9 @@ set hidden " required for operations modifying multiple buffers like rename from
 set mouse=a
 set expandtab
 " IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
+" set completeopt=noinsert,menuone,noselect
+set completeopt=menuone,noselect
+" set completeopt-=preview
 set encoding=utf8
 set nocompatible	       " required, not vi compatible
 set modelines=0		       " fix security exploits
@@ -75,10 +78,9 @@ set splitright
 set shiftwidth=4
 set shiftround
 set noswapfile
-set undodir=~/.vim/undodir
+" set undodir=~/.vim/undodir
 set undofile
 set t_Co=256
-set background=dark
 
 
 
@@ -101,7 +103,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='snow_dark'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {
@@ -128,7 +130,7 @@ if uname == 'Linux'
     let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
 else "Mac
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.8.2/envs/neovim3/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.6/envs/neovim3/bin/python')
 endif
 
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'javascript']
@@ -236,53 +238,93 @@ if has('nvim')
 endif
 
 " Language server ===================================================
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['~/.pyenv/shims/pyls'],
-    \ 'go': ['~/go/bin/gopls'],
-    \ }
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+"     \ 'python': ['~/.pyenv/shims/pyls'],
+"     \ 'go': ['~/go/bin/gopls'],
+"     \ }
 
 " language client ===================================================
 
-let g:LanguageClient_fzfContextMenu = 1
-function! SetLSPShortcuts()
-  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
-  nnoremap <silent>K :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <silent>gd :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <leader>la :call LanguageClient#textDocument_codeAction()<CR>
-  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-endfunction()
+" let g:LanguageClient_fzfContextMenu = 1
+" function! SetLSPShortcuts()
+"   nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"   nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+"   nnoremap <silent>K :call LanguageClient#textDocument_hover()<CR>
+"   nnoremap <silent>gd :call LanguageClient#textDocument_definition()<CR>
+"   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+"   nnoremap <leader>la :call LanguageClient#textDocument_codeAction()<CR>
+"   nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+"   nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+"   nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+"   nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+"   nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+"   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+" endfunction()
 
-augroup LSP
-  autocmd!
-  autocmd FileType cpp,c,python,javascript,go call SetLSPShortcuts()
-augroup END
+" augroup LSP
+"   autocmd!
+"   autocmd FileType cpp,c,python,javascript,go call SetLSPShortcuts()
+" augroup END
+" autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
+lua << EOF
+require'lspconfig'.pyls.setup{}
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.gopls.setup{}
 
-let g:LanguageClient_hoverPreview = 'always'
-let g:LanguageClient_useFloatingHover = 1
-let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
-let g:LanguageClient_loggingLevel = 'DEBUG'
+EOF
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.resolve_timeout = 800
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:true
+let g:compe.source.luasnip = v:true
+let g:compe.source.emoji = v:true
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+" let g:LanguageClient_hoverPreview = 'always'
+" let g:LanguageClient_useFloatingHover = 1
+" let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
+" let g:LanguageClient_loggingLevel = 'DEBUG'
 " dont show inline errors" Valid Options:" "All" | "No" | "CodeLens" | "Diagnostics"
-let g:LanguageClient_useVirtualText = "CodeLens"
-let g:LanguageClient_settingsPath = "~/.config/lc_settings.json"
+" let g:LanguageClient_useVirtualText = "CodeLens"
+" let g:LanguageClient_settingsPath = "~/.config/lc_settings.json"
 " needed for neovim LSP but not languageClient-neovim
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
+" if executable('pyls')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->['pyls']},
+"         \ 'whitelist': ['python'],
+"         \ })
+" endif
 
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background

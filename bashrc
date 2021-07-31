@@ -50,7 +50,7 @@ export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=false
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
@@ -85,16 +85,19 @@ elif [[ $platform == 'macos' ]]; then
   if [ -d "/Applications/Firefox Developer Edition.app" ]; then
       alias fire='open -a "/Applications/Firefox Developer Edition.app" $1'
   fi
-  # Fix for:
-  #bash: __bp_precmd_invoke_cmd: command not found
-  #bash: __bp_interactive_mode: command not found
-  CFLAGS="-I$(brew --prefix openssl)/include"
-  LDFLAGS="-L$(brew --prefix openssl)/lib" 
-  unset PROMPT_COMMAND
+    # Fix for:
+    #bash: __bp_precmd_invoke_cmd: command not found
+    #bash: __bp_interactive_mode: command not found
+    # CFLAGS="-I$(brew --prefix openssl)/include"
+    # LDFLAGS="-L$(brew --prefix openssl)/lib" 
+    # LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
+    export LDFLAGS="-L/usr/local/opt/zlib/lib" 
+    export CPPFLAGS="-I/usr/local/opt/zlib/include"
+
+    unset PROMPT_COMMAND
 fi
 
 alias vim='nvim'
-alias XBAR="/Users/michaelmead/Library/Application Support/xbar/plugins"
 alias listen="netstat -nap tcp | grep -i 'listen'"
 alias pybug="python -m pdb -c continue"
 alias tmux='tmux -2'
@@ -116,8 +119,6 @@ alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
 alias cleangit='git branch | grep -v "master" | grep -v "dev" | xargs git branch -D'
 
-# alias sql='~/bin/sqlcl/bin/sql'
-alias sql='~/bin/sqlcl/bin/sql SYS/OracleDocker@localhost/XE AS SYSDBA'
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
@@ -128,7 +129,6 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -151,7 +151,6 @@ PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
 
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS
-PATH="${PATH}:${HOME}/bin/flyway-7.3.2"
 PATH="$HOME/bin:$PATH"
 
 if [[ $platform == 'linux' ]]; then
@@ -164,13 +163,12 @@ PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 # For pkg-config to find openssl@1.1 you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 # This magically fixes psycopg2 install error madness, the above did not.
-export LIBRARY_PATH=$LIBRARY_PATH:"/usr/local/opt/openssl/lib/"
+export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 export XDG_CONFIG_HOME="$HOME/.config"
-# /home/seeker/.pyenv/versions/3.9.1/envs/neovim3/bin/aws_completer
 
 # pyenv ----------------------------------------------------------------------------------------------------
-PYENV_ROOT="usr/local/bin/pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+#PYENV_ROOT="usr/local/bin/pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -185,9 +183,9 @@ if [[ -f $HOME/.cargo/env ]]; then
     source "$HOME/.cargo/env"
 fi
 
-if [[ $platform == 'macos' ]]; then
-        source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
-fi
+# if [[ $platform == 'macos' ]]; then
+#         source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+# fi
 
 # functions ----------------------------------------------------------------------------------------------------
 function jedi {
@@ -275,5 +273,4 @@ _python_argcomplete() {
 # register python argcomplete for airflow
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
-# eval "$(starship init bash)"
-[ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+# [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash

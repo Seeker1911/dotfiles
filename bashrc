@@ -148,6 +148,8 @@ PATH="${PATH}:${HOME}/go/bin"
 PATH="${PATH}:${HOME}/.npm"
 PATH="${PATH}:${HOME}/.node-gyp"
 PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
+PATH="$HOME/.pyenv/bin:$PATH"
+PATH="$HOME/.pyenv/shims:$PATH"
 
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 # SET A HOME/BIN PATH FOR SHELL SCRIPTS

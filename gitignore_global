@@ -61,4 +61,5 @@ Thumbs.db
 package-lock.json
 yarn.lock
 .vimspector.json
-~/code/web-api/stog/docker-compose.yml
+~/code/web-api/stogo/docker-compose.yml
+**pyproject.toml

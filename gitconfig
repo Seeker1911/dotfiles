@@ -1,5 +1,6 @@
 [core]
 	excludesfile = /Users/michaelmead/.gitignore_global
+	editor = nano
 [user]
 	name = michael mead
 	email = michaelmead007@icloud.com
@@ -21,3 +22,8 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

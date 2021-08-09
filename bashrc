@@ -272,7 +272,12 @@ _python_argcomplete() {
         compopt -o nospace
     fi
 }
+
+# if [ -f ~/.bashrc_ec2 ]; then
+# 	. ~/.bashrc_ec2
+# fi
 # register python argcomplete for airflow
 complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
 # [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+complete -C '/usr/local/bin/aws_completer' aws

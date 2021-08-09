@@ -1,3 +1,9 @@
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 if empty(glob('~/.config/nvim/site/autoload/plug.vim'))
       silent !curl -fLo ~/.config/nvim/site/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -30,10 +36,10 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
-      " Plug 'dense-analysis/ale'
-      Plug 'ncm2/ncm2'
-      Plug 'ncm2/ncm2-jedi'
-      Plug 'ncm2/ncm2-path'
+      Plug 'dense-analysis/ale'
+      " Plug 'ncm2/ncm2'
+      " Plug 'ncm2/ncm2-jedi'
+      " Plug 'ncm2/ncm2-path'
       Plug 'roxma/nvim-yarp'
       Plug 'neovim/nvim-lspconfig'
       Plug 'hrsh7th/nvim-compe'
@@ -103,7 +109,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='snow_dark'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {
@@ -127,10 +133,10 @@ let uname = substitute(system('uname'), '\n', '', '')
 let home = system('whoami')
 if uname == 'Linux'
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.7.6/bin/python')
 else "Mac
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.6/envs/neovim3/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.7.6/envs/neovim3/bin/python')
 endif
 
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'javascript']
@@ -219,7 +225,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
 let b:ale_linters = {
-      \  'python': ['pylint', 'pyright', 'pyls', 'mypy'],
+      \  'python': ['pylint', 'pyright', 'pyls', 'mypy', 'flake8'],
       \  'sh': ['language_server'],
       \  'go': ['golint', 'gofmt', 'gopls'],
       \  'javascript': ['eslint']
@@ -232,10 +238,10 @@ let g:ale_fixers = {
       \}
 
 
-if has('nvim')
-	" enable ncm2 for all buffers
-	autocmd BufEnter * call ncm2#enable_for_buffer()
-endif
+" if has('nvim')
+" 	" enable ncm2 for all buffers
+" 	autocmd BufEnter * call ncm2#enable_for_buffer()
+" endif
 
 " Language server ===================================================
 " let g:LanguageClient_serverCommands = {
@@ -271,7 +277,7 @@ endif
 " autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 lua << EOF
-require'lspconfig'.pyls.setup{}
+require'lspconfig'.pylsp.setup{}
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
 

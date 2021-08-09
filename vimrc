@@ -36,7 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
-      Plug 'dense-analysis/ale'
+      " Plug 'dense-analysis/ale'
       " Plug 'ncm2/ncm2'
       " Plug 'ncm2/ncm2-jedi'
       " Plug 'ncm2/ncm2-path'
@@ -58,8 +58,7 @@ set hidden " required for operations modifying multiple buffers like rename from
 set mouse=a
 set expandtab
 " IMPORTANT: :help Ncm2PopupOpen for more information
-" set completeopt=noinsert,menuone,noselect
-set completeopt=menuone,noselect
+set completeopt=noinsert,menuone,noselect
 " set completeopt-=preview
 set encoding=utf8
 set nocompatible	       " required, not vi compatible
@@ -136,7 +135,7 @@ if uname == 'Linux'
     let g:python3_host_prog = expand('~/.pyenv/versions/3.7.6/bin/python')
 else "Mac
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.7.6/envs/neovim3/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.6/envs/neovim3/bin/python')
 endif
 
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'javascript']
@@ -225,7 +224,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
 let b:ale_linters = {
-      \  'python': ['pylint', 'pyright', 'pyls', 'mypy', 'flake8'],
+      \  'python': ['pylint', 'pyls', 'flake8'],
       \  'sh': ['language_server'],
       \  'go': ['golint', 'gofmt', 'gopls'],
       \  'javascript': ['eslint']
@@ -276,11 +275,17 @@ let g:ale_fixers = {
 " augroup END
 " autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
+" require'lspconfig'.pyright.setup{}
 lua << EOF
-require'lspconfig'.pylsp.setup{}
-require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
-
+require'lspconfig'.pylsp.setup({enable=true,
+                    plugins = {
+                        flake8 = {enabled = true},
+                        pyls_mypy = {
+                            enabled = true,
+                            live_mode = true}
+                        },
+                    })
 EOF
 let g:compe = {}
 let g:compe.enabled = v:true
@@ -324,13 +329,13 @@ nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " let g:LanguageClient_useVirtualText = "CodeLens"
 " let g:LanguageClient_settingsPath = "~/.config/lc_settings.json"
 " needed for neovim LSP but not languageClient-neovim
-" if executable('pyls')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'pyls',
-"         \ 'cmd': {server_info->['pyls']},
-"         \ 'whitelist': ['python'],
-"         \ })
-" endif
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background

@@ -40,7 +40,7 @@ call plug#begin('~/.config/nvim/plugged')
       " Plug 'ncm2/ncm2'
       " Plug 'ncm2/ncm2-jedi'
       " Plug 'ncm2/ncm2-path'
-      Plug 'roxma/nvim-yarp'
+      " Plug 'roxma/nvim-yarp'
       Plug 'neovim/nvim-lspconfig'
       Plug 'hrsh7th/nvim-compe'
       " Plug 'autozimu/LanguageClient-neovim', {

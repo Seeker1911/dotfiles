@@ -68,7 +68,8 @@ set clipboard=unnamed          " use system clipboard (OS X)
 " set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
-set termguicolors "for truecolor support, assuming you have it.
+" Blink cant have this
+"set termguicolors "for truecolor support, assuming you have it.
 " set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
 set shiftwidth=4
@@ -95,7 +96,7 @@ let g:gruvbox_termcolors=256
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_italic=1
 " Airline and tmuxline ---------------------------------------------------
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -123,7 +124,7 @@ let uname = substitute(system('uname'), '\n', '', '')
 let home = system('whoami')
 if uname == 'Linux'
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.7.6/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/envs/neovim3/bin/python')
 else "Mac
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
     let g:python3_host_prog = expand('~/.pyenv/versions/3.9.6/envs/neovim3/bin/python')

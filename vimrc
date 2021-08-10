@@ -199,107 +199,116 @@ endfunction
 nnoremap gx :call OpenURLUnderCursor()<CR>
 
 " ale ===================================================
-let g:ale_floating_preview = 1
-let g:ale_floating_window_border = []
-let g:ale_completion_autoimport = 1
-let g:ale_sign_column_always = 1
-let g:ale_python_pylint_use_global = 1
-" let g:ale_python_flake8_global = 1
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-let g:ale_sign_error = "⤫"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "•"
-let g:ale_sign_hint = "λ"
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-let b:ale_linters = {
-      \  'python': ['pylint', 'pyls', 'flake8'],
-      \  'sh': ['language_server'],
-      \  'go': ['golint', 'gofmt', 'gopls'],
-      \  'javascript': ['eslint']
-      \}
-let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'javascript': ['eslint'],
-      \   'python': ['autopep8', 'autoimport', 'yapf'],
-      \   'go': ['gofmt', 'goimports']
-      \}
+"let g:ale_floating_preview = 1
+"let g:ale_floating_window_border = []
+"let g:ale_completion_autoimport = 1
+"let g:ale_sign_column_always = 1
+"let g:ale_python_pylint_use_global = 1
+"" let g:ale_python_flake8_global = 1
+"let g:ale_set_highlights = 1
+"let g:ale_set_signs = 1
+"let g:ale_sign_error = "⤫"
+"let g:ale_sign_warning = "⚠"
+"let g:ale_sign_info = "•"
+"let g:ale_sign_hint = "λ"
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
+"let b:ale_linters = {
+"      \  'python': ['pylint', 'pyls', 'flake8'],
+"      \  'sh': ['language_server'],
+"      \  'go': ['golint', 'gofmt', 'gopls'],
+"      \  'javascript': ['eslint']
+"      \}
+"let g:ale_fixers = {
+"      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+"      \   'javascript': ['eslint'],
+"      \   'python': ['autopep8', 'autoimport', 'yapf'],
+"      \   'go': ['gofmt', 'goimports']
+"      \}
 
 
+function! s:lsp() abort
 lua << EOF
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.pylsp.setup({enable=true,
-                    plugins = {
-                        flake8 = {enabled = true},
-                        pyls_mypy = {
-                            enabled = true,
-                            live_mode = true}
-                        },
-                    })
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        virtual_text = false,
-    }
-)
+    require'lspconfig'.gopls.setup{}
+    require'lspconfig'.pyright.setup{}
+    require'lspconfig'.pylsp.setup({enable=true,
+                        plugins = {
+                            flake8 = {enabled = true},
+                            pyls_mypy = {
+                                enabled = true,
+                                live_mode = true}
+                            },
+                        })
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics,
+            {
+                virtual_text = false,
+            }
+        )
 EOF
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.resolve_timeout = 800
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
+    let g:compe = {}
+    let g:compe.enabled = v:true
+    let g:compe.autocomplete = v:true
+    let g:compe.debug = v:false
+    let g:compe.min_length = 1
+    let g:compe.preselect = 'enable'
+    let g:compe.throttle_time = 80
+    let g:compe.source_timeout = 200
+    let g:compe.resolve_timeout = 800
+    let g:compe.incomplete_delay = 400
+    let g:compe.max_abbr_width = 100
+    let g:compe.max_kind_width = 100
+    let g:compe.max_menu_width = 100
+    let g:compe.documentation = v:true
 
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
-let g:compe.source.luasnip = v:true
-let g:compe.source.emoji = v:true
-let g:diagnostic_enable_virtual_text = 0
-let g:diagnostic_enable_underline = 0
-let g:diagnostic_auto_popup_while_jump = 1
-let g:diagnostic_insert_delay = 1
+    let g:compe.source = {}
+    let g:compe.source.path = v:true
+    let g:compe.source.buffer = v:true
+    let g:compe.source.calc = v:true
+    let g:compe.source.nvim_lsp = v:true
+    let g:compe.source.nvim_lua = v:true
+    let g:compe.source.vsnip = v:true
+    let g:compe.source.ultisnips = v:true
+    let g:compe.source.luasnip = v:true
+    let g:compe.source.emoji = v:true
+    let g:diagnostic_enable_virtual_text = 0
+    let g:diagnostic_enable_underline = 0
+    let g:diagnostic_auto_popup_while_jump = 1
+    let g:diagnostic_insert_delay = 1
 
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gc <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+    function! s:b_lsp() abort
+        nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+        nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+        nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+        nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+        nnoremap <silent> gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
+        nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+        nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+        nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+        nnoremap <silent> gc <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+        nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
+        nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+        nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+    endfunction
+    augroup lsp
+        autocmd!
+        autocmd FileType go,vim,python call s:b_lsp()
+        autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+    augroup END
 
 
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
+    if executable('pyls')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'pyls',
+            \ 'cmd': {server_info->['pyls']},
+            \ 'whitelist': ['python'],
+            \ })
+    endif
+endfunction
+call s:lsp()
 
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background

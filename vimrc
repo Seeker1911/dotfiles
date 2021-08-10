@@ -36,17 +36,8 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/vim-floaterm'
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
-      " Plug 'dense-analysis/ale'
-      " Plug 'ncm2/ncm2'
-      " Plug 'ncm2/ncm2-jedi'
-      " Plug 'ncm2/ncm2-path'
-      " Plug 'roxma/nvim-yarp'
       Plug 'neovim/nvim-lspconfig'
       Plug 'hrsh7th/nvim-compe'
-      " Plug 'autozimu/LanguageClient-neovim', {
-	      " \ 'branch': 'next',
-	      " \ 'do': 'bash install.sh',
-	      " \ }
 call plug#end()
 
 let mapleader = ","
@@ -237,45 +228,6 @@ let g:ale_fixers = {
       \}
 
 
-" if has('nvim')
-" 	" enable ncm2 for all buffers
-" 	autocmd BufEnter * call ncm2#enable_for_buffer()
-" endif
-
-" Language server ===================================================
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-"     \ 'python': ['~/.pyenv/shims/pyls'],
-"     \ 'go': ['~/go/bin/gopls'],
-"     \ }
-
-" language client ===================================================
-
-" let g:LanguageClient_fzfContextMenu = 1
-" function! SetLSPShortcuts()
-"   nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-"   nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
-"   nnoremap <silent>K :call LanguageClient#textDocument_hover()<CR>
-"   nnoremap <silent>gd :call LanguageClient#textDocument_definition()<CR>
-"   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-"   nnoremap <leader>la :call LanguageClient#textDocument_codeAction()<CR>
-"   nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-"   nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-"   nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-"   nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-"   nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-"   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-" endfunction()
-
-" augroup LSP
-"   autocmd!
-"   autocmd FileType cpp,c,python,javascript,go call SetLSPShortcuts()
-" augroup END
-" autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
-" require'lspconfig'.pyright.setup{}
 lua << EOF
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.pyright.setup{}
@@ -287,7 +239,16 @@ require'lspconfig'.pylsp.setup({enable=true,
                             live_mode = true}
                         },
                     })
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        virtual_text = false,
+    }
+)
 EOF
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+
 let g:compe = {}
 let g:compe.enabled = v:true
 let g:compe.autocomplete = v:true
@@ -340,15 +301,6 @@ if executable('pyls')
         \ })
 endif
 
-
-" let g:LanguageClient_hoverPreview = 'always'
-" let g:LanguageClient_useFloatingHover = 1
-" let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
-" let g:LanguageClient_loggingLevel = 'DEBUG'
-" dont show inline errors" Valid Options:" "All" | "No" | "CodeLens" | "Diagnostics"
-" let g:LanguageClient_useVirtualText = "CodeLens"
-" let g:LanguageClient_settingsPath = "~/.config/lc_settings.json"
-" needed for neovim LSP but not languageClient-neovim
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif

@@ -278,6 +278,7 @@ let g:ale_fixers = {
 " require'lspconfig'.pyright.setup{}
 lua << EOF
 require'lspconfig'.gopls.setup{}
+require'lspconfig'.pyright.setup{}
 require'lspconfig'.pylsp.setup({enable=true,
                     plugins = {
                         flake8 = {enabled = true},
@@ -312,14 +313,33 @@ let g:compe.source.vsnip = v:true
 let g:compe.source.ultisnips = v:true
 let g:compe.source.luasnip = v:true
 let g:compe.source.emoji = v:true
+let g:diagnostic_enable_virtual_text = 0
+let g:diagnostic_enable_underline = 0
+let g:diagnostic_auto_popup_while_jump = 1
+let g:diagnostic_insert_delay = 1
+
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gc <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
 
 " let g:LanguageClient_hoverPreview = 'always'
 " let g:LanguageClient_useFloatingHover = 1
@@ -329,14 +349,6 @@ nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " let g:LanguageClient_useVirtualText = "CodeLens"
 " let g:LanguageClient_settingsPath = "~/.config/lc_settings.json"
 " needed for neovim LSP but not languageClient-neovim
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif

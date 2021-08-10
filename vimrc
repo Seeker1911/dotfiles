@@ -296,7 +296,7 @@ EOF
     augroup lsp
         autocmd!
         autocmd FileType go,vim,python call s:b_lsp()
-        autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+        autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
     augroup END
 
 

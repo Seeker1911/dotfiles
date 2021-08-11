@@ -76,6 +76,7 @@ set shiftround
 set noswapfile
 " set undodir=~/.vim/undodir
 set undofile
+set autoread
 set t_Co=256
 
 
@@ -198,36 +199,6 @@ function! OpenURLUnderCursor()
 endfunction
 nnoremap gx :call OpenURLUnderCursor()<CR>
 
-" ale ===================================================
-"let g:ale_floating_preview = 1
-"let g:ale_floating_window_border = []
-"let g:ale_completion_autoimport = 1
-"let g:ale_sign_column_always = 1
-"let g:ale_python_pylint_use_global = 1
-"" let g:ale_python_flake8_global = 1
-"let g:ale_set_highlights = 1
-"let g:ale_set_signs = 1
-"let g:ale_sign_error = "⤫"
-"let g:ale_sign_warning = "⚠"
-"let g:ale_sign_info = "•"
-"let g:ale_sign_hint = "λ"
-"let g:ale_echo_msg_error_str = 'E'
-"let g:ale_echo_msg_warning_str = 'W'
-"let g:ale_echo_msg_format = 'ALE: [%linter%] %s [%severity%]'
-"let b:ale_linters = {
-"      \  'python': ['pylint', 'pyls', 'flake8'],
-"      \  'sh': ['language_server'],
-"      \  'go': ['golint', 'gofmt', 'gopls'],
-"      \  'javascript': ['eslint']
-"      \}
-"let g:ale_fixers = {
-"      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-"      \   'javascript': ['eslint'],
-"      \   'python': ['autopep8', 'autoimport', 'yapf'],
-"      \   'go': ['gofmt', 'goimports']
-"      \}
-
-
 function! s:lsp() abort
 lua << EOF
     require'lspconfig'.gopls.setup{}
@@ -247,6 +218,8 @@ lua << EOF
                 virtual_text = false,
             }
         )
+
+    vim.lsp.set_log_level("info")
 EOF
 
     let g:compe = {}

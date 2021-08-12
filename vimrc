@@ -9,7 +9,6 @@ if empty(glob('~/.config/nvim/site/autoload/plug.vim'))
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-" let g:ale_disable_lsp = 1
 call plug#begin('~/.config/nvim/plugged')
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
@@ -50,7 +49,7 @@ set mouse=a
 set expandtab
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
-" set completeopt-=preview
+set completeopt-=preview
 set encoding=utf8
 set nocompatible	       " required, not vi compatible
 set modelines=0		       " fix security exploits
@@ -74,7 +73,13 @@ set splitright
 set shiftwidth=4
 set shiftround
 set noswapfile
-" set undodir=~/.vim/undodir
+if !isdirectory($HOME.'/.vim')
+    call mkdir($HOME.'/.vim', "", 0770)
+endif
+if !isdirectory($HOME.'/.vim/undo')
+    call mkdir($HOME.'/.vim/undo', "", 0770)
+endif
+set undodir=~/.vim/undo
 set undofile
 set autoread
 set t_Co=256
@@ -100,7 +105,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_theme='snow_dark'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {
@@ -256,6 +261,7 @@ EOF
         nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
         nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
         nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+        nnoremap <silent> gR <cmd>lua vim.lsp.buf.rename()<CR>
         nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
         nnoremap <silent> gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
         nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>

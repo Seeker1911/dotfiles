@@ -91,8 +91,9 @@ elif [[ $platform == 'macos' ]]; then
     # CFLAGS="-I$(brew --prefix openssl)/include"
     # LDFLAGS="-L$(brew --prefix openssl)/lib" 
     # LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
-    export LDFLAGS="-L/usr/local/opt/zlib/lib" 
-    export CPPFLAGS="-I/usr/local/opt/zlib/include"
+    # my attempt as getting rosetta to work
+    export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib" 
+    export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
     unset PROMPT_COMMAND
 fi
@@ -141,7 +142,7 @@ fi
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/go/bin"
-PATH="${PATH}:/usr/local/bin"
+PATH="/usr/local/bin:${PATH}"
 PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local/liquibase-4.0.0-beta1"
 PATH="${PATH}:${HOME}/go/bin"

@@ -1,0 +1,19 @@
+{
+  "include": [
+  ],
+  
+  "exclude": [
+  ],
+
+  "ignore": [
+  ],
+
+  "venv": "tooling",
+  "venvPath": "/Users/mike.mead/.pyenv/versions/3.9.6/envs/",
+
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+
+  "pythonVersion": "3.9",
+}
+

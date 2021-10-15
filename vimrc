@@ -227,6 +227,27 @@ nnoremap gx :call OpenURLUnderCursor()<CR>
 "      \   'go': ['gofmt', 'goimports']
 "      \}
 
+" TODO: might want to test the following when running pyright and pyls together
+" lua << EOF
+" require'lspconfig'.pyls.setup{
+" settings ={
+"     pyls = {
+"         plugins = {
+"             jedi_completion = {enabled = false},
+"             jedi_definition = {enabled = false},
+"             yapf = {enabled = false},
+"             rope_completion = {enabled = false},
+"             pylint = {enabled = false},
+"             pyflakes = {enabled = false},
+"             pydocstyle = {enabled = false},
+"             preload = {enabled = false},
+"             mccabe = {enabled = false},
+"             jedi_symbols = {enabled = false},
+"             jedi_references = {enabled = false},
+
+" }}}}
+" EOF
+
 
 function! s:lsp() abort
 lua << EOF

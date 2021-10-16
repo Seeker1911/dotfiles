@@ -130,7 +130,6 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -140,9 +139,10 @@ if ! shopt -oq posix; then
 fi
 
 # PATH -------------------------------------------------------------------------------------------------------
-PATH="${PATH}:/usr/local"
-PATH="${PATH}:/usr/local/go/bin"
 PATH="/usr/local/bin:${PATH}"
+PATH="${PATH}:/opt/homebrew/bin"
+# PATH="${PATH}:/usr/local"
+PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:/usr/local/liquibase-4.0.0-beta1"
 PATH="${PATH}:${HOME}/go/bin"
@@ -151,17 +151,12 @@ PATH="${PATH}:${HOME}/.node-gyp"
 PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
+PATH="$HOME/bin:$PATH"
+# If you need to have openssl@1.1 first in your PATH:
+PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH
 
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
-# SET A HOME/BIN PATH FOR SHELL SCRIPTS
-PATH="$HOME/bin:$PATH"
-
-if [[ $platform == 'linux' ]]; then
-  PATH="$HOME/.pyenv/bin:$PATH"
-fi
-
-# If you need to have openssl@1.1 first in your PATH run:
-PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # For pkg-config to find openssl@1.1 you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
@@ -170,9 +165,6 @@ export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # pyenv ----------------------------------------------------------------------------------------------------
-#PYENV_ROOT="usr/local/bin/pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
@@ -273,12 +265,6 @@ _python_argcomplete() {
         compopt -o nospace
     fi
 }
-
-# if [ -f ~/.bashrc_ec2 ]; then
-# 	. ~/.bashrc_ec2
-# fi
-# register python argcomplete for airflow
-complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
 # [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
 complete -C '/usr/local/bin/aws_completer' aws

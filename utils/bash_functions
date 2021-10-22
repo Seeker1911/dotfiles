@@ -509,6 +509,10 @@ pip install black
 pip install flake8
 }
 
+function fix-quarantine {
+xattr -d com.apple.quarantine $1
+}
+
 # echo font attributes
 '\e[32;1mbold red\e[0mplain \e[4munderlined'
 

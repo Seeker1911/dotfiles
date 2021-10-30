@@ -54,6 +54,7 @@ export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
+export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 
 # node version manager
 export NVM_DIR="$HOME/.nvm"

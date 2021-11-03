@@ -11,7 +11,7 @@ npm-debug.log
 tags
 dev_appservers_logs.db*
 .python-version
-**/pyrightconfig.json*
+**/pyrightconfig.json
 .ctags
 flake8
 .flake8

@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/michaelmead/.gitignore_global
+	excludesfile = /Users/mike.mead/.gitignore_global
 	editor = nano
 [user]
 	name = michael mead

@@ -9,8 +9,6 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [init]
 	templatedir = ~/.git_template
-[color]
-	ui = auto
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52

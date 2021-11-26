@@ -141,8 +141,8 @@ if ! shopt -oq posix; then
 fi
 
 # PATH -------------------------------------------------------------------------------------------------------
-PATH="/usr/local/bin:${PATH}"
-PATH="${PATH}:/opt/homebrew/bin"
+# PATH="/usr/local/bin:${PATH}"
+PATH="/opt/homebrew/bin:${PATH}"
 # PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:/usr/local/sbin"

@@ -9,7 +9,6 @@ if empty(glob('~/.config/nvim/site/autoload/plug.vim'))
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-" let g:ale_disable_lsp = 1
 call plug#begin('~/.config/nvim/plugged')
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'morhetz/gruvbox'
@@ -112,10 +111,10 @@ let g:gruvbox_italicize_strings=1
 let g:gruvbox_italic=1
 " Airline and tmuxline ---------------------------------------------------
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 let g:airline_theme='snow_dark'
 " use Gruvbox theme for fzf colors
 let g:fzf_colors = {

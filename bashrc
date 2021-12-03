@@ -188,37 +188,38 @@ fi
 function jedi {
     echo "color gruvbox" > ~/.vimrc_background
     echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply gruvbox_light.yaml
+    # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
 function sith {
     echo "color gruvbox" > ~/.vimrc_background
     echo "set background=dark" >> ~/.vimrc_background
-    alacritty-colorscheme apply gruvbox_dark.yaml
+    # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
 function snow {
     echo "color snow" > ~/.vimrc_background
     echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply papercolor_light.yaml
+    tmux source ${HOME}/dotfiles/profiles/tmux_snow.conf
+    # alacritty-colorscheme apply papercolor_light.yaml
 }
 
 function remedy {
     echo "color gruvbox" > ~/.vimrc_background
     echo "set background=dark" >> ~/.vimrc_background
-    alacritty-colorscheme apply remedy_dark.yaml
+    # alacritty-colorscheme apply remedy_dark.yaml
 }
 
 function solar {
     echo "color two-firewatch" > ~/.vimrc_background
     echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply solarized_light.yaml
+    # alacritty-colorscheme apply solarized_light.yaml
 }
 
 function envy {
     echo "color envy" > ~/.vimrc_background
     echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply pencil_light.yaml
+    # alacritty-colorscheme apply pencil_light.yaml
 }
 
 function color {
@@ -269,4 +270,19 @@ _python_argcomplete() {
 }
 
 # [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+if command -v theme.sh > /dev/null; then
+	[ -e ~/.theme_history ] && theme.sh "$(theme.sh -l|tail -n1)"
+
+	# Optional  
+
+	bind -x '"\x0f":"theme.sh $(theme.sh -l|tail -n2|head -n1)"' #Binds C-o to the previously active theme.
+	alias th='theme.sh -i'
+
+	# Interactively load a light theme
+	alias thl='theme.sh --light -i'
+
+	# Interactively load a dark theme
+	alias thd='theme.sh --dark -i'
+fi
+
 complete -C '/usr/local/bin/aws_completer' aws

@@ -63,18 +63,12 @@ set infercase		      " smart auto-completion casing
 set wildignorecase	      " ignore case on files and directories
 set tags=./tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
-" set foldenable                 " enable folding
-" set foldlevel=2
-" set foldnestmax=4
-" set foldmethod=indent
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
-" set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
 set shiftwidth=4
 set shiftround
 set noswapfile
-" set undodir=~/.vim/undodir
 set undofile
 set t_Co=256
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -92,7 +86,6 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-
 
 
 " may need the below especially with tmux
@@ -213,103 +206,28 @@ function! OpenURLUnderCursor()
 endfunction
 nnoremap gx :call OpenURLUnderCursor()<CR>
 
-" TODO: might want to test the following when running pyright and pyls together
-" lua << EOF
-" require'lspconfig'.pyls.setup{
-" settings ={
-"     pyls = {
-"         plugins = {
-"             jedi_completion = {enabled = false},
-"             jedi_definition = {enabled = false},
-"             yapf = {enabled = false},
-"             rope_completion = {enabled = false},
-"             pylint = {enabled = false},
-"             pyflakes = {enabled = false},
-"             pydocstyle = {enabled = false},
-"             preload = {enabled = false},
-"             mccabe = {enabled = false},
-"             jedi_symbols = {enabled = false},
-"             jedi_references = {enabled = false},
-
-" }}}}
-" EOF
-
-function! s:lsp() abort
-lua << EOF
-    require'lspconfig'.gopls.setup{}
-    require'lspconfig'.pylsp.setup({enabled=true,
-                        plugins = {
-                            flake8 = {enabled = true},
-                            yapf = {enabled = true},
-                            pyls_mypy = {
-                                enabled = true,
-                                live_mode = true}
-                            },
-                        })
-    vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics,
-            {
-                virtual_text = false,
-            }
-        )
-    -- Setup nvim-cmp.
-    local cmp = require'cmp'
-
-    cmp.setup({
-        mapping = {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<Tab>'] = cmp.mapping.select_next_item(),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-        },
-        sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        }, {
-        { name = 'buffer' },
-        })
-    })
-    -- Setup lspconfig.
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    require('lspconfig').pylsp.setup {
-        capabilities = capabilities
-    }
-
-EOF
-
-    function! s:b_lsp() abort
-        nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-        nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-        nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-        nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-        nnoremap <silent> gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
-        nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-        nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-        nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
-        nnoremap <silent> gc <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-        nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
-        nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-        nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-    endfunction
-    augroup lsp
-        autocmd!
-        autocmd FileType go,vim,python call s:b_lsp()
-        autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
-    augroup END
-
-
-    if executable('pyls')
-        au User lsp_setup call lsp#register_server({
-            \ 'name': 'pyls',
-            \ 'cmd': {server_info->['pyls']},
-            \ 'whitelist': ['python'],
-            \ })
-    endif
+function! s:b_lsp() abort
+    nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+    nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <silent> gR <cmd>lua vim.lsp.buf.rename()<CR>
+    nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <silent> gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
+    nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+    nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+    nnoremap <silent> gc <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+    nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+    nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 endfunction
-call s:lsp()
+augroup lsp
+    autocmd!
+    autocmd FileType go,vim,python call s:b_lsp()
+    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
+augroup END
+
+lua require("lsp")
 
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background

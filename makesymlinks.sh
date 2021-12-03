@@ -15,6 +15,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
 configdir=$XDG_CONFIG_HOME               # config directory
 nvimdir=$XDG_CONFIG_HOME/nvim            # nvim directory
+luadir=$nvimdir/lua
 alacrittydir=$XDG_CONFIG_HOME/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
@@ -31,6 +32,7 @@ mkdir -p $olddir
 mkdir -p $bindir
 mkdir -p $configdir
 mkdir -p $nvimdir
+mkdir -p $luadir
 echo "done"
 
 # change to the dotfiles directory
@@ -67,6 +69,7 @@ done
 
 # link to init.vim in  favor of nvim
 ln -sf $dir/vimrc $nvimdir/init.vim
+ln -sf $dir/lua/* $luadir
 # ln -sf $dir/vimrc ~/.vimrc
 # link alaccritty config
 ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

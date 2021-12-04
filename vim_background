@@ -1,0 +1,3 @@
+color snow
+set background=light
+let g:airline_theme='snow_light'

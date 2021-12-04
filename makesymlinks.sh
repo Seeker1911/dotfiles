@@ -19,7 +19,7 @@ luadir=$nvimdir/lua
 alacrittydir=$XDG_CONFIG_HOME/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
-homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template"    # list of files/folders to symlink in homedir
+homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template vim_background"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc starship.toml lc_settings.json"
 vimFiles="autoload/plug.vim"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh aws_function.sh"

@@ -186,53 +186,48 @@ fi
 
 # functions ----------------------------------------------------------------------------------------------------
 function jedi {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/profiles/tmux-gruvbox-light.conf
     # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
 function sith {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=dark" >> ~/.vimrc_background
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=dark" >> ~/.vim_background
+    echo "let g:airline_theme='snow_dark'" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/profiles/tmux-gruvbox-dark.conf
     # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
 function snow {
-    echo "color snow" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
+    echo "color snow" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    echo "let g:airline_theme='snow_light'" >> ~/.vim_background
     tmux source ${HOME}/dotfiles/profiles/tmux_snow.conf
-    # alacritty-colorscheme apply papercolor_light.yaml
 }
 
 function remedy {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=dark" >> ~/.vimrc_background
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=dark" >> ~/.vim_background
     # alacritty-colorscheme apply remedy_dark.yaml
 }
 
 function solar {
-    echo "color two-firewatch" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
+    echo "color two-firewatch" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
     # alacritty-colorscheme apply solarized_light.yaml
 }
 
 function envy {
-    echo "color envy" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
+    echo "color envy" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
     # alacritty-colorscheme apply pencil_light.yaml
 }
 
 function color {
     pyenv shell neovim3 && $1 && pyenv shell --unset
 }
-
-function gitpr {
-    if [ "$#" -ne 1 ]; then
-	echo "Requires commit message"
-	return 1;
-    fi
-    git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
-  }
 
 function cleanswap {
 	rm ~/.local/share/nvim/swap/*

@@ -133,8 +133,8 @@ if uname == 'Linux'
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/envs/neovim2/bin/python')
     let g:python3_host_prog = expand('~/.pyenv/versions/3.9.1/bin/python')
 else "Mac
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.16/envs/neovim2/bin/python')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.9.6/envs/neovim3/bin/python')
+    let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+    let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
 endif
 
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'javascript']
@@ -221,14 +221,19 @@ function! s:b_lsp() abort
     nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
     nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 endfunction
-augroup lsp
-    autocmd!
-    autocmd FileType go,vim,python call s:b_lsp()
-    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
-augroup END
 
-lua require("lsp")
+if executable('pylsp')
+    augroup lsp
+        autocmd!
+        autocmd FileType go,vim,python call s:b_lsp()
+        autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
+    augroup END
 
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
+    lua require("lsp")
+else
+    echo('pylsp not found, skipping LSP setup')
+endif
+
+if filereadable(expand("~/.vim_background"))
+  source ~/.vim_background
 endif

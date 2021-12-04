@@ -154,6 +154,7 @@ PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@1.1 first in your PATH:
 PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH
@@ -196,7 +197,7 @@ function sith {
     echo "color gruvbox" > ~/.vim_background
     echo "set background=dark" >> ~/.vim_background
     echo "let g:airline_theme='snow_dark'" >> ~/.vim_background
-    tmux source ${HOME}/dotfiles/profiles/tmux-gruvbox-dark.conf
+    tmux source ${HOME}/dotfiles/tmux.conf
     # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 

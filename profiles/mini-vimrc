@@ -1,0 +1,5 @@
+call plug#begin('~/.vim/autoload/plugged')
+Plug 'morhetz/gruvbox'
+call plug#end()
+set background=dark
+colo gruvbox

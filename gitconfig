@@ -42,6 +42,9 @@
 	process = git-lfs filter-process
 	required = true
 [alias]
+    # use this alias with util/bash_functions git_log func
+    showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+
     hub = !hub
     # list files which have changed since REVIEW_BASE
     # (REVIEW_BASE defaults to 'master' in my zshrc)

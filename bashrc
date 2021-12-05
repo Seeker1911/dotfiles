@@ -154,6 +154,7 @@ PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@1.1 first in your PATH:
 PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH
@@ -186,52 +187,48 @@ fi
 
 # functions ----------------------------------------------------------------------------------------------------
 function jedi {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply gruvbox_light.yaml
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
+    # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
 function sith {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=dark" >> ~/.vimrc_background
-    alacritty-colorscheme apply gruvbox_dark.yaml
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=dark" >> ~/.vim_background
+    echo "let g:airline_theme='snow_dark'" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/tmux.conf
+    # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
 function snow {
-    echo "color snow" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply papercolor_light.yaml
+    echo "color snow" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    echo "let g:airline_theme='snow_light'" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/colors/tmux_snow.conf
 }
 
 function remedy {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=dark" >> ~/.vimrc_background
-    alacritty-colorscheme apply remedy_dark.yaml
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=dark" >> ~/.vim_background
+    # alacritty-colorscheme apply remedy_dark.yaml
 }
 
 function solar {
-    echo "color two-firewatch" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply solarized_light.yaml
+    echo "color two-firewatch" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    # alacritty-colorscheme apply solarized_light.yaml
 }
 
 function envy {
-    echo "color envy" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply pencil_light.yaml
+    echo "color envy" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    # alacritty-colorscheme apply pencil_light.yaml
 }
 
 function color {
     pyenv shell neovim3 && $1 && pyenv shell --unset
 }
-
-function gitpr {
-    if [ "$#" -ne 1 ]; then
-	echo "Requires commit message"
-	return 1;
-    fi
-    git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
-  }
 
 function cleanswap {
 	rm ~/.local/share/nvim/swap/*
@@ -269,4 +266,19 @@ _python_argcomplete() {
 }
 
 # [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
+if command -v theme.sh > /dev/null; then
+	[ -e ~/.theme_history ] && theme.sh "$(theme.sh -l|tail -n1)"
+
+	# Optional  
+
+	bind -x '"\x0f":"theme.sh $(theme.sh -l|tail -n2|head -n1)"' #Binds C-o to the previously active theme.
+	alias th='theme.sh -i'
+
+	# Interactively load a light theme
+	alias thl='theme.sh --light -i'
+
+	# Interactively load a dark theme
+	alias thd='theme.sh --dark -i'
+fi
+
 complete -C '/usr/local/bin/aws_completer' aws

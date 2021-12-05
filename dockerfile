@@ -137,15 +137,15 @@ RUN /root/.tmux/plugins/tpm/scripts/install_plugins.sh
 #RUN echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .bashrc
 #RUN echo 'eval "$(pyenv init -)"' >> .bashrc
 
-#RUN pyenv install 2.7.6
-#RUN pyenv install 3.7.8
+#RUN pyenv install 2.7.18
+#RUN pyenv install 3.9-dev
 #RUN pyenv install 3.8.2
-#RUN pyenv global 3.7.6
+#RUN pyenv global 3.9-dev
 #RUN pyenv rehash
 # setup pyenv virtualenv
 #RUN git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
-#RUN pyenv virtualenv 3.7.8 neovim3
-#RUN pyenv virtualenv 2.7.6 neovim2
+#RUN pyenv virtualenv 3.9-dev neovim3
+#RUN pyenv virtualenv 2.7.18 neovim2
 
 # Add additional configs
 ADD tmux.conf /root/.tmux.conf

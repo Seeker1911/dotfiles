@@ -189,7 +189,7 @@ fi
 function jedi {
     echo "color gruvbox" > ~/.vim_background
     echo "set background=light" >> ~/.vim_background
-    tmux source ${HOME}/dotfiles/profiles/tmux-gruvbox-light.conf
+    tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
     # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
@@ -205,7 +205,7 @@ function snow {
     echo "color snow" > ~/.vim_background
     echo "set background=light" >> ~/.vim_background
     echo "let g:airline_theme='snow_light'" >> ~/.vim_background
-    tmux source ${HOME}/dotfiles/profiles/tmux_snow.conf
+    tmux source ${HOME}/dotfiles/colors/tmux_snow.conf
 }
 
 function remedy {

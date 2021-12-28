@@ -65,8 +65,6 @@ set tags=./tags;/               " ctags read subdirectories
 set clipboard=unnamed          " use system clipboard (OS X)
 set updatetime=250 "smaller updatetime for cursorhold, also makes gitgutter more responsive
 set wrap!
-" if Linux colors dont work add filter logic on termguicolors
-set termguicolors "for truecolor support, assuming you have it.
 " set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 set splitright
 set shiftwidth=4

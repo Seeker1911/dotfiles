@@ -36,9 +36,11 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
       Plug 'neovim/nvim-lspconfig'
-      Plug 'hrsh7th/cmp-nvim-lsp'
-      Plug 'hrsh7th/cmp-buffer'
+      Plug 'sumneko/lua-language-server'
       Plug 'hrsh7th/nvim-cmp'
+      Plug 'hrsh7th/cmp-nvim-lsp'
+      Plug 'hrsh7th/cmp-nvim-lua'
+      Plug 'hrsh7th/cmp-buffer'
 call plug#end()
 
 let mapleader = ","
@@ -231,6 +233,7 @@ if executable('pylsp')
     augroup END
 
     lua require("lsp")
+    lua require("lua-ls")
 else
     echo('pylsp not found, skipping LSP setup')
 endif

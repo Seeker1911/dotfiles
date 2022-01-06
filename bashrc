@@ -208,19 +208,13 @@ function snow {
     tmux source ${HOME}/dotfiles/colors/tmux_snow.conf
 }
 
-function remedy {
-    echo "color gruvbox" > ~/.vim_background
-    echo "set background=dark" >> ~/.vim_background
-    # alacritty-colorscheme apply remedy_dark.yaml
-}
-
 function solar {
     echo "color two-firewatch" > ~/.vim_background
     echo "set background=light" >> ~/.vim_background
     # alacritty-colorscheme apply solarized_light.yaml
 }
 
-function envy {
+function kindle {
     echo "color envy" > ~/.vim_background
     echo "set background=light" >> ~/.vim_background
     # alacritty-colorscheme apply pencil_light.yaml

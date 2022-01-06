@@ -217,6 +217,7 @@ function solar {
 function kindle {
     echo "color envy" > ~/.vim_background
     echo "set background=light" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     # alacritty-colorscheme apply pencil_light.yaml
 }
 

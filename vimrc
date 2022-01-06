@@ -159,6 +159,7 @@ map <leader>b :Buffers<CR>
 nmap <leader>c :Commands<CR>
 nmap <leader>T :TagbarToggle<CR>
 nmap <leader>r :RainbowToggle<CR>
+nmap <leader>s :so ~/.vim_background<CR>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

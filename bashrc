@@ -94,8 +94,8 @@ elif [[ $platform == 'macos' ]]; then
     # LDFLAGS="-L$(brew --prefix openssl)/lib" 
     # LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
     # my attempt as getting rosetta to work
-    export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib" 
-    export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+    export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
+    export CPPFLAGS="-I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
 
     unset PROMPT_COMMAND
 fi

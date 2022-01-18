@@ -220,21 +220,18 @@ function! s:b_lsp() abort
     nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
     nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
     nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
-    " nnoremap <silent> gc <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-    nnoremap <silent> gc <cmd>lua vim.diagnostic.open_float(buffer, {{opts}, scope="line", pos=17}<CR>
-    nnoremap <silent> <C-s> <cmd>lua vim.buf.signature_help()<CR>
+    nnoremap <silent> gc <cmd>lua vim.diagnostic.open_float(nil, {focusable=false})<CR>
+    nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
     nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
-    nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next( float = {...} )<CR>
+    nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next({focusable=false})<CR>
 endfunction
 
 if has('nvim')
     augroup lsp
         autocmd!
         autocmd FileType go,vim,python call s:b_lsp()
-        " autocmd CursorHold * lua vim.diagnostic.show_line_diagnostics({focusable = false})
-        autocmd CursorHold * lua vim.diagnostic.open_float(0,{scope="cursor"})
-
-
+        " Show all diagnostics:
+        " autocmd CursorHold * lua vim.diagnostic.open_float(0,{scope="cursor"})
     augroup END
 
     lua require("lsp")

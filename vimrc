@@ -227,7 +227,7 @@ function! s:b_lsp() abort
     nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next( float = {...} )<CR>
 endfunction
 
-if executable('pylsp')
+if has('nvim')
     augroup lsp
         autocmd!
         autocmd FileType go,vim,python call s:b_lsp()
@@ -240,7 +240,7 @@ if executable('pylsp')
     lua require("lsp")
     lua require("lua-ls")
 else
-    echo('pylsp not found, skipping LSP setup')
+    echo('nvim not found, skipping LSP setup')
 endif
 
 if filereadable(expand("~/.vim_background"))

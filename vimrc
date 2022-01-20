@@ -222,8 +222,8 @@ function! s:b_lsp() abort
     nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
     nnoremap <silent> gc <cmd>lua vim.diagnostic.open_float(nil, {focusable=false})<CR>
     nnoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
-    nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next({focusable=false})<CR>
+    nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_prev()<CR>
+    nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_next({focusable=false})<CR>
 endfunction
 
 if has('nvim')

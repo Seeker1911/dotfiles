@@ -1,6 +1,6 @@
 "for all ideavimrc commands...
 "https://github.com/JetBrains/ideavim/blob/master/src/com/maddyhome/idea/vim/package-info.java
-source ~/.vimrc
+"source ~/.vimrc
 
 inoremap jj <ESC>
 nnoremap ,a :action GotoAction<CR>
@@ -26,3 +26,4 @@ nnoremap gcc :action CommentByLineComment<CR>
 vnoremap gcc :action CommentByLineComment<CR>
 
 nnoremap <C-CR> :action ShowIntentionActions<CR>
+inoremap <CR> :action <CR>

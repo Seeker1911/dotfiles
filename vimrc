@@ -24,9 +24,9 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
       Plug 'tpope/vim-fugitive'
+      Plug 'tpope/vim-rhubarb'
       Plug 'tpope/vim-obsession'
       Plug 'tpope/vim-commentary'
-      Plug 'tpope/vim-rhubarb'
       Plug 'tpope/vim-dadbod'
       Plug 'tpope/vim-dispatch'
       Plug 'majutsushi/tagbar'
@@ -36,6 +36,9 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'voldikss/fzf-floaterm'
       Plug 'windwp/vim-floaterm-repl'
       Plug 'neovim/nvim-lspconfig'
+      Plug 'nvim-lua/plenary.nvim'
+      Plug 'jose-elias-alvarez/null-ls.nvim'
+      Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
       Plug 'sumneko/lua-language-server'
       Plug 'hrsh7th/nvim-cmp'
       Plug 'hrsh7th/cmp-nvim-lsp'
@@ -229,13 +232,13 @@ endfunction
 if has('nvim')
     augroup lsp
         autocmd!
-        autocmd FileType go,vim,python call s:b_lsp()
+        autocmd FileType go,vim,python,javascript,typescript call s:b_lsp()
         " Show all diagnostics:
         " autocmd CursorHold * lua vim.diagnostic.open_float(0,{scope="cursor"})
     augroup END
 
     lua require("lsp")
-    lua require("lua-ls")
+    " lua require("lua-ls")
 else
     echo('nvim not found, skipping LSP setup')
 endif

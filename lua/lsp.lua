@@ -1,7 +1,12 @@
-require'lspconfig'.gopls.setup{}
+--local navigator = require('navigator')
+local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require'lspconfig'.pyright.setup{capabilities = capabilities}
-require'lspconfig'.pylsp.setup(
+local null_ls = require("null-ls")
+local cmp = require'cmp'
+
+lspconfig.gopls.setup{}
+lspconfig.pyright.setup{capabilities = capabilities}
+lspconfig.pylsp.setup(
     {enabled=true,
     plugins = {
         flake8 = {enabled = true},
@@ -28,7 +33,7 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
 end
 
 local on_attach = function(client, bufnr)
-require'lspconfig'.tsserver.setup({
+lspconfig.tsserver.setup({
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
@@ -42,7 +47,6 @@ require'lspconfig'.tsserver.setup({
     end,
 })
 
-local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.diagnostics.eslint_d,
@@ -52,7 +56,6 @@ null_ls.setup({
     on_attach = on_attach
 })
 -- Setup nvim-cmp.
-local cmp = require'cmp'
 
 cmp.setup({
     mapping = {

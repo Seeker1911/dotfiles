@@ -26,5 +26,18 @@ require('telescope').setup{
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+    file_browser = {
+      theme = "ivy",
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
   }
 }
+-- you need to call load_extension, somewhere after setup function:
+require("telescope").load_extension "file_browser"

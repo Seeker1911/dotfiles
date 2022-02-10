@@ -6,7 +6,7 @@ HOME = os.getenv("HOME")
 require('plugins')
 require('cmpsetup')
 require('lspsetup')
-require('luasetup')
+--require('luasetup')
 require('treesitter')
 require('telescopesetup')
 
@@ -25,6 +25,7 @@ opt.termguicolors = true
 opt.wrap = false
 opt.number = true
 opt.background = 'dark'
+opt.clipboard = 'unnamed'
 
 vim.o.scrolloff = 3
 vim.o.wrap = false
@@ -75,6 +76,7 @@ map('n', '<leader>f', ':Telescope find_files<CR>')
 map('n', '<leader>F', ':Telescope live_grep<CR>')
 map('n', '<leader>b', ':Telescope buffers<CR>')
 map('n', '<leader>t', ':Telescope help_tags<CR>')
+map('n', '<leader>fb', ':Telescope file_browser<CR>')
 
  
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})

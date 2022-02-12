@@ -10,13 +10,6 @@ require('lspsetup')
 require('treesitter')
 require('telescopesetup')
 
-cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
-
 cmd 'colorscheme gruvbox'
 opt.hidden = true
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}

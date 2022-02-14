@@ -9,6 +9,7 @@ require('lspsetup')
 --require('luasetup')
 require('treesitter')
 require('telescopesetup')
+require('tmux_nav')
 
 cmd 'colorscheme gruvbox'
 opt.hidden = true

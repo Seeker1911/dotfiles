@@ -1,5 +1,4 @@
 #!/bin/bash
-# DEPRECATED: in favor of Go setup script. (unless you just want symlinks)
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 if [[ -z "${XDG_CONFIG_HOME}" ]]; then
@@ -63,9 +62,9 @@ for file in $vimFiles; do
 done
 
 # link to init.vim in  favor of nvim
-ln -sf $dir/vimrc $nvimdir/init.vim
+ln -sf $dir/init.lua $nvimdir
 ln -sf $dir/lua/* $luadir
-# ln -sf $dir/vimrc ~/.vimrc
+ln -sf $dir/vimrc ~/.vimrc
 # link alaccritty config
 # ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
 #ln -sf $dir/vimrc ~/.vimrc

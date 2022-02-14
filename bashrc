@@ -141,22 +141,21 @@ if ! shopt -oq posix; then
 fi
 
 # PATH -------------------------------------------------------------------------------------------------------
-# PATH="/usr/local/bin:${PATH}"
 PATH="/opt/homebrew/bin:${PATH}"
-# PATH="${PATH}:/usr/local"
 PATH="${PATH}:/usr/local/go/bin"
-PATH="${PATH}:/usr/local/sbin"
-PATH="${PATH}:/usr/local/liquibase-4.0.0-beta1"
 PATH="${PATH}:${HOME}/go/bin"
+PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:${HOME}/.npm"
 PATH="${PATH}:${HOME}/.node-gyp"
 PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
+PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
 PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@1.1 first in your PATH:
 PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+PATH="$PATH:/Users/michaelmead/.ebcli-virtual-env/executables"
 export PATH
 
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"

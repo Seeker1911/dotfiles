@@ -9,6 +9,7 @@ end
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use { 'kyazdani42/nvim-web-devicons' }
   use 'morhetz/gruvbox'
   use '9mm/vim-closer'
   use 'neovim/nvim-lspconfig'
@@ -32,7 +33,8 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-buffer'
   use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
-  use { "alexghergh/nvim-tmux-navigation" }
+  use { 'alexghergh/nvim-tmux-navigation' }
+  use 'beauwilliams/statusline.lua'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')

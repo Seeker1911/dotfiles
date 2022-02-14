@@ -10,6 +10,7 @@ require('lspsetup')
 require('treesitter')
 require('telescopesetup')
 require('tmux_nav')
+require('web_icons')
 
 cmd 'colorscheme gruvbox'
 opt.hidden = true

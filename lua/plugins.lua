@@ -21,9 +21,12 @@ return require('packer').startup(function(use)
   use { 'junegunn/fzf', run = ':fzf#install()' }
   use 'junegunn/fzf.vim'
   use { 'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { 
+                {'nvim-lua/plenary.nvim'},
+                { "nvim-telescope/telescope-file-browser.nvim" },
+                { "nvim-telescope/telescope-github.nvim" },
+        }
        }
-  use { "nvim-telescope/telescope-file-browser.nvim" }
   use 'nvim-lua/plenary.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'

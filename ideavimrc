@@ -1,4 +1,6 @@
-source ~/.vimrc
+"for all ideavimrc commands...
+"https://github.com/JetBrains/ideavim/blob/master/src/com/maddyhome/idea/vim/package-info.java
+"source ~/.vimrc
 
 inoremap jj <ESC>
 nnoremap ,a :action GotoAction<CR>
@@ -9,12 +11,13 @@ nnoremap ,t :action FileStructurePopup<CR>
 nnoremap ]d :action GotoNextError<CR>
 nnoremap [d :action GotoPreviousError<CR>
 
-nnoremap gd :action GotoDeclaration<CR>
+nnoremap gD :action GotoDeclaration<CR>
+nnoremap gd :action GotoDefinition<CR>
 nnoremap gs :action GotoSuperMethod<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gb :action JumpToLastChange<CR>
 
-nnoremap U :action FindUsages<CR>
+nnoremap gr :action FindUsages<CR>
 
 nnoremap ,r :action ReformatCode<CR>
 vnoremap ,r :action ReformatCode<CR>
@@ -23,3 +26,4 @@ nnoremap gcc :action CommentByLineComment<CR>
 vnoremap gcc :action CommentByLineComment<CR>
 
 nnoremap <C-CR> :action ShowIntentionActions<CR>
+inoremap <CR> :action <CR>

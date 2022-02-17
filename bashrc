@@ -54,6 +54,8 @@ export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
 export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
+export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
+export PIPENV_IGNORE_VIRTUALENVS=1
 
 # node version manager
 export NVM_DIR="$HOME/.nvm"
@@ -91,8 +93,9 @@ elif [[ $platform == 'macos' ]]; then
     # CFLAGS="-I$(brew --prefix openssl)/include"
     # LDFLAGS="-L$(brew --prefix openssl)/lib" 
     # LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
-    export LDFLAGS="-L/usr/local/opt/zlib/lib" 
-    export CPPFLAGS="-I/usr/local/opt/zlib/include"
+    # my attempt as getting rosetta to work
+    export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
+    export CPPFLAGS="-I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
 
     unset PROMPT_COMMAND
 fi
@@ -129,7 +132,6 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -139,28 +141,24 @@ if ! shopt -oq posix; then
 fi
 
 # PATH -------------------------------------------------------------------------------------------------------
-PATH="${PATH}:/usr/local"
+PATH="/opt/homebrew/bin:${PATH}"
 PATH="${PATH}:/usr/local/go/bin"
-PATH="${PATH}:/usr/local/bin"
-PATH="${PATH}:/usr/local/sbin"
-PATH="${PATH}:/usr/local/liquibase-4.0.0-beta1"
 PATH="${PATH}:${HOME}/go/bin"
+PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:${HOME}/.npm"
 PATH="${PATH}:${HOME}/.node-gyp"
 PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
+PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
+PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin/nvim-osx64/bin:$PATH"
+# If you need to have openssl@1.1 first in your PATH:
+PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+PATH="$PATH:/Users/michaelmead/.ebcli-virtual-env/executables"
+export PATH
 
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
-# SET A HOME/BIN PATH FOR SHELL SCRIPTS
-PATH="$HOME/bin:$PATH"
-
-if [[ $platform == 'linux' ]]; then
-  PATH="$HOME/.pyenv/bin:$PATH"
-fi
-
-# If you need to have openssl@1.1 first in your PATH run:
-PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # For pkg-config to find openssl@1.1 you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
@@ -169,9 +167,6 @@ export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # pyenv ----------------------------------------------------------------------------------------------------
-#PYENV_ROOT="usr/local/bin/pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
@@ -191,52 +186,43 @@ fi
 
 # functions ----------------------------------------------------------------------------------------------------
 function jedi {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply gruvbox_light.yaml
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
+    # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
 function sith {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=dark" >> ~/.vimrc_background
-    alacritty-colorscheme apply gruvbox_dark.yaml
+    echo "color gruvbox" > ~/.vim_background
+    echo "set background=dark" >> ~/.vim_background
+    echo "let g:airline_theme='snow_dark'" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/tmux.conf
+    # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
 function snow {
-    echo "color snow" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply papercolor_light.yaml
-}
-
-function remedy {
-    echo "color gruvbox" > ~/.vimrc_background
-    echo "set background=dark" >> ~/.vimrc_background
-    alacritty-colorscheme apply remedy_dark.yaml
+    echo "color snow" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    echo "let g:airline_theme='snow_light'" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/colors/tmux_snow.conf
 }
 
 function solar {
-    echo "color two-firewatch" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply solarized_light.yaml
+    echo "color two-firewatch" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    # alacritty-colorscheme apply solarized_light.yaml
 }
 
-function envy {
-    echo "color envy" > ~/.vimrc_background
-    echo "set background=light" >> ~/.vimrc_background
-    alacritty-colorscheme apply pencil_light.yaml
+function kindle {
+    echo "color envy" > ~/.vim_background
+    echo "set background=light" >> ~/.vim_background
+    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    # alacritty-colorscheme apply pencil_light.yaml
 }
 
 function color {
     pyenv shell neovim3 && $1 && pyenv shell --unset
 }
-
-function gitpr {
-    if [ "$#" -ne 1 ]; then
-	echo "Requires commit message"
-	return 1;
-    fi
-    git pull-request -po -b devel -r robabram,wangy70,j-kanuch -m "$1"
-  }
 
 function cleanswap {
 	rm ~/.local/share/nvim/swap/*
@@ -272,14 +258,5 @@ _python_argcomplete() {
         compopt -o nospace
     fi
 }
-# register python argcomplete for airflow
-complete -o nospace -o default -o bashdefault -F _python_argcomplete airflow
 
-# [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
-
-export PATH="$HOME/.pyenv/bin:$PATH"
-# export PATH="/usr/local/bin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-
-export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
-export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+complete -C '/usr/local/bin/aws_completer' aws

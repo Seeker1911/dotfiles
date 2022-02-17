@@ -504,9 +504,11 @@ git showtool $hash
 }
 
 function install_linters {
-pip install python-language-server[all]
-pip install black
-pip install flake8
+pip install -r ${HOME}/dotfiles/lsp_reqs.txt
+}
+
+function fix-quarantine {
+xattr -d com.apple.quarantine $1
 }
 
 # echo font attributes

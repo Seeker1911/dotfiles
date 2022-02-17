@@ -11,6 +11,7 @@ npm-debug.log
 tags
 dev_appservers_logs.db*
 .python-version
+**/pyrightconfig.json
 .ctags
 flake8
 .flake8
@@ -61,4 +62,5 @@ Thumbs.db
 package-lock.json
 yarn.lock
 .vimspector.json
-~/code/web-api/stog/docker-compose.yml
+~/code/web-api/stogo/docker-compose.yml
+**pyproject.toml

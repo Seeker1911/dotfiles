@@ -165,6 +165,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 # This magically fixes psycopg2 install error madness, the above did not.
 export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 export XDG_CONFIG_HOME="$HOME/.config"
+source $(brew --prefix nvm)/nvm.sh
 
 # pyenv ----------------------------------------------------------------------------------------------------
 if command -v pyenv 1>/dev/null 2>&1; then

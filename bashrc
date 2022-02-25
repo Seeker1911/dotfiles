@@ -260,20 +260,4 @@ _python_argcomplete() {
     fi
 }
 
-# [ -f /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash ] && source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
-if command -v theme.sh > /dev/null; then
-	[ -e ~/.theme_history ] && theme.sh "$(theme.sh -l|tail -n1)"
-
-	# Optional  
-
-	bind -x '"\x0f":"theme.sh $(theme.sh -l|tail -n2|head -n1)"' #Binds C-o to the previously active theme.
-	alias th='theme.sh -i'
-
-	# Interactively load a light theme
-	alias thl='theme.sh --light -i'
-
-	# Interactively load a dark theme
-	alias thd='theme.sh --dark -i'
-fi
-
 complete -C '/usr/local/bin/aws_completer' aws

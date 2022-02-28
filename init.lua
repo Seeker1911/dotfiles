@@ -29,6 +29,7 @@ vim.o.signcolumn = 'yes' -- keep 1 column for coc.vim  check
 vim.o.modelines = 0
 vim.o.smartcase = true -- case insentive unless capitals used in search
 vim.o.expandtab = true -- expand tab to spaces
+vim.o.termguicolors = true
 
 -- Backup files
 vim.o.backup = true -- use backup files

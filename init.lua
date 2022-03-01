@@ -21,6 +21,9 @@ opt.wrap = false
 opt.number = true
 opt.background = 'dark'
 opt.clipboard = 'unnamed'
+opt.expandtab = true
+opt.tabstop = 4
+opt.shiftwidth = 4
 
 vim.o.scrolloff = 3
 vim.o.wrap = false
@@ -28,7 +31,6 @@ vim.o.showbreak= '↪' -- character to show when line is broken
 vim.o.signcolumn = 'yes' -- keep 1 column for coc.vim  check
 vim.o.modelines = 0
 vim.o.smartcase = true -- case insentive unless capitals used in search
-vim.o.expandtab = true -- expand tab to spaces
 
 -- Backup files
 vim.o.backup = true -- use backup files
@@ -39,6 +41,9 @@ vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//'   -- swap files
 
 vim.cmd([[
+  au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
+  au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
+  au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
   au FileType python                  set ts=4 sw=4
   au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
   au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
@@ -67,7 +72,7 @@ map('n', '<leader>f', ':Files<CR>') -- deprecated fzf
 map('n', '<leader>b', ':Buffers<CR>') -- deprecated fzf
 map('n', '<leader>c', ':Commands<CR>')
 map('n', '<leader>h', '<cmd>nohlsearch<CR>')
-map('n', '<leader>f', ':Telescope find_files<CR>')
+map('n', '<leader>f', ':Telescope find_files hidden=true<CR>')
 map('n', '<leader>F', ':Telescope live_grep<CR>')
 map('n', '<leader>b', ':Telescope buffers<CR>')
 map('n', '<leader>t', ':Telescope help_tags<CR>')

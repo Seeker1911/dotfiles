@@ -9,17 +9,17 @@ end
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use { "ellisonleao/gruvbox.nvim" }
-  use 'wbthomason/packer.nvim'
+  use { 'wbthomason/packer.nvim' }
   use { 'kyazdani42/nvim-web-devicons' }
-  use '9mm/vim-closer'
-  use 'neovim/nvim-lspconfig'
+  use { '9mm/vim-closer' }
+  use { 'neovim/nvim-lspconfig' }
   -- Lazy loading:
   -- Load on specific commands
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
  -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'junegunn/fzf', run = ':fzf#install()' }
-  use 'junegunn/fzf.vim'
+  use { 'junegunn/fzf.vim' }
   use { 'nvim-telescope/telescope.nvim',
         requires = { 
                 {'nvim-lua/plenary.nvim'},
@@ -27,17 +27,19 @@ return require('packer').startup(function(use)
                 { "nvim-telescope/telescope-github.nvim" },
         }
        }
-  use 'nvim-lua/plenary.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
-  use 'sumneko/lua-language-server'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-buffer'
+  use { 'nvim-lua/plenary.nvim' }
+  use { 'jose-elias-alvarez/null-ls.nvim' }
+  use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
+  use { 'sumneko/lua-language-server' }
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/cmp-nvim-lua' }
+  use { 'hrsh7th/cmp-buffer' }
   use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
   use { 'alexghergh/nvim-tmux-navigation' }
-  use 'beauwilliams/statusline.lua'
+  use { 'beauwilliams/statusline.lua' }
+  use { 'p00f/nvim-ts-rainbow' }
+  use { 'numToStr/Comment.nvim' }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')

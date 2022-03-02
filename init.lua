@@ -11,6 +11,7 @@ require('treesitter')
 require('telescopesetup')
 require('tmux_nav')
 require('web_icons')
+require('Comment').setup()
 
 cmd([[colorscheme gruvbox]])
 opt.hidden = true

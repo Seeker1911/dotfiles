@@ -8,9 +8,9 @@ end
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+  use { "ellisonleao/gruvbox.nvim" }
   use 'wbthomason/packer.nvim'
   use { 'kyazdani42/nvim-web-devicons' }
-  use 'morhetz/gruvbox'
   use '9mm/vim-closer'
   use 'neovim/nvim-lspconfig'
   -- Lazy loading:

@@ -12,7 +12,7 @@ require('telescopesetup')
 require('tmux_nav')
 require('web_icons')
 
-cmd 'colorscheme gruvbox'
+cmd([[colorscheme gruvbox]])
 opt.hidden = true
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 opt.ignorecase = true
@@ -24,6 +24,7 @@ opt.clipboard = 'unnamed'
 opt.expandtab = true
 opt.tabstop = 4
 opt.shiftwidth = 4
+opt.termguicolors = true
 
 vim.o.scrolloff = 3
 vim.o.wrap = false
@@ -31,7 +32,6 @@ vim.o.showbreak= '↪' -- character to show when line is broken
 vim.o.signcolumn = 'yes' -- keep 1 column for coc.vim  check
 vim.o.modelines = 0
 vim.o.smartcase = true -- case insentive unless capitals used in search
-vim.o.termguicolors = true
 
 -- Backup files
 vim.o.backup = true -- use backup files

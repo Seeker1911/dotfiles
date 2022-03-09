@@ -59,7 +59,6 @@ Thumbs.db
 
 # config files #
 ######################
-package-lock.json
 yarn.lock
 .vimspector.json
 ~/code/web-api/stogo/docker-compose.yml

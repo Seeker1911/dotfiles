@@ -261,3 +261,5 @@ _python_argcomplete() {
 }
 
 complete -C '/usr/local/bin/aws_completer' aws
+. "$HOME/.cargo/env"
+source /Users/mike.mead/bin/alacritty-0.10.1/extra/completions/alacritty.bash

@@ -69,15 +69,14 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('i', 'jj', '<ESC>')
-map('n', '<leader>F', ':Rg<CR>')
-map('n', '<leader>f', ':Files<CR>') -- deprecated fzf
-map('n', '<leader>b', ':Buffers<CR>') -- deprecated fzf
-map('n', '<leader>c', ':Commands<CR>')
+map('i', 'JJ', '<ESC>')
 map('n', '<leader>h', '<cmd>nohlsearch<CR>')
 map('n', '<leader>f', ':Telescope find_files hidden=true<CR>')
 map('n', '<leader>F', ':Telescope live_grep<CR>')
 map('n', '<leader>b', ':Telescope buffers<CR>')
 map('n', '<leader>t', ':Telescope help_tags<CR>')
+map('n', '<leader>T', ':Telescope help_tags<CR>')
+map('n', '<leader>c', ':Telescope commands<CR>')
 map('n', '<leader>fb', ':Telescope file_browser<CR>')
 
  

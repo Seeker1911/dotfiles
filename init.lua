@@ -14,6 +14,8 @@ require('web_icons')
 require('Comment').setup()
 
 cmd([[colorscheme gruvbox]])
+g.gruvbox_contrast_dark = 'soft'
+
 opt.hidden = true
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 opt.ignorecase = true

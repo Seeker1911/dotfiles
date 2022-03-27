@@ -59,8 +59,8 @@ export PIPENV_IGNORE_VIRTUALENVS=1
 
 # node version manager
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm                                                                                                                                                                                                                                                                                                                                              [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then
@@ -90,8 +90,8 @@ elif [[ $platform == 'macos' ]]; then
     # Fix for:
     #bash: __bp_precmd_invoke_cmd: command not found
     #bash: __bp_interactive_mode: command not found
-    # CFLAGS="-I$(brew --prefix openssl)/include"
-    # LDFLAGS="-L$(brew --prefix openssl)/lib" 
+    CFLAGS="-I$(brew --prefix openssl)/include"
+    LDFLAGS="-L$(brew --prefix openssl)/lib" 
     # LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
     # my attempt as getting rosetta to work
     export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
@@ -161,11 +161,11 @@ export PATH
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 
 # For pkg-config to find openssl@1.1 you may need to set:
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+#export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 # This magically fixes psycopg2 install error madness, the above did not.
-export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
+#export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 export XDG_CONFIG_HOME="$HOME/.config"
-source $(brew --prefix nvm)/nvm.sh
+# source $(brew --prefix nvm)/nvm.sh
 
 # pyenv ----------------------------------------------------------------------------------------------------
 if command -v pyenv 1>/dev/null 2>&1; then

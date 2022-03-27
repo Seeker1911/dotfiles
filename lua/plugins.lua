@@ -27,6 +27,14 @@ return require('packer').startup(function(use)
                 { "nvim-telescope/telescope-github.nvim" },
         }
        }
+  use {
+      'sudormrfbin/cheatsheet.nvim',
+      requires = {
+        {'nvim-telescope/telescope.nvim'},
+        {'nvim-lua/popup.nvim'},
+        {'nvim-lua/plenary.nvim'},
+      }
+      }
   use { 'nvim-lua/plenary.nvim' }
   use { 'jose-elias-alvarez/null-ls.nvim' }
   use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
@@ -55,4 +63,3 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-

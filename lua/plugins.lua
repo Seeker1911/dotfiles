@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
   use { 'beauwilliams/statusline.lua' }
   use { 'p00f/nvim-ts-rainbow' }
   use { 'numToStr/Comment.nvim' }
+  use { 'daschw/leaf.nvim' }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')

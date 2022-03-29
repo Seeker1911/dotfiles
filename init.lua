@@ -13,7 +13,7 @@ require('tmux_nav')
 require('web_icons')
 require('Comment').setup()
 
-cmd([[colorscheme gruvbox]])
+cmd([[colorscheme gruvbox]]) -- may be overidden at end of file
 g.gruvbox_contrast_dark = 'soft'
 
 opt.hidden = true
@@ -44,7 +44,7 @@ vim.o.undodir = HOME .. '/.vim/tmp/undo//'     -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//'   -- swap files
 
-vim.cmd([[
+cmd([[
   au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
   au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
   au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
@@ -84,3 +84,14 @@ map('n', '<leader>fb', ':Telescope file_browser<CR>')
  
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+
+function file_exists(name)
+   local f=io.open(name,"r")
+   print(name)
+   if f~=nil then io.close(f) return true else return false end
+end
+
+if file_exists(HOME .. "/.background")
+    then
+        cmd('source ~/.background')
+end

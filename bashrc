@@ -187,36 +187,36 @@ fi
 
 # functions ----------------------------------------------------------------------------------------------------
 function jedi {
-    echo "color gruvbox" > ~/.vim_background
-    echo "set background=light" >> ~/.vim_background
+    echo "color gruvbox" > ~/.background
+    echo "set background=light" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
     # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
 function sith {
-    echo "color gruvbox" > ~/.vim_background
-    echo "set background=dark" >> ~/.vim_background
-    echo "let g:airline_theme='snow_dark'" >> ~/.vim_background
+    echo "color gruvbox" > ~/.background
+    echo "set background=dark" >> ~/.background
+    echo "let g:airline_theme='snow_dark'" >> ~/.background
     tmux source ${HOME}/dotfiles/tmux.conf
     # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
 function snow {
-    echo "color snow" > ~/.vim_background
-    echo "set background=light" >> ~/.vim_background
-    echo "let g:airline_theme='snow_light'" >> ~/.vim_background
+    echo "color snow" > ~/.background
+    echo "set background=light" >> ~/.background
+    echo "let g:airline_theme='snow_light'" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux_snow.conf
 }
 
 function solar {
-    echo "color two-firewatch" > ~/.vim_background
-    echo "set background=light" >> ~/.vim_background
+    echo "color two-firewatch" > ~/.background
+    echo "set background=light" >> ~/.background
     # alacritty-colorscheme apply solarized_light.yaml
 }
 
 function kindle {
-    echo "color envy" > ~/.vim_background
-    echo "set background=light" >> ~/.vim_background
+    echo "color leaf" > ~/.background
+    echo "set background=light" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     # alacritty-colorscheme apply pencil_light.yaml
 }

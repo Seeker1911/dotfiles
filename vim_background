@@ -1,3 +1,2 @@
-color gruvbox
-set background=dark
-let g:airline_theme='snow_dark'
+color envy
+set background=light

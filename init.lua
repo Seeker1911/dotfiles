@@ -44,6 +44,7 @@ vim.o.swapfile = false -- do not use swap file
 vim.o.undodir = HOME .. '/.vim/tmp/undo//'     -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//'   -- swap files
+laststatus=3 -- global status line
 
 cmd([[
   au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
@@ -96,4 +97,3 @@ if file_exists(HOME .. "/.background")
     then
         cmd('source ~/.background')
 end
-laststatus=3

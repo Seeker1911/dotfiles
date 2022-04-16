@@ -8,6 +8,7 @@ require('cmpsetup')
 require('lspsetup')
 --require('luasetup')
 require('treesitter')
+require('lualinesetup')
 require('telescopesetup')
 require('tmux_nav')
 require('web_icons')
@@ -88,7 +89,6 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 
 function file_exists(name)
    local f=io.open(name,"r")
-   print(name)
    if f~=nil then io.close(f) return true else return false end
 end
 
@@ -96,3 +96,4 @@ if file_exists(HOME .. "/.background")
     then
         cmd('source ~/.background')
 end
+laststatus=3

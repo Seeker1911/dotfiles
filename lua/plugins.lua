@@ -3,7 +3,7 @@ local fn = vim.fn
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  print('I am in the if condition')
+  print('Cloning  Packer...')
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
@@ -46,7 +46,10 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-buffer' }
   use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
   use { 'alexghergh/nvim-tmux-navigation' }
-  use { 'beauwilliams/statusline.lua' }
+  use {
+  'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
   use { 'p00f/nvim-ts-rainbow' }
   use { 'numToStr/Comment.nvim' }
   use { 'daschw/leaf.nvim' }

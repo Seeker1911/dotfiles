@@ -1,5 +1,6 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 local fn = vim.fn
+local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   print('I am in the if condition')
@@ -48,9 +49,9 @@ return require('packer').startup(function(use)
   use { 'beauwilliams/statusline.lua' }
   use { 'p00f/nvim-ts-rainbow' }
   use { 'numToStr/Comment.nvim' }
+  use { 'daschw/leaf.nvim' }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
   cmd([[
      augroup packer_user_config
      autocmd!

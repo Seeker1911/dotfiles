@@ -15,7 +15,7 @@ olddir=~/.dotfiles_old             # old dotfiles backup directory
 configdir=$XDG_CONFIG_HOME               # config directory
 nvimdir=$XDG_CONFIG_HOME/nvim            # nvim directory
 luadir=$nvimdir/lua
-# alacrittydir=$XDG_CONFIG_HOME/alacritty            # nvim directory
+alacrittydir=$XDG_CONFIG_HOME/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
 homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template vim_background"    # list of files/folders to symlink in homedir
@@ -66,7 +66,7 @@ ln -sf $dir/init.lua $nvimdir
 ln -sf $dir/lua/* $luadir
 ln -sf $dir/vimrc ~/.vimrc
 # link alaccritty config
-# ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
+ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
 #ln -sf $dir/vimrc ~/.vimrc
 # copy alaccritty config, bug with alacritty-colors prevents symnlinks form working
 # cp $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

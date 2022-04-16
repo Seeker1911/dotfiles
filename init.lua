@@ -8,6 +8,7 @@ require('cmpsetup')
 require('lspsetup')
 --require('luasetup')
 require('treesitter')
+require('lualinesetup')
 require('telescopesetup')
 require('tmux_nav')
 require('web_icons')
@@ -43,6 +44,7 @@ vim.o.swapfile = false -- do not use swap file
 vim.o.undodir = HOME .. '/.vim/tmp/undo//'     -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//'   -- swap files
+laststatus=3 -- global status line
 
 cmd([[
   au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
@@ -88,7 +90,6 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 
 function file_exists(name)
    local f=io.open(name,"r")
-   print(name)
    if f~=nil then io.close(f) return true else return false end
 end
 

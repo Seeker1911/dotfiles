@@ -82,7 +82,7 @@ map('n', '<leader>t', ':Telescope help_tags<CR>')
 map('n', '<leader>T', ':Telescope help_tags<CR>')
 map('n', '<leader>c', ':Telescope commands<CR>')
 map('n', '<leader>fb', ':Telescope file_browser<CR>')
-map('n', '<leader>s', ':so ~/.background')
+map('n', '<leader>s', ':so ~/.background<CR>')
 
  
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})

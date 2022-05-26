@@ -29,9 +29,9 @@ window:
   # Number of lines/columns (not pixels) in the terminal. The number of columns
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+    columns: 400
+    lines: 200
 
   # Window position (changes require restart)
   #
@@ -45,9 +45,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -78,7 +78,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed
+  #startup_mode: SimpleFullscreen
 
   # Window title
   #title: Alacritty
@@ -232,8 +232,8 @@ schemes:
   gruvbox_dark: &dark
    primary:
      # hard contrast: background = '0x1d2021'
-     background: '0x282828'
      # soft contrast: background = '0x32302f'
+     background: '0x32302f'
      foreground: '0xebdbb2'
 
    # Normal colors
@@ -276,7 +276,7 @@ schemes:
      duration: 0
      color: '0xffffff'
 
-colors: *light
+colors: *dark
 
 
   # Indexed Colors

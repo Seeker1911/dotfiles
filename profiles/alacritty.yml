@@ -276,7 +276,7 @@ schemes:
      duration: 0
      color: '0xffffff'
 
-colors: *dark
+colors: *light
 
 
   # Indexed Colors

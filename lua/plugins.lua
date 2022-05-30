@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
                 { "nvim-telescope/telescope-github.nvim" },
         }
        }
+  use { 'simrat39/symbols-outline.nvim' }
   use {
       'sudormrfbin/cheatsheet.nvim',
       requires = {

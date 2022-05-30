@@ -47,7 +47,7 @@ export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
 export HISTSIZE=5000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
@@ -120,7 +120,7 @@ alias ipe='curl ipinfo.io/ip' #Get external ip address
 # alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
-alias cleangit='git branch | grep -v "master" | grep -v "dev" | xargs git branch -D'
+alias cleangit='git branch | grep -v "master" | grep -v "develop" | xargs git branch -D'
 
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 

@@ -18,7 +18,7 @@ luadir=$nvimdir/lua
 alacrittydir=$XDG_CONFIG_HOME/alacritty            # nvim directory
 vimfiledir=~/dotfiles/vim
 
-homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc git_template vim_background"    # list of files/folders to symlink in homedir
+homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc vim_background"    # list of files/folders to symlink in homedir
 configFiles="pycodestyle flake8 pylintrc starship.toml"
 vimFiles="autoload/plug.vim"
 binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh aws_function.sh"
@@ -67,6 +67,7 @@ ln -sf $dir/lua/* $luadir
 ln -sf $dir/vimrc ~/.vimrc
 # link alaccritty config
 ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
+ln -sf $dir/git_template/hooks ~/git_template/hooks
 #ln -sf $dir/vimrc ~/.vimrc
 # copy alaccritty config, bug with alacritty-colors prevents symnlinks form working
 # cp $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

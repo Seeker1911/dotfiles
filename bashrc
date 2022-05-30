@@ -221,6 +221,20 @@ function kindle {
     # alacritty-colorscheme apply pencil_light.yaml
 }
 
+function fox {
+    echo "color dayfox" > ~/.background
+    echo "set background=light" >> ~/.background
+    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    # alacritty-colorscheme apply pencil_light.yaml
+}
+
+function toast {
+    echo "color toast" > ~/.background
+    echo "set background=light" >> ~/.background
+    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    # alacritty-colorscheme apply pencil_light.yaml
+}
+
 function color {
     pyenv shell neovim3 && $1 && pyenv shell --unset
 }
@@ -262,4 +276,4 @@ _python_argcomplete() {
 
 complete -C '/usr/local/bin/aws_completer' aws
 . "$HOME/.cargo/env"
-source /Users/mike.mead/bin/alacritty-0.10.1/extra/completions/alacritty.bash
+# source /Users/mike.mead/bin/alacritty-0.10.1/extra/completions/alacritty.bash

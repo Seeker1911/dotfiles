@@ -54,6 +54,8 @@ return require('packer').startup(function(use)
   use { 'p00f/nvim-ts-rainbow' }
   use { 'numToStr/Comment.nvim' }
   use { 'daschw/leaf.nvim' }
+  use { 'jsit/toast.vim' }
+  use { 'edeneast/nightfox.nvim' }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   cmd([[

@@ -44,7 +44,6 @@ vim.o.swapfile = false -- do not use swap file
 vim.o.undodir = HOME .. '/.vim/tmp/undo//'     -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//'   -- swap files
-laststatus=3 -- global status line
 
 cmd([[
   au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
@@ -62,6 +61,7 @@ vim.o.wildmenu = true -- on TAB, complete options for system command
 vim.o.wildignore = 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
 
 g.mapleader = ','
+g.laststatus = 3 -- global status line
 g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python"
 g.python_host_prog = "~/.pyenv/versions/neovim2/bin/python"
 

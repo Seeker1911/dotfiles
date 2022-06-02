@@ -79,13 +79,13 @@ map('n', '<leader>f', ':Telescope find_files hidden=true<CR>')
 map('n', '<leader>F', ':Telescope live_grep<CR>')
 map('n', '<leader>b', ':Telescope buffers<CR>')
 map('n', '<leader>t', ':Telescope help_tags<CR>')
-map('n', '<leader>T', ':Telescope help_tags<CR>')
 map('n', '<leader>c', ':Telescope commands<CR>')
+map('n', '<leader>k', ':Telescope keymaps<CR>')
 map('n', '<leader>fb', ':Telescope file_browser<CR>')
 map('n', '<leader>s', ':so ~/.background<CR>')
 map('n', '<leader>o', ':SymbolsOutline<CR>')
 
- 
+
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 

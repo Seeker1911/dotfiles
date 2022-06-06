@@ -231,7 +231,7 @@ function fox {
 function toast {
     echo "color toast" > ~/.background
     echo "set background=light" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    tmux source ${HOME}/dotfiles/colors/tmux_toast.conf
     # alacritty-colorscheme apply pencil_light.yaml
 }
 

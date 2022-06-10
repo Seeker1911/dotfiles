@@ -12,6 +12,7 @@ require('lualinesetup')
 require('telescopesetup')
 require('tmux_nav')
 require('web_icons')
+require('toggleterm')
 require('Comment').setup()
 
 cmd([[colorscheme gruvbox]]) -- may be overidden at end of file
@@ -88,8 +89,18 @@ map('n', '<leader>fb',':Telescope file_browser<CR>')
 map('n', '<leader>s', ':so ~/.background<CR>')
 map('n', '<leader>o', ':SymbolsOutline<CR>')
 
-map('t', '<ESC>', [[<C-\><C-n>]], { noremap = true })
 
+function _G.set_terminal_keymaps()
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+end
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 
 function file_exists(name)
    local f=io.open(name,"r")

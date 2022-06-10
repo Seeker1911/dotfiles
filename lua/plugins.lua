@@ -12,7 +12,6 @@ return require('packer').startup(function(use)
   use { "ellisonleao/gruvbox.nvim" }
   use { 'wbthomason/packer.nvim' }
   use { 'kyazdani42/nvim-web-devicons' }
-  use { '9mm/vim-closer' }
   use { 'neovim/nvim-lspconfig' }
   -- Lazy loading:
   -- Load on specific commands
@@ -56,8 +55,7 @@ return require('packer').startup(function(use)
   use { 'daschw/leaf.nvim' }
   use { 'jsit/toast.vim' }
   use { 'edeneast/nightfox.nvim' }
-  use { 'akinsho/toggleterm.nvim'
-      , config = function()
+  use { 'akinsho/toggleterm.nvim', config = function()
       require('toggleterm').setup()
       end}
   -- Automatically set up your configuration after cloning packer.nvim

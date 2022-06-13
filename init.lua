@@ -30,6 +30,7 @@ opt.expandtab = true
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.termguicolors = true
+opt.shell = 'bash -l'
 
 vim.o.scrolloff = 3
 vim.o.wrap = false

@@ -12,7 +12,7 @@ require('lualinesetup')
 require('telescopesetup')
 require('tmux_nav')
 require('web_icons')
-require('toggleterm')
+require('toggletermsetup')
 require('Comment').setup()
 
 cmd([[colorscheme gruvbox]]) -- may be overidden at end of file

@@ -44,6 +44,7 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-nvim-lua' }
   use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
   use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
   use { 'alexghergh/nvim-tmux-navigation' }
   use {
@@ -60,7 +61,7 @@ return require('packer').startup(function(use)
   --     end}
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  use { 'akinsho/toggleterm.nvim' }
+  -- use { 'akinsho/toggleterm.nvim' }
   cmd([[
      augroup packer_user_config
      autocmd!

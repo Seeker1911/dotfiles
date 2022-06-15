@@ -1,4 +1,4 @@
-require('toggleterm').setup{size = 40, direction = 'float'}
+require('toggleterm').setup{size = 1, direction = 'float'}
 
 local Terminal  = require('toggleterm.terminal').Terminal
 -- gotop

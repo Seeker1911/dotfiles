@@ -46,7 +46,8 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
   use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
-  use { 'alexghergh/nvim-tmux-navigation' }
+  use { 'christoomey/vim-tmux-navigator' }
+  -- use { 'alexghergh/nvim-tmux-navigation' }
   use {
   'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -56,6 +57,7 @@ return require('packer').startup(function(use)
   use { 'daschw/leaf.nvim' }
   use { 'jsit/toast.vim' }
   use { 'edeneast/nightfox.nvim' }
+  use { 'tpope/vim-fugitive' }
   cmd([[
      augroup packer_user_config
      autocmd!

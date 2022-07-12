@@ -45,9 +45,7 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-nvim-lua' }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
-  use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
   use { 'christoomey/vim-tmux-navigator' }
-  -- use { 'alexghergh/nvim-tmux-navigation' }
   use {
   'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }

@@ -10,7 +10,6 @@ require('lspsetup')
 require('treesitter')
 require('lualinesetup')
 require('telescopesetup')
--- require('tmux_nav')
 require('web_icons')
 require('Comment').setup()
 

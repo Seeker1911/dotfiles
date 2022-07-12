@@ -2,7 +2,8 @@ require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
-    file_ignore_patterns = {"node_modules", "build"},
+    file_ignore_patterns = {"node_modules", "build", ".git/"},
+    prompt_prefix=🔍,
     mappings = {
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)
@@ -32,7 +33,7 @@ require('telescope').setup{
     -- }
     -- please take a look at the readme of the extension you want to configure
     file_browser = {
-      theme = "ivy",
+      theme = "dropdown",
       mappings = {
         ["i"] = {
           -- your custom insert mode mappings

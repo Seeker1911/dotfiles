@@ -56,12 +56,6 @@ return require('packer').startup(function(use)
   use { 'daschw/leaf.nvim' }
   use { 'jsit/toast.vim' }
   use { 'edeneast/nightfox.nvim' }
-  -- use { 'akinsho/toggleterm.nvim', config = function()
-  --     require('toggleterm').setup{size = 40}
-  --     end}
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  -- use { 'akinsho/toggleterm.nvim' }
   cmd([[
      augroup packer_user_config
      autocmd!

@@ -56,6 +56,7 @@ return require('packer').startup(function(use)
   use { 'jsit/toast.vim' }
   use { 'edeneast/nightfox.nvim' }
   use { 'tpope/vim-fugitive' }
+  use { 'hashicorp/terraform-ls' }
   cmd([[
      augroup packer_user_config
      autocmd!

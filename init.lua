@@ -4,7 +4,8 @@ local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 HOME = os.getenv("HOME")
 require('plugins')
-require('cmpsetup')
+-- require('cmpsetup')
+require('cmptest')
 require('lspsetup')
 require('terraformsetup')
 -- require('luasetup')

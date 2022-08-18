@@ -1,24 +1,3 @@
---[[
-  blogpost:
-  https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
-
-  Dependencies:
-  LSP:
-  https://github.com/neovim/nvim-lspconfig
-  https://github.com/williamboman/mason.nvim             (optional)
-  https://github.com/williamboman/mason-lspconfig.nvim   (optional)
-
-  Completion:
-  https://github.com/hrsh7th/nvim-cmp
-  https://github.com/hrsh7th/cmp-nvim-lsp
-  https://github.com/hrsh7th/cmp-buffer
-  https://github.com/saadparwaiz1/cmp_luasnip
-  
-  Snippets:
-  https://github.com/L3MON4D3/LuaSnip
-  https://github.com/rafamadriz/friendly-snippets
-]]
-
 ---
 -- Keybindings
 ---
@@ -86,13 +65,6 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help,
   {border = 'rounded'}
 )
-
----
--- LSP config
----
-
--- require('mason').setup({})
--- require('mason-lspconfig').setup({})
 
 local lsp_defaults = {
   flags = {

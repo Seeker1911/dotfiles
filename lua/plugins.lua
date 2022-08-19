@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
   -- Lazy loading:
   -- Load on specific commands
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
+  use {'tpope/vim-rhubarb' }
  -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'junegunn/fzf', run = ':fzf#install()' }

@@ -62,6 +62,7 @@
     # git reviewone foo.js bar.js
     reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"stat $(git merge-base HEAD \"$REVIEW_BASE\")
     ctags = !.git/hooks/ctags
+    pushu = "push -u origin HEAD"  # set the upstream branch to your working branch
 [pull]
 	rebase = false
 [help]

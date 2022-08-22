@@ -49,7 +49,7 @@ export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
-export HISTSIZE=5000
+export HISTSIZE=1000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
@@ -58,10 +58,40 @@ export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 export PIPENV_IGNORE_VIRTUALENVS=1
 
-# node version manager
+# (updated .bashrc)
+
+# Utility for removing an entry from $PATH -- copied from SO post:
+# https://stackoverflow.com/questions/11650840/remove-redundant-paths-from-path-variable#answer-47159781
+pathremove() {
+    local IFS=':'
+    local NEWPATH
+    local DIR
+    local PATHVARIABLE=${2:-PATH}
+    for DIR in ${!PATHVARIABLE} ; do
+        if [ "$DIR" != "$1" ] ; then
+            NEWPATH=${NEWPATH:+$NEWPATH:}$DIR
+        fi
+    done
+    export $PATHVARIABLE="$NEWPATH"
+}
+
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm                                                                                                                                                                                                                                                                                                                                              [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+DEFAULT_NODE_VERSION="v12.10.0"
+load_nvm() {
+    # TODO: ionice -c 1 -n 0 nice -n -20 cmd... ?
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+#load_nvm
+
+# This gets node & friends into the path but doesn't initialize nvm proper until needed
+lasy_load_nvm() {
+    export NVM_BIN="$NVM_DIR/versions/node/$DEFAULT_NODE_VERSION/bin"
+    export PATH="$NVM_BIN:$PATH"
+    export NVM_CD_FLAGS=""
+    alias nvm="echo 'Please wait while nvm loads' && unset NVM_CD_FLAGS && pathremove $NVM_BIN && unset NVM_BIN && unalias nvm && load_nvm && nvm $@"
+}
+lasy_load_nvm
 
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then
@@ -91,55 +121,46 @@ elif [[ $platform == 'macos' ]]; then
     # Fix for:
     #bash: __bp_precmd_invoke_cmd: command not found
     #bash: __bp_interactive_mode: command not found
-    CFLAGS="-I$(brew --prefix openssl)/include"
-    LDFLAGS="-L$(brew --prefix openssl)/lib" 
+    # CFLAGS="-I$(brew /opt/homebrew/Cellar/openssl)/include"
+    # LDFLAGS="-L$(brew /opt/homebrew openssl)/lib" 
     # LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
     # my attempt as getting rosetta to work
-    export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
-    export CPPFLAGS="-I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
+    # export LDFLAGS="-L$(brew /opt/homebrew/Cellar/zlib)/lib -L$(brew /opt/homebrew/Cellar/gbzip2)/lib"
+    # export CPPFLAGS="-I$(brew /opt/homebrew/Cellar/zlib)/include -I$(brew /opt/homebrew/Cellar/gbzip2)/include"
 
     unset PROMPT_COMMAND
 fi
 
 alias vim='nvim'
-alias listen="netstat -nap tcp | grep -i 'listen'"
-alias pybug="python -m pdb -c continue"
 alias tmux='tmux -2'
-alias dunnet='emacs -batch -l dunnet'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
-alias raspberry="ssh pi@10.0.0.135"
-alias sha='shasum -a 256 ' #Test the checksum of a file.
 alias grep='grep --color'
-alias ping='ping -c 5' #Limit ping to 5 attempts.
-alias www="python -m simpleHTTPServer 8000"
-alias speedtest='speedtest-cli --server 2406 --simple' #run speed test.
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
-# alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
+alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
 # alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
 alias cleangit='git branch | grep -v "master" | grep -v "develop" | grep -v "main" | xargs git branch -D'
-
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh
 [ -f ~/.profile ] && source ~/.profile
-[ -f ~/.bin/tmuxinator.bash ] && source ~/.bin/tmuxinator.bash
 
 #fuzzy finder in bash 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+# NOTE: completions really slow down sourcing the shell.
+# if ! shopt -oq posix; then
+#   if [ -f /usr/share/bash-completion/bash_completion ]; then
+#     . /usr/share/bash-completion/bash_completion
+#   elif [ -f /etc/bash_completion ]; then
+#     . /etc/bash_completion
+#   fi
+#fi
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="/opt/homebrew/bin:${PATH}"
@@ -149,14 +170,13 @@ PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:${HOME}/.npm"
 PATH="${PATH}:${HOME}/.node-gyp"
 PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
-PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
 PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@1.1 first in your PATH:
+# NOTE: seeing if I really need this
 PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-PATH="$PATH:/Users/michaelmead/.ebcli-virtual-env/executables"
 export PATH
 
 export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
@@ -166,7 +186,6 @@ export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 # This magically fixes psycopg2 install error madness, the above did not.
 #export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 export XDG_CONFIG_HOME="$HOME/.config"
-# source $(brew --prefix nvm)/nvm.sh
 
 # pyenv ----------------------------------------------------------------------------------------------------
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -178,13 +197,6 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
 
-if [[ -f $HOME/.cargo/env ]]; then
-    source "$HOME/.cargo/env"
-fi
-
-# if [[ $platform == 'macos' ]]; then
-#         source /Users/michaelmead/.config/alacritty/extra/completions/alacritty.bash
-# fi
 
 # functions ----------------------------------------------------------------------------------------------------
 function jedi {
@@ -274,7 +286,3 @@ _python_argcomplete() {
         compopt -o nospace
     fi
 }
-
-complete -C '/usr/local/bin/aws_completer' aws
-. "$HOME/.cargo/env"
-# source /Users/mike.mead/bin/alacritty-0.10.1/extra/completions/alacritty.bash

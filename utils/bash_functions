@@ -520,3 +520,7 @@ function rename-files {
     do [[ $(head -n 1 asdf | grep '#!/usr/bin/env python') ]] && ( tail -n +2 $i > $i.py; rm $i  );
     done
 }
+
+function list-ports-with-app-name {
+    lsof -nP +c 15 | grep LISTEN
+}

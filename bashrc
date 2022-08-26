@@ -123,7 +123,9 @@ elif [[ $platform == 'macos' ]]; then
     #bash: __bp_interactive_mode: command not found
     # CFLAGS="-I$(brew /opt/homebrew/Cellar/openssl)/include"
     # LDFLAGS="-L$(brew /opt/homebrew openssl)/lib" 
-    # LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
+    #LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
+    # LDFLAGS="-L$(brew --prefix openssl)/lib"
+    # CFLAGS="-I$(brew --prefix openssl)/include"
     # my attempt as getting rosetta to work
     # export LDFLAGS="-L$(brew /opt/homebrew/Cellar/zlib)/lib -L$(brew /opt/homebrew/Cellar/gbzip2)/lib"
     # export CPPFLAGS="-I$(brew /opt/homebrew/Cellar/zlib)/include -I$(brew /opt/homebrew/Cellar/gbzip2)/include"

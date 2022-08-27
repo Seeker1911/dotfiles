@@ -23,9 +23,11 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
     bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+    bufmap('n', '<F5>', '<cmd>lua vim.diagnostic.hide()<cr>')
+    bufmap('n', 'll', '<cmd>vim.lsp.diagnostic.set_loclist()<cr>')
+
   end
 })
-
 
 ---
 -- Diagnostics

@@ -53,7 +53,7 @@ export HISTSIZE=1000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
-export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
+# export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 export PIPENV_IGNORE_VIRTUALENVS=1
@@ -122,15 +122,30 @@ elif [[ $platform == 'macos' ]]; then
     #bash: __bp_precmd_invoke_cmd: command not found
     #bash: __bp_interactive_mode: command not found
     # CFLAGS="-I$(brew /opt/homebrew/Cellar/openssl)/include"
+    # CFLAGS="-I /opt/homebrew/Cellar/openssl@3/3.0.5/include"
     # LDFLAGS="-L$(brew /opt/homebrew openssl)/lib" 
     #LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
     # LDFLAGS="-L$(brew --prefix openssl)/lib"
     # CFLAGS="-I$(brew --prefix openssl)/include"
     # my attempt as getting rosetta to work
     # export LDFLAGS="-L$(brew /opt/homebrew/Cellar/zlib)/lib -L$(brew /opt/homebrew/Cellar/gbzip2)/lib"
+    # CPPFLAGS="-I/opt/homebrew/include" 
+    # LDFLAGS="-L/opt/homebrew/lib" 
+    # echo "++++++++++++++++++++++++++++++++++++++++"
+    # echo $LDFLAGS
+    # echo "++++++++++++++++++++++++++++++++++++++++"
     # export CPPFLAGS="-I$(brew /opt/homebrew/Cellar/zlib)/include -I$(brew /opt/homebrew/Cellar/gbzip2)/include"
+    # export CPATH=/opt/homebrew/include
+    # export LIBRARY_PATH=/opt/homebrew/lib
+    # CPPFLAGS="-I$(brew --prefix openssl)/include -I$(xcrun --show-sdk-path)/usr/include" LDFLAGS="-L$(brew --prefix openssl)/lib"
+    # export LDFLAGS="-L/opt/homebrew/lib"; export CPPFLAGS="-I/opt/homebrew/include"
 
-    unset PROMPT_COMMAND
+    # echo "++++++++++++++++++++++++++++++++++++++++"
+    # echo $LDFLAGS
+    # echo $CPPFLAGS
+    # echo "++++++++++++++++++++++++++++++++++++++++"
+
+    # unset PROMPT_COMMAND
 fi
 
 alias vim='nvim'
@@ -166,22 +181,22 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="/opt/homebrew/bin:${PATH}"
-PATH="${PATH}:/usr/local/go/bin"
+# PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:${HOME}/go/bin"
-PATH="${PATH}:/usr/local/sbin"
+# PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:${HOME}/.npm"
 PATH="${PATH}:${HOME}/.node-gyp"
-PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
+# PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
-PATH="$HOME/bin/nvim-osx64/bin:$PATH"
+# PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@1.1 first in your PATH:
 # NOTE: seeing if I really need this
-PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH
 
-export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
+# export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 
 # For pkg-config to find openssl@1.1 you may need to set:
 #export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"

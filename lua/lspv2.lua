@@ -17,14 +17,15 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
     bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
     bufmap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+    bufmap('n', 'gL', '<cmd>lua vim.lsp.diagnostic.set_loclist()()<cr>')
+    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
     bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
     bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
     bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
-    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
     bufmap('n', '<F5>', '<cmd>lua vim.diagnostic.hide()<cr>')
-    bufmap('n', 'll', '<cmd>vim.lsp.diagnostic.set_loclist()<cr>')
+
 
   end
 })
@@ -64,7 +65,10 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help,
-  {border = 'rounded'}
+  {
+      border = 'rounded',
+      close_events = {"CursorMoved", "BufHidden", "InsertCharPre"}
+  }
 )
 
 local lsp_defaults = {
@@ -97,7 +101,7 @@ local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
   sources = {
-    {name = 'nvim_lsp', keyword_length = 3},
+    {name = 'nvim_lsp', keyword_length = 2},
     {name = 'buffer', keyword_length = 3},
     { name = 'nvim_lsp_signature_help' },
   },
@@ -155,7 +159,7 @@ cmp.setup({
 ---
 -- Language servers
 ---
-local servers = {'pyright', 'tsserver', 'gopls', 'pylsp'}
+local servers = { 'tsserver', 'gopls', 'pylsp'}
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,

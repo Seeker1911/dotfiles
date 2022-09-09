@@ -59,7 +59,7 @@ export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 export PIPENV_IGNORE_VIRTUALENVS=1
 
 if [ -x "$(command -v ipdb)" ]; then
-    export PYTHONBREAKPOINT="ipdb.set_trace()"
+    export PYTHONBREAKPOINT="ipdb.set_trace"
 fi
 
 # (updated .bashrc)

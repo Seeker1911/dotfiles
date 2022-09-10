@@ -8,28 +8,28 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use { "ellisonleao/gruvbox.nvim" }
-  use { 'wbthomason/packer.nvim' }
-  use { 'kyazdani42/nvim-web-devicons' }
-  use { 'neovim/nvim-lspconfig' }
-  -- Lazy loading:
-  -- Load on specific commands
-  use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-  use {'tpope/vim-rhubarb' }
- -- Post-install/update hook with neovim command
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use { 'junegunn/fzf', run = ':fzf#install()' }
-  use { 'junegunn/fzf.vim' }
-  use { 'nvim-telescope/telescope.nvim',
+    -- Packer can manage itself
+    use { "ellisonleao/gruvbox.nvim" }
+    use { 'wbthomason/packer.nvim' }
+    use { 'kyazdani42/nvim-web-devicons' }
+    use { 'neovim/nvim-lspconfig' }
+    -- Lazy loading:
+    -- Load on specific commands
+    use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
+    use {'tpope/vim-rhubarb' }
+    -- Post-install/update hook with neovim command
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 'junegunn/fzf', run = ':fzf#install()' }
+    use { 'junegunn/fzf.vim' }
+    use { 'nvim-telescope/telescope.nvim',
         requires = { 
                 {'nvim-lua/plenary.nvim'},
                 { "nvim-telescope/telescope-file-browser.nvim" },
                 { "nvim-telescope/telescope-github.nvim" },
         }
        }
-  use { 'simrat39/symbols-outline.nvim' }
-  use {
+    use { 'simrat39/symbols-outline.nvim' }
+    use {
       'sudormrfbin/cheatsheet.nvim',
       requires = {
         {'nvim-telescope/telescope.nvim'},
@@ -37,38 +37,39 @@ return require('packer').startup(function(use)
         {'nvim-lua/plenary.nvim'},
       }
       }
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'jose-elias-alvarez/null-ls.nvim' }
-  use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
-  use { 'sumneko/lua-language-server' }
-  use { 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'hrsh7th/cmp-nvim-lua' }
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
-  use { "alexghergh/nvim-tmux-navigation" }
-  use {
-  'nvim-lualine/lualine.nvim',
+    use { 'nvim-lua/plenary.nvim' }
+    use { 'jose-elias-alvarez/null-ls.nvim' }
+    use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
+    use { 'sumneko/lua-language-server' }
+    use { 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-nvim-lua' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
+    use { "alexghergh/nvim-tmux-navigation" }
+    use {
+    'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-  use { 'p00f/nvim-ts-rainbow' }
-  use { 'numToStr/Comment.nvim' }
-  use { 'daschw/leaf.nvim' }
-  use { 'jsit/toast.vim' }
-  use { 'edeneast/nightfox.nvim' }
-  use { 'tpope/vim-fugitive' }
-  use { 'hashicorp/terraform-ls' }
-  use { "williamboman/mason.nvim" }
-  use { "williamboman/mason-lspconfig.nvim" }
-  cmd([[
+    use { 'p00f/nvim-ts-rainbow' }
+    use { 'numToStr/Comment.nvim' }
+    use { 'daschw/leaf.nvim' }
+    use { 'jsit/toast.vim' }
+    use { 'edeneast/nightfox.nvim' }
+    use { 'tpope/vim-fugitive' }
+    use { 'hashicorp/terraform-ls' }
+    use { "williamboman/mason.nvim" }
+    use { "williamboman/mason-lspconfig.nvim" }
+    use{ "L3MON4D3/LuaSnip" }
+    cmd([[
      augroup packer_user_config
      autocmd!
      autocmd BufWritePost plugins.lua source <afile> | PackerCompile
      augroup end
-  ]])
+    ]])
 
-  if packer_bootstrap then  
+    if packer_bootstrap then  
     print('Running packer sync...')
     require('packer').sync()
-  end
+    end
 end)

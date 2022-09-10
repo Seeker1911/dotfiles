@@ -77,6 +77,7 @@ local lsp_defaults = {
   },
   capabilities = require('cmp_nvim_lsp').update_capabilities(
     vim.lsp.protocol.make_client_capabilities()
+
   ),
   on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
@@ -100,6 +101,9 @@ local cmp = require('cmp')
 local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
+  snippet = {expand = function(args)
+    require('luasnip').lsp_expand(args.body)
+  end},
   sources = {
     {name = 'nvim_lsp', keyword_length = 2},
     {name = 'buffer', keyword_length = 3},
@@ -161,19 +165,21 @@ cmp.setup({
 ---
 require("mason").setup()
 -- require("mason-lspconfig").setup()
+local to_install = { "sumneko_lua", "rust_analyzer", "gopls", "pylsp" }
 require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "rust_analyzer", "gopls", "pylsp" }
+    ensure_installed = to_install,
+    automatic_installation = true
 })
 
-local servers = { 'tsserver', 'gopls', 'pylsp'}
-for _, lsp in pairs(servers) do
+-- local servers = { 'tsserver', 'gopls', 'pylsp'}
+for _, lsp in pairs(to_install) do
   lspconfig[lsp].setup {
-    on_attach = on_attach,
+    on_attach = lsp_defaults.on_attach,
     flags = {
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
     },
-    capabilities = capabilities
+    capabilities = lsp_defaults.capabilities
   }
 end
 
@@ -181,8 +187,8 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 lspconfig.sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = lsp_defaults.on_attach,
+  capabilities = lsp_defaults.capabilities,
   settings = {
     Lua = {
       runtime = {

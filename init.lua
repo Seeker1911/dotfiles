@@ -62,8 +62,8 @@ vim.o.wildignore = 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,
 
 g.mapleader = ','
 g.laststatus = 3 -- global status line
-g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python"
-g.python_host_prog = "~/.pyenv/versions/neovim2/bin/python"
+-- g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
+-- g.python3_host_prog = "/Users/michaelmead/.pyenv/versions/3.9.6/bin/python"
 
 -- function to help remap vim commands
 local function map(mode, lhs, rhs, opts)

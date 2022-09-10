@@ -152,7 +152,7 @@ elif [[ $platform == 'macos' ]]; then
     # unset PROMPT_COMMAND
 fi
 
-alias vim='nvim'
+# alias vim='nvim'
 alias tmux='tmux -2'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
@@ -214,9 +214,30 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-  source "${VIRTUAL_ENV}/bin/activate"
-fi
+
+function nvimvenv {
+  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
+    if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+    fi
+    source "$VIRTUAL_ENV/bin/activate"
+    command nvim $@
+    deactivate
+  else
+    if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+    fi
+    command nvim $@
+  fi
+}
+
+alias vim=nvimvenv
+
+# if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+#   source "${VIRTUAL_ENV}/bin/activate"
+# fi
 
 
 # functions ----------------------------------------------------------------------------------------------------
@@ -276,7 +297,6 @@ function color {
 function cleanswap {
 	rm ~/.local/share/nvim/swap/*
 }
-
 # Run something, muting output or redirecting it to the debug stream
 # depending on the value of _ARC_DEBUG.
 __python_argcomplete_run() {

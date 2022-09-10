@@ -58,6 +58,8 @@ return require('packer').startup(function(use)
   use { 'edeneast/nightfox.nvim' }
   use { 'tpope/vim-fugitive' }
   use { 'hashicorp/terraform-ls' }
+  use { "williamboman/mason.nvim" }
+  use { "williamboman/mason-lspconfig.nvim" }
   cmd([[
      augroup packer_user_config
      autocmd!

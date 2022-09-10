@@ -159,6 +159,12 @@ cmp.setup({
 ---
 -- Language servers
 ---
+require("mason").setup()
+-- require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "sumneko_lua", "rust_analyzer", "gopls", "pylsp" }
+})
+
 local servers = { 'tsserver', 'gopls', 'pylsp'}
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {

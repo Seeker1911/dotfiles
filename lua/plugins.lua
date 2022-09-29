@@ -61,6 +61,18 @@ return require('packer').startup(function(use)
     use { "williamboman/mason.nvim" }
     use { "williamboman/mason-lspconfig.nvim" }
     use{ "L3MON4D3/LuaSnip" }
+    use { "anuvyklack/windows.nvim",
+       requires = {
+          "anuvyklack/middleclass",
+          "anuvyklack/animation.nvim"
+       },
+       config = function()
+          vim.o.winwidth = 10
+          vim.o.winminwidth = 10
+          vim.o.equalalways = false
+          require('windows').setup()
+       end
+    }
     cmd([[
      augroup packer_user_config
      autocmd!

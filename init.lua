@@ -87,6 +87,7 @@ map('n', '<leader>k', ':Telescope keymaps<CR>')
 map('n', '<leader>fb',':Telescope file_browser<CR>')
 map('n', '<leader>s', ':so ~/.background<CR>')
 map('n', '<leader>o', ':SymbolsOutline<CR>')
+map('n', '<leader>z', '<Cmd>WindowsMaximize<CR>')
 map('t', '<Esc>', '<C-\\><C-n>')
 
 

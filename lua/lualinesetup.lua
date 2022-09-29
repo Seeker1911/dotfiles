@@ -10,8 +10,9 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename',"require'lsp-status'.status()" },
+    -- lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = { {'FugitiveHead', icon = ''}, },
+    lualine_c = {'filename',"require'lsp-status'.status()", 'FugitiveStatusline()' },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -25,5 +26,5 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {},
-  extensions = {}
+  extensions = {'fugitive', 'fzf'}
 }

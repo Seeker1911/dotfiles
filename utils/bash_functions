@@ -514,7 +514,7 @@ xattr -d com.apple.quarantine $1
 # echo font attributes
 '\e[32;1mbold red\e[0mplain \e[4munderlined'
 
-function rename-files {
+function search-replace {
 # grep for first line in files and rename if pattern match
     for i in $(find . -type f -name asdf); 
     do [[ $(head -n 1 asdf | grep '#!/usr/bin/env python') ]] && ( tail -n +2 $i > $i.py; rm $i  );

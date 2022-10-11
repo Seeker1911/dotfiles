@@ -259,8 +259,7 @@ function sith {
 function burnt_toast {
     echo "color toast" > ~/.background
     echo "set background=dark" >> ~/.background
-    echo "let g:lualine_theme='everforest'" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    tmux source ${HOME}/dotfiles/tmux.conf
 }
 
 function solar {

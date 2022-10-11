@@ -256,11 +256,11 @@ function sith {
     # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
-function snow {
-    echo "color snow" > ~/.background
-    echo "set background=light" >> ~/.background
-    echo "let g:airline_theme='snow_light'" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux_snow.conf
+function burnt_toast {
+    echo "color toast" > ~/.background
+    echo "set background=dark" >> ~/.background
+    echo "let g:lualine_theme='everforest'" >> ~/.background
+    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
 }
 
 function solar {

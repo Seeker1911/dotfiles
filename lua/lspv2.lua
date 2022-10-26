@@ -18,13 +18,14 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
     bufmap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
     bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-    bufmap('n', 'gL', '<cmd>lua vim.lsp.diagnostic.set_loclist()()<cr>')
+    bufmap('n', 'gL', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>')
     bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
     bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
     bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
     bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
-    bufmap('n', '<F5>', '<cmd>lua vim.diagnostic.hide()<cr>')
+    bufmap('n', '<F5>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
+    bufmap('n', '<F6>', '<cmd>lua vim.diagnostic.hide()<cr>')
 
 
   end
@@ -214,3 +215,40 @@ lspconfig.sumneko_lua.setup {
     },
   },
 }
+
+lspconfig.pylsp.setup {
+  on_attach = lsp_defaults.on_attach,
+  capabilities = lsp_defaults.capabilities,
+  settings = {
+  configurationSources = {"flake8"},
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+            enabled = false,
+            ignore = {},
+            maxLineLength = 100
+        },
+        flake8 = {
+            enabled = true,
+            exclude = {},
+            indentSize = 4,
+            maxLineLength = 100
+        },
+        pylint = {
+            enabled = true,
+            exclude = {},
+        },
+        pyflakes = {
+            enabled = false,
+            exclude = {},
+        },
+        mypy = {enabled = false},
+        isort = {enabled = true},
+        black = {
+            enabled = true,
+            preview = true
+        },
+      }
+    }
+   },
+  }

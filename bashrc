@@ -118,6 +118,7 @@ elif [[ $platform == 'macos' ]]; then
   alias lc='ls -c' #List in column mode.
   alias lS='ls -S' #List by size.
   alias lt='ls -ltr' #List by time and date.
+  alias brew='arch -arm64 brew'
   export GOOS=darwin
   if [ -d "/Applications/Firefox Developer Edition.app" ]; then
       alias fire='open -a "/Applications/Firefox Developer Edition.app" $1'

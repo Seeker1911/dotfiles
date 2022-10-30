@@ -13,5 +13,6 @@ python-dotenv
 python-lsp-jsonrpc
 python-lsp-server
 pyls-isort 
+pyls-black 
 python-lsp-black 
 pdbpp

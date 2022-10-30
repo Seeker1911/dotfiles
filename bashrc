@@ -327,3 +327,4 @@ _python_argcomplete() {
         compopt -o nospace
     fi
 }
+eval "$(direnv hook bash)"

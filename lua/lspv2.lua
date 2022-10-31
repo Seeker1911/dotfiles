@@ -76,10 +76,8 @@ local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require('cmp_nvim_lsp').default_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-
-  ),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    --vim.lsp.protocol.make_client_capabilities()
   on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
   end
@@ -97,8 +95,14 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 -- Autocomplete
 ---
 
-
 local cmp = require('cmp')
+cmp.setup {
+  sources = {
+    { name = 'nvim_lsp' }
+  }
+}
+
+
 local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({

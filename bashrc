@@ -327,4 +327,6 @@ _python_argcomplete() {
         compopt -o nospace
     fi
 }
-eval "$(direnv hook bash)"
+if [ -x "$(command -v direnv)" ]; then
+	eval "$(direnv hook bash)"
+fi

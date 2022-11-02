@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
     bufmap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
     bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-    bufmap('n', 'gL', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>')
+    bufmap('n', 'gL', '<cmd>lua vim.diagnostic.setqflist()<cr>')
     bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
     bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')

@@ -2,8 +2,14 @@ require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
+    layout_strategy = 'horizontal',
+    layout_config = {
+        width = 0.4,
+        height = 0.4
+      -- horizontal = { width = 0.4 }
+    },
     file_ignore_patterns = {"node_modules", "build", ".git/"},
-    prompt_prefix=🔍,
+    prompt_prefix='🔍 >',
     mappings = {
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)

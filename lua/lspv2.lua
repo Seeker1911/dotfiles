@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
     bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
     bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+    bufmap('n', 'gR', ':Telescope lsp_references<cr>')
     bufmap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
     bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
     bufmap('n', 'gL', '<cmd>lua vim.diagnostic.setqflist()<cr>')

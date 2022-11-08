@@ -12,6 +12,7 @@ require('telescopesetup')
 require('web_icons')
 require('tmux_nav')
 require('Comment').setup()
+require('symbols-outline').setup()
 
 cmd([[colorscheme gruvbox]]) -- may be overidden at end of file
 g.gruvbox_contrast_dark = 'soft'

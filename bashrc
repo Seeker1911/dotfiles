@@ -57,6 +57,7 @@ export CHTSH_QUERY_OPTIONS="style=native"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 export PIPENV_IGNORE_VIRTUALENVS=1
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 if [ -x "$(command -v ipdb)" ]; then
     export PYTHONBREAKPOINT="ipdb.set_trace"
@@ -86,7 +87,7 @@ load_nvm() {
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
-load_nvm
+# load_nvm
 
 # This gets node & friends into the path but doesn't initialize nvm proper until needed
 lasy_load_nvm() {
@@ -95,7 +96,7 @@ lasy_load_nvm() {
     export NVM_CD_FLAGS=""
     alias nvm="echo 'Please wait while nvm loads' && unset NVM_CD_FLAGS && pathremove $NVM_BIN && unset NVM_BIN && unalias nvm && load_nvm && nvm $@"
 }
-# lasy_load_nvm
+lasy_load_nvm
 
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then

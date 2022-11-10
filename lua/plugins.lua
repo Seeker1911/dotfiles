@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
     use { "williamboman/mason.nvim" }
     use { "williamboman/mason-lspconfig.nvim" }
     use{ "L3MON4D3/LuaSnip" }
+    use { "shatur/neovim-ayu" }
     use { "anuvyklack/windows.nvim",
        requires = {
           "anuvyklack/middleclass",

@@ -30,8 +30,8 @@ window:
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
   dimensions:
-    columns: 400
-    lines: 200
+    columns: 0
+    lines: 0
 
   # Window position (changes require restart)
   #
@@ -46,8 +46,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 0
-    y: 0
+    x: 2
+    y: 2
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -78,12 +78,12 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: SimpleFullscreen
+  # startup_mode: SimpleFullscreen
 
   # Window title
-  #title: Alacritty
+  title: Encom Linux Shell
 
-  # Allow terminal applications to change Alacritty's window title.
+  # Allow terminal applications to change Alacritty's window titleAlacritty.
   #dynamic_title: true
 
   # Window class (Linux/BSD only):
@@ -176,7 +176,7 @@ font:
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`.
-  use_thin_strokes: true
+  # use_thin_strokes: true
 
   # Use built-in font for box drawing characters.
   #
@@ -304,7 +304,7 @@ sobrio-light: &sobrio-light # Default colors
     white: '#ffffff'
 
 # colors: *sobrio-light
-colors: *light
+colors: *dark
 
 
   # Indexed Colors
@@ -391,7 +391,7 @@ colors: *light
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    #blinking: Off
+    # blinking: On
 
   # Vi mode cursor style
   #
@@ -413,7 +413,7 @@ colors: *light
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #

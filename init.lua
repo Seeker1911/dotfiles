@@ -19,6 +19,7 @@ g.gruvbox_contrast_dark = 'soft'
 
 opt.hidden = true
 -- opt.autoread = true
+opt.history = 1000
 opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 opt.ignorecase = true
 opt.termguicolors = true

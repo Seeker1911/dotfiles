@@ -258,8 +258,14 @@ function sith {
     # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
-function burnt_toast {
+function burnt-toast {
     echo "color toast" > ~/.background
+    echo "set background=dark" >> ~/.background
+    tmux source ${HOME}/dotfiles/tmux.conf
+}
+
+function ayu-mirage {
+    echo "color ayu-mirage" > ~/.background
     echo "set background=dark" >> ~/.background
     tmux source ${HOME}/dotfiles/tmux.conf
 }

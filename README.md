@@ -6,7 +6,7 @@
 Bash, Neovim, Tmux, Iterm, Alacritty
 
 ### Plugin Manager
-[Vim Plug](https://github.com/junegunn/vim-plug)
+[packer](https://github.com/wbthomason/packer.nvim)
 
 
 ### Setup

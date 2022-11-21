@@ -6,8 +6,8 @@ require('telescope').setup{
     -- config_key = value,
     layout_strategy = 'horizontal',
     layout_config = {
-        width = 0.4,
-        height = 0.4
+        width = 0.7,
+        height = 0.7
       -- horizontal = { width = 0.4 }
     },
     file_ignore_patterns = {"node_modules", "build", ".git/"},

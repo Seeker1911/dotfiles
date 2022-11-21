@@ -42,7 +42,8 @@ require('telescope').setup{
     -- }
     -- please take a look at the readme of the extension you want to configure
     file_browser = {
-      theme = "dropdown",
+      theme = "ivy",
+      hijack_netrw = true,
       mappings = {
         ["i"] = {
           -- your custom insert mode mappings

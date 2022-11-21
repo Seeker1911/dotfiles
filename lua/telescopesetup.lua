@@ -52,7 +52,6 @@ require('telescope').setup{
           -- your custom normal mode mappings
         },
       },
-    },
   }
 }
 -- you need to call load_extension, somewhere after setup function:

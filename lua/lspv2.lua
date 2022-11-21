@@ -224,6 +224,7 @@ end
 
 
 lspconfig.pylsp.setup {
+    -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {
@@ -237,23 +238,25 @@ lspconfig.pylsp.setup {
                 },
                 flake8 = {
                     enabled = true,
-                    exclude = {},
+                    ignore = {},
                     indentSize = 4,
-                    maxLineLength = 100
+                    maxLineLength = 100,
+                    indentSize = 4,
                 },
                 pylint = {
-                    enabled = true,
-                    exclude = {},
+                    enabled = false,
+                    ignore = {"C0116"},
                 },
                 pyflakes = {
                     enabled = false,
                     exclude = {},
                 },
-                mypy = { enabled = false },
+                mypy = { enabled = true },
                 isort = { enabled = true },
                 black = {
                     enabled = true,
-                    preview = true
+                    preview = true,
+                    line_length = 100,
                 },
             }
         }

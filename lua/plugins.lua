@@ -62,12 +62,6 @@ return require('packer').startup(function(use)
     use { "williamboman/mason-lspconfig.nvim" }
     use{ "L3MON4D3/LuaSnip" }
     use { "shatur/neovim-ayu" }
-    use { "anuvyklack/windows.nvim",
-       requires = {
-          "anuvyklack/middleclass",
-          "anuvyklack/animation.nvim"
-       },
-   }
     use {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
@@ -77,12 +71,18 @@ return require('packer').startup(function(use)
         }
       end
     }
-       config = function()
-          vim.o.winwidth = 10
-          vim.o.winminwidth = 10
-          vim.o.equalalways = false
-          require('windows').setup()
-       end
+    use {
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      },
+      tag = 'nightly', -- optional, updated every week. (see issue #1193)
+      cmd = {'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeFindFile'},
+      config = function()
+        require("nvim-tree").setup {
+        }
+      end
+    }
 
     cmd([[
      augroup packer_user_config

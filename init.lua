@@ -13,16 +13,21 @@ require('web_icons')
 require('tmux_nav')
 require('Comment').setup()
 require('symbols-outline').setup()
+--require("nvim-tree").setup()
+
+-- disable netrw in favor of nvim-tree & telescope file_browser
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 cmd([[colorscheme gruvbox]]) -- may be overidden at end of file
 g.gruvbox_contrast_dark = 'soft'
 
+opt.termguicolors = true
 opt.hidden = true
 -- opt.autoread = true
 opt.history = 1000
 opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 opt.ignorecase = true
-opt.termguicolors = true
 opt.wrap = false
 opt.number = true
 opt.background = 'dark'
@@ -90,7 +95,7 @@ map('n', '<leader>k', ':Telescope keymaps<CR>')
 map('n', '<leader>fb', ':Telescope file_browser<CR>')
 map('n', '<leader>s', ':so ~/.background<CR>')
 map('n', '<leader>o', ':SymbolsOutline<CR>')
-map('n', '<leader>z', '<Cmd>WindowsMaximize<CR>')
+map('n', '<leader>n', ':NvimTreeToggle<CR>')
 map('t', '<Esc>', '<C-\\><C-n>')
 
 

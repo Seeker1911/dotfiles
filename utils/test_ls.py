@@ -1,15 +1,26 @@
 import foo
 import math
-id
-def hi():
+from dataclasses import dataclass
+
+
+@dataclass
+class myClass:
+    name: str
+
+
+id = myClass(name=4)
+def hi() -> str:
     print('hello')
 
-def none():
+def none()-> int:
     """here is a docstring"""
     print( not_a_variable)
+    return 1
 
-hi
-# TODO: something should be bitching about this line length
+hi: str
+
+
+# TODO: fix line lenght
 'aaaaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaq'
 
    

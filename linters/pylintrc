@@ -4,4 +4,4 @@ ignore=tests/*
 [MESSAGES CONTROL]
 
 [FORMAT]
-max-line-length=120
+max-line-length=100

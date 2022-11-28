@@ -67,7 +67,7 @@ return require('packer').startup(function(use)
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
         require("trouble").setup {
-            use_diagnostic_signs = true
+            use_diagnostic_signs = true,
         }
       end
     }
@@ -83,6 +83,12 @@ return require('packer').startup(function(use)
         }
       end
     }
+    --  use {
+    --     "nvim-zh/colorful-winsep.nvim",
+    --     config = function ()
+    --         require('colorful-winsep').setup()
+    --     end
+    -- }   
 
     cmd([[
      augroup packer_user_config

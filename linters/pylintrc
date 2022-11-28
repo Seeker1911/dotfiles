@@ -2,6 +2,11 @@
 ignore=tests/*
 
 [MESSAGES CONTROL]
+disable=
+    too-few-public-methods,
+    missing-docstrings,
+    missing-module-docstrings
+    missing-function-docstrings
 
 [FORMAT]
 max-line-length=100

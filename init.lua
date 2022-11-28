@@ -12,7 +12,7 @@ require('telescopesetup')
 require('web_icons')
 require('tmux_nav')
 require('Comment').setup()
-require('symbols-outline').setup()
+require('symbols-setup')
 --require("nvim-tree").setup()
 
 -- disable netrw in favor of nvim-tree & telescope file_browser

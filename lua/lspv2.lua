@@ -245,7 +245,7 @@ lspconfig.pylsp.setup {
                 pylint = {
                     enabled = true,
                     maxLineLength = 100,
-                    -- ignore = {"C0116"},
+                    args={'--rcfile', '~/config/pylintrc'}
                 },
                 pyflakes = {
                     enabled = false,

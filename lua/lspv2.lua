@@ -245,14 +245,14 @@ lspconfig.pylsp.setup {
                 pylint = {
                     enabled = true,
                     maxLineLength = 100,
-                    args={'--rcfile', '~/config/pylintrc'}
+                    args={'--rcfile ~/.config/pylintrc'}
                 },
                 pyflakes = {
                     enabled = false,
                     exclude = {},
                 },
                 mypy = { enabled = true },
-                pyright = { enabled = true },
+                pyright = { enabled = false },
                 isort = { enabled = true },
                 black = {
                     enabled = true,

@@ -63,3 +63,4 @@ yarn.lock
 .vimspector.json
 ~/code/web-api/stogo/docker-compose.yml
 **pyproject.toml
+.ruff_cache/

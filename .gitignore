@@ -8,3 +8,4 @@ neovim3
 viminfo
 nvim_log*
 .git/
+.ruff_cache/

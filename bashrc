@@ -10,11 +10,11 @@ fi
 if [[ $platform == 'linux' ]]; then
     # gruvbox ps1
     export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
-    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
+    # [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh
 elif [[ $platform == 'macos' ]]; then
     # gruvbox ps1
     export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\[\033[38;5;172m\]\w\[\033[m\]\$ "
-    [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
+    # [ -n "$PS1" ] && sh ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
 
 fi
 
@@ -87,7 +87,7 @@ load_nvm() {
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
-# load_nvm
+load_nvm
 
 # This gets node & friends into the path but doesn't initialize nvm proper until needed
 lasy_load_nvm() {
@@ -96,7 +96,7 @@ lasy_load_nvm() {
     export NVM_CD_FLAGS=""
     alias nvm="echo 'Please wait while nvm loads' && unset NVM_CD_FLAGS && pathremove $NVM_BIN && unset NVM_BIN && unalias nvm && load_nvm && nvm $@"
 }
-lasy_load_nvm
+# lasy_load_nvm
 
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then

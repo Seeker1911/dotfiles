@@ -6,14 +6,13 @@ HOME = os.getenv("HOME")
 require('plugins')
 require('lspv2')
 require('terraformsetup')
--- require('treesitter')
+require('treesitter')
 require('lualinesetup')
 require('telescopesetup')
 require('web_icons')
 require('tmux_nav')
 require('Comment').setup()
 require('symbols-setup')
---require("nvim-tree").setup()
 
 -- disable netrw in favor of nvim-tree & telescope file_browser
 g.loaded_netrw = 1

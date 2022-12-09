@@ -1,5 +1,4 @@
 local lspconfig = require("lspconfig")
-local null_ls = require("null-ls")
 local buf_map = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
         silent = true,
@@ -23,6 +22,7 @@ lspconfig.tsserver.setup({
         on_attach(client, bufnr)
     end,
 })
+local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.diagnostics.eslint_d,

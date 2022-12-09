@@ -9,21 +9,24 @@ class myClass:
 
 
 id = myClass(name=4)
-def hi() -> str:
-    print('hello')
 
-def none()-> int:
+
+def hi() -> str:
+    print("hello")
+
+
+def none() -> int:
     """here is a docstring"""
-    print( not_a_variable)
+    print(not_a_variable)
     return 1
+
 
 hi: str
 
 
 # TODO: fix line lenght
-'aaaaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaq'
+"aaaaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaqaaaq"
 
-   
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     hi()
-

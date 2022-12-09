@@ -19,6 +19,7 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
 cmd([[colorscheme gruvbox]]) -- may be overidden at end of file
+-- cmd('syntax enable')
 g.gruvbox_contrast_dark = 'soft'
 
 opt.termguicolors = true

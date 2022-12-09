@@ -4,9 +4,9 @@ ignore=tests/*
 [MESSAGES CONTROL]
 disable=
     too-few-public-methods,
-    missing-docstrings,
-    missing-module-docstrings
-    missing-function-docstrings
+    missing-docstring,
+    missing-module-docstring,
+    missing-function-docstring,
 
 [FORMAT]
 max-line-length=100

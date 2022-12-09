@@ -172,7 +172,7 @@ cmp.setup({
 require("mason").setup()
 -- local to_install = { "sumneko_lua", "rust_analyzer", "gopls", "pylsp" }
 local to_install = { "rust_analyzer", "gopls", "pylsp", "pyright" }
-local defaults = { "rust_analyzer", "gopls", "denols", "pyright" }
+local defaults = { "rust_analyzer", "gopls", "denols"}
 require("mason-lspconfig").setup({
     ensure_installed = to_install,
     automatic_installation = false
@@ -225,10 +225,11 @@ lspconfig.sumneko_lua.setup {
 
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+    enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {
-        configurationSources = { "flake8" },
+        -- configurationSources = { "flake8" },
         pylsp = {
             plugins = {
                 pycodestyle = {
@@ -263,3 +264,22 @@ lspconfig.pylsp.setup {
         }
     },
 }
+
+
+-- local ok, null_ls = pcall(require, "null-ls")
+-- if not ok then
+--   return
+-- end
+-- null_ls.setup({
+--     debug = true,
+--     sources = {
+--         -- null_ls.builtins.diagnostics.ruff.with({
+--         --     extra_args = {"--line-length", "120"},
+--         -- }),
+--         null_ls.builtins.formatting.black.with({ 
+--             filetypes = {"python"}
+--     }),
+--     },
+--     on_attach = lsp_defaults.on_attach,
+--     -- capabilities = lsp_defaults.capabilities,
+-- })

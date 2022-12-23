@@ -18,7 +18,13 @@ return require('packer').startup(function(use)
     use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
     use {'tpope/vim-rhubarb' }
     -- Post-install/update hook with neovim command
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
     use { 'junegunn/fzf', run = 'fzf#install()' }
     use { 'junegunn/fzf.vim' }
     use { 'nvim-telescope/telescope.nvim',

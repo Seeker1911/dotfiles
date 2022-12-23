@@ -37,6 +37,11 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.termguicolors = true
 opt.shell = 'bash -l'
+opt.foldmethod='expr'
+opt.foldexpr='nvim_treesitter#foldexpr()'
+-- opt.nofoldenable = true
+opt.foldnestmax = 3
+opt.foldminlines = 1
 
 vim.o.scrolloff = 3
 vim.o.wrap = false

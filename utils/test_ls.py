@@ -1,8 +1,7 @@
-import foo
-import math
 from dataclasses import dataclass
+from typing import List
 
-
+foo
 @dataclass
 class myClass:
     name: str
@@ -11,14 +10,15 @@ class myClass:
 id = myClass(name=4)
 
 
-def hi() -> str:
+def hi() -> int:
     print("hello")
+    return 'x'
 
 
-def none() -> int:
+def none() -> List[int]:
     """here is a docstring"""
     print(not_a_variable)
-    return 1
+    return 'x'
 
 
 hi: str

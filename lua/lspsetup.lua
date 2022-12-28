@@ -45,7 +45,7 @@ sign({ name = 'DiagnosticSignHint', text = " " })
 sign({ name = 'DiagnosticSignInfo', text = '' })
 
 vim.diagnostic.config({
-    virtual_text = true,
+    virtual_text = false,
     signs = true,
     severity_sort = true,
     float = {

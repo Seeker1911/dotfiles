@@ -71,7 +71,7 @@ return require('packer').startup(function(use)
     use { "williamboman/mason.nvim" }
     use { "williamboman/mason-lspconfig.nvim"} --, after = 'mason.nvim' }
     use { 'neovim/nvim-lspconfig'} --, after = 'mason.nvim' }
-    use { 'jose-elias-alvarez/null-ls.nvim' } --, after = 'nvim-lspconfig' }
+    use { 'jose-elias-alvarez/null-ls.nvim'  , after = 'nvim-lspconfig' }
     use { "shatur/neovim-ayu" }
     use {
       "folke/trouble.nvim",

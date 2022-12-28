@@ -48,6 +48,7 @@ vim.diagnostic.config({
     virtual_text = false,
     signs = true,
     severity_sort = true,
+    update_in_insert = true,
     float = {
         border = 'rounded',
         source = 'always',
@@ -72,6 +73,33 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 ---
 -- capabilities
 ---
+local kind_icons = {
+  Text = "",
+  Method = "m",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "",
+  Interface = "",
+  Module = "",
+  Property = "",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
 local cmp = require('cmp')
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
@@ -80,23 +108,26 @@ cmp.setup({
     end },
     sources = {
         { name = 'nvim_lsp', keyword_length = 2 },
-        { name = 'buffer', keyword_length = 3 },
         { name = 'nvim_lsp_signature_help' },
-        { name = 'luasnip' },
         { name = 'nvim_lua' },
-    },{
-        {name = 'buffer'}
+        { name = 'luasnip' },
+        { name = 'buffer', keyword_length = 3 },
     },
+    -- {
+    --     {name = 'buffer'}
+    -- },
     window = {
         documentation = cmp.config.window.bordered()
     },
     formatting = {
         fields = { 'menu', 'abbr', 'kind' },
         format = function(entry, item)
+            item.kind = string.format("%s", kind_icons[item.kind])
             local menu_icon = {
                 nvim_lsp = 'λ',
+                nvim_lua = '[nvim-lua]',
                 buffer = 'Ω',
-                luasnip = 'SNIP',
+                luasnip = kind_icons.Snippet,
             }
 
             item.menu = menu_icon[entry.source.name]
@@ -177,7 +208,7 @@ require("mason-lspconfig").setup({
     root_dir = function() return vim.loop.cwd() end
 })
 
-Defaults = { "rust_analyzer", "gopls", "denols"}
+Defaults = { "rust_analyzer", "gopls", "denols", "sumneko_lua"}
 for _, lsp in pairs(Defaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,
@@ -190,13 +221,40 @@ end
 ---
 -- LSP Config
 ---
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+lspconfig.sumneko_lua.setup {
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = runtime_path,
+            },
+            diagnostics = {
+                globals = { 'vim' }
+            },
+            workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file('', true),
+            checkThirdParty = false,
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+              enable = false,
+            },
+        }
+    }
+}
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
     enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {
-        -- configurationSources = { "flake8", "pycodestyle", "pylint" },
+        configurationSources = { "pylint" },
         pylsp = {
             plugins = {
                 pycodestyle = {
@@ -214,6 +272,9 @@ lspconfig.pylsp.setup {
                     enabled = true,
                     maxLineLength = 100,
                     args={'--rcfile ~/.config/pylintrc'}
+                },
+                mypy = {
+                    enabled = false,
                 },
                 pyflakes = {
                     enabled = false,
@@ -237,14 +298,15 @@ local b = null_ls.builtins
 
 local sources = {
   -- format html and markdown
-  b.formatting.prettierd.with { filetypes = { "html", "yaml", "markdown" } },
+  -- b.formatting.prettierd.with { filetypes = { "html", "yaml", "markdown" } },
   -- markdown diagnostic
-  b.diagnostics.markdownlint.with { filetypes = { "markdown" }},
-  -- python formatting
-  b.formatting.black.with { filetypes = { "python" }},
-  b.formatting.isort.with { filetypes = { "python" }},
+  -- b.diagnostics.markdownlint.with { filetypes = { "markdown" }},
+  -- -- python formatting
+  -- b.formatting.black.with { filetypes = { "python" }},
+  -- b.formatting.isort.with { filetypes = { "python" }},
+  -- TODO: mypy: [import] Cannot find implementation or library stub for module named "im" (mypy)
   b.diagnostics.mypy.with { filetypes = { "python" }},
-  b.completion.luasnip,
+  -- b.completion.luasnip,
   -- TODO: worth investigation
   -- b.diagnostics.ruff.with { filetypes = { "python" }},
   -- b.formatting.ruff,
@@ -274,12 +336,30 @@ local on_attach = function(client, bufnr)
   end
 end
 null_ls.setup {
-  debug = false,
+  debug = true,
+  -- log_level = "error",
   sources = sources,
-  notify_format = "[null-ls] %s",
-  on_attach = on_attach,
+  diagnostics_format ="[#{c}] #{m} (#{s})",
+  notify_format = "[NULL-LS] %s",
+  -- on_attach = on_attach,
   root_dir = function() return vim.loop.cwd() end,
-  prefer_local = true,
-  capabilities = capabilities,
+  -- prefer_local = true,
+  -- capabilities = capabilities,
+  -- should_attach = function(bufnr)
+  --       return not vim.api.nvim_buf_get_name(bufnr):match("^git://")
+  --   end,
 }
 
+for _, source in pairs(sources) do
+    print(null_ls.is_registered(source))
+    local bufnr = vim.api.nvim_get_current_buf()
+    local id = vim.lsp.get_client_by_id()
+    if not vim.lsp.buf_is_attached(bufnr, id) then
+        print(id)
+        print(source.name)
+        print('not attached')
+        -- vim.lsp.buf_attach_client(bufnr)
+    else
+        print('attached')
+    end
+end

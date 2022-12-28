@@ -5,8 +5,6 @@ from im import test_import
 
 test_import()
 foo
-
-
 @dataclass
 class myClass:
     name: str
@@ -19,6 +17,8 @@ def hi() -> int:
     print("hello")
     return "x"
 
+def foo():
+    pass
 
 def none() -> List[int]:
     """here is a docstring"""

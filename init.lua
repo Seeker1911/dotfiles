@@ -4,7 +4,8 @@ local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options
 HOME = os.getenv("HOME")
 require('plugins')
-require('lspv2')
+-- require('lspv2')
+require('lspsetup')
 require('terraformsetup')
 require('treesitter')
 require('lualinesetup')
@@ -18,8 +19,8 @@ require('symbols-setup')
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
+cmd('syntax enable')
 cmd([[colorscheme gruvbox]]) -- may be overidden at end of file
--- cmd('syntax enable')
 g.gruvbox_contrast_dark = 'soft'
 
 opt.termguicolors = true
@@ -41,7 +42,7 @@ opt.foldmethod='expr'
 opt.foldexpr='nvim_treesitter#foldexpr()'
 -- opt.nofoldenable = true
 opt.foldnestmax = 3
-opt.foldminlines = 1
+opt.foldminlines = 4
 
 vim.o.scrolloff = 3
 vim.o.wrap = false
@@ -113,3 +114,31 @@ if file_exists(HOME .. "/.background")
 then
     cmd('source ~/.background')
 end
+
+
+local vim = vim
+local api = vim.api
+local M = {}
+-- function to create a list of commands and convert them to autocommands
+-------- This function is taken from https://github.com/norcalli/nvim_utils
+function M.nvim_create_augroups(definitions)
+    for group_name, definition in pairs(definitions) do
+        api.nvim_command('augroup '..group_name)
+        api.nvim_command('autocmd!')
+        for _, def in ipairs(definition) do
+            local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+            api.nvim_command(command)
+        end
+        api.nvim_command('augroup END')
+    end
+end
+
+
+local autoCommands = {
+    -- other autocommands
+    open_folds = {
+        {"BufReadPost,FileReadPost", "*", "normal zR"}
+    }
+}
+
+-- M.nvim_create_augroups(autoCommands)

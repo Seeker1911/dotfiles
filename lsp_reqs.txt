@@ -1,5 +1,5 @@
-# also need pyright from npm
 mypy
+pylsp-mypy
 mypy-extensions
 pycodestyle
 pycparser
@@ -13,6 +13,6 @@ python-dotenv
 python-lsp-jsonrpc
 python-lsp-server
 pyls-isort 
-pyls-black 
 python-lsp-black 
 pdbpp
+ipdb

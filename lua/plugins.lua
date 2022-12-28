@@ -12,7 +12,6 @@ return require('packer').startup(function(use)
     use { "ellisonleao/gruvbox.nvim" }
     use { 'wbthomason/packer.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
-    use { 'neovim/nvim-lspconfig' }
     -- Lazy loading:
     -- Load on specific commands
     use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
@@ -44,15 +43,19 @@ return require('packer').startup(function(use)
       }
       }
     use { 'nvim-lua/plenary.nvim' }
-    use { 'jose-elias-alvarez/null-ls.nvim' }
     use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
     use { 'sumneko/lua-language-server' }
+    use { "L3MON4D3/LuaSnip",
+        -- wants = 'friendly-snippets',
+        run = "make install_jsregexp",
+        after = 'nvim-cmp',
+    }
+    use { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' }
     use { 'hrsh7th/nvim-cmp' }
-    use { 'hrsh7th/cmp-nvim-lsp' }
-    use { 'hrsh7th/cmp-nvim-lua' }
-    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-nvim-lua' , after = 'cmp_luasnip' }
+    use { 'hrsh7th/cmp-nvim-lsp'} --, after = 'cmp-nvim-lua' }
+    use { 'hrsh7th/cmp-buffer', after = 'cmp-nvim-lsp' }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
-    use { "alexghergh/nvim-tmux-navigation" }
     use {
     'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -62,11 +65,13 @@ return require('packer').startup(function(use)
     use { 'daschw/leaf.nvim' }
     use { 'jsit/toast.vim' }
     use { 'edeneast/nightfox.nvim' }
+    use { "alexghergh/nvim-tmux-navigation" }
     use { 'tpope/vim-fugitive' }
     use { 'hashicorp/terraform-ls' }
     use { "williamboman/mason.nvim" }
-    use { "williamboman/mason-lspconfig.nvim" }
-    use{ "L3MON4D3/LuaSnip" }
+    use { "williamboman/mason-lspconfig.nvim"} --, after = 'mason.nvim' }
+    use { 'neovim/nvim-lspconfig'} --, after = 'mason.nvim' }
+    use { 'jose-elias-alvarez/null-ls.nvim' } --, after = 'nvim-lspconfig' }
     use { "shatur/neovim-ayu" }
     use {
       "folke/trouble.nvim",

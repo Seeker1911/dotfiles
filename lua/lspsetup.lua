@@ -1,3 +1,6 @@
+require('cmpsetup')
+require('nls')
+
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
     desc = 'LSP actions',
@@ -40,9 +43,10 @@ local sign = function(opts)
     })
 end
 sign({ name = 'DiagnosticSignError', text = '✘' })
+-- sign({ name = 'DiagnosticSignError', text = 'ﮊ' })
 sign({ name = 'DiagnosticSignWarn', text = " "})
 sign({ name = 'DiagnosticSignHint', text = " " })
-sign({ name = 'DiagnosticSignInfo', text = '' })
+sign({ name = 'DiagnosticSignInfo', text = ''})
 
 vim.diagnostic.config({
     virtual_text = false,
@@ -70,105 +74,6 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
     }
 )
 
----
--- capabilities
----
-local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-local cmp = require('cmp')
-local select_opts = { behavior = cmp.SelectBehavior.Select }
-cmp.setup({
-    snippet = { expand = function(args)
-        require('luasnip').lsp_expand(args.body)
-    end },
-    sources = {
-        { name = 'nvim_lsp', keyword_length = 2 },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'nvim_lua' },
-        { name = 'luasnip' },
-        { name = 'buffer', keyword_length = 3 },
-    },
-    -- {
-    --     {name = 'buffer'}
-    -- },
-    window = {
-        documentation = cmp.config.window.bordered()
-    },
-    formatting = {
-        fields = { 'menu', 'abbr', 'kind' },
-        format = function(entry, item)
-            item.kind = string.format("%s", kind_icons[item.kind])
-            local menu_icon = {
-                nvim_lsp = 'λ',
-                nvim_lua = '[nvim-lua]',
-                buffer = 'Ω',
-                luasnip = kind_icons.Snippet,
-            }
-
-            item.menu = menu_icon[entry.source.name]
-            return item
-        end,
-    },
-    mapping = {
-        ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
-        ['<Down>'] = cmp.mapping.select_next_item(select_opts),
-
-        ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-        ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-
-
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            local col = vim.fn.col('.') - 1
-
-            if cmp.visible() then
-                cmp.select_next_item(select_opts)
-            elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-                fallback()
-            else
-                cmp.complete()
-            end
-        end, { 'i', 's' }),
-
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item(select_opts)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-    },
-})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp_defaults = {
@@ -286,80 +191,3 @@ lspconfig.pylsp.setup {
         }
     },
 }
-
----
--- NULL-LS
----
-local ok, null_ls = pcall(require, "null-ls")
-if not ok then
-  print("NULL_LS NOT FOUND")
-end
-local b = null_ls.builtins
-
-local sources = {
-  -- format html and markdown
-  -- b.formatting.prettierd.with { filetypes = { "html", "yaml", "markdown" } },
-  -- markdown diagnostic
-  -- b.diagnostics.markdownlint.with { filetypes = { "markdown" }},
-  -- -- python formatting
-  -- b.formatting.black.with { filetypes = { "python" }},
-  -- b.formatting.isort.with { filetypes = { "python" }},
-  -- TODO: mypy: [import] Cannot find implementation or library stub for module named "im" (mypy)
-  b.diagnostics.mypy.with { filetypes = { "python" }},
-  -- b.completion.luasnip,
-  -- TODO: worth investigation
-  -- b.diagnostics.ruff.with { filetypes = { "python" }},
-  -- b.formatting.ruff,
-  --
-  -- NOTE: ex. of custom command
-  -- b.diagnostics.mypy.with({
-  --     command = vim.fn.system({ "which", "mypy" }):gsub("[\n]", ""),
-  --     print(vim.fn.system({ "which", "mypy" }):gsub("[\n]", "")),
-  --
-  --    }),
-}
-
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local on_attach = function(client, bufnr)
-  vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
-  if client.supports_method "textDocument/formatting" then
-    vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-        -- < 0.8 use vim.lsp.buf.formatting_sync()
-        vim.lsp.buf.format({ bufnr = bufnr })
-        end,
-    })
-  end
-end
-null_ls.setup {
-  debug = true,
-  -- log_level = "error",
-  sources = sources,
-  diagnostics_format ="[#{c}] #{m} (#{s})",
-  notify_format = "[NULL-LS] %s",
-  -- on_attach = on_attach,
-  root_dir = function() return vim.loop.cwd() end,
-  -- prefer_local = true,
-  -- capabilities = capabilities,
-  -- should_attach = function(bufnr)
-  --       return not vim.api.nvim_buf_get_name(bufnr):match("^git://")
-  --   end,
-}
-
-for _, source in pairs(sources) do
-    print(null_ls.is_registered(source))
-    local bufnr = vim.api.nvim_get_current_buf()
-    local id = vim.lsp.get_client_by_id()
-    if not vim.lsp.buf_is_attached(bufnr, id) then
-        print(id)
-        print(source.name)
-        print('not attached')
-        -- vim.lsp.buf_attach_client(bufnr)
-    else
-        print('attached')
-    end
-end

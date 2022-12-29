@@ -2,72 +2,50 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 if [[ -z "${XDG_CONFIG_HOME}" ]]; then
-    echo "no config home"
-    export XDG_CONFIG_HOME=~/.config
-else
-    echo "has config home"
+    export XDG_CONFIG_HOME=$HOME/.config
 fi
 ########## Variables
 
-bindir=~/bin                      # bin directory
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/.dotfiles_old             # old dotfiles backup directory
+bindir=$HOME/bin                      # bin directory
+dir=$HOME/dotfiles                    # dotfiles directory
+olddir=$HOME/.dotfiles_old             # old dotfiles backup directory
 configdir=$XDG_CONFIG_HOME               # config directory
 nvimdir=$XDG_CONFIG_HOME/nvim            # nvim directory
 luadir=$nvimdir/lua
-alacrittydir=$XDG_CONFIG_HOME/alacritty            # nvim directory
-vimfiledir=~/dotfiles/vim
+alacrittydir=$XDG_CONFIG_HOME/alacritty
 
-homeFiles="bashrc bash_profile vim vimrc viminfo tmux.conf gitignore_global gitconfig Xresources ideavimrc vim_background"    # list of files/folders to symlink in homedir
-configFiles="pycodestyle flake8 pylintrc starship.toml"
-vimFiles="autoload/plug.vim"
-binFiles="rdrdev.sh gitlog.sh cht.sh git-ignore.sh slack.sh aws_function.sh"
+homeFiles="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig vim_background"
+configFiles="pycodestyle flake8 pylintrc"
+binFiles="gitlog.sh cht.sh"
 
 ##########
 
 # create dotfiles_old in homedir
-echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
+echo -n "Creating $olddir for backup of any existing dotfiles in $HOME ..."
 mkdir -p $olddir
 mkdir -p $bindir
 mkdir -p $configdir
 mkdir -p $nvimdir
 mkdir -p $luadir
-echo "done"
 
-# change to the dotfiles directory
 echo -n "Changing to the $dir directory ..."
 cd $dir
-echo "done"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
-    echo "Moving any existing dotfiles from ~ to $olddir"
+echo "Moving any existing dotfiles from $HOME to $olddir"
 for file in $homeFiles; do
-    mv ~/.$file $olddir
+    mv ~/.$file $olddir 2>/dev/null;
     ln -sf $dir/$file ~/.$file
 done
 
 for file in $configFiles; do
-    mv $XDG_CONFIG_HOME/$file $olddir
-    ln -sf $dir/linters/$file $configdir/$file
+    mv $XDG_CONFIG_HOME/$file $olddir 2>/dev/null;
+    ln -sf $dir/config/$file $configdir/$file
 done
 
-for file in $binFiles; do
-    mv ~/bin/$file $olddir
-    ln -sf $dir/utils/$file $bindir/$file
-done
+mv ~/bin/ $olddir 2>/dev/null;
+ln -sf $dir/bin/ $bindir/
 
-mkdir -p ~/.vim/autoload
-for file in $vimFiles; do
-    cp $vimfiledir/$file ~/vim/$file
-done
-
-# link to init.vim in  favor of nvim
 ln -sf $dir/init.lua $nvimdir
 ln -sf $dir/lua/* $luadir
 ln -sf $dir/vimrc ~/.vimrc
-# link alaccritty config
 ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml
-ln -sf $dir/git_template/hooks ~/git_template/hooks
-#ln -sf $dir/vimrc ~/.vimrc
-# copy alaccritty config, bug with alacritty-colors prevents symnlinks form working
-# cp $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

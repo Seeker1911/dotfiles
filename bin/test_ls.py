@@ -2,9 +2,12 @@ from dataclasses import dataclass
 from typing import List
 
 from im import test_import
+imp
 
 test_import()
 foo
+
+
 @dataclass
 class myClass:
     name: str
@@ -17,8 +20,10 @@ def hi() -> int:
     print("hello")
     return "x"
 
+
 def foo():
     pass
+
 
 def none() -> List[int]:
     """here is a docstring"""

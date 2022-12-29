@@ -21,14 +21,14 @@ binFiles="gitlog.sh cht.sh"
 ##########
 
 # create dotfiles_old in homedir
-echo -n "Creating $olddir for backup of any existing dotfiles in $HOME ..."
+echo  "Creating $olddir for backup of any existing dotfiles in $HOME ..."
 mkdir -p $olddir
 mkdir -p $bindir
 mkdir -p $configdir
 mkdir -p $nvimdir
 mkdir -p $luadir
 
-echo -n "Changing to the $dir directory ..."
+echo "Changing to the $dir directory ..."
 cd $dir
 
 echo "Moving any existing dotfiles from $HOME to $olddir"
@@ -43,7 +43,7 @@ for file in $configFiles; do
 done
 
 mv ~/bin/ $olddir 2>/dev/null;
-ln -sf $dir/bin/ $bindir/
+ln -sf $dir/bin/* $bindir/
 
 ln -sf $dir/init.lua $nvimdir
 ln -sf $dir/lua/* $luadir

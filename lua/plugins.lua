@@ -5,6 +5,7 @@ local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   print('Cloning  Packer...')
   Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  cmd [[packadd packer.nvim]]
 end
 
 return require('packer').startup(function(use)
@@ -98,6 +99,11 @@ return require('packer').startup(function(use)
     use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
 
     -- utils
+    use { 'folke/neodev.nvim',
+        config = function()
+            require('neodev').setup{}
+        end
+    }
     use { 'numToStr/Comment.nvim' }
     use { "alexghergh/nvim-tmux-navigation" }
     use { 'tpope/vim-fugitive' }

@@ -1,7 +1,3 @@
-local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g -- a table to access global variables
-local opt = vim.opt -- to set options
 HOME = os.getenv("HOME")
 require('treesitter')
 require('plugins')
@@ -17,39 +13,46 @@ require('tmux_nav')
 require('Comment').setup()
 require('symbols-setup')
 
--- disable netrw in favor of nvim-tree & telescope file_browser
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+vim.cmd('syntax enable')
+vim.cmd('colorscheme gruvbox') -- may be overidden at end of file
 
-cmd('syntax enable')
-cmd([[colorscheme gruvbox]]) -- may be overidden at end of file
-g.gruvbox_contrast_dark = 'soft'
 
-opt.termguicolors = true
-opt.hidden = true
--- opt.autoread = true
-opt.history = 1000
-opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
-opt.ignorecase = true
-opt.wrap = false
-opt.number = true
-opt.background = 'dark'
-opt.clipboard = 'unnamed'
-opt.expandtab = true
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.termguicolors = true
-opt.shell = 'bash -l'
-opt.foldmethod='expr'
-opt.foldexpr='nvim_treesitter#foldexpr()'
--- opt.nofoldenable = true
-opt.foldnestmax = 3
-opt.foldminlines = 4
+vim.g.loaded_netrw = 1 -- disable netrw in favor of nvim-tree & telescope file_browser
+vim.g.loaded_netrwPlugin = 1
+vim.g.gruvbox_contrast_dark = 'soft'
+vim.g.mapleader = ','
+vim.g.laststatus = 3 -- global status line
+-- vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
+-- vim.g.python3_host_prog = "/Users/michaelmead/.pyenv/versions/3.9.6/bin/python"
 
+vim.opt.wildignore:append { "*.pyc", "node_modules" }
+vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+
+vim.o.termguicolors = true
+vim.o.hidden = true
+-- vim.o.autoread = true
+vim.o.history = 1000
+vim.o.ignorecase = true
+vim.o.wrap = false
+vim.o.updatetime = 250
+vim.o.number = true
+vim.o.background = 'dark'
+vim.o.clipboard = 'unnamed'
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.termguicolors = true
+vim.o.shell = 'bash -l'
+vim.o.foldmethod='expr'
+vim.o.foldexpr='nvim_treesitter#foldexpr()'
+-- vim.o.foldnestmax = 4
+-- vim.o.foldminlines = 4
+
+vim.o.breakindent = true
 vim.o.scrolloff = 3
 vim.o.wrap = false
 vim.o.showbreak = '↪' -- character to show when line is broken
-vim.o.signcolumn = 'yes' -- keep 1 column for coc.vim  check
+vim.o.signcolumn = 'yes'
 vim.o.modelines = 0
 vim.o.smartcase = true -- case insentive unless capitals used in search
 
@@ -61,7 +64,7 @@ vim.o.undodir = HOME .. '/.vim/tmp/undo//' -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//' -- swap files
 
-cmd([[
+vim.cmd([[
   au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
   au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
   au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
@@ -76,10 +79,6 @@ cmd([[
 vim.o.wildmenu = true -- on TAB, complete options for system command
 vim.o.wildignore = 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
 
-g.mapleader = ','
-g.laststatus = 3 -- global status line
--- g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
--- g.python3_host_prog = "/Users/michaelmead/.pyenv/versions/3.9.6/bin/python"
 
 -- function to help remap vim commands
 local function map(mode, lhs, rhs, opts)
@@ -115,7 +114,7 @@ end
 
 if file_exists(HOME .. "/.background")
 then
-    cmd('source ~/.background')
+    vim.cmd('source ~/.background')
 end
 
 

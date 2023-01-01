@@ -8,6 +8,7 @@ disable=
     missing-docstring,
     missing-module-docstring,
     missing-function-docstring,
+    fixme,
 
 [FORMAT]
 max-line-length=100

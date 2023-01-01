@@ -104,6 +104,7 @@ map('n', '<leader>q', ':Telescope quickfix<CR>')
 map('n', '<leader>s', ':so ~/.background<CR>')
 map('n', '<leader>o', ':SymbolsOutline<CR>')
 map('n', '<leader>n', ':NvimTreeToggle<CR>')
+map('n', '<leader>z', ':ZenMode<CR>')
 map('t', '<Esc>', '<C-\\><C-n>')
 
 

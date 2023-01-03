@@ -1,4 +1,0 @@
-[pycodestyle]
-/* ignore = D102,D403,E226,E302,E41,E111,E122,E126,E127 */
-ignore = E127
-max-line-length = 120

@@ -40,17 +40,20 @@ local sign = function(opts)
     vim.fn.sign_define(opts.name, {
         texthl = opts.name,
         text = opts.text,
-        numhl = ''
+        numhl = opts.name,
     })
 end
-
+-- DiagnosticInfo xxx ctermfg=4 guifg=LightBlue
+-- #006fd1 for blue in toast
 sign({ name = 'DiagnosticSignError', text = '✘' })
 sign({ name = 'DiagnosticSignWarn', text = '▲' })
 sign({ name = 'DiagnosticSignHint', text = '⚑' })
 sign({ name = 'DiagnosticSignInfo', text = '' })
+-- vim.highlight.create("DiagnosticVirtualTextInfo", { guifg = "Black", ctermfg = "Black" }, false)
 
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', {link = 'DiagnosticSignWarn'})
 vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = true,
     severity_sort = true,
     float = {
         border = 'rounded',
@@ -78,7 +81,7 @@ local lsp_defaults = {
         debounce_text_changes = 150,
     },
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
-    --vim.lsp.protocol.make_client_capabilities()
+    vim.lsp.protocol.make_client_capabilities(),
     on_attach = function(client, bufnr)
         vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
     end
@@ -171,7 +174,7 @@ cmp.setup({
 ---
 require("mason").setup()
 -- local to_install = { "sumneko_lua", "rust_analyzer", "gopls", "pylsp" }
-local to_install = { "rust_analyzer", "gopls", "pylsp", "pyright" }
+local to_install = { "rust_analyzer", "gopls", "pylsp", "pyright", "denols" }
 local defaults = { "rust_analyzer", "gopls", "denols"}
 require("mason-lspconfig").setup({
     ensure_installed = to_install,
@@ -228,8 +231,9 @@ lspconfig.pylsp.setup {
     enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
+    formatCommand = { "black" },
     settings = {
-        -- configurationSources = { "flake8" },
+        configurationSources = { "flake8", "pycodestyle", "pylint" },
         pylsp = {
             plugins = {
                 pycodestyle = {
@@ -252,6 +256,7 @@ lspconfig.pylsp.setup {
                     enabled = false,
                     exclude = {},
                 },
+                pylsp_mypy = { enabled = true },
                 mypy = { enabled = true },
                 pyright = { enabled = false },
                 isort = { enabled = true },
@@ -271,15 +276,16 @@ lspconfig.pylsp.setup {
 --   return
 -- end
 -- null_ls.setup({
---     debug = true,
+--     debug = false,
+--     autostart = true,
 --     sources = {
---         -- null_ls.builtins.diagnostics.ruff.with({
---         --     extra_args = {"--line-length", "120"},
---         -- }),
+--         null_ls.builtins.diagnostics.ruff.with({
+--             extra_args = {"--line-length", "120"},
+--         }),
 --         null_ls.builtins.formatting.black.with({ 
 --             filetypes = {"python"}
 --     }),
 --     },
 --     on_attach = lsp_defaults.on_attach,
---     -- capabilities = lsp_defaults.capabilities,
+--     capabilities = lsp_defaults.capabilities,
 -- })

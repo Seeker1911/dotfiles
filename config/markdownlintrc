@@ -1,0 +1,52 @@
+{
+  // Default state for all rules
+  "default": true,
+  // MD007/ul-indent - Unordered list indentation
+  "MD007": {
+    // Spaces for indent
+    "indent": 4,
+    // Whether to indent the first level of the list
+    "start_indented": true,
+    // Spaces for first level indent (when start_indented is set)
+    "start_indent": 4
+  },
+  // MD013/line-length - Line length
+  "MD013": {
+    // Number of characters
+    "line_length": 480,
+    // Number of characters for headings
+    "heading_line_length": 80,
+    // Number of characters for code blocks
+    "code_block_line_length": 280,
+    // Include code blocks
+    "code_blocks": true,
+    // Include tables
+    "tables": true,
+    // Include headings
+    "headings": true,
+    // Include headings
+    "headers": true,
+    // Strict length checking
+    "strict": false,
+    // Stern length checking
+    "stern": false
+  },
+  // MD033/no-inline-html - Inline HTML
+  "MD033": {
+    // Allowed elements
+    "allowed_elements": ["kbd"]
+  },
+  // MD025/single-title/single-h1 - Multiple top-level headings in the same document
+  "MD025": {
+    // Heading level
+    "level": 1,
+    // RegExp for matching title in front matter
+    "front_matter_title": "^\\s*title\\s*[:=]"
+  },
+  // MD046/code-block-style - Code block style
+  "MD046": {
+    // Block style
+    "style": "fenced"
+  }
+}
+

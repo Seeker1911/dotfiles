@@ -14,6 +14,8 @@ brew "aalib"
 brew "ack"
 brew "ansifilter"
 brew "automake"
+brew "readline"
+brew "sqlite"
 brew "xz"
 brew "python@3.10"
 brew "awslogs"
@@ -75,16 +77,19 @@ brew "lolcat"
 brew "lua-language-server"
 brew "luarocks"
 brew "lynx"
+brew "markdownlint-cli"
 brew "mas"
 brew "mercurial"
 brew "mosh"
 brew "mosquitto"
 brew "mycli"
+brew "zlib"
 brew "mysql-client"
 brew "mysql@5.7", restart_service: true
 brew "neofetch"
 brew "neovim"
 brew "ninja"
+brew "nmap"
 brew "nvm"
 brew "openssl@3"
 brew "pandoc"
@@ -97,6 +102,7 @@ brew "pyenv-virtualenvwrapper"
 brew "rabbitmq", restart_service: true
 brew "ranger"
 brew "reattach-to-user-namespace"
+brew "redis"
 brew "ripgrep"
 brew "rlwrap"
 brew "ruby"
@@ -111,8 +117,32 @@ brew "wget"
 brew "yarn"
 brew "youtube-dl"
 brew "cjbassi/gotop/gotop"
+cask "alacritty"
 cask "emacs"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
 cask "mysql-connector-python"
 cask "warp"
+mas "1Password 7", id: 1333542190
+mas "Bear", id: 1091189122
+mas "Codye", id: 1516894961
+mas "Developer", id: 640199958
+mas "Fantastical", id: 975937182
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Jayson", id: 1468691718
+mas "Jolt of Caffeine", id: 1437130425
+mas "Keynote", id: 409183694
+mas "Knights of the Old Republic", id: 416608891
+mas "Magnet", id: 441258766
+mas "Notability", id: 360593530
+mas "Notion Web Clipper", id: 1559269364
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Reeder", id: 1529448980
+mas "Slack", id: 803453959
+mas "TestFlight", id: 899247664
+mas "Timery", id: 1425368544
+mas "Toggl Track", id: 957734279
+mas "ToothFairy", id: 1191449274
+mas "Xcode", id: 497799835

@@ -33,7 +33,7 @@ set show-all-if-ambiguous on
 
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
-export XDG_CONFIG_HOME=~/.config
+export XDG_CONFIG_HOME="$HOME/.config"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export MYVIMRC=~/dotfiles/vimrc
 export NVIM_LOG_FILE=~/.local/share/nvim/log
@@ -87,16 +87,16 @@ load_nvm() {
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
-load_nvm
+# load_nvm
 
 # This gets node & friends into the path but doesn't initialize nvm proper until needed
 lasy_load_nvm() {
     export NVM_BIN="$NVM_DIR/versions/node/$DEFAULT_NODE_VERSION/bin"
     export PATH="$NVM_BIN:$PATH"
     export NVM_CD_FLAGS=""
-    alias nvm="echo 'Please wait while nvm loads' && unset NVM_CD_FLAGS && pathremove $NVM_BIN && unset NVM_BIN && unalias nvm && load_nvm && nvm $@"
+    alias nvm="echo 'loading nvm' && unset NVM_CD_FLAGS && pathremove $NVM_BIN && unset NVM_BIN && unalias nvm && load_nvm && nvm $@"
 }
-# lasy_load_nvm
+lasy_load_nvm
 
 if [[ $platform == 'linux' ]]; then
   if [ -x /usr/bin/dircolors ]; then
@@ -121,9 +121,7 @@ elif [[ $platform == 'macos' ]]; then
   alias lt='ls -ltr' #List by time and date.
   alias brew='arch -arm64 brew'
   export GOOS=darwin
-  if [ -d "/Applications/Firefox Developer Edition.app" ]; then
-      alias fire='open -a "/Applications/Firefox Developer Edition.app" $1'
-  fi
+
     # Fix for:
     #bash: __bp_precmd_invoke_cmd: command not found
     #bash: __bp_interactive_mode: command not found
@@ -154,7 +152,6 @@ elif [[ $platform == 'macos' ]]; then
     # unset PROMPT_COMMAND
 fi
 
-# alias vim='nvim'
 alias tmux='tmux -2'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
@@ -162,12 +159,13 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias grep='grep --color'
 alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
-alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
+# alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
 # alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
 alias cheat='cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
 alias cleangit='git branch | grep -v "master" | grep -v "develop" | grep -v "main" | xargs git branch -D'
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
+alias xconfig='cd $XDG_CONFIG_HOME'
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh
@@ -208,7 +206,6 @@ export PATH
 #export PKG_CONFIG_PATH="/usr/local/opt/openssl@2.1/lib/pkgconfig"
 # This magically fixes psycopg2 install error madness, the above did not.
 #export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # pyenv ----------------------------------------------------------------------------------------------------
 if command -v pyenv 1>/dev/null 2>&1; then

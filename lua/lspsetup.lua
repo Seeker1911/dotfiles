@@ -1,49 +1,193 @@
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lspconfig = require('lspconfig')
+require('cmpsetup')
+require('nls')
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {virtual_text = false, }
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'LspAttached',
+    desc = 'LSP actions',
+    callback = function()
+        local bufmap = function(mode, lhs, rhs)
+            local opts = { buffer = true }
+            vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+        bufmap('n', 'gD', '<cmd>TroubleToggle document_diagnostics<cr>')
+        bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+        bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+        bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+        bufmap('n', 'gR', '<cmd>Trouble lsp_references<cr>')
+        bufmap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+        bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+        bufmap('n', 'gL', '<cmd>TroubleToggle workspace_diagnostics<cr>')
+        bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+        bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+        bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+        bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+        bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+        bufmap('n', '<F5>', '<cmd>lua vim.lsp.buf.format()<cr>')
+        bufmap('n', '<F6>', '<cmd>lua vim.diagnostic.hide()<cr>')
+
+
+    end
+})
+
+---
+-- Diagnostics
+---
+local sign = function(opts)
+    vim.fn.sign_define(opts.name, {
+        texthl = opts.name,
+        text = opts.text,
+        numhl = opts.name,
+    })
+end
+sign({ name = 'DiagnosticSignError', text = '✘' })
+-- sign({ name = 'DiagnosticSignError', text = 'ﮊ' })
+sign({ name = 'DiagnosticSignWarn', text = " "})
+sign({ name = 'DiagnosticSignHint', text = " " })
+sign({ name = 'DiagnosticSignInfo', text = ''})
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    severity_sort = true,
+    update_in_insert = true,
+    float = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
+})
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = 'rounded' }
 )
 
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-end
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    {
+        border = 'rounded',
+        close_events = { "CursorMoved", "BufHidden", "InsertCharPre" }
+    }
+)
 
 
-local servers = {'pyright', 'tsserver', 'gopls', 'pylsp'}
-for _, lsp in pairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lsp_defaults = {
     flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
+        debounce_text_changes = 150,
     },
-    capabilities = capabilities
-  }
+    capabilities = capabilities,
+    vim.lsp.protocol.make_client_capabilities(),
+    on_attach = function(client, bufnr)
+        vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+    end
+}
+
+require("mason").setup{PATH = "append"}
+local lspconfig = require('lspconfig')
+
+lspconfig.util.default_config = vim.tbl_deep_extend(
+    'force',
+    lspconfig.util.default_config,
+    lsp_defaults
+)
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lsp_defaults.capabilities,
+    capabilities
+)
+
+---
+-- Mason Config
+---
+To_install = { "sumneko_lua", "rust_analyzer", "gopls", "pylsp", "denols"}
+require("mason-lspconfig").setup({
+    ensure_installed = To_install,
+    automatic_installation = true,
+    on_attach = lsp_defaults.on_attach,
+    capabilities = lsp_defaults.capabilities,
+    root_dir = function() return vim.loop.cwd() end
+})
+
+Defaults = { "rust_analyzer", "gopls", "denols", "sumneko_lua"}
+for _, lsp in pairs(Defaults) do
+    lspconfig[lsp].setup {
+        on_attach = lsp_defaults.on_attach,
+        capabilities = lsp_defaults.capabilities,
+        root_dir = function() return vim.loop.cwd() end
+    }
 end
+
+
+---
+-- LSP Config
+---
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+lspconfig.sumneko_lua.setup {
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = runtime_path,
+            },
+            diagnostics = {
+                globals = { 'vim' }
+            },
+            workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file('', true),
+            checkThirdParty = false,
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+              enable = false,
+            },
+        }
+    }
+}
+lspconfig.pylsp.setup {
+    -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+    enabled = true,
+    on_attach = lsp_defaults.on_attach,
+    capabilities = lsp_defaults.capabilities,
+    settings = {
+        configurationSources = { "pylint" },
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    enabled = false,
+                    ignore = {},
+                    maxLineLength = 100
+                },
+                flake8 = {
+                    enabled = false,
+                    ignore = {},
+                    indentSize = 4,
+                    maxLineLength = 100,
+                },
+                pylint = {
+                    enabled = true,
+                    maxLineLength = 100,
+                    args={'--rcfile ~/.config/pylintrc'}
+                },
+                mypy = {
+                    enabled = false,
+                },
+                pyflakes = {
+                    enabled = false,
+                    exclude = {},
+                },
+                pyright = { enabled = false },
+                isort = { enabled = true },
+            }
+        }
+    },
+}

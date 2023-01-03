@@ -2,6 +2,15 @@ local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options
+local executable = function(e)
+  return fn.executable(e) > 0
+end
+local function add(value, str, sep)
+  sep = sep or ','
+  str = str or ''
+  value = type(value) == 'table' and table.concat(value, sep) or value
+  return str ~= '' and table.concat({ value, str }, sep) or value
+end
 HOME = os.getenv("HOME")
 require('plugins')
 require('lspv2')
@@ -37,6 +46,19 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.termguicolors = true
 opt.shell = 'bash -l'
+opt.grepprg='rg --vimgrep --no-heading --smart-case'
+-- opt.grepformat='%f:%l:%c:%m,%f:%l:%m'
+-- opt.grepformat='grepformat+=%f:%l:%c:%m'
+--
+-- Use faster grep alternatives if possible
+if executable('rg') then
+  vim.o.grepprg =
+      [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
+  vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+elseif executable('ag') then
+  vim.o.grepprg = [[ag --nogroup --nocolor --vimgrep]]
+  vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+end
 
 vim.o.scrolloff = 3
 vim.o.wrap = false

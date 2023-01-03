@@ -197,15 +197,15 @@ PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
 # PATH="$HOME/bin/nvim-osx64/bin:$PATH"
-# If you need to have openssl@1.1 first in your PATH:
+# If you need to have openssl@2.1 first in your PATH:
 # NOTE: seeing if I really need this
-# PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# PATH="/usr/local/opt/openssl@2.1/bin:$PATH"
 export PATH
 
 # export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 
-# For pkg-config to find openssl@1.1 you may need to set:
-#export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+# For pkg-config to find openssl@2.1 you may need to set:
+#export PKG_CONFIG_PATH="/usr/local/opt/openssl@2.1/lib/pkgconfig"
 # This magically fixes psycopg2 install error madness, the above did not.
 #export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 export XDG_CONFIG_HOME="$HOME/.config"

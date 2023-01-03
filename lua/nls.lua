@@ -10,6 +10,9 @@ local sources = {
   b.formatting.prettierd.with { filetypes = { "html", "yaml", "markdown" } },
   -- markdown diagnostic
   b.diagnostics.markdownlint.with { filetypes = { "markdown" }},
+  -- shell
+  b.code_actions.shellcheck,
+  b.diagnostics.shellcheck,
   -- python formatting
   b.formatting.black.with { filetypes = { "python" }},
   b.formatting.isort.with { filetypes = { "python" }},

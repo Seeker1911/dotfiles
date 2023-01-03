@@ -16,7 +16,6 @@ alacrittydir=$XDG_CONFIG_HOME/alacritty
 
 homeFiles="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig vim_background"
 configFiles="pycodestyle flake8 pylintrc"
-binFiles="gitlog.sh cht.sh"
 
 ##########
 
@@ -42,7 +41,7 @@ for file in $configFiles; do
     ln -sf $dir/config/$file $configdir/$file
 done
 
-mv ~/bin/ $olddir 2>/dev/null;
+# mv ~/bin/ $olddir 2>/dev/null;
 ln -sf $dir/bin/* $bindir/
 
 ln -sf $dir/init.lua $nvimdir

@@ -1,5 +1,5 @@
 local executable = function(e)
-  return fn.executable(e) > 0
+  return vim.fn.executable(e) > 0
 end
 local function add(value, str, sep)
   sep = sep or ','

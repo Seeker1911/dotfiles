@@ -497,10 +497,10 @@ randpw(){ < /dev/urandom LC_CTYPE=C tr -dc _A-Z-a-z-0-9_\!\@\#\$\%\^\&\*\(\)-+= 
 
 
 git_log() {
-hash=$(git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |  fzf |
-awk '{print $1}')
-echo $hash | xclip
-git showtool $hash
+    hash=$(git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |  fzf |
+    awk '{print $1}')
+    echo $hash | xclip
+    git showtool $hash
 }
 
 function install_linters {
@@ -520,6 +520,15 @@ function search-replace {
     do [[ $(head -n 1 asdf | grep '#!/usr/bin/env python') ]] && ( tail -n +2 $i > $i.py; rm $i  );
     done
 }
+
+function project-refactor() { 
+# need to test the parameters (@2, @2)
+    echo 'hello'
+    echo $1
+    echo $2
+    grep -rl $1 * | LC_ALL=C xargs sed -i "" "s/$1/$2/g"
+}
+
 
 function list-ports-with-app-name {
     lsof -nP +c 15 | grep LISTEN

@@ -6,7 +6,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = 
 [init]
 	templatedir = ~/.git_template
 [color "diff-highlight"]
@@ -28,6 +28,7 @@
 	newHighlight = green bold 22
 [diff-so-fancy]
 	rulerWidth = 47
+	markEmptyLines = false
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -62,8 +63,10 @@
     # git reviewone foo.js bar.js
     reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"stat $(git merge-base HEAD \"$REVIEW_BASE\")
     ctags = !.git/hooks/ctags
-    pushu = "push -u origin HEAD"  # set the upstream branch to your working branch
+	pushu = push -u origin HEAD
 [pull]
 	rebase = false
 [help]
     autocorrect = 10
+[color]
+	ui = true

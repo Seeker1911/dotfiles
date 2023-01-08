@@ -1,3 +1,12 @@
+local executable = function(e)
+  return vim.fn.executable(e) > 0
+end
+local function add(value, str, sep)
+  sep = sep or ','
+  str = str or ''
+  value = type(value) == 'table' and table.concat(value, sep) or value
+  return str ~= '' and table.concat({ value, str }, sep) or value
+end
 HOME = os.getenv("HOME")
 require('treesitter')
 require('plugins')
@@ -17,6 +26,16 @@ vim.cmd('syntax enable')
 vim.cmd('colorscheme gruvbox') -- may be overidden at end of file
 
 
+-- Use faster grep alternatives if possible
+if executable('rg') then
+  vim.o.grepprg =
+      [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
+  vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+elseif executable('ag') then
+  vim.o.grepprg = [[ag --nogroup --nocolor --vimgrep]]
+  vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+end
+
 vim.g.loaded_netrw = 1 -- disable netrw in favor of nvim-tree & telescope file_browser
 vim.g.loaded_netrwPlugin = 1
 vim.g.gruvbox_contrast_dark = 'soft'
@@ -24,6 +43,7 @@ vim.g.mapleader = ','
 vim.g.laststatus = 3 -- global status line
 vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
 -- vim.g.python3_host_prog = "/Users/michaelmead/.pyenv/versions/3.9.6/bin/python"
+
 
 vim.opt.wildignore:append { "*.pyc", "node_modules" }
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
@@ -144,4 +164,4 @@ local autoCommands = {
     }
 }
 
--- M.nvim_create_augroups(autoCommands)
+M.nvim_create_augroups(autoCommands)

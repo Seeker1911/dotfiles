@@ -168,7 +168,7 @@ alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 alias xconfig='cd $XDG_CONFIG_HOME'
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
-[ -f ~/.secrets/secrets.sh ] && source ~/.secrets/secrets.sh
+[ -f ~/.secrets.sh ] && source ~/.secrets.sh
 [ -f ~/.profile ] && source ~/.profile
 
 #fuzzy finder in bash 

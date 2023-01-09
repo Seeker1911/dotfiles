@@ -220,7 +220,7 @@ function nvimvenv {
       eval "$(pyenv init -)"
       eval "$(pyenv virtualenv-init -)"
     fi
-    source "$VIRTUAL_ENV/bin/activate"
+    source "${VIRTUAL_ENV}/bin/activate"
     command nvim $@
     deactivate
   else

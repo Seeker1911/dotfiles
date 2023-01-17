@@ -52,6 +52,7 @@ export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
 export HISTSIZE=1000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export HOMEBREW_BREWFILE="$HOME/dotfiles/brewfile"
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export CHTSH_QUERY_OPTIONS="style=native"
 # export PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"

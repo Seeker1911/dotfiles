@@ -1,4 +1,5 @@
 tap "browsh-org/browsh"
+# run `brew cu` to upgrade casks (mac apps)
 tap "buo/cask-upgrade"
 tap "cjbassi/gotop"
 tap "dbcli/tap"
@@ -226,8 +227,8 @@ brew "youtube-dl"
 brew "cjbassi/gotop/gotop"
 # GPU-accelerated terminal emulator
 cask "alacritty"
-# Text editor
-cask "emacs"
+# iterm
+cask "iterm2"
 # Developer targeted fonts with a high number of glyphs
 cask "font-hack-nerd-font"
 # Typeface made for developers
@@ -236,24 +237,18 @@ cask "font-jetbrains-mono"
 cask "mysql-connector-python"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# Rust-based terminal
-cask "warp"
+# send to kindle service
+cask "send-to-kindle"
+# 1 passwrod
+cask "1password"
 mas "Bear", id: 1091189122
 mas "Codye", id: 1516894961
 mas "Developer", id: 640199958
 mas "Fantastical", id: 975937182
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas "Jayson", id: 1468691718
 mas "Jolt of Caffeine", id: 1437130425
-mas "Keynote", id: 409183694
-mas "Knights of the Old Republic", id: 416608891
-mas "Magnet", id: 441258766
 mas "Mini Motorways", id: 1456188526
 mas "Notability", id: 360593530
-mas "Notion Web Clipper", id: 1559269364
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Reeder", id: 1529448980
 mas "Shovel Knight Dig", id: 1538097794
 mas "Slack", id: 803453959
@@ -261,4 +256,3 @@ mas "TestFlight", id: 899247664
 mas "Timery", id: 1425368544
 mas "Toggl Track", id: 957734279
 mas "ToothFairy", id: 1191449274
-mas "Xcode", id: 497799835

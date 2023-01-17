@@ -4732,12 +4732,6 @@
           "full_name": "rectangle"
         }
       },
-      "warp": {
-        "version": "0.2023.01.10.08.02.stable_01",
-        "options": {
-          "full_name": "warp"
-        }
-      }
     },
     "mas": {
       "Bear": {

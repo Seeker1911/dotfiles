@@ -53,8 +53,6 @@ brew "direnv"
 brew "docker"
 # Isolated development environments using Docker
 brew "docker-compose"
-# Text mode web browser
-brew "elinks"
 # Programming language for highly scalable real-time systems
 brew "erlang"
 # Modern replacement for 'ls'

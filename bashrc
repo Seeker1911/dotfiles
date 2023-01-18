@@ -100,7 +100,7 @@ lasy_load_nvm() {
 }
 lasy_load_nvm
 
-if [[ $platform == 'linux' ]]; then
+if [ $platform = 'linux' ]; then
   if [ -x /usr/bin/dircolors ]; then
       test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
       alias ls='ls --color=auto'
@@ -114,7 +114,7 @@ if [[ $platform == 'linux' ]]; then
   # colored GCC warnings and errors
   export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
   export CLOUD_SDK_REPO=cloud-sdk-jessie
-elif [[ $platform == 'macos' ]]; then
+elif [ $platform = 'macos' ]; then
   alias ls='ls -GFh'
   alias ll='ls -l' # display long format directory
   alias l.='ls -d .*' #display all dir/ entries that begin with a '.'
@@ -168,6 +168,7 @@ alias welcome='cowsay -f tux "welcome Programs, now begins your real training" |
 alias cleangit='git branch | grep -v "master" | grep -v "develop" | grep -v "main" | xargs git branch -D'
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 alias xconfig='cd $XDG_CONFIG_HOME'
+alias vim=nvim
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets.sh ] && source ~/.secrets.sh
@@ -210,31 +211,36 @@ export PATH
 #export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
 
 # pyenv ----------------------------------------------------------------------------------------------------
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   echo in the check for pyenv command statement
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+# fi
+#
+#
+# nvimvenv() {
+#   if [ -e "$VIRTUAL_ENV" ] && [ -f "$VIRTUAL_ENV/bin/activate" ]; then
+#     if command -v pyenv 1>/dev/null 2>&1; then
+#       echo in the check for pyenv command statement in nvimvenv func
+#       echo "$VIRTUAL_ENV"
+#       eval "$(pyenv init -)"
+#       eval "$(pyenv virtualenv-init -)"
+#     fi
+#     . "${VIRTUAL_ENV}/bin/activate"
+#     echo sourced activate and running command nvim  $@
+#     command nvim $@
+#     deactivate
+#   else
+#     if command -v pyenv 1>/dev/null 2>&1; then
+#       echo in the ELSE for pyenv command statement in nvimvenv func
+#       eval "$(pyenv init -)"
+#       eval "$(pyenv virtualenv-init -)"
+#     fi
+#     command nvim $@
+#   fi
+# }
 
-
-function nvimvenv {
-  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
-    if command -v pyenv 1>/dev/null 2>&1; then
-      eval "$(pyenv init -)"
-      eval "$(pyenv virtualenv-init -)"
-    fi
-    source "${VIRTUAL_ENV}/bin/activate"
-    command nvim $@
-    deactivate
-  else
-    if command -v pyenv 1>/dev/null 2>&1; then
-      eval "$(pyenv init -)"
-      eval "$(pyenv virtualenv-init -)"
-    fi
-    command nvim $@
-  fi
-}
-
-alias vim=nvimvenv
+# alias vim=nvimvenv
 
 # if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 #   source "${VIRTUAL_ENV}/bin/activate"
@@ -242,14 +248,14 @@ alias vim=nvimvenv
 
 
 # functions ----------------------------------------------------------------------------------------------------
-function jedi {
+jedi() {
     echo "color gruvbox" > ~/.background
     echo "set background=light" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
     # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
-function sith {
+sith() {
     echo "color gruvbox" > ~/.background
     echo "set background=dark" >> ~/.background
     echo "let g:airline_theme='snow_dark'" >> ~/.background
@@ -257,82 +263,58 @@ function sith {
     # alacritty-colorscheme apply gruvbox_dark.yaml
 }
 
-function burnt-toast {
+burnt_toast() {
     echo "color toast" > ~/.background
     echo "set background=dark" >> ~/.background
     tmux source ${HOME}/dotfiles/tmux.conf
 }
 
-function ayu-mirage {
+ayu_mirage() {
     echo "color ayu-mirage" > ~/.background
     echo "set background=dark" >> ~/.background
     tmux source ${HOME}/dotfiles/tmux.conf
 }
 
-function solar {
+solar() {
     echo "color two-firewatch" > ~/.background
     echo "set background=light" >> ~/.background
     # alacritty-colorscheme apply solarized_light.yaml
 }
 
-function kindle {
+kindle() {
     echo "color leaf" > ~/.background
     echo "set background=light" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     # alacritty-colorscheme apply pencil_light.yaml
 }
 
-function fox {
+fox() {
     echo "color dayfox" > ~/.background
     echo "set background=light" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     # alacritty-colorscheme apply pencil_light.yaml
 }
 
-function toast {
+toast() {
     echo "color toast" > ~/.background
     echo "set background=light" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux_toast.conf
     # alacritty-colorscheme apply pencil_light.yaml
 }
 
-function color {
+color() {
     pyenv shell neovim3 && $1 && pyenv shell --unset
 }
 
-function cleanswap {
+cleanswap() {
 	rm ~/.local/share/nvim/swap/*
 }
-# Run something, muting output or redirecting it to the debug stream
-# depending on the value of _ARC_DEBUG.
-__python_argcomplete_run() {
-    if [[ -z "$_ARC_DEBUG" ]]; then
-        "$@" 8>&1 9>&2 1>/dev/null 2>&1
-    else
-        "$@" 8>&1 9>&2 1>&9 2>&1
-    fi
-}
 
-_python_argcomplete() {
-    local IFS=$'\013'
-    local SUPPRESS_SPACE=0
-    if compopt +o nospace 2> /dev/null; then
-        SUPPRESS_SPACE=1
-    fi
-    COMPREPLY=( $(IFS="$IFS" \
-                  COMP_LINE="$COMP_LINE" \
-                  COMP_POINT="$COMP_POINT" \
-                  COMP_TYPE="$COMP_TYPE" \
-                  _ARGCOMPLETE_COMP_WORDBREAKS="$COMP_WORDBREAKS" \
-                  _ARGCOMPLETE=1 \
-                  _ARGCOMPLETE_SUPPRESS_SPACE=$SUPPRESS_SPACE \
-                  __python_argcomplete_run "$1") )
-    if [[ $? != 0 ]]; then
-        unset COMPREPLY
-    elif [[ $SUPPRESS_SPACE == 1 ]] && [[ "$COMPREPLY" =~ [=/:]$ ]]; then
-        compopt -o nospace
-    fi
-}
 if [ -x "$(command -v direnv)" ]; then
 	eval "$(direnv hook bash)"
 fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

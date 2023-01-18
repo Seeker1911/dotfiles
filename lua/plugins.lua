@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
     --     vim.cmd('colorscheme rose-pine')
     -- end
     })
+    use { 'savq/melange-nvim' }
     use { 'p00f/nvim-ts-rainbow' }
     use {
     'nvim-lualine/lualine.nvim',

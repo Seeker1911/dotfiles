@@ -282,7 +282,7 @@ solar() {
 }
 
 kindle() {
-    echo "color leaf" > ~/.background
+    echo "color melange" > ~/.background
     echo "set background=light" >> ~/.background
     tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     # alacritty-colorscheme apply pencil_light.yaml

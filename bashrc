@@ -59,7 +59,6 @@ export CHTSH_QUERY_OPTIONS="style=native"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 export PIPENV_IGNORE_VIRTUALENVS=1
-export DOCKER_DEFAULT_PLATFORM=linux/arm64
 
 if [ -x "$(command -v ipdb)" ]; then
     export PYTHONBREAKPOINT="ipdb.set_trace"

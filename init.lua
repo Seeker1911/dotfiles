@@ -65,8 +65,9 @@ vim.o.termguicolors = true
 vim.o.shell = 'bash -l'
 vim.o.foldmethod='indent'
 -- vim.o.foldexpr='nvim_treesitter#foldexpr()'
-vim.o.foldnestmax = 4
-vim.o.foldminlines = 4
+vim.o.foldnestmax = 8
+vim.o.foldminlines = 6
+-- vim.o.foldlevel = 8
 
 vim.o.breakindent = true
 vim.o.scrolloff = 3
@@ -125,6 +126,7 @@ map('n', '<leader>s', ':so ~/.background<CR>')
 map('n', '<leader>o', ':SymbolsOutline<CR>')
 map('n', '<leader>n', ':NvimTreeToggle<CR>')
 map('n', '<leader>z', ':ZenMode<CR>')
+map('n', '<space>', 'za')
 map('t', '<Esc>', '<C-\\><C-n>')
 
 
@@ -165,3 +167,25 @@ local autoCommands = {
 }
 
 M.nvim_create_augroups(autoCommands)
+
+-- local function FoldText()
+--     local lines = {}
+--     for i = vim.fn.foldstart("."),vim.fn.foldend(".") do
+--         lines[#lines+1] = vim.fn.getline(i)
+--     end
+--     if #lines > 3 then
+--         return table.concat(lines, '\n', 1, 3)
+--     else
+--         return table.concat(lines, '\n')
+--     end
+-- end
+--
+-- vim.api.nvim_command("set foldtext=FoldText()")
+
+-- local function FoldText()
+--     local cursor = vim.api.nvim_win_get_cursor(0)
+--     local lines = vim.api.nvim_buf_get_lines(0, cursor[1]-2, cursor[1], true)
+--     return table.concat(lines, '\n')
+-- end
+--
+-- vim.api.nvim_command("set foldtext=FoldText()")

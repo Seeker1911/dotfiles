@@ -155,7 +155,7 @@ lspconfig.sumneko_lua.setup {
 }
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
-    enabled = true,
+    enabled = false,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {
@@ -174,7 +174,7 @@ lspconfig.pylsp.setup {
                     maxLineLength = 100,
                 },
                 pylint = {
-                    enabled = true,
+                    enabled = false,
                     maxLineLength = 100,
                     args={'--rcfile ~/.config/pylintrc'}
                 },

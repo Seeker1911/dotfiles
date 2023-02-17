@@ -49,7 +49,10 @@ export EDITOR='nvim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'
-export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}' --exclude "build" "
+_fzf_compgen_path() {
+  rg --files --hidden --follow . "$1"
+}
 export HISTSIZE=1000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export HOMEBREW_BREWFILE="$HOME/dotfiles/Brewfile"
@@ -162,7 +165,7 @@ alias ipe='curl ipinfo.io/ip' #Get external ip address
 # https://the.exa.website/docs/command-line-options
 # alias exa='exa --long --header --grid' #Better listing of files. -a for dotfiles, -G for grid
 # alias exa='exa --icons' #Better listing of files. -a for dotfiles, -G for grid
-alias cheat='cht.sh --shell'
+alias cheat='CHTSH_QUERY_OPTIONS="style=xcode"; cht.sh --shell'
 alias welcome='cowsay -f tux "welcome Programs, now begins your real training" | lolcat'
 alias cleangit='git branch | grep -v "master" | grep -v "develop" | grep -v "main" | xargs git branch -D'
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo

@@ -1,5 +1,5 @@
 require('cmpsetup')
-require('nls')
+-- require('nls')
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
@@ -104,7 +104,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 ---
 -- Mason Config
 ---
-To_install = { "sumneko_lua", "rust_analyzer", "gopls", "pylsp", "denols"}
+To_install = { "rust_analyzer", "gopls", "pylsp", "denols"}
 require("mason-lspconfig").setup({
     ensure_installed = To_install,
     automatic_installation = true,
@@ -113,7 +113,7 @@ require("mason-lspconfig").setup({
     root_dir = function() return vim.loop.cwd() end
 })
 
-Defaults = { "rust_analyzer", "gopls", "denols", "sumneko_lua"}
+Defaults = { "rust_analyzer", "gopls", "denols"}
 for _, lsp in pairs(Defaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,
@@ -126,36 +126,9 @@ end
 ---
 -- LSP Config
 ---
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-lspconfig.sumneko_lua.setup {
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-                -- Setup your lua path
-                path = runtime_path,
-            },
-            diagnostics = {
-                globals = { 'vim' }
-            },
-            workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file('', true),
-            checkThirdParty = false,
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-              enable = false,
-            },
-        }
-    }
-}
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
-    enabled = true,
+    enabled = false,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {
@@ -187,6 +160,7 @@ lspconfig.pylsp.setup {
                 },
                 pyright = { enabled = false },
                 isort = { enabled = true },
+                black = { enabled = true },
             }
         }
     },

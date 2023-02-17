@@ -231,7 +231,7 @@ lspconfig.pylsp.setup {
     enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
-    formatCommand = { "black" },
+    -- formatCommand = { "black" },
     settings = {
         configurationSources = { "flake8", "pycodestyle", "pylint" },
         pylsp = {
@@ -261,7 +261,7 @@ lspconfig.pylsp.setup {
                 pyright = { enabled = false },
                 isort = { enabled = true },
                 black = {
-                    enabled = true,
+                    enabled = false,
                     preview = true,
                     line_length = 100,
                 },
@@ -269,23 +269,3 @@ lspconfig.pylsp.setup {
         }
     },
 }
-
-
--- local ok, null_ls = pcall(require, "null-ls")
--- if not ok then
---   return
--- end
--- null_ls.setup({
---     debug = false,
---     autostart = true,
---     sources = {
---         null_ls.builtins.diagnostics.ruff.with({
---             extra_args = {"--line-length", "120"},
---         }),
---         null_ls.builtins.formatting.black.with({ 
---             filetypes = {"python"}
---     }),
---     },
---     on_attach = lsp_defaults.on_attach,
---     capabilities = lsp_defaults.capabilities,
--- })

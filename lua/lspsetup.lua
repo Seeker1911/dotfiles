@@ -1,5 +1,5 @@
 require('cmpsetup')
--- require('nls')
+require('nls')
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
@@ -147,7 +147,7 @@ lspconfig.pylsp.setup {
                     maxLineLength = 100,
                 },
                 pylint = {
-                    enabled = true,
+                    enabled = false,
                     maxLineLength = 100,
                     args={'--rcfile ~/.config/pylintrc'}
                 },

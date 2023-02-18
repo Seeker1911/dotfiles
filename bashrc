@@ -49,7 +49,10 @@ export EDITOR='nvim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'
-export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}' --exclude "build" "
+_fzf_compgen_path() {
+  rg --files --hidden --follow . "$1"
+}
 export HISTSIZE=1000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export HOMEBREW_BREWFILE="$HOME/dotfiles/Brewfile"

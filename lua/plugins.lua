@@ -57,6 +57,17 @@ return require('packer').startup(function(use)
       "folke/zen-mode.nvim",
       config = function()
         require("zen-mode").setup {
+                window = {width = 180,
+                    options = {
+                      signcolumn = "yes", -- disable signcolumn
+                      -- number = false, -- disable number column
+                      -- relativenumber = false, -- disable relative numbers
+                      -- cursorline = false, -- disable cursorline
+                      -- cursorcolumn = false, -- disable cursor column
+                      -- foldcolumn = "0", -- disable fold column
+                      -- list = false, -- disable whitespace characters
+                    },
+                }
           -- your configuration comes here
           -- or leave it empty to use the default settings
           -- refer to the configuration section below
@@ -127,19 +138,6 @@ return require('packer').startup(function(use)
         {'nvim-lua/plenary.nvim'},
       }
     }
-    use({
-      "jackMort/ChatGPT.nvim",
-        config = function()
-          require("chatgpt").setup({
-            -- optional configuration
-          })
-        end,
-        requires = {
-          "MunifTanjim/nui.nvim",
-          "nvim-lua/plenary.nvim",
-          "nvim-telescope/telescope.nvim"
-        }
-    })
 
     cmd([[
      augroup packer_user_config

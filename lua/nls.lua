@@ -19,8 +19,7 @@ local sources = {
   -- TODO: mypy: [import] Cannot find implementation or library stub for module named "im" (mypy)
   b.diagnostics.mypy.with { filetypes = { "python" }},
   b.completion.luasnip,
-  -- TODO: worth investigation
-  -- b.diagnostics.ruff.with { filetypes = { "python" }},
+  b.diagnostics.ruff.with { filetypes = { "python" }},
   -- b.formatting.ruff,
   --
   -- NOTE: ex. of custom command

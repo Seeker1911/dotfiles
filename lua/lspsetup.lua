@@ -155,7 +155,7 @@ lspconfig.sumneko_lua.setup {
 }
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
-    enabled = false,
+    enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {

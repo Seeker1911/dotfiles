@@ -1,5 +1,5 @@
 require('cmpsetup')
-require('nls')
+-- require('nls')
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
@@ -88,6 +88,22 @@ local lsp_defaults = {
 }
 
 require("mason").setup{PATH = "append"}
+
+require("mason-null-ls").setup({
+    ensure_installed = {
+        "ruff", "black"
+        -- Opt to list sources here, when available in mason.
+    },
+    automatic_installation = true,
+    automatic_setup = true, -- Recommended, but optional
+})
+require("null-ls").setup(
+    -- sources = {
+    --     -- Anything not supported by mason.
+    -- }
+)
+
+require 'mason-null-ls'.setup_handlers() -- If `automatic_setup` is true.
 local lspconfig = require('lspconfig')
 
 lspconfig.util.default_config = vim.tbl_deep_extend(

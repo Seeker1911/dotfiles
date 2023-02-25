@@ -11,6 +11,7 @@ dir=$HOME/dotfiles                    # dotfiles directory
 olddir=$HOME/.dotfiles_old             # old dotfiles backup directory
 configdir=$XDG_CONFIG_HOME               # config directory
 nvimdir=$XDG_CONFIG_HOME/nvim            # nvim directory
+ruffdir=$XDG_CONFIG_HOME/ruff
 luadir=$nvimdir/lua
 alacrittydir=$XDG_CONFIG_HOME/alacritty
 
@@ -26,6 +27,7 @@ mkdir -p $bindir
 mkdir -p $configdir
 mkdir -p $nvimdir
 mkdir -p $luadir
+mkdir -p $ruffdir
 
 echo "Changing to the $dir directory ..."
 cd $dir
@@ -47,4 +49,5 @@ ln -sf $dir/bin/* $bindir/
 ln -sf $dir/init.lua $nvimdir
 ln -sf $dir/lua/* $luadir
 ln -sf $dir/vimrc ~/.vimrc
+ln -sf $dir/config/ruff/pyproject.toml $ruffdir
 ln -sf $dir/profiles/alacritty.yml $alacrittydir/alacritty.yml

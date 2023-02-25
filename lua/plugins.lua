@@ -98,10 +98,13 @@ return require('packer').startup(function(use)
         run = "make install_jsregexp",
         after = 'nvim-cmp',
     }
-    use { "williamboman/mason.nvim" }
-    use { "williamboman/mason-lspconfig.nvim"} --, after = 'mason.nvim' }
     use { 'neovim/nvim-lspconfig'} --, after = 'mason.nvim' }
-    use { 'jose-elias-alvarez/null-ls.nvim' } --  , after = 'nvim-lspconfig' }
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "jose-elias-alvarez/null-ls.nvim",
+        "jay-babu/mason-null-ls.nvim",
+    }
     use {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",

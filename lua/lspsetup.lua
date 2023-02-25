@@ -51,7 +51,7 @@ sign({ name = 'DiagnosticSignInfo', text = ''})
 vim.diagnostic.config({
     virtual_text = false,
     signs = true,
-    severity_sort = true,
+    severity_sort = false,
     update_in_insert = true,
     float = {
         border = 'rounded',

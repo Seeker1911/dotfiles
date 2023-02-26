@@ -16,3 +16,4 @@ pyls-isort
 python-lsp-black 
 pdbpp
 ipdb
+ipython

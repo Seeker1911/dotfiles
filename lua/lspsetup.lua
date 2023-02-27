@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd('User', {
             local opts = { buffer = true }
             vim.keymap.set(mode, lhs, rhs, opts)
         end
-
+        local bufopts = { noremap=true, silent=true, buffer=bufnr }
         bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
         bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
         bufmap('n', 'gD', '<cmd>TroubleToggle document_diagnostics<cr>')
@@ -27,6 +27,9 @@ vim.api.nvim_create_autocmd('User', {
         bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
         bufmap('n', '<F5>', '<cmd>lua vim.lsp.buf.format()<cr>')
         bufmap('n', '<F6>', '<cmd>lua vim.diagnostic.hide()<cr>')
+        bufmap('n', '<F7>', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+              end, bufopts)
 
 
     end
@@ -88,23 +91,6 @@ local lsp_defaults = {
 }
 
 require("mason").setup{PATH = "append"}
-
--- require("mason-null-ls").setup({
---     ensure_installed = {
---         "ruff", "black"
---         -- Opt to list sources here, when available in mason.
---     },
---     automatic_installation = true,
---     automatic_setup = true, -- Recommended, but optional
--- })
--- require("null-ls").setup(
---     -- sources = {
---     --     -- Anything not supported by mason.
---     -- }
--- )
-
--- require 'mason-null-ls'.setup_handlers() -- If `automatic_setup` is true.
-
 local lspconfig = require('lspconfig')
 
 lspconfig.util.default_config = vim.tbl_deep_extend(
@@ -121,33 +107,47 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 ---
 -- Mason Config
 ---
-To_install = { "rust_analyzer", "gopls", "pylsp", "denols"}
+To_install = { "rust_analyzer", "gopls", "pylsp", "denols", "lua_ls"}
 require("mason-lspconfig").setup({
     ensure_installed = To_install,
     automatic_installation = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
-    root_dir = function() return vim.loop.cwd() end
 })
 
-Defaults = { "rust_analyzer", "gopls", "denols"}
-for _, lsp in pairs(Defaults) do
-    lspconfig[lsp].setup {
-        on_attach = lsp_defaults.on_attach,
-        capabilities = lsp_defaults.capabilities,
-        root_dir = function() return vim.loop.cwd() end
-    }
-end
-
-
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {
+            on_attach = lsp_defaults.on_attach,
+            capabilities = lsp_defaults.capabilities,
+        }
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    -- ["rust_analyzer"] = function ()
+    --     require("rust-tools").setup {}
+    -- end
+}
 ---
 -- LSP Config
 ---
+-- Defaults = { "rust_analyzer", "gopls", "denols", "lua_ls"}
+-- for _, lsp in pairs(Defaults) do
+--     lspconfig[lsp].setup {
+--         on_attach = lsp_defaults.on_attach,
+--         capabilities = lsp_defaults.capabilities,
+--     }
+-- end
+
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
     enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
+    root_dir = function() return vim.loop.cwd() end,
     settings = {
         configurationSources = { "pylint" },
         pylsp = {
@@ -164,20 +164,10 @@ lspconfig.pylsp.setup {
                     maxLineLength = 100,
                 },
                 pylint = {
-                    enabled = false,
+                    enabled = true,
                     maxLineLength = 100,
                     args={'--rcfile ~/.config/pylintrc'}
                 },
-                mypy = {
-                    enabled = false,
-                },
-                pyflakes = {
-                    enabled = false,
-                    exclude = {},
-                },
-                pyright = { enabled = false },
-                isort = { enabled = true },
-                black = { enabled = true },
             }
         }
     },

@@ -15,8 +15,7 @@ local sources = {
   b.diagnostics.shellcheck,
   -- python formatting
   b.formatting.black.with { filetypes = { "python" }},
-  -- b.formatting.isort.with { filetypes = { "python" }},
-  -- TODO: mypy: [import] Cannot find implementation or library stub for module named "im" (mypy)
+  b.formatting.isort.with { filetypes = { "python" }},
   b.diagnostics.mypy.with { filetypes = { "python" }},
   b.completion.luasnip,
   b.diagnostics.ruff.with { filetypes = { "python" },

@@ -103,7 +103,6 @@ return require('packer').startup(function(use)
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "jose-elias-alvarez/null-ls.nvim",
-        "jay-babu/mason-null-ls.nvim",
     }
     use {
       "folke/trouble.nvim",
@@ -123,6 +122,7 @@ return require('packer').startup(function(use)
     use { 'hrsh7th/cmp-nvim-lsp'} --, after = 'cmp-nvim-lua' }
     use { 'hrsh7th/cmp-buffer', after = 'cmp-nvim-lsp' }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
+    use { 'andersevenrud/cmp-tmux' }
 
     -- utils
     use { 'folke/neodev.nvim',

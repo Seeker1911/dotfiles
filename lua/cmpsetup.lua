@@ -25,6 +25,7 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
+
 local cmp = require('cmp')
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
@@ -36,11 +37,9 @@ cmp.setup({
         { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lua' },
         { name = 'luasnip' },
-        { name = 'buffer', keyword_length = 3 },
+        { name = 'tmux' },
+        { name = 'buffer', keyword_length = 2 },
     },
-    -- {
-    --     {name = 'buffer'}
-    -- },
     window = {
         documentation = cmp.config.window.bordered()
     },
@@ -49,9 +48,10 @@ cmp.setup({
         format = function(entry, item)
             item.kind = string.format("%s", kind_icons[item.kind])
             local menu_icon = {
-                nvim_lsp = 'λ',
-                nvim_lua = '[nvim-lua]',
-                buffer = 'Ω',
+                nvim_lsp = '[LSP]',
+                nvim_lua = '[NVIM-LUA]',
+                buffer = '[BUFF]',
+                tmux = '[TMUX]',
                 luasnip = kind_icons.Snippet,
             }
 

@@ -21,8 +21,9 @@ require('tmux_nav')
 require('Comment').setup()
 require('symbols-setup')
 
-vim.cmd('syntax enable')
-vim.cmd('colorscheme gruvbox') -- may be overidden at end of file
+vim.bo.syntax = 'ON'
+vim.cmd.colorscheme('gruvbox')
+
 
 
 -- Use faster grep alternatives if possible
@@ -83,18 +84,6 @@ vim.o.swapfile = false -- do not use swap file
 vim.o.undodir = HOME .. '/.vim/tmp/undo//' -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//' -- swap files
-
-vim.cmd([[
-  au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
-  au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
-  au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
-  au FileType python                  set ts=4 sw=4
-  au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
-  au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
-  au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown
-  au BufRead,BufNewFile *.slimbars    set syntax=slim
-]])
-
 -- Commands mode
 vim.o.wildmenu = true -- on TAB, complete options for system command
 vim.o.wildignore = 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
@@ -136,7 +125,7 @@ end
 
 if file_exists(HOME .. "/.background")
 then
-    vim.cmd('source ~/.background')
+    vim.cmd.source('~/.background')
 end
 
 
@@ -188,3 +177,18 @@ M.nvim_create_augroups(autoCommands)
 -- end
 --
 -- vim.api.nvim_command("set foldtext=FoldText()")
+
+vim.cmd([[
+    augroup file_group
+    autocmd!
+      au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
+      au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
+      au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
+      au FileType python                  set ts=4 sw=4
+      au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
+      au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
+      au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown
+      au BufRead,BufNewFile *.slimbars    set syntax=slim
+    augroup END
+]])
+

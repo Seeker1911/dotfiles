@@ -271,7 +271,12 @@ burnt_toast() {
     tmux source ${HOME}/dotfiles/tmux.conf
 }
 
-ayu_mirage() {
+nightfox() {
+    echo "color nightfox" > ~/.background
+    echo "set background=dark" >> ~/.background
+    tmux source ${HOME}/dotfiles/tmux.conf
+}
+mirage() {
     echo "color ayu-mirage" > ~/.background
     echo "set background=dark" >> ~/.background
     tmux source ${HOME}/dotfiles/tmux.conf

@@ -1,4 +1,3 @@
-[tool.ruff]
  select = ["E", "F", "B", "Q", "W", "I", "N", "D", "UP", "YTT", "ANN", "FBT", "COM", "DTZ", "T10",
              "EM", "EXE", "INP", "PT", "RET", "SIM", "TID", "PTH", "PD", "RUF"]
  line-length = 120

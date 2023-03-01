@@ -132,6 +132,11 @@ end
 local vim = vim
 local api = vim.api
 local M = {}
+
+--TODO: Make a function with keymap to call something like the following (accepting arg for pane)
+--:exe "!tmux send -t <PANE> 'pytest...' Enter"
+
+
 -- function to create a list of commands and convert them to autocommands
 -------- This function is taken from https://github.com/norcalli/nvim_utils
 function M.nvim_create_augroups(definitions)

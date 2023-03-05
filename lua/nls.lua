@@ -6,8 +6,6 @@ end
 local b = null_ls.builtins
 
 local sources = {
-  -- format html and markdown
-  b.formatting.prettierd.with { filetypes = { "html", "yaml", "markdown" } },
   -- markdown diagnostic
   b.diagnostics.markdownlint.with { filetypes = { "markdown" }},
   -- shell
@@ -18,11 +16,6 @@ local sources = {
   b.formatting.isort.with { filetypes = { "python" }},
   b.diagnostics.mypy.with { filetypes = { "python" }},
   b.completion.luasnip,
-  b.diagnostics.ruff.with { filetypes = { "python" },
-            extra_args = {"--line-length", "120"},
-  },
-  -- b.formatting.ruff,
-  --
   -- NOTE: ex. of custom command
   -- b.diagnostics.mypy.with({
   --     command = vim.fn.system({ "which", "mypy" }):gsub("[\n]", ""),
@@ -31,7 +24,9 @@ local sources = {
   --    }),
 }
 
+-- formatting on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 local on_attach = function(client, bufnr)
   vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
   if client.supports_method "textDocument/formatting" then
@@ -50,8 +45,8 @@ end
 null_ls.setup {
   debug = false,
   sources = sources,
-  diagnostics_format ="[#{c}] #{m} (#{s})",
+  diagnostics_format ="(#{s}) [#{c}] #{m}",
   notify_format = "[NULL-LS] %s",
   on_attach = on_attach,
-  root_dir = function() return vim.loop.cwd() end,
+  -- root_dir = function() return vim.loop.cwd() end,
 }

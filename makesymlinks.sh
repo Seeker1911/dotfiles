@@ -47,6 +47,7 @@ done
 ln -sf $dir/bin/* $bindir/
 
 ln -sf $dir/init.lua $nvimdir
+ln -sf $dir/config/ftplugin/ $nvimdir/ftplugin
 ln -sf $dir/lua/* $luadir
 ln -sf $dir/vimrc ~/.vimrc
 ln -sf $dir/config/ruff/pyproject.toml $ruffdir

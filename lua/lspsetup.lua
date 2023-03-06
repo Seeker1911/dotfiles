@@ -90,7 +90,10 @@ local lsp_defaults = {
     end
 }
 
-require("mason").setup{PATH = "append"}
+require("mason").setup{
+    PATH = "append",
+    pip = {upgrade_pip = true}
+}
 local lspconfig = require('lspconfig')
 
 lspconfig.util.default_config = vim.tbl_deep_extend(
@@ -107,49 +110,41 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 ---
 -- Mason Config
 ---
-To_install = { "rust_analyzer", "gopls", "pylsp", "denols", "lua_ls"}
-require("mason-lspconfig").setup({
-    ensure_installed = To_install,
+local mason_lspconfig = require("mason-lspconfig")
+ToInstall = { "rust_analyzer", "gopls", "denols", "terraformls", "lua_ls", "ruff_lsp", "pylsp"}
+mason_lspconfig.setup({
+    ensure_installed = ToInstall,
     automatic_installation = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
 })
 
-require("mason-lspconfig").setup_handlers {
-    -- The first entry (without a key) will be the default handler
-    -- and will be called for each installed server that doesn't have
-    -- a dedicated handler.
-    function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {
-            on_attach = lsp_defaults.on_attach,
-            capabilities = lsp_defaults.capabilities,
-        }
-    end,
-    -- Next, you can provide a dedicated handler for specific servers.
-    -- For example, a handler override for the `rust_analyzer`:
-    -- ["rust_analyzer"] = function ()
-    --     require("rust-tools").setup {}
-    -- end
+AcceptDefaults = { "rust_analyzer", "gopls", "denols", "terraformls", "lua_ls", "jedi_language_server"}
+for _, lsp in pairs(AcceptDefaults) do
+    lspconfig[lsp].setup {
+        on_attach = lsp_defaults.on_attach,
+        capabilities = lsp_defaults.capabilities,
+    }
+end
+
+lspconfig.ruff_lsp.setup {
+    on_attach = lsp_defaults.on_attach,
+    capabilities = lsp_defaults.capabilities,
+    init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    }
+  }
 }
----
--- LSP Config
----
--- Defaults = { "rust_analyzer", "gopls", "denols", "lua_ls"}
--- for _, lsp in pairs(Defaults) do
---     lspconfig[lsp].setup {
---         on_attach = lsp_defaults.on_attach,
---         capabilities = lsp_defaults.capabilities,
---     }
--- end
 
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
-    enabled = true,
+    enabled = false,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     root_dir = function() return vim.loop.cwd() end,
     settings = {
-        configurationSources = { "pylint" },
         pylsp = {
             plugins = {
                 pycodestyle = {
@@ -158,6 +153,12 @@ lspconfig.pylsp.setup {
                     maxLineLength = 100
                 },
                 flake8 = {
+                    enabled = false,
+                    ignore = {},
+                    indentSize = 4,
+                    maxLineLength = 100,
+                },
+                pyflakes = {
                     enabled = false,
                     ignore = {},
                     indentSize = 4,

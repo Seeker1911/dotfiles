@@ -12,7 +12,6 @@ require('treesitter')
 require('plugins')
 require('cmpsetup')
 require('lspsetup')
--- require('nls')
 require('terraformsetup')
 require('lualinesetup')
 require('telescopesetup')
@@ -63,11 +62,11 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.termguicolors = true
 vim.o.shell = 'bash -l'
-vim.o.foldmethod='indent'
--- vim.o.foldexpr='nvim_treesitter#foldexpr()'
-vim.o.foldnestmax = 8
+vim.o.foldmethod='expr'
+vim.o.foldexpr='nvim_treesitter#foldexpr()'
+vim.o.foldnestmax = 3
 vim.o.foldminlines = 6
--- vim.o.foldlevel = 8
+-- vim.o.foldlevel = 4
 
 vim.o.breakindent = true
 vim.o.scrolloff = 3
@@ -129,7 +128,6 @@ then
 end
 
 
-local vim = vim
 local api = vim.api
 local M = {}
 
@@ -195,5 +193,13 @@ vim.cmd([[
       au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.slimbars    set syntax=slim
     augroup END
+]])
+
+
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
 ]])
 

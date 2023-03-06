@@ -98,6 +98,11 @@ return require('packer').startup(function(use)
         run = "make install_jsregexp",
         after = 'nvim-cmp',
     }
+    use { 'folke/neodev.nvim',
+        config = function()
+            require('neodev').setup{}
+        end
+    }
     use { 'neovim/nvim-lspconfig'} --, after = 'mason.nvim' }
     use {
         "williamboman/mason.nvim",
@@ -125,11 +130,6 @@ return require('packer').startup(function(use)
     use { 'andersevenrud/cmp-tmux' }
 
     -- utils
-    use { 'folke/neodev.nvim',
-        config = function()
-            require('neodev').setup{}
-        end
-    }
     use { 'numToStr/Comment.nvim' }
     use { "alexghergh/nvim-tmux-navigation" }
     use { 'tpope/vim-fugitive' }

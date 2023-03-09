@@ -1,6 +1,6 @@
  select = ["E", "F", "B", "Q", "W", "I", "N", "D", "UP", "YTT", "ANN", "FBT", "COM", "DTZ", "T10",
              "EM", "EXE", "INP", "PT", "RET", "SIM", "TID", "PTH", "PD", "RUF"]
- line-length = 120
+ line-length = 100
  ignore = ["BLE001", "D401", "D100", "D103",
      "D404",  # First word of docstring should not be 'this'
      "COM812", # Trailing comma missing

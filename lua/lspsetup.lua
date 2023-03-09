@@ -1,5 +1,5 @@
 require('cmpsetup')
-require('nls')
+-- require('nls')
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',

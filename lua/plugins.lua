@@ -91,6 +91,7 @@ return require('packer').startup(function(use)
     }
 
     -- LSP
+    use { 'davidhalter/jedi-vim' }
     use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
     use { 'sumneko/lua-language-server' }
     use { "L3MON4D3/LuaSnip",

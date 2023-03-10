@@ -35,6 +35,8 @@ elseif executable('ag') then
   vim.o.grepprg = [[ag --nogroup --nocolor --vimgrep]]
   vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
 end
+vim.g['jedi#auto_initialization'] = 0
+
 
 vim.g.loaded_netrw = 1 -- disable netrw in favor of nvim-tree & telescope file_browser
 vim.g.loaded_netrwPlugin = 1
@@ -42,7 +44,6 @@ vim.g.gruvbox_contrast_dark = 'soft'
 vim.g.mapleader = ','
 vim.g.laststatus = 3 -- global status line
 vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
--- vim.g.python3_host_prog = "/Users/michaelmead/.pyenv/versions/3.9.6/bin/python"
 
 
 vim.opt.wildignore:append { "*.pyc", "node_modules" }

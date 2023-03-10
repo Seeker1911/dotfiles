@@ -8,20 +8,33 @@ local b = null_ls.builtins
 local sources = {
   -- markdown diagnostic
   b.diagnostics.markdownlint.with { filetypes = { "markdown" }},
+
   -- shell
   b.code_actions.shellcheck,
   b.diagnostics.shellcheck,
+
   -- python formatting
   b.formatting.black.with { filetypes = { "python" }},
   b.formatting.isort.with { filetypes = { "python" }},
   b.diagnostics.mypy.with { filetypes = { "python" }},
+
+  -- snippets
   b.completion.luasnip,
-  -- NOTE: ex. of custom command
+
+  -- NOTE: ex. of custom commands
   -- b.diagnostics.mypy.with({
   --     command = vim.fn.system({ "which", "mypy" }):gsub("[\n]", ""),
   --     print(vim.fn.system({ "which", "mypy" }):gsub("[\n]", "")),
   --
   --    }),
+
+  -- Run a tool only if in specific directory
+  -- b.diagnostics.pylint.with({
+    --     cwd = function(params)
+    --         -- falls back to root if return value is nil
+    --         return params.root:match("my-special-project") and "my-special-cwd"
+    --     end,
+    -- }),
 }
 
 -- formatting on save
@@ -42,11 +55,12 @@ local on_attach = function(client, bufnr)
     })
   end
 end
+
 null_ls.setup {
-  debug = false,
-  sources = sources,
-  diagnostics_format ="(#{s}) [#{c}] #{m}",
-  notify_format = "[NULL-LS] %s",
-  on_attach = on_attach,
-  -- root_dir = function() return vim.loop.cwd() end,
+    log_level = "error",
+    debug = false,
+    sources = sources,
+    diagnostics_format ="(#{s}) [#{c}] #{m}",
+    notify_format = "[NULL-LS] %s",
+    on_attach = on_attach,
 }

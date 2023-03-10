@@ -241,7 +241,7 @@ export PATH
 #     command nvim $@
 #   fi
 # }
-
+#
 # alias vim=nvimvenv
 
 # if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then

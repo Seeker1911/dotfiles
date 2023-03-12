@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
     -- end
     })
     use { 'savq/melange-nvim' }
-    use { 'p00f/nvim-ts-rainbow' }
+    use { 'HiPhish/nvim-ts-rainbow2' }
     use {
     'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }

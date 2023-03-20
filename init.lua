@@ -21,6 +21,25 @@ require('tmux_nav')
 require('Comment').setup()
 require('symbols-setup')
 
+require("gruvbox").setup({
+  undercurl = true,
+  underline = true,
+  bold = false,
+  italic = true,
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "soft", -- can be "hard", "soft" or empty string
+  palette_overrides = {
+    light0_soft = "#f2e1bc",
+  },
+  overrides = {},
+  dim_inactive = true,
+  transparent_mode = false,
+})
 vim.bo.syntax = 'ON'
 vim.cmd.colorscheme('gruvbox')
 

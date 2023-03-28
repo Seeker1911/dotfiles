@@ -34,7 +34,7 @@ require("gruvbox").setup({
   inverse = true, -- invert background for search, diffs, statuslines and errors
   contrast = "soft", -- can be "hard", "soft" or empty string
   palette_overrides = {
-    light0_soft = "#f2e1bc",
+    light0_soft = "#d5c4a1",
   },
   overrides = {},
   dim_inactive = true,

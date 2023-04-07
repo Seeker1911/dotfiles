@@ -13,7 +13,7 @@ require('plugins')
 require('cmpsetup')
 require('lspsetup')
 require('nls')
-require('terraformsetup')
+--require('terraformsetup')
 require('lualinesetup')
 require('telescopesetup')
 require('web_icons')
@@ -25,7 +25,11 @@ require("gruvbox").setup({
   undercurl = true,
   underline = true,
   bold = false,
-  italic = true,
+  italic = {
+     strings = true,
+     operators = true,
+     comments = true,
+ },
   strikethrough = true,
   invert_selection = false,
   invert_signs = false,

@@ -72,7 +72,7 @@ vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
 vim.opt.wildignore:append { "*.pyc", "node_modules" }
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 vim.o.hidden = true
 -- vim.o.autoread = true
 vim.o.history = 1000

@@ -111,7 +111,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 -- Mason Config
 ---
 local mason_lspconfig = require("mason-lspconfig")
-ToInstall = { "rust_analyzer", "gopls", "denols", "terraformls", "lua_ls", "ruff_lsp", "pylsp"}
+ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp"}
 mason_lspconfig.setup({
     ensure_installed = ToInstall,
     automatic_installation = true,
@@ -119,8 +119,8 @@ mason_lspconfig.setup({
     capabilities = lsp_defaults.capabilities,
 })
 
--- AcceptDefaults = { "rust_analyzer", "gopls", "denols", "terraformls", "lua_ls", "jedi_language_server"}
-AcceptDefaults = { "rust_analyzer", "gopls", "denols", "terraformls", "lua_ls"}
+-- AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "jedi_language_server"}
+AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls"}
 for _, lsp in pairs(AcceptDefaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,

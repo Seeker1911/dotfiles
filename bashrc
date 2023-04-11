@@ -284,10 +284,10 @@ mirage() {
     tmux source ${HOME}/dotfiles/tmux.conf
 }
 
-solar() {
-    echo "color two-firewatch" > ~/.background
-    echo "set background=light" >> ~/.background
-    # alacritty-colorscheme apply solarized_light.yaml
+kindledark() {
+    echo "color melange" > ~/.background
+    echo "set background=dark" >> ~/.background
+    tmux source ${HOME}/dotfiles/tmux.conf
 }
 
 kindle() {

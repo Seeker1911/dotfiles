@@ -111,7 +111,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 -- Mason Config
 ---
 local mason_lspconfig = require("mason-lspconfig")
-ToInstall = { "rust_analyzer", "gopls", "denols", "terraformls", "lua_ls", "ruff_lsp", "pylsp"}
+ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp"}
 mason_lspconfig.setup({
     ensure_installed = ToInstall,
     automatic_installation = true,
@@ -119,7 +119,8 @@ mason_lspconfig.setup({
     capabilities = lsp_defaults.capabilities,
 })
 
-AcceptDefaults = { "rust_analyzer", "gopls", "denols", "terraformls", "lua_ls", "jedi_language_server"}
+-- AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "jedi_language_server"}
+AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls"}
 for _, lsp in pairs(AcceptDefaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,
@@ -133,6 +134,7 @@ lspconfig.ruff_lsp.setup {
     init_options = {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
+      -- args = {"--config=/path/to/pyproject.toml"},
       args = {},
     }
   }
@@ -140,7 +142,7 @@ lspconfig.ruff_lsp.setup {
 
 lspconfig.pylsp.setup {
     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
-    enabled = false,
+    enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     root_dir = function() return vim.loop.cwd() end,

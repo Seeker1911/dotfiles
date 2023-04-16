@@ -13,7 +13,7 @@ require('plugins')
 require('cmpsetup')
 require('lspsetup')
 require('nls')
-require('terraformsetup')
+--require('terraformsetup')
 require('lualinesetup')
 require('telescopesetup')
 require('web_icons')
@@ -21,6 +21,29 @@ require('tmux_nav')
 require('Comment').setup()
 require('symbols-setup')
 
+require("gruvbox").setup({
+  undercurl = true,
+  underline = true,
+  bold = false,
+  italic = {
+     strings = true,
+     operators = true,
+     comments = true,
+ },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "soft", -- can be "hard", "soft" or empty string
+  palette_overrides = {
+    light0_soft = "#d5c4a1",
+  },
+  overrides = {},
+  dim_inactive = true,
+  transparent_mode = false,
+})
 vim.bo.syntax = 'ON'
 vim.cmd.colorscheme('gruvbox')
 
@@ -49,7 +72,7 @@ vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
 vim.opt.wildignore:append { "*.pyc", "node_modules" }
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 vim.o.hidden = true
 -- vim.o.autoread = true
 vim.o.history = 1000

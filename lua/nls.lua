@@ -15,6 +15,7 @@ local sources = {
 
   -- python formatting
   b.formatting.black.with { filetypes = { "python" }},
+  b.formatting.black.with({ filetypes = {"python" }, extra_args = { "--line-length", "100" } }),
   b.formatting.isort.with { filetypes = { "python" }},
   b.diagnostics.mypy.with { filetypes = { "python" }},
 

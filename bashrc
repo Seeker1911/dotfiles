@@ -63,9 +63,11 @@ export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 export PIPENV_IGNORE_VIRTUALENVS=1
 
-if [ -x "$(command -v ipdb)" ]; then
-    export PYTHONBREAKPOINT="ipdb.set_trace"
-fi
+export PYTHONBREAKPOINT="ipdb.set_trace"
+# if [ -x "$(command -v ipdb)" ]; then
+#     echo "breakpoint......"
+#     export PYTHONBREAKPOINT="ipdb.set_trace"
+# fi
 
 # (updated .bashrc)
 
@@ -282,10 +284,10 @@ mirage() {
     tmux source ${HOME}/dotfiles/tmux.conf
 }
 
-solar() {
-    echo "color two-firewatch" > ~/.background
-    echo "set background=light" >> ~/.background
-    # alacritty-colorscheme apply solarized_light.yaml
+kindledark() {
+    echo "color melange" > ~/.background
+    echo "set background=dark" >> ~/.background
+    tmux source ${HOME}/dotfiles/tmux.conf
 }
 
 kindle() {

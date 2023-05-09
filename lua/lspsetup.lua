@@ -167,7 +167,7 @@ lspconfig.pylsp.setup {
                     maxLineLength = 100,
                 },
                 pylint = {
-                    enabled = true,
+                    enabled = false,
                     maxLineLength = 100,
                     args={'--rcfile ~/.config/pylintrc'}
                 },

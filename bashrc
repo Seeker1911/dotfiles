@@ -173,6 +173,8 @@ alias cleangit='git branch | grep -v "master" | grep -v "develop" | grep -v "mai
 alias cdg='cd `git rev-parse --show-toplevel`'  # cd to the "home" of a git repo
 alias xconfig='cd $XDG_CONFIG_HOME'
 alias vim=nvim
+alias tfplan='AWS_PROFILE=dev-developer built_repo_checks repo-inf-audit'
+
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
 [ -f ~/.secrets.sh ] && source ~/.secrets.sh

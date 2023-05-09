@@ -8,7 +8,7 @@ local function add(value, str, sep)
   return str ~= '' and table.concat({ value, str }, sep) or value
 end
 HOME = os.getenv("HOME")
-require('treesitter')
+--require('treesitter')
 require('plugins')
 require('cmpsetup')
 require('lspsetup')

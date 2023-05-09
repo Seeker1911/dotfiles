@@ -45,7 +45,7 @@ export CLICOLOR=1
 # Set colors to match iTerm2 Terminal Colors
 export TERM="screen-256color"
 export SHELL='/bin/sh'
-export EDITOR='nvim'
+export EDITOR='vim'
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'

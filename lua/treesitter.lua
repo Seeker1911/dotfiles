@@ -1,3 +1,14 @@
+require("nvim-treesitter.configs").setup {
+  rainbow = {
+    enable = true,
+    -- list of languages you want to disable the plugin for
+    disable = { "jsx", "cpp" },
+    -- Which query to use for finding delimiters
+    query = 'rainbow-parens',
+    -- Highlight the entire buffer all at once
+    strategy = require 'ts-rainbow.strategy.global',
+  }
+}
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {"help", "python", "typescript", "javascript", "go", "lua"},
@@ -22,9 +33,9 @@ require'nvim-treesitter.configs'.setup {
       enable = false,
   },
   -- rainbow parens using treesitter is supplied by nvim-ts-rainbow
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 1000, -- Do not enable for files with more than n lines, int
-  }
+  -- rainbow = {
+  --   enable = true,
+  --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+  --   max_file_lines = 1000, -- Do not enable for files with more than n lines, int
+  -- }
 }

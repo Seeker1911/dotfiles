@@ -46,6 +46,7 @@ require("gruvbox").setup({
 })
 vim.bo.syntax = 'ON'
 vim.cmd.colorscheme('gruvbox')
+vim.g.gruvbox_contrast_dark = 'soft'
 
 
 
@@ -63,7 +64,6 @@ vim.g['jedi#auto_initialization'] = 0
 
 vim.g.loaded_netrw = 1 -- disable netrw in favor of nvim-tree & telescope file_browser
 vim.g.loaded_netrwPlugin = 1
-vim.g.gruvbox_contrast_dark = 'soft'
 vim.g.mapleader = ','
 vim.g.laststatus = 3 -- global status line
 vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
@@ -90,7 +90,7 @@ vim.o.shell = 'bash -l'
 vim.o.foldmethod='expr'
 vim.o.foldexpr='nvim_treesitter#foldexpr()'
 vim.o.foldnestmax = 3
-vim.o.foldminlines = 6
+vim.o.foldminlines = 12
 -- vim.o.foldlevel = 4
 
 vim.o.breakindent = true

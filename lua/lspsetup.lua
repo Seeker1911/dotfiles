@@ -120,7 +120,7 @@ mason_lspconfig.setup({
 })
 
 -- AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "jedi_language_server"}
-AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls"}
+AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls"}
 for _, lsp in pairs(AcceptDefaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,
@@ -136,6 +136,40 @@ lspconfig.ruff_lsp.setup {
       -- Any extra CLI arguments for `ruff` go here.
       -- args = {"--config=/path/to/pyproject.toml"},
       args = {},
+    }
+  }
+}
+
+local lua_rtp = vim.split(package.path, ';')
+table.insert(lua_rtp, 'lua/?.lua')
+table.insert(lua_rtp, 'lua/?/init.lua')
+
+lspconfig.lua_ls.setup {
+    on_attach = lsp_defaults.on_attach,
+    capabilities = lsp_defaults.capabilities,
+    init_options = {
+    settings = {
+        runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = lua_rtp,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { 'vim' },
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file('', true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+          -- -- Any extra CLI arguments for `ruff` go here.
+          -- -- args = {"--config=/path/to/pyproject.toml"},
+          -- args = {},
     }
   }
 }

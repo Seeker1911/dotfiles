@@ -128,6 +128,7 @@ return require('packer').startup(function(use)
     use { 'hrsh7th/cmp-nvim-lsp'} --, after = 'cmp-nvim-lua' }
     use { 'hrsh7th/cmp-buffer', after = 'cmp-nvim-lsp' }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
+    use({"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"})
     use { 'andersevenrud/cmp-tmux' }
 
     -- utils
@@ -141,6 +142,17 @@ return require('packer').startup(function(use)
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
       }
+    }
+        use {
+      'pwntester/octo.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
+        'kyazdani42/nvim-web-devicons',
+      },
+      config = function ()
+        require"octo".setup()
+      end
     }
 
     cmd([[

@@ -167,9 +167,6 @@ lspconfig.lua_ls.setup {
           telemetry = {
             enable = false,
           },
-          -- -- Any extra CLI arguments for `ruff` go here.
-          -- -- args = {"--config=/path/to/pyproject.toml"},
-          -- args = {},
     }
   }
 }

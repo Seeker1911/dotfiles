@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
 
     -- colors & ui
     use { "ellisonleao/gruvbox.nvim" }
+    use { "sainnhe/everforest" }
     use { "shatur/neovim-ayu" }
     use { 'edeneast/nightfox.nvim' }
     use { 'jsit/toast.vim' }

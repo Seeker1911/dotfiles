@@ -261,6 +261,13 @@ jedi() {
     # alacritty-colorscheme apply gruvbox_light.yaml
 }
 
+everforest() {
+    echo "color everforest" > ~/.background
+    echo "set background=light" >> ~/.background
+    tmux source ${HOME}/dotfiles/colors/tmux-everforest.conf
+    # alacritty-colorscheme apply gruvbox_light.yaml
+}
+
 sith() {
     echo "color gruvbox" > ~/.background
     echo "set background=dark" >> ~/.background

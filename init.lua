@@ -47,6 +47,8 @@ require("gruvbox").setup({
 vim.bo.syntax = 'ON'
 vim.cmd.colorscheme('gruvbox')
 vim.g.gruvbox_contrast_dark = 'soft'
+vim.g.everforest_background = 'soft'
+vim.g.everforest_better_performance = 1
 
 
 
@@ -87,10 +89,10 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.termguicolors = true
 vim.o.shell = 'bash -l'
-vim.o.foldmethod='expr'
-vim.o.foldexpr='nvim_treesitter#foldexpr()'
-vim.o.foldnestmax = 3
-vim.o.foldminlines = 12
+vim.o.foldmethod='indent'
+-- vim.o.foldexpr='nvim_treesitter#foldexpr()'
+vim.o.foldnestmax = 4
+vim.o.foldminlines = 4
 -- vim.o.foldlevel = 4
 
 vim.o.breakindent = true

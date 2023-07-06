@@ -129,6 +129,7 @@ for _, lsp in pairs(AcceptDefaults) do
 end
 
 lspconfig.ruff_lsp.setup {
+    enabled = false,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     init_options = {
@@ -136,6 +137,7 @@ lspconfig.ruff_lsp.setup {
       -- Any extra CLI arguments for `ruff` go here.
       -- args = {"--config=/path/to/pyproject.toml"},
       args = {},
+      fixAll = false,
     }
   }
 }

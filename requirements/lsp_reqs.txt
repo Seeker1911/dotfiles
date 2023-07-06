@@ -17,3 +17,4 @@ python-lsp-black
 pdbpp
 ipdb
 ipython
+ruff-lsp

@@ -182,6 +182,12 @@ lspconfig.pylsp.setup {
     settings = {
         pylsp = {
             plugins = {
+                ruff = {
+					enabled = false,
+                    -- config = '~/.config/ruff/pyproject.toml',
+                    args={'--config ~/.config/ruff/pyproject.toml'}
+					-- extendSelect = { "I" },
+				},
                 pycodestyle = {
                     enabled = false,
                     ignore = {},

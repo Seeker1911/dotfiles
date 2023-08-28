@@ -92,8 +92,8 @@ return require('packer').startup(function(use)
     use {'tpope/vim-rhubarb' }
     --
     -- fuzzy find
-    use { 'junegunn/fzf', run = 'fzf#install()' }
     use { 'junegunn/fzf.vim' }
+    use { 'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
     use { 'nvim-telescope/telescope.nvim',
         requires = {
                 {'nvim-lua/plenary.nvim'},

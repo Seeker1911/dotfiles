@@ -46,10 +46,10 @@ export CLICOLOR=1
 export TERM="screen-256color"
 export SHELL='/bin/sh'
 export EDITOR='vim'
-export GOPATH=$HOME/go
-export GOBIN=$HOME/go/bin
+export GOPATH="$HOME"/go
+export GOBIN="$HOME"/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'
-export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}' --exclude "build" "
+export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build, node_modules}'"
 _fzf_compgen_path() {
   rg --files --hidden --follow . "$1"
 }
@@ -177,11 +177,11 @@ alias tfplan='AWS_PROFILE=dev-developer built_repo_checks repo-inf-audit'
 
 
 # SOURCE OTHER FILES ---------------------------------------------------------------------------------------
-[ -f ~/.secrets.sh ] && source ~/.secrets.sh
-[ -f ~/.profile ] && source ~/.profile
+[ -f ~/.secrets.sh ] && . ~/.secrets.sh
+[ -f ~/.profile ] && . ~/.profile
 
 #fuzzy finder in bash 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 # NOTE: completions really slow down sourcing the shell.
 # if ! shopt -oq posix; then

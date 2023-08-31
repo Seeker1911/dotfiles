@@ -43,6 +43,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[difftool.tool]
+    tool=nvimdiff
 [alias]
     # use this alias with util/bash_functions git_log func
     showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"

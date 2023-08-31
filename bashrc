@@ -36,7 +36,7 @@ set show-all-if-ambiguous on
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export MYVIMRC=~/dotfiles/vimrc
+# export MYVIMRC=~/dotfiles/vimrc
 export NVIM_LOG_FILE=~/.local/share/nvim/log
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export LANG=en_US.UTF-8
@@ -45,7 +45,7 @@ export CLICOLOR=1
 # Set colors to match iTerm2 Terminal Colors
 export TERM="screen-256color"
 export SHELL='/bin/sh'
-export EDITOR='vim'
+export EDITOR='nvim'
 export GOPATH="$HOME"/go
 export GOBIN="$HOME"/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'

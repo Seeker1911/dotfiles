@@ -199,6 +199,7 @@ PATH="${PATH}:${HOME}/go/bin"
 # PATH="${PATH}:/usr/local/sbin"
 PATH="${PATH}:${HOME}/.npm"
 PATH="${PATH}:${HOME}/.node-gyp"
+PATH="${PATH}:${HOME}/.node-gyp"
 # PATH="${PATH}:/usr/local/Cellar/postgresql/13.0/bin"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
@@ -208,7 +209,6 @@ PATH="$HOME/bin:$PATH"
 # NOTE: seeing if I really need this
 # PATH="/usr/local/opt/openssl@2.1/bin:$PATH"
 export PATH
-
 # export PGDATA="/usr/local/Cellar/postgresql/13.0/bin/psql"
 
 # For pkg-config to find openssl@2.1 you may need to set:
@@ -336,3 +336,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+
+. "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"

@@ -313,6 +313,12 @@ fox() {
     # alacritty-colorscheme apply pencil_light.yaml
 }
 
+dawnfox() {
+    echo "color dawnfox" > ~/.background
+    echo "set background=light" >> ~/.background
+    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+}
+
 toast() {
     echo "color toast" > ~/.background
     echo "set background=light" >> ~/.background

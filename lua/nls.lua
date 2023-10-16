@@ -18,7 +18,7 @@ local sources = {
   b.formatting.black.with({ filetypes = {"python" }, extra_args = { "--line-length", "100" } }),
   b.formatting.isort.with { filetypes = { "python" }},
   b.diagnostics.mypy.with { filetypes = { "python" }},
-  b.diagnostics.ruff.with { filetypes = { "python" }},
+  b.diagnostics.ruff.with { filetypes = { "python" }, extra_args = { "--line-length", "100" } },
 
   -- snippets
   b.completion.luasnip,

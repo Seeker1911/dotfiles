@@ -135,8 +135,8 @@ lspconfig.ruff_lsp.setup {
     init_options = {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
-      -- args = {"--config=/path/to/pyproject.toml"},
-      args = {},
+      -- LSP server doesn't pick up changes from this pattern
+      -- args = {"--config=~/.config/ruff/pyproject.toml"},
       fixAll = false,
     }
   }

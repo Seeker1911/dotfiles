@@ -129,14 +129,14 @@ for _, lsp in pairs(AcceptDefaults) do
 end
 
 lspconfig.ruff_lsp.setup {
-    enabled = false,
+    enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
     init_options = {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
       -- LSP server doesn't pick up changes from this pattern
-      -- args = {"--config=~/.config/ruff/pyproject.toml"},
+      args = {"--config=~/.config/ruff/pyproject.toml"},
       fixAll = false,
     }
   }
@@ -184,9 +184,7 @@ lspconfig.pylsp.setup {
             plugins = {
                 ruff = {
 					enabled = false,
-                    -- config = '~/.config/ruff/pyproject.toml',
-                    args={'--config ~/.config/ruff/pyproject.toml'}
-					-- extendSelect = { "I" },
+                    args={'--config ~/.config/ruff/pyproject.toml'},
 				},
                 pycodestyle = {
                     enabled = false,

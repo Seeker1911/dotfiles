@@ -133,6 +133,11 @@ return require('packer').startup(function(use)
     }
     use { 'hashicorp/terraform-ls' }
 
+    -- debugging-dap
+    use 'mfussenegger/nvim-dap'
+    use 'mxsdev/nvim-dap-vscode-js'
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
     -- completion
     use { 'saadparwaiz1/cmp_luasnip' } --, after = 'LuaSnip' }
     use { 'hrsh7th/nvim-cmp' }

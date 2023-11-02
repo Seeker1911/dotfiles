@@ -16,16 +16,17 @@ local sources = {
   -- python formatting
   b.formatting.black.with({ filetypes = {"python" }, extra_args = { "--line-length", "100" } }),
   b.formatting.isort.with { filetypes = { "python" }},
+  -- b.diagnostics.mypy.with { filetypes = { "python" }},
 
   -- snippets
   b.completion.luasnip,
 
   -- NOTE: ex. of custom commands
-  -- b.diagnostics.mypy.with({
-  --     command = vim.fn.system({ "which", "mypy" }):gsub("[\n]", ""),
-  --     print(vim.fn.system({ "which", "mypy" }):gsub("[\n]", "")),
-  --
-  --    }),
+  b.diagnostics.mypy.with({
+       command = vim.fn.system({ "which", "mypy" }):gsub("[\n]", ""),
+       print(vim.fn.system({ "which", "mypy" }):gsub("[\n]", "")),
+
+  }),
 
   -- Run a tool only if in specific directory
   -- b.diagnostics.pylint.with({

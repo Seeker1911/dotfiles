@@ -116,6 +116,10 @@ vim.o.directory = '/.vim/tmp/swap//' -- swap files
 vim.o.wildmenu = true -- on TAB, complete options for system command
 vim.o.wildignore = 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
 
+-- https://github.com/neovim/neovim/issues/21749#issuecomment-1378720864
+-- Fix loading of json5
+table.insert(vim._so_trails, "/?.dylib")
+
 
 -- function to help remap vim commands
 local function map(mode, lhs, rhs, opts)

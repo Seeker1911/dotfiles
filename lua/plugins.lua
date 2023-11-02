@@ -137,6 +137,10 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-dap'
     use 'mxsdev/nvim-dap-vscode-js'
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use {
+        'Joakker/lua-json5',
+        run = './install.sh'
+    }
 
     -- completion
     use { 'saadparwaiz1/cmp_luasnip' } --, after = 'LuaSnip' }

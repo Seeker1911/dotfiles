@@ -63,4 +63,13 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close({})
 end
 
+require('dap.ext.vscode').load_launchjs(nil,
+  { ['pwa-node'] = js_based_languages,
+    ['node'] = js_based_languages,
+    ['chrome'] = js_based_languages,
+    ['pwa-chrome'] = js_based_languages }
+)
+
+
 vim.keymap.set('n', '<leader>ui', require 'dapui'.toggle)
+

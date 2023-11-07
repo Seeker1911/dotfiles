@@ -27,7 +27,8 @@ vim.api.nvim_create_autocmd('User', {
         bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
         bufmap('n', '<F5>', '<cmd>lua vim.lsp.buf.format()<cr>')
         bufmap('n', '<F6>', '<cmd>lua vim.diagnostic.hide()<cr>')
-        bufmap('n', '<F7>', function()
+        bufmap('n', '<F7>', '<cmd>lua vim.diagnostic.show()<cr>')
+        bufmap('n', '<F8>', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
               end, bufopts)
 
@@ -136,8 +137,10 @@ lspconfig.ruff_lsp.setup {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
       -- LSP server doesn't pick up changes from this pattern
-      args = {"--config=~/.config/ruff/pyproject.toml"},
-      fixAll = false,
+      args = {
+             "--config=" .. vim.loop.os_homedir() .. "/.config/ruff/pyproject.toml",
+             },
+      fixAll = true,
     }
   }
 }

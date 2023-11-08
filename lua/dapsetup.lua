@@ -1,4 +1,6 @@
--- local dap = require("dap")
+-- https://github.com/neovim/neovim/issues/21749#issuecomment-1378720864
+-- Fix loading of json5
+table.insert(vim._so_trails, "/?.dylib")
 require("dapui").setup()
 
 local dap, dapui = require("dap"), require("dapui")
@@ -63,13 +65,13 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close({})
 end
 
-require('dap.ext.vscode').load_launchjs(nil,
-  { ['pwa-node'] = js_based_languages,
-    ['node'] = js_based_languages,
-    ['chrome'] = js_based_languages,
-    ['pwa-chrome'] = js_based_languages }
-)
-
+-- require('dap.ext.vscode').load_launchjs(nil,
+--   { ['pwa-node'] = js_based_languages,
+--     ['node'] = js_based_languages,
+--     ['chrome'] = js_based_languages,
+--     ['pwa-chrome'] = js_based_languages }
+-- )
+--
 
 vim.keymap.set('n', '<leader>ui', require 'dapui'.toggle)
 

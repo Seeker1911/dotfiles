@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd('User', {
         bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
         bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
         bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
-        bufmap('n', '<F5>', '<cmd>lua vim.lsp.buf.format()<cr>')
+        bufmap('n', '<F8>', '<cmd>lua vim.lsp.buf.format()<cr>')
         bufmap('n', '<F6>', '<cmd>lua vim.diagnostic.hide()<cr>')
         bufmap('n', '<F7>', '<cmd>lua vim.diagnostic.show()<cr>')
         bufmap('n', '<F8>', function()

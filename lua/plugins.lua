@@ -89,7 +89,8 @@ return require('packer').startup(function(use)
     }
     -- Lazy loading:
     use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-    use {'tpope/vim-rhubarb' }
+    use {'tpope/vim-rhubarb'}
+    use {'tpope/vim-abolish'}
     --
     -- fuzzy find
     use { 'junegunn/fzf.vim' }

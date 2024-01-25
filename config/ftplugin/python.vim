@@ -1,1 +1,1 @@
-setlocal nosmartindent
+/Users/mike.mead/dotfiles/config/ftplugin/python.vim

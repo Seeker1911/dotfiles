@@ -504,7 +504,7 @@ git_log() {
 }
 
 function install_linters {
-pip install -r ${HOME}/dotfiles/lsp_reqs.txt
+pip install -r ${HOME}/dotfiles/requirements/lsp_reqs.txt
 }
 
 function fix-quarantine {

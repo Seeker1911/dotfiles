@@ -343,6 +343,9 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
-. "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
+[ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && \. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+# . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+
+[ -s "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash" ] && \. "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
+# . "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"

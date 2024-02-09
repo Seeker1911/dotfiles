@@ -151,7 +151,10 @@ return require('packer').startup(function(use)
     use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
     use({"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"})
     use { 'andersevenrud/cmp-tmux' }
-
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     -- utils
     use { 'numToStr/Comment.nvim' }
     use { "alexghergh/nvim-tmux-navigation" }

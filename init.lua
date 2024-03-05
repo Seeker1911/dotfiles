@@ -1,11 +1,11 @@
 local executable = function(e)
-  return vim.fn.executable(e) > 0
+    return vim.fn.executable(e) > 0
 end
 local function add(value, str, sep)
-  sep = sep or ','
-  str = str or ''
-  value = type(value) == 'table' and table.concat(value, sep) or value
-  return str ~= '' and table.concat({ value, str }, sep) or value
+    sep = sep or ','
+    str = str or ''
+    value = type(value) == 'table' and table.concat(value, sep) or value
+    return str ~= '' and table.concat({ value, str }, sep) or value
 end
 
 HOME = os.getenv("HOME")
@@ -23,27 +23,27 @@ require('Comment').setup()
 require('symbols-setup')
 
 require("gruvbox").setup({
-  undercurl = true,
-  underline = true,
-  bold = false,
-  italic = {
-     strings = true,
-     operators = true,
-     comments = true,
- },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "soft", -- can be "hard", "soft" or empty string
-  palette_overrides = {
-    light0_soft = "#d5c4a1",
-  },
-  overrides = {},
-  dim_inactive = true,
-  transparent_mode = false,
+    undercurl = true,
+    underline = true,
+    bold = false,
+    italic = {
+        strings = true,
+        operators = true,
+        comments = true,
+    },
+    strikethrough = true,
+    invert_selection = false,
+    invert_signs = false,
+    invert_tabline = false,
+    invert_intend_guides = false,
+    inverse = true,  -- invert background for search, diffs, statuslines and errors
+    contrast = "soft", -- can be "hard", "soft" or empty string
+    palette_overrides = {
+        light0_soft = "#d5c4a1",
+    },
+    overrides = {},
+    dim_inactive = true,
+    transparent_mode = false,
 })
 vim.bo.syntax = 'ON'
 vim.cmd.colorscheme('gruvbox')
@@ -55,12 +55,12 @@ vim.g.everforest_better_performance = 1
 
 -- Use faster grep alternatives if possible
 if executable('rg') then
-  vim.o.grepprg =
-      [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
-  vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+    vim.o.grepprg =
+    [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
+    vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
 elseif executable('ag') then
-  vim.o.grepprg = [[ag --nogroup --nocolor --vimgrep]]
-  vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+    vim.o.grepprg = [[ag --nogroup --nocolor --vimgrep]]
+    vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
 end
 vim.g['jedi#auto_initialization'] = 0
 
@@ -91,7 +91,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.termguicolors = true
 vim.o.shell = 'bash -l'
-vim.o.foldmethod='indent'
+vim.o.foldmethod = 'indent'
 -- vim.o.foldexpr='nvim_treesitter#foldexpr()'
 vim.o.foldnestmax = 4
 vim.o.foldminlines = 4
@@ -106,15 +106,16 @@ vim.o.modelines = 0
 vim.o.smartcase = true -- case insentive unless capitals used in search
 
 -- Backup files
-vim.o.backup = true -- use backup files
+vim.o.backup = true                            -- use backup files
 vim.o.writebackup = false
-vim.o.swapfile = false -- do not use swap file
-vim.o.undodir = HOME .. '/.vim/tmp/undo//' -- undo files
+vim.o.swapfile = false                         -- do not use swap file
+vim.o.undodir = HOME .. '/.vim/tmp/undo//'     -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
-vim.o.directory = '/.vim/tmp/swap//' -- swap files
+vim.o.directory = '/.vim/tmp/swap//'           -- swap files
 -- Commands mode
-vim.o.wildmenu = true -- on TAB, complete options for system command
-vim.o.wildignore = 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
+vim.o.wildmenu = true                          -- on TAB, complete options for system command
+vim.o.wildignore =
+'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
 
 
 -- function to help remap vim commands
@@ -148,7 +149,10 @@ map('t', '<Esc>', '<C-\\><C-n>')
 
 function file_exists(name)
     local f = io.open(name, "r")
-    if f ~= nil then io.close(f) return true else return false end
+    if f ~= nil then
+        io.close(f)
+        return true
+    else return false end
 end
 
 if file_exists(HOME .. "/.background")
@@ -168,21 +172,20 @@ local M = {}
 -------- This function is taken from https://github.com/norcalli/nvim_utils
 function M.nvim_create_augroups(definitions)
     for group_name, definition in pairs(definitions) do
-        api.nvim_command('augroup '..group_name)
+        api.nvim_command('augroup ' .. group_name)
         api.nvim_command('autocmd!')
         for _, def in ipairs(definition) do
-            local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+            local command = table.concat(vim.tbl_flatten { 'autocmd', def }, ' ')
             api.nvim_command(command)
         end
         api.nvim_command('augroup END')
     end
 end
 
-
 local autoCommands = {
     -- other autocommands
     open_folds = {
-        {"BufReadPost,FileReadPost", "*", "normal zR"}
+        { "BufReadPost,FileReadPost", "*", "normal zR" }
     }
 }
 

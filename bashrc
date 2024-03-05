@@ -63,7 +63,6 @@ export CHTSH_QUERY_OPTIONS="style=native"
 export W3MIMGDISPLAY_PATH='usr/local/bin/w3m'
 export REVIEW_BASE=HEAD^ # used with git alias in gitconfig
 export PIPENV_IGNORE_VIRTUALENVS=1
-
 export PYTHONBREAKPOINT="ipdb.set_trace"
 # if [ -x "$(command -v ipdb)" ]; then
 #     echo "breakpoint......"
@@ -157,6 +156,22 @@ elif [ $platform = 'macos' ]; then
     # echo "++++++++++++++++++++++++++++++++++++++++"
 
     # unset PROMPT_COMMAND
+
+
+# For compilers to find postgresql@15 you may need to set:
+  LDFLAGS="-L/opt/homebrew/opt/postgresql@15/lib"
+  CPPFLAGS="-I/opt/homebrew/opt/postgresql@15/include"
+
+# For pkg-config to find postgresql@15 you may need to set:
+  PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
+
+# For compilers to find php@7.4 you may need to set:
+  LDFLAGS+="-L/opt/homebrew/opt/php@7.4/lib"
+  CPPFLAGS+="-I/opt/homebrew/opt/php@7.4/include"
+
+  export LDFLAGS
+  export CPPFLAGS
+  export PKG_CONFIG_PATH
 fi
 
 alias tmux='tmux -2'
@@ -195,6 +210,7 @@ alias tfplan='AWS_PROFILE=dev-developer built_repo_checks repo-inf-audit'
 
 # PATH -------------------------------------------------------------------------------------------------------
 PATH="/opt/homebrew/bin:${PATH}"
+PATH="/opt/homebrew/sbin:$PATH"
 # PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:${HOME}/go/bin"
 # PATH="${PATH}:/usr/local/sbin"
@@ -205,6 +221,12 @@ PATH="${PATH}:${HOME}/.node-gyp"
 PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
+PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+
+# If you need to have php@7.4 first in your PATH, run:
+PATH="${PATH}:/opt/homebrew/opt/php@7.4/bin"
+PATH="${PATH}:/opt/homebrew/opt/php@7.4/sbin"
 # PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@2.1 first in your PATH:
 # NOTE: seeing if I really need this

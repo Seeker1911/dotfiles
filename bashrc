@@ -302,7 +302,7 @@ sith() {
     echo "import = ['~/.config/alacritty/themes/themes/gruvbox_dark.toml']" > ~/.alacritty_background.toml
 }
 
-burnt_toast() {
+inferno() {
     echo "color toast" > ~/.background
     echo "set background=dark" >> ~/.background
     # tmux source ${HOME}/dotfiles/tmux.conf

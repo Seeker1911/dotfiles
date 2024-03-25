@@ -15,7 +15,7 @@ ruffdir=$XDG_CONFIG_HOME/ruff
 luadir=$nvimdir/lua
 alacrittydir=$XDG_CONFIG_HOME/alacritty
 
-homeFiles="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig vim_background alacritty_background"
+homeFiles="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig vim_background"
 configFiles="pycodestyle flake8 pylintrc"
 
 ##########
@@ -51,4 +51,6 @@ ln -sf $dir/config/ftplugin/* $nvimdir/ftplugin/*
 ln -sf $dir/lua/* $luadir
 ln -sf $dir/vimrc ~/.vimrc
 ln -sf $dir/config/ruff/pyproject.toml $ruffdir
+# hardlink alacritty files
 ln -f $dir/profiles/alacritty.toml $alacrittydir/alacritty.toml
+ln -f $dir/profiles/alacritty_background.toml $HOME/.alacritty_background.toml

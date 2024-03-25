@@ -280,73 +280,76 @@ export PATH
 jedi() {
     echo "color gruvbox" > ~/.background
     echo "set background=light" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
+    # tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
     # alacritty-colorscheme apply gruvbox_light.yaml
+    echo "import = ['~/.config/alacritty/themes/themes/gruvbox_material_hard_light.toml']" > ~/.alacritty_background.toml
 }
 
 everforest() {
     echo "color everforest" > ~/.background
     echo "set background=light" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux-everforest.conf
+    # tmux source ${HOME}/dotfiles/colors/tmux-everforest.conf
     # alacritty-colorscheme apply gruvbox_light.yaml
+    echo "import = ['~/.config/alacritty/themes/themes/everforest_light.toml']" > ~/.alacritty_background.toml
 }
 
 sith() {
     echo "color gruvbox" > ~/.background
     echo "set background=dark" >> ~/.background
     echo "let g:airline_theme='snow_dark'" >> ~/.background
-    tmux source ${HOME}/dotfiles/tmux.conf
+    # tmux source ${HOME}/dotfiles/tmux.conf
     # alacritty-colorscheme apply gruvbox_dark.yaml
+    echo "import = ['~/.config/alacritty/themes/themes/gruvbox_dark.toml']" > ~/.alacritty_background.toml
 }
 
 burnt_toast() {
     echo "color toast" > ~/.background
     echo "set background=dark" >> ~/.background
-    tmux source ${HOME}/dotfiles/tmux.conf
+    # tmux source ${HOME}/dotfiles/tmux.conf
+    echo "import = ['~/.config/alacritty/themes/themes/inferno.toml']" > ~/.alacritty_background.toml
 }
 
 nightfox() {
     echo "color nightfox" > ~/.background
     echo "set background=dark" >> ~/.background
-    tmux source ${HOME}/dotfiles/tmux.conf
-}
-mirage() {
-    echo "color ayu-mirage" > ~/.background
-    echo "set background=dark" >> ~/.background
-    tmux source ${HOME}/dotfiles/tmux.conf
+    # tmux source ${HOME}/dotfiles/tmux.conf
+    echo "import = ['~/.config/alacritty/themes/themes/nightfox.toml']" > ~/.alacritty_background.toml
 }
 
 kindledark() {
     echo "color melange" > ~/.background
     echo "set background=dark" >> ~/.background
-    tmux source ${HOME}/dotfiles/tmux.conf
+    # tmux source ${HOME}/dotfiles/tmux.conf
+    echo "import = ['~/.config/alacritty/themes/themes/kanagawa_wave.toml']" > ~/.alacritty_background.toml
 }
 
 kindle() {
     echo "color melange" > ~/.background
     echo "set background=light" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
-    # alacritty-colorscheme apply pencil_light.yaml
+    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    # echo "import = ['~/.config/alacritty/themes/themes/nord_light.toml']" > ~/.alacritty_background.toml
+    echo "import = ['~/.config/alacritty/themes/themes/papertheme.toml']" > ~/.alacritty_background.toml
 }
 
 fox() {
     echo "color dayfox" > ~/.background
     echo "set background=light" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
-    # alacritty-colorscheme apply pencil_light.yaml
+    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    echo "import = ['~/.config/alacritty/themes/themes/pencil_light.toml']" > ~/.alacritty_background.toml
 }
 
 dawnfox() {
     echo "color dawnfox" > ~/.background
     echo "set background=light" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    echo "import = ['~/.config/alacritty/themes/themes/nord_light.toml']" > ~/.alacritty_background.toml
 }
 
 toast() {
     echo "color toast" > ~/.background
     echo "set background=light" >> ~/.background
-    tmux source ${HOME}/dotfiles/colors/tmux_toast.conf
-    # alacritty-colorscheme apply pencil_light.yaml
+    # tmux source ${HOME}/dotfiles/colors/tmux_toast.conf
+    echo "import = ['~/.config/alacritty/themes/themes/gruvbox_material_hard_light.toml']" > ~/.alacritty_background.toml
 }
 
 color() {
@@ -372,3 +375,6 @@ eval "$(pyenv virtualenv-init -)"
 
 [ -s "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash" ] && \. "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
 # . "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
+#
+[ -s "source ${XDG_CONFIG_HOME}/.config/op/plugins.sh" ] && \. "source ${XDG_CONFIG_HOME}/op/plugins.sh"
+

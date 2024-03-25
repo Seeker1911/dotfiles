@@ -1,0 +1,41 @@
+# Alacritty Configuration File
+# https://alacritty.org/config-alacritty.html
+# brew install --cask alacritty --no-quarantine
+#
+
+import = ["~/.alacritty_background.toml"]
+# import = [
+#     "~/.config/alacritty/themes/themes/night_owlish_light.toml",
+#     "~/.config/alacritty/themes/themes/pencil_light.toml",
+#     "~/.config/alacritty/themes/themes/gruvbox_material_medium_light.toml",
+#     "~/.config/alacritty/themes/themes/gruvbox_material_hard_dark.toml",
+#     "~/.config/alacritty/themes/themes/gruvbox_dark.toml",
+#     "~/.config/alacritty/themes/themes/inferno.toml",
+#     "~/.config/alacritty/themes/themes/nord_light.toml",
+#     "~/.config/alacritty/themes/themes/kanagawa_wave.toml",
+#     "~/.config/alacritty/themes/themes/papercolor_light.toml",
+# ]
+
+[window]
+opacity = 0.9
+decorations = 'buttonless'
+padding = {x = 2, y = 2}
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "BoldItalic"} 
+size = 11.25
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[colors]
+cursor = { text = "CellBackground", cursor = "#F28500" }

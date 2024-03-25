@@ -8,8 +8,13 @@
 #
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
-#import:
-#  - /path/to/alacritty.yml
+#
+# import:
+#  - "~/.config/alacritty/themes/themes/gruvbox_material_hard_dark.toml"
+
+# import = [
+#     "~/.config/alacritty/themes/themes/gruvbox_material_hard_dark.toml"
+# ]
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables

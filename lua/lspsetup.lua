@@ -82,12 +82,19 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp_defaults = {
     flags = {
-        debounce_text_changes = 150,
+        debounce_text_changes = 1000,
+        allow_incremental_sync = true,
     },
     capabilities = capabilities,
     vim.lsp.protocol.make_client_capabilities(),
     on_attach = function(client, bufnr)
         vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+        require "lsp_signature".on_attach({
+            bind = true, -- This is mandatory, otherwise border config won't get registered.
+            -- hint_prefix = 'xxx',
+            handler_opts = {
+            border = "rounded"
+        }}, bufnr)
     end
 }
 
@@ -126,7 +133,6 @@ for _, lsp in pairs(AcceptDefaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,
         capabilities = lsp_defaults.capabilities,
-        flags = {allow_incremental_sync = true, debounce_text_changes = 1000},
     }
 end
 

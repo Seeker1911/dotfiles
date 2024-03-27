@@ -133,6 +133,7 @@ return require('packer').startup(function(use)
     }
     use { 'hashicorp/terraform-ls' }
     use { 'leafOfTree/vim-svelte-plugin' }
+    use { 'ray-x/lsp_signature.nvim' }
 
     -- debugging-dap
     use 'mfussenegger/nvim-dap'

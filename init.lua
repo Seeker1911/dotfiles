@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 local executable = function(e)
     return vim.fn.executable(e) > 0
 end

@@ -112,7 +112,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 -- Mason Config
 ---
 local mason_lspconfig = require("mason-lspconfig")
-ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint"}
+ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint" }
 mason_lspconfig.setup({
     ensure_installed = ToInstall,
     automatic_installation = true,
@@ -120,14 +120,30 @@ mason_lspconfig.setup({
     capabilities = lsp_defaults.capabilities,
 })
 
--- AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "jedi_language_server"}
-AcceptDefaults = { "rust_analyzer", "gopls", "tsserver", "terraformls", "svelte"}
+-- AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "lua_ls", "jedi_language_server"}
+AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "svelte", "tsserver"}
 for _, lsp in pairs(AcceptDefaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,
         capabilities = lsp_defaults.capabilities,
+        flags = {allow_incremental_sync = true, debounce_text_changes = 1000},
     }
 end
+
+
+-- lspconfig.tsserver.setup {
+--     enabled = true,
+--     on_attach = lsp_defaults.on_attach,
+--     capabilities = lsp_defaults.capabilities,
+--     init_options = {
+--     settings = {
+--       -- Any extra CLI arguments for `ruff` go here.
+--       -- LSP server doesn't pick up changes from this pattern
+--       args = {
+--              },
+--     }
+--   }
+-- }
 
 lspconfig.ruff_lsp.setup {
     enabled = true,

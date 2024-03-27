@@ -133,12 +133,18 @@ return require('packer').startup(function(use)
     }
     use { 'hashicorp/terraform-ls' }
     use { 'leafOfTree/vim-svelte-plugin' }
-    use { 'ray-x/lsp_signature.nvim' }
+    use {
+      "pmizio/typescript-tools.nvim",
+      requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      config = function()
+        require("typescript-tools").setup {}
+      end,
+    }
 
-    -- debugging-dap
-    use 'mfussenegger/nvim-dap'
-    use 'mxsdev/nvim-dap-vscode-js'
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+        -- debugging-dap
+        use 'mfussenegger/nvim-dap'
+        use 'mxsdev/nvim-dap-vscode-js'
+        use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
     use {
         'Joakker/lua-json5',
         run = './install.sh'

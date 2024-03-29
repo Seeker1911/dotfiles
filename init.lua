@@ -217,9 +217,9 @@ M.nvim_create_augroups(autoCommands)
 vim.cmd([[
     augroup file_group
     autocmd!
-      au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
-      au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
-      au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
+      " au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
+      " au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
+      " au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
       au FileType python                  set ts=4 sw=4
       au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown

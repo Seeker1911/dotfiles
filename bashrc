@@ -49,7 +49,7 @@ export EDITOR='nvim'
 export GOPATH="$HOME"/go
 export GOBIN="$HOME"/go/bin
 export FZF_DEFAULT_OPTS='--height 50% --border'
-export FZF_DEFAULT_COMMAND="rg --files --hidden --no-ignore-vcs --smart-case --glob '!{.git, build, node_modules}'"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --no-ignore-vcs --smart-case --glob '!{.git, build}'"
 
 _fzf_compgen_path() {
   rg --files --hidden --follow . "$1"

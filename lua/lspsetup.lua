@@ -89,6 +89,29 @@ local lsp_defaults = {
     vim.lsp.protocol.make_client_capabilities(),
     on_attach = function(client, bufnr)
         vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+
+
+         vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "TextChangedP" }, {
+           pattern = { "*.js", "*.ts" },
+           callback = function(ctx)
+             if client.name == "svelte" then
+               client.notify("$/onDidChangeTsOrJsFile", {
+                 uri = ctx.file,
+                 changes = {
+                   { text = table.concat(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false), "\n") },
+                 },
+               })
+             end
+           end,
+           group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+         })
+
+
+
+
+
+
+
     end
 }
 
@@ -114,7 +137,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 ---
 local mason_lspconfig = require("mason-lspconfig")
 -- ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint" }
-ToInstall = { "rust_analyzer", "gopls", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint" }
+ToInstall = { "rust_analyzer", "gopls", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint", "svelte" }
 mason_lspconfig.setup({
     ensure_installed = ToInstall,
     automatic_installation = true,
@@ -124,7 +147,7 @@ mason_lspconfig.setup({
 
 -- AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "lua_ls", "jedi_language_server"}
 -- AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "svelte", "tsserver"}
-AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "svelte"}
+AcceptDefaults = { "rust_analyzer", "gopls", "terraformls"}
 for _, lsp in pairs(AcceptDefaults) do
     lspconfig[lsp].setup {
         on_attach = lsp_defaults.on_attach,
@@ -133,19 +156,20 @@ for _, lsp in pairs(AcceptDefaults) do
 end
 
 
--- lspconfig.tsserver.setup {
---     enabled = true,
---     on_attach = lsp_defaults.on_attach,
---     capabilities = lsp_defaults.capabilities,
---     init_options = {
---     settings = {
---       -- Any extra CLI arguments for `ruff` go here.
---       -- LSP server doesn't pick up changes from this pattern
---       args = {
---              },
---     }
---   }
--- }
+lspconfig.svelte.setup {
+    -- requires: npm install --save-dev typescript-svelte-plugin on per project basis
+    enabled = true,
+    on_attach = lsp_defaults.on_attach,
+    capabilities = lsp_defaults.capabilities,
+    init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      -- LSP server doesn't pick up changes from this pattern
+      args = {
+             },
+    }
+  }
+}
 
 lspconfig.ruff_lsp.setup {
     enabled = true,
@@ -245,6 +269,7 @@ local api = require("typescript-tools.api")
 require("typescript-tools").setup {
   on_attach = lsp_defaults.on_attach,
   capabilities = lsp_defaults.capabilities,
+  enabled = true,
   handlers = {
     ["textDocument/publishDiagnostics"] = api.filter_diagnostics(
       -- Ignore diagnostics by code.
@@ -279,19 +304,26 @@ require("typescript-tools").setup {
     -- https://github.com/microsoft/TypeScript/blob/3b45f4db12bbae97d10f62ec0e2d94858252c5ab/src/server/protocol.ts#L3418
     tsserver_format_options = {
         insertSpaceBeforeAndAfterBinaryOperators = true,
+        semicolons = "remove",
           -- allowIncompleteCompletions = false,
           -- allowRenameOfImportPath = false,
     },
     tsserver_file_preferences = {
       includeInlayParameterNameHints = "all",
+      includeInlayFunctionParameterTypeHints = true,
       includeCompletionsForModuleExports = true,
+      includeCompletionsForImportStatements = true,
+      includeAutomaticOptionalChainCompletions = true,
+      includePackageJsonAutoImports = true,
+      displayPartsForJSDoc = true,
       quotePreference = "auto",
+      disableSuggestions = false,
     },
     -- locale of all tsserver messages, supported locales you can find here:
     -- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
     tsserver_locale = "en",
     -- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
-    complete_function_calls = false,
+    complete_function_calls = true,
     include_completions_with_insert_text = true,
     -- CodeLens
     -- WARNING: Experimental feature also in VSCode, because it might hit performance of server.

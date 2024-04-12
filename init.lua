@@ -37,7 +37,7 @@ require("gruvbox").setup({
     invert_signs = false,
     invert_tabline = false,
     invert_intend_guides = false,
-    inverse = true,  -- invert background for search, diffs, statuslines and errors
+    inverse = true,    -- invert background for search, diffs, statuslines and errors
     contrast = "soft", -- can be "hard", "soft" or empty string
     palette_overrides = {
         light0_soft = "#d5c4a1",
@@ -153,7 +153,9 @@ function file_exists(name)
     if f ~= nil then
         io.close(f)
         return true
-    else return false end
+    else
+        return false
+    end
 end
 
 if file_exists(HOME .. "/.background")
@@ -215,16 +217,27 @@ M.nvim_create_augroups(autoCommands)
 -- vim.api.nvim_command("set foldtext=FoldText()")
 
 vim.cmd([[
+    " augroup ProjectSetup
+    "     au BufRead,BufEnter /Users/michaelmead/code/trex/* set noet tabstop=4 syntax=javascript autoindent
+    "     " au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
+    " augroup END
+
     augroup file_group
     autocmd!
-      " au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
-      " au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
-      " au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
-      au FileType python                  set ts=4 sw=4
+
+      au BufRead,BufNewFile *.svelte      set ft=svelte tw=80 syntax=javascript
+      au BufRead,BufNewFile *.ts          set ft=js  tw=80 syntax=javascript
       au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.slimbars    set syntax=slim
+
+      au FileType python                  set sw=4
+      au FileType svelte                  set noet smarttab autoindent syntax=javascript cindent
+      au FileType js                      set noet smarttab autoindent syntax=javascript cindent
+      " au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
+      " au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
+      " au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab
     augroup END
 ]])
 

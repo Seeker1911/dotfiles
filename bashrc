@@ -349,7 +349,8 @@ toast() {
     echo "color toast" > ~/.background
     echo "set background=light" >> ~/.background
     # tmux source ${HOME}/dotfiles/colors/tmux_toast.conf
-    echo "import = ['~/.config/alacritty/themes/themes/gruvbox_material_hard_light.toml']" > ~/.alacritty_background.toml
+    # echo "import = ['~/.config/alacritty/themes/themes/gruvbox_material_medium_light.toml']" > ~/.alacritty_background.toml
+    echo "import = ['~/.config/alacritty/themes/themes/pencil_light.toml']" > ~/.alacritty_background.toml
 }
 
 color() {

@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 require('cmpsetup')
 -- require('nls')
 
@@ -92,7 +93,7 @@ local lsp_defaults = {
 
 
          vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "TextChangedP" }, {
-           pattern = { "*.js", "*.ts" },
+           pattern = { "*.js", "*.ts", "*.svelte" },
            callback = function(ctx)
              if client.name == "svelte" then
                client.notify("$/onDidChangeTsOrJsFile", {
@@ -155,21 +156,45 @@ for _, lsp in pairs(AcceptDefaults) do
     }
 end
 
-
+-- trying this svelte config for better use of svelte-language-server
 lspconfig.svelte.setup {
-    -- requires: npm install --save-dev typescript-svelte-plugin on per project basis
-    enabled = true,
-    on_attach = lsp_defaults.on_attach,
-    capabilities = lsp_defaults.capabilities,
-    init_options = {
-    settings = {
-      -- Any extra CLI arguments for `ruff` go here.
-      -- LSP server doesn't pick up changes from this pattern
-      args = {
-             },
-    }
-  }
+  filetypes = { "svelte" },
+  on_attach = function(client, bufnr)
+    if client.name == 'svelte' then
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = { "*.js", "*.ts", "*.svelte" },
+        callback = function(ctx)
+          client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+        end,
+      })
+    end
+    if vim.bo[bufnr].filetype == "svelte" then
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = { "*.js", "*.ts", "*.svelte" },
+        callback = function(ctx)
+          client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+        end,
+      })
+    end
+  end
 }
+
+-- lspconfig.svelte.setup {
+--     -- requires: npm install --save-dev typescript-svelte-plugin on per project basis
+--     filetypes = { "svelte" },
+--     pattern = { "*.js", "*.ts", "*.svelte" },
+--     enabled = true,
+--     on_attach = lsp_defaults.on_attach,
+--     capabilities = lsp_defaults.capabilities,
+--     init_options = {
+--     settings = {
+--       -- Any extra CLI arguments for `ruff` go here.
+--       -- LSP server doesn't pick up changes from this pattern
+--       args = {
+--              },
+--     }
+--   }
+-- }
 
 lspconfig.ruff_lsp.setup {
     enabled = true,

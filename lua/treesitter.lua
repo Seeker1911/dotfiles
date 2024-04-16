@@ -1,10 +1,10 @@
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = {"help", "python", "typescript", "javascript", "go", "lua", "svelte"},
+  ensure_installed = {"help", "python", "typescript", "javascript", "go", "lua", "svelte", "tsx", "vim", "vimdoc"},
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
-  auto_intall = false,
+  auto_intall = true,
 
   -- List of parsers to ignore installing
   -- ignore_install = { "javascript" },
@@ -19,7 +19,7 @@ require'nvim-treesitter.configs'.setup {
 
   },
   indent = {
-      enable = false,
+      enable = true,
   },
   -- rainbow parens using treesitter is supplied by nvim-ts-rainbow
   rainbow = {

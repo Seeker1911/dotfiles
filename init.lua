@@ -225,16 +225,16 @@ vim.cmd([[
     augroup file_group
     autocmd!
 
-      au BufRead,BufNewFile *.svelte      set ft=svelte tw=80 syntax=javascript
-      au BufRead,BufNewFile *.ts          set ft=js  tw=80 syntax=javascript
+      au BufRead,BufNewFile *.svelte      set ft=svelte tw=120 syntax=javascript
+      au BufRead,BufNewFile *.ts          set ft=javascript  tw=120 syntax=javascript
       au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.slimbars    set syntax=slim
 
       au FileType python                  set sw=4
-      au FileType svelte                  set noet smarttab autoindent syntax=javascript cindent
-      au FileType js                      set noet smarttab autoindent syntax=javascript cindent
+      au FileType svelte                  set noet smarttab autoindent syntax=javascript
+      au FileType javascript              set noet smarttab autoindent syntax=javascript
       " au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
       " au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
       " au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab

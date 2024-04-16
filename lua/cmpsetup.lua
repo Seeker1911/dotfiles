@@ -37,6 +37,7 @@ cmp.setup({
         { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lua' },
         { name = 'luasnip' },
+        { name = 'git' },
         { name = 'tmux', keyword_length = 3 },
         { name = 'buffer', keyword_length = 2 },
     },

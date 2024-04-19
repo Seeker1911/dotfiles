@@ -66,4 +66,4 @@ require('telescope').setup{
  }
 }
 require("telescope").load_extension("file_browser")
-require("telescope").load_extension("gh")
+-- require("telescope").load_extension("gh")

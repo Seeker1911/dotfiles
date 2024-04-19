@@ -102,7 +102,6 @@ return require('packer').startup(function(use)
                 { "nvim-telescope/telescope-github.nvim" },
         }
     }
-
     -- LSP
     use { 'davidhalter/jedi-vim' }
     use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }

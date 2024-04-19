@@ -27,7 +27,6 @@ local space = {
 }
 
 local lsp_server = {
-    -- Lsp server name .
     function()
         local msg = 'No Active Lsp'
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -35,15 +34,24 @@ local lsp_server = {
         if next(clients) == nil then
             return msg
         end
+        local active_clients = {}
+        local seen = {}
         for _, client in ipairs(clients) do
             local filetypes = client.config.filetypes
             if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                return client.name
+                if not seen[client.name] then
+                    active_clients[#active_clients + 1] = client.name
+                    seen[client.name] = true
+                end
             end
         end
-        return msg
+        if #active_clients > 0 then
+            return table.concat(active_clients, ' | ')
+        else
+            return msg
+        end
     end,
-    icon = '  LSP:',
+    icon = '  LSPs:',
     color = { fg = '#ffffff', gui = 'bold' },
 }
 
@@ -73,7 +81,7 @@ lualine.setup {
         section_separators = { left = '', right = '' },
         disabled_filetypes = {},
         always_divide_middle = true,
-        globalstatus = false,
+        globalstatus = true,
     },
     sections = {
         lualine_a = { 'mode' },

@@ -18,19 +18,20 @@ return require('packer').startup(function(use)
     use { 'edeneast/nightfox.nvim' }
     use { 'jsit/toast.vim' }
     use { 'daschw/leaf.nvim' }
-    use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    -- config = function()
-    --     vim.cmd('colorscheme rose-pine')
-    -- end
-    })
+    use { 'lewis6991/gitsigns.nvim' }
     use { 'savq/melange-nvim' }
     use { 'HiPhish/nvim-ts-rainbow2' }
     use {
     'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+use ({
+    'nvimdev/lspsaga.nvim',
+    after = 'nvim-lspconfig',
+    config = function()
+        require('lspsaga').setup({})
+    end,
+})
     use { 'kyazdani42/nvim-web-devicons' }
     -- Post-install/update hook with neovim command
     use {
@@ -104,7 +105,6 @@ return require('packer').startup(function(use)
     }
     -- LSP
     use { 'davidhalter/jedi-vim' }
-    use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
     use { 'sumneko/lua-language-server' }
     use { "L3MON4D3/LuaSnip",
         -- wants = 'friendly-snippets',
@@ -135,15 +135,6 @@ return require('packer').startup(function(use)
     use {
       "pmizio/typescript-tools.nvim",
       requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    }
-
-        -- debugging-dap
-        use 'mfussenegger/nvim-dap'
-        use 'mxsdev/nvim-dap-vscode-js'
-        use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-    use {
-        'Joakker/lua-json5',
-        run = './install.sh'
     }
 
     -- completion

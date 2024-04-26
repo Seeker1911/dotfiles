@@ -277,20 +277,35 @@ export PATH
 
 
 # functions ----------------------------------------------------------------------------------------------------
+tarminal() {
+    echo "color gruvbox" > ~/.background
+    echo "set background=dark" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
+    # alacritty-colorscheme apply gruvbox_light.yaml
+    echo "import = ['~/.config/alacritty/themes/themes/taerminal.toml']" > ~/.alacritty_background.toml
+}
+
+flipper() {
+    echo "color gruvbox" > ~/.background
+    echo "set background=dark" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
+    # alacritty-colorscheme apply gruvbox_light.yaml
+    echo "import = ['~/.config/alacritty/themes/themes/vintage_orange_dark.toml']" > ~/.alacritty_background.toml
+}
+
+qflipper() {
+    echo "color gruvbox" > ~/.background
+    echo "set background=dark" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
+    # alacritty-colorscheme apply gruvbox_light.yaml
+    echo "import = ['~/.config/alacritty/themes/themes/qflipper.toml']" > ~/.alacritty_background.toml
+}
 jedi() {
     echo "color gruvbox" > ~/.background
     echo "set background=light" >> ~/.background
     # tmux source ${HOME}/dotfiles/colors/tmux-gruvbox-light.conf
     # alacritty-colorscheme apply gruvbox_light.yaml
     echo "import = ['~/.config/alacritty/themes/themes/gruvbox_material_hard_light.toml']" > ~/.alacritty_background.toml
-}
-
-everforest() {
-    echo "color everforest" > ~/.background
-    echo "set background=light" >> ~/.background
-    # tmux source ${HOME}/dotfiles/colors/tmux-everforest.conf
-    # alacritty-colorscheme apply gruvbox_light.yaml
-    echo "import = ['~/.config/alacritty/themes/themes/everforest_light.toml']" > ~/.alacritty_background.toml
 }
 
 sith() {
@@ -300,6 +315,14 @@ sith() {
     # tmux source ${HOME}/dotfiles/tmux.conf
     # alacritty-colorscheme apply gruvbox_dark.yaml
     echo "import = ['~/.config/alacritty/themes/themes/gruvbox_dark.toml']" > ~/.alacritty_background.toml
+}
+
+everforest() {
+    echo "color everforest" > ~/.background
+    echo "set background=light" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux-everforest.conf
+    # alacritty-colorscheme apply gruvbox_light.yaml
+    echo "import = ['~/.config/alacritty/themes/themes/everforest_light.toml']" > ~/.alacritty_background.toml
 }
 
 inferno() {

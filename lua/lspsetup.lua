@@ -138,7 +138,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 ---
 local mason_lspconfig = require("mason-lspconfig")
 -- ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint" }
-ToInstall = { "rust_analyzer", "gopls", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint", "svelte" }
+ToInstall = { "rust_analyzer", "gopls", "terraformls",  "tsserver", "lua_ls", "ruff_lsp", "pylsp", "eslint", "svelte" }
 mason_lspconfig.setup({
     ensure_installed = ToInstall,
     automatic_installation = true,
@@ -297,8 +297,8 @@ require("typescript-tools").setup {
   enabled = true,
   handlers = {
     ["textDocument/publishDiagnostics"] = api.filter_diagnostics(
-      -- Ignore diagnostics by code.
-      {  }
+      -- Ignore "only in typescript files " errors
+      { 8010, 8009 }
     ),
   },
   settings = {
@@ -318,8 +318,6 @@ require("typescript-tools").setup {
     -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
     -- not exists then standard path resolution strategy is applied
     tsserver_path = nil,
-    -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
-    -- (see  `styled-components` support section)
     -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
     -- memory limit in megabytes or "auto"(basically no limit)
     tsserver_max_memory = "auto",

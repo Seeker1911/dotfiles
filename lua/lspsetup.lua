@@ -1,4 +1,3 @@
--- luacheck: globals vim
 require('cmpsetup')
 -- require('nls')
 
@@ -11,11 +10,18 @@ vim.api.nvim_create_autocmd('User', {
             vim.keymap.set(mode, lhs, rhs, opts)
         end
         local bufopts = { noremap=true, silent=true, buffer=bufnr }
-        bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+        -- bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+        -- bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+        bufmap('n', 'K', '<cmd>Lspsaga hover_doc<cr>')
+        bufmap('n', 'gd', '<cmd>Lspsaga goto_definition<cr>')
+        bufmap('n', 'gp', '<cmd>Lspsaga peek_definition<cr>')
+        bufmap('n', 'go', '<cmd>Lspsaga peek_type_definition<cr>')
+        bufmap('n', 'gO', '<cmd>Lspsaga goto_type_definition<cr>')
+        bufmap('n', 'gf', '<cmd>Lspsaga finder def+ref+imp<cr>')
+        bufmap('n', 'gF', '<cmd>Lspsaga finder tyd+def+ref<cr>')
+        bufmap('n', 'gw', '<cmd>Lspsaga term_toggle<cr>')
         bufmap('n', 'gD', '<cmd>TroubleToggle document_diagnostics<cr>')
         bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-        bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
         bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
         bufmap('n', 'gR', '<cmd>Trouble lsp_references<cr>')
         bufmap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
@@ -97,7 +103,7 @@ local lsp_defaults = {
            callback = function(ctx)
              if client.name == "svelte" then
                client.notify("$/onDidChangeTsOrJsFile", {
-                 uri = ctx.file,
+                 uri = ctx.match,
                  changes = {
                    { text = table.concat(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false), "\n") },
                  },
@@ -156,45 +162,25 @@ for _, lsp in pairs(AcceptDefaults) do
     }
 end
 
--- trying this svelte config for better use of svelte-language-server
 lspconfig.svelte.setup {
-  filetypes = { "svelte" },
-  on_attach = function(client, bufnr)
-    if client.name == 'svelte' then
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        pattern = { "*.js", "*.ts", "*.svelte" },
-        callback = function(ctx)
-          client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-        end,
-      })
-    end
-    if vim.bo[bufnr].filetype == "svelte" then
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        pattern = { "*.js", "*.ts", "*.svelte" },
-        callback = function(ctx)
-          client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-        end,
-      })
-    end
-  end
-}
-
--- lspconfig.svelte.setup {
---     -- requires: npm install --save-dev typescript-svelte-plugin on per project basis
---     filetypes = { "svelte" },
---     pattern = { "*.js", "*.ts", "*.svelte" },
---     enabled = true,
---     on_attach = lsp_defaults.on_attach,
---     capabilities = lsp_defaults.capabilities,
---     init_options = {
---     settings = {
---       -- Any extra CLI arguments for `ruff` go here.
---       -- LSP server doesn't pick up changes from this pattern
---       args = {
---              },
---     }
---   }
--- }
+    -- requires: npm install --save-dev typescript-svelte-plugin on per project basis
+    filetypes = { "svelte" },
+    pattern = { "*.svelte" },
+    enabled = true,
+    root_dir = function() return vim.loop.cwd() end,
+    on_attach = lsp_defaults.on_attach,
+    capabilities = lsp_defaults.capabilities,
+    init_options = {
+        -- these aren't working: https://github.com/sveltejs/language-tools/tree/master/packages/language-server
+            svelte = {
+                plugin = {
+                    typescript = {
+                        enable = false,
+                        completions = {enable = true}}
+                }
+            }
+        }
+      }
 
 lspconfig.ruff_lsp.setup {
     enabled = true,
@@ -294,11 +280,11 @@ local api = require("typescript-tools.api")
 require("typescript-tools").setup {
   on_attach = lsp_defaults.on_attach,
   capabilities = lsp_defaults.capabilities,
-  enabled = true,
+  enabled = false,
   handlers = {
     ["textDocument/publishDiagnostics"] = api.filter_diagnostics(
-      -- Ignore "only in typescript files " errors
-      { 8010, 8009 }
+      -- Ignore errors by number
+      {}
     ),
   },
   settings = {
@@ -307,7 +293,7 @@ require("typescript-tools").setup {
           "@styled/typescript-styled-plugin",
       },
     -- spawn additional tsserver instance to calculate diagnostics on it
-    separate_diagnostic_server = true,
+    separate_diagnostic_server = false,
     -- "change"|"insert_leave" determine when the client asks the server about diagnostic
     publish_diagnostic_on = "insert_leave",
     -- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
@@ -363,4 +349,17 @@ require("typescript-tools").setup {
         filetypes = { "javascriptreact", "typescriptreact" },
     }
   },
+}
+
+
+-- Setup lspconfig.
+lspconfig.tsserver.setup {
+  on_attach = lsp_defaults.on_attach,
+  capabilities = lsp_defaults.capabilities,
+  -- Ensure the server is looking for the nearest tsconfig.json or jsconfig.json
+  root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git"),
+  -- Custom handler configurations can be set here as needed
+  settings = {
+    -- Add any specific settings for tsserver or plugins here
+  }
 }

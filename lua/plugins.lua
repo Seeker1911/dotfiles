@@ -29,7 +29,10 @@ use ({
     'nvimdev/lspsaga.nvim',
     after = 'nvim-lspconfig',
     config = function()
-        require('lspsaga').setup({})
+        require('lspsaga').setup({
+            ui = {beacon = {enable= true}, code_action = '🔫'},
+            finder = {methods = {tyd='textDocument/typeDefinition'}},
+            })
     end,
 })
     use { 'kyazdani42/nvim-web-devicons' }

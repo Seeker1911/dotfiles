@@ -30,7 +30,7 @@ use ({
     after = 'nvim-lspconfig',
     config = function()
         require('lspsaga').setup({
-            ui = {beacon = {enable= true}, code_action = '🔫'},
+            ui = {beacon = {enable= true}, code_action = ''},
             finder = {methods = {tyd='textDocument/typeDefinition'}},
             })
     end,

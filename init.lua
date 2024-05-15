@@ -14,7 +14,7 @@ require('treesitter')
 require('plugins')
 require('cmpsetup')
 require('lspsetup')
---require('dapsetup')
+--require('dapsetup2')
 --require('terraformsetup')
 require('lualinesetup')
 require('telescopesetup')
@@ -225,8 +225,9 @@ vim.cmd([[
     augroup file_group
     autocmd!
 
-      au BufRead,BufNewFile *.svelte      set ft=svelte tw=120 syntax=javascript
-      au BufRead,BufNewFile *.ts          set ft=typescript  tw=120 syntax=javascript
+      au BufRead,BufNewFile *.svelte      set ft=svelte tw=120 ts=4 sts=4 sw=4
+      au BufRead,BufNewFile *.ts          set ft=typescript  tw=120 syntax=typescript ts=4 sts=4 sw=4 tw=120
+      au BufRead,BufNewFile *.js          set ft=javascript  tw=120 syntax=javascript ts=4 sts=4 sw=4 tw=120
       au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown
@@ -234,7 +235,8 @@ vim.cmd([[
 
       au FileType python                  set sw=4
       au FileType svelte                  set noet smarttab autoindent
-      au FileType javascript              set noet smarttab autoindent syntax=javascript
+      au FileType javascript              set noet smarttab autoindent
+      au FileType typescript              set noet smarttab autoindent
       " au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
       " au Filetype typescript setlocal ts=4 sw=4 sts=0 noexpandtab
       " au Filetype *.tsx setlocal ts=4 sw=4 sts=0 noexpandtab

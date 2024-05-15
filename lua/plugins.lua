@@ -176,7 +176,19 @@ use ({
         require"octo".setup()
       end
     }
+    --DAP (debugger)
+    use { 'mfussenegger/nvim-dap' }
+    use { "mxsdev/nvim-dap-vscode-js" }
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+    -- use {
+    --   "microsoft/vscode-js-debug",
+    --   opt = true,
+    --     -- this will likely fail, I manually installed in .config/nvim/plugged
+    --   -- run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+    -- }
 
+
+--- END
     cmd([[
      augroup packer_user_config
      autocmd!

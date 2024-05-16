@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
     use { 'lewis6991/gitsigns.nvim' }
     use { 'savq/melange-nvim' }
     use { 'HiPhish/nvim-ts-rainbow2' }
+    -- use { "sainnhe/gruvbox-material" }
     use {
     'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }

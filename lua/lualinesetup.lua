@@ -73,9 +73,9 @@ local lualine_diag = {
 lualine.setup {
     options = {
         icons_enabled = true,
-        -- theme = 'gruvbox_dark',
+        theme = 'gruvbox_dark',
         -- theme = 'gruvbox',
-        theme = 'gruvbox-material',
+        -- theme = 'gruvbox-material',
         -- theme = 'everforest',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },

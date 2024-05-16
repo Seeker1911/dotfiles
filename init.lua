@@ -225,9 +225,9 @@ vim.cmd([[
     augroup file_group
     autocmd!
 
-      au BufRead,BufNewFile *.svelte      set ft=svelte tw=120 ts=4 sts=4 sw=4
-      au BufRead,BufNewFile *.ts          set ft=typescript  tw=120 syntax=typescript ts=4 sts=4 sw=4 tw=120
-      au BufRead,BufNewFile *.js          set ft=javascript  tw=120 syntax=javascript ts=4 sts=4 sw=4 tw=120
+      au BufRead,BufNewFile *.svelte      set ft=svelte  ts=4  sw=4 sts=0
+      au BufRead,BufNewFile *.ts          set ft=typescript  syntax=typescript ts=4 sts=4 sw=4 tw=120
+      au BufRead,BufNewFile *.js          set ft=javascript  syntax=javascript ts=4 sts=4 sw=4 tw=120
       au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown

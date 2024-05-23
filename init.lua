@@ -75,9 +75,9 @@ vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
 
 vim.opt.wildignore:append { "*.pyc", "node_modules" }
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
-vim.opt.pumheight = 10 -- limit completion options
+vim.o.pumheight = 10 -- limit completion options
 
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 vim.o.hidden = true
 -- vim.o.autoread = true
 vim.o.history = 1000
@@ -94,9 +94,12 @@ vim.o.termguicolors = true
 vim.o.shell = 'bash -l'
 vim.o.foldmethod = 'indent'
 -- vim.o.foldexpr='nvim_treesitter#foldexpr()'
-vim.o.foldnestmax = 4
-vim.o.foldminlines = 4
+vim.o.foldnestmax = 20
+vim.o.foldminlines = 1
+--vim.o.foldtext = ""
 -- vim.o.foldlevel = 4
+-- vim.o.nofoldenable = true
+-- vim.o.foldlevelstart = 99
 
 vim.o.breakindent = true
 vim.o.scrolloff = 3

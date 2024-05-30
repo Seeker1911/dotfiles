@@ -17,8 +17,14 @@ flake8
 .flake8
 .pep8
 .vscode/
+# vim
 .vim/
 Session.vim
+*~
+*.swp
+*.swo
+# ignore named session files
+*.vim
 
 # Compiled source #
 ###################

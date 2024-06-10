@@ -16,8 +16,6 @@ set incsearch
 
 " Don't use Ex mode, use Q for formatting.
 map Q gq
-map <Enter> <Enter>
-imap <Enter <Enter>
 imap jj <Esc>
 set timeoutlen=1000
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
@@ -37,3 +35,12 @@ map \r <Action>(ReformatCode)
 
 "" Map \b to toggle the breakpoint on the current line
 map \b <Action>(ToggleLineBreakpoint)
+
+nmap <Enter> <S-Enter>
+imap <Enter> <Enter>
+
+
+
+
+
+

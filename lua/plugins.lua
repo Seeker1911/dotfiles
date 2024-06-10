@@ -20,7 +20,8 @@ return require('packer').startup(function(use)
     use { 'daschw/leaf.nvim' }
     use { 'lewis6991/gitsigns.nvim' }
     use { 'savq/melange-nvim' }
-    use { 'HiPhish/nvim-ts-rainbow2' }
+    use { "scottmckendry/cyberdream.nvim" }
+    -- use { 'HiPhish/nvim-ts-rainbow2' }
     -- use { "sainnhe/gruvbox-material" }
     use {
     'nvim-lualine/lualine.nvim',

@@ -1,7 +1,7 @@
 local actions = require("telescope.actions")
 local fb_actions = require "telescope".extensions.file_browser.actions
 local action_layout = require("telescope.actions.layout")
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 
 require('telescope').setup{
   defaults = {
@@ -19,7 +19,7 @@ require('telescope').setup{
       },
       i = {
         ["<C-h>"] = "which_key",
-        ["<C-T>"] = trouble.open_with_trouble
+        ["<C-T>"] = trouble.open
       }
     }
   },

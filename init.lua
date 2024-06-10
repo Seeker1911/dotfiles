@@ -17,6 +17,7 @@ require('lspsetup')
 --require('dapsetup2')
 --require('terraformsetup')
 require('lualinesetup')
+-- require('cyber-lualine')
 require('telescopesetup')
 require('web_icons')
 require('tmux_nav')
@@ -149,6 +150,8 @@ map('n', '<leader>o', ':SymbolsOutline<CR>')
 map('n', '<leader>z', ':ZenMode<CR>')
 map('n', '<space>', 'za')
 map('t', '<Esc>', '<C-\\><C-n>')
+-- Add a custom keybinding to toggle the colorscheme
+vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
 
 function file_exists(name)
@@ -253,6 +256,16 @@ vim.cmd([[
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
 ]])
+
+-- The event data property will contain a string with either "default" or "light" respectively
+vim.api.nvim_create_autocmd("User", {
+    pattern = "CyberdreamToggleMode",
+    callback = function(event)
+        -- Your custom code here!
+        -- For example, notify the user that the colorscheme has been toggled
+        print("Switched to " .. event.data .. " mode!")
+    end,
+})
 
 -- smooth scrolling
 vim.cmd([[set t_TI=^[[4?h]])

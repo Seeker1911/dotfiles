@@ -22,6 +22,7 @@ fi
 
 # fix tmux panes history
 # append to history file instead of overwrite on exit.
+HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 shopt -s histreedit
 shopt -s histverify
@@ -30,7 +31,7 @@ shopt -s cdspell
 # set shell to vi keybindings.
 set -o vi
 set completion-ignore-case on
-set show-all-if-ambiguous on
+set show-all-if-ambiguous off
 
 
 # ENVIRONMENT VARIABLES -----------------------------------------------------------------------------------
@@ -350,7 +351,6 @@ kindle() {
     echo "color melange" > ~/.background
     echo "set background=light" >> ~/.background
     # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
-    # echo "import = ['~/.config/alacritty/themes/themes/nord_light.toml']" > ~/.alacritty_background.toml
     echo "import = ['~/.config/alacritty/themes/themes/papertheme.toml']" > ~/.alacritty_background.toml
 }
 
@@ -359,6 +359,35 @@ fox() {
     echo "set background=light" >> ~/.background
     # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     echo "import = ['~/.config/alacritty/themes/themes/pencil_light.toml']" > ~/.alacritty_background.toml
+}
+
+pine() {
+    echo "color dayfox" > ~/.background
+    echo "set background=light" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    echo "import = ['~/.config/alacritty/themes/themes/rose-pine-dawn.toml']" > ~/.alacritty_background.toml
+}
+
+owl() {
+    echo "color dayfox" > ~/.background
+    echo "set background=light" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    echo "import = ['~/.config/alacritty/themes/themes/night_owlish_light.toml']" > ~/.alacritty_background.toml
+}
+
+octocat() {
+    echo "color cyberdream" > ~/.background
+    echo "set background=light" >> ~/.background
+    echo ":CyberdreamToggleMode<CR>" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    echo "import = ['~/.config/alacritty/themes/themes/github_light.toml']" > ~/.alacritty_background.toml
+}
+
+noctis() {
+    echo "color dayfox" > ~/.background
+    echo "set background=light" >> ~/.background
+    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
+    echo "import = ['~/.config/alacritty/themes/themes/noctis-lux.toml']" > ~/.alacritty_background.toml
 }
 
 dawnfox() {

@@ -156,6 +156,7 @@ use ({
         config = function() require("nvim-autopairs").setup {} end
     }
     -- utils
+    use { 'rcarriga/nvim-notify'}
     use { 'numToStr/Comment.nvim' }
     use { "alexghergh/nvim-tmux-navigation" }
     use { 'tpope/vim-fugitive' }
@@ -175,7 +176,23 @@ use ({
         'kyazdani42/nvim-web-devicons',
       },
       config = function ()
-        require"octo".setup()
+        require"octo".setup({
+  suppress_missing_scope = {
+    projects_v2 = true,
+  }
+})
+      end
+    }
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        vim.o.timeout = true
+        vim.o.timeoutlen = 300
+        require("which-key").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
       end
     }
     --DAP (debugger)

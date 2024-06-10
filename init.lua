@@ -47,6 +47,10 @@ require("gruvbox").setup({
     dim_inactive = true,
     transparent_mode = false,
 })
+
+vim.notify = require("notify")
+require('notifysetup')
+
 vim.bo.syntax = 'ON'
 vim.cmd.colorscheme('gruvbox')
 vim.g.gruvbox_contrast_dark = 'soft'
@@ -77,7 +81,7 @@ vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python3"
 vim.opt.wildignore:append { "*.pyc", "node_modules" }
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 vim.o.pumheight = 10 -- limit completion options
-
+vim.o.timeoutlen = 500
 vim.o.termguicolors = true
 vim.o.hidden = true
 -- vim.o.autoread = true
@@ -263,10 +267,10 @@ vim.api.nvim_create_autocmd("User", {
     callback = function(event)
         -- Your custom code here!
         -- For example, notify the user that the colorscheme has been toggled
-        print("Switched to " .. event.data .. " mode!")
+        vim.notify("Switched to " .. event.data .. " mode!")
     end,
 })
-
+--
 -- smooth scrolling
 vim.cmd([[set t_TI=^[[4?h]])
 vim.cmd([[set t_TE=^[[2?l]])

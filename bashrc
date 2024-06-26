@@ -176,6 +176,7 @@ elif [ $platform = 'macos' ]; then
 fi
 
 alias tmux='tmux -2'
+alias vimdiff='vim $(git status --porcelain | awk '{print $2}')'
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'
@@ -223,7 +224,7 @@ PATH="$HOME/.pyenv/bin:$PATH"
 PATH="$HOME/.pyenv/shims:$PATH"
 PATH="$HOME/bin:$PATH"
 PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
-PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+PATH="/opt/homebrew/opt/mysql@8.3/bin:$PATH"
 
 # If you need to have php@7.4 first in your PATH, run:
 PATH="${PATH}:/opt/homebrew/opt/php@7.4/bin"

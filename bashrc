@@ -176,7 +176,7 @@ elif [ $platform = 'macos' ]; then
 fi
 
 alias tmux='tmux -2'
-alias vimdiff='vim $(git status --porcelain | awk '{print $2}')'
+alias vimdiff="vim $(git status --porcelain | awk '{print $2}')"
 alias play='ls /usr/share/emacs/22.1/lisp/play' 
 alias weather='curl wttr.in/nashville'
 alias starwars='telnet towel.blinkenlights.nl'

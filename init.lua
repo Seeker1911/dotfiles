@@ -17,13 +17,14 @@ require('lspsetup')
 --require('dapsetup2')
 --require('terraformsetup')
 require('lualinesetup')
--- require('cyber-lualine')
+require('cyber-lualine')
 require('telescopesetup')
 require('web_icons')
 require('tmux_nav')
 require('Comment').setup()
 require('symbols-setup')
 require('gitsigns').setup()
+require('cyber-setup')
 require("gruvbox").setup({
     undercurl = true,
     underline = true,
@@ -157,7 +158,6 @@ map('t', '<Esc>', '<C-\\><C-n>')
 -- Add a custom keybinding to toggle the colorscheme
 vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
-
 function file_exists(name)
     local f = io.open(name, "r")
     if f ~= nil then
@@ -270,6 +270,35 @@ vim.api.nvim_create_autocmd("User", {
         vim.notify("Switched to " .. event.data .. " mode!")
     end,
 })
+
+
+-- Define a function for inserting console.log with emoji and comma
+function InsertConsoleLog()
+  vim.api.nvim_feedkeys("i`console.log(`🚨 `, )`<Esc>F`a", 'n', false)
+end
+
+-- Map a key to the function (e.g., <Leader>l for leader key + l)
+vim.api.nvim_set_keymap('n', '<Leader>l', ':lua InsertConsoleLog()<CR>', { noremap = true, silent = true })
+
+-- Define a mapping for Tab in insert mode
+vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.smart_tab()', { expr = true, noremap = true })
+
+-- Define a Lua function for the smart Tab behavior
+function _G.smart_tab()
+  local col = vim.fn.col('.')
+  local line = vim.fn.getline('.')
+  if col > 1 and line:sub(col - 1, col - 1) == '`' then
+    return vim.api.nvim_replace_termcodes("<Right><Right><Right><Esc>F,a", true, true, true)
+  else
+    return vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
+  end
+end
+
+
+
+
+
+
 --
 -- smooth scrolling
 vim.cmd([[set t_TI=^[[4?h]])

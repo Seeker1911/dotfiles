@@ -25,6 +25,8 @@ require('telescope').setup{
   },
   pickers = {
     find_files = {
+      -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
       mappings = {
         n = {
           ["cd"] = function(prompt_bufnr)
@@ -36,6 +38,7 @@ require('telescope').setup{
           end
         }
       }
+
     },
     buffers = {
             ignore_current_buffer = true,
@@ -70,4 +73,4 @@ require('telescope').setup{
  }
 }
 require("telescope").load_extension("file_browser")
--- require("telescope").load_extension("gh")
+require("telescope").load_extension("gh")

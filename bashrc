@@ -49,8 +49,8 @@ export SHELL='/bin/sh'
 export EDITOR='nvim'
 export GOPATH="$HOME"/go
 export GOBIN="$HOME"/go/bin
-export FZF_DEFAULT_OPTS='--height 50% --border'
-export FZF_DEFAULT_COMMAND="rg --files --hidden --no-ignore-vcs --smart-case --glob '!{.git, build}'"
+export FZF_DEFAULT_OPTS='--height 70% --border'
+export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
 
 _fzf_compgen_path() {
   rg --files --hidden --follow . "$1"
@@ -379,9 +379,21 @@ owl() {
 octocat() {
     echo "color cyberdream" > ~/.background
     echo "set background=light" >> ~/.background
-    echo ":CyberdreamToggleMode<CR>" >> ~/.background
+    # echo ":CyberdreamToggleMode<CR>" >> ~/.background
     # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     echo "import = ['~/.config/alacritty/themes/themes/github_light.toml']" > ~/.alacritty_background.toml
+}
+
+cyber() {
+    echo "color cyberdream" > ~/.background
+    echo "set background=light" >> ~/.background
+    echo "import = ['~/.config/alacritty/themes/themes/cyberdream-light.toml']" > ~/.alacritty_background.toml
+}
+
+cyberdark() {
+    echo "color cyberdream" > ~/.background
+    echo "set background=dark" >> ~/.background
+    echo "import = ['~/.config/alacritty/themes/themes/cyberdream.toml']" > ~/.alacritty_background.toml
 }
 
 noctis() {

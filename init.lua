@@ -126,6 +126,7 @@ vim.o.directory = '/.vim/tmp/swap//'           -- swap files
 vim.o.wildmenu = true                          -- on TAB, complete options for system command
 vim.o.wildignore =
 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
+vim.o.cursorline = true
 
 
 -- function to help remap vim commands

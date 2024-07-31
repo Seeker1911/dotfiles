@@ -168,7 +168,7 @@ use ({
         {'nvim-lua/plenary.nvim'},
       }
     }
-        use {
+    use {
       'pwntester/octo.nvim',
       requires = {
         'nvim-lua/plenary.nvim',
@@ -177,10 +177,12 @@ use ({
       },
       config = function ()
         require"octo".setup({
-  suppress_missing_scope = {
-    projects_v2 = true,
-  }
-})
+            use_local_fs = true,
+            enable_builtin = true,
+            suppress_missing_scope = {
+                projects_v2 = true,
+            }
+        })
       end
     }
     use {

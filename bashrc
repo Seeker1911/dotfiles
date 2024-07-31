@@ -229,6 +229,10 @@ PATH="/opt/homebrew/opt/mysql@8.3/bin:$PATH"
 # If you need to have php@7.4 first in your PATH, run:
 PATH="${PATH}:/opt/homebrew/opt/php@7.4/bin"
 PATH="${PATH}:/opt/homebrew/opt/php@7.4/sbin"
+
+PNPM_HOME=~/pnpm-global
+PATH=$PNPM_HOME/bin:$PATH
+
 # PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@2.1 first in your PATH:
 # NOTE: seeing if I really need this
@@ -379,8 +383,6 @@ owl() {
 octocat() {
     echo "color cyberdream" > ~/.background
     echo "set background=light" >> ~/.background
-    # echo ":CyberdreamToggleMode<CR>" >> ~/.background
-    # tmux source ${HOME}/dotfiles/colors/tmux_kindle.conf
     echo "import = ['~/.config/alacritty/themes/themes/github_light.toml']" > ~/.alacritty_background.toml
 }
 
@@ -434,7 +436,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
 
 [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && \. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 # . "/opt/homebrew/opt/asdf/libexec/asdf.sh"

@@ -136,7 +136,19 @@ use ({
       end
     }
     use { 'hashicorp/terraform-ls' }
-    use { 'leafOfTree/vim-svelte-plugin' }
+    use { 'evanleck/vim-svelte',
+        branch = "main",
+        requires = {
+            'pangloss/vim-javascript',
+            'othree/html5.vim'
+        },
+     ft = 'svelte',
+      config = function()
+        vim.g.svelte_preprocessors = { 'ts' }
+        -- require("vim-svelte").setup {
+        -- }
+      end
+    }
     use {
       "pmizio/typescript-tools.nvim",
       requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },

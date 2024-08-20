@@ -52,6 +52,7 @@ require("gruvbox").setup({
 vim.notify = require("notify")
 require('notifysetup')
 
+vim.g.svelte_preprocessors = { 'ts' }
 vim.bo.syntax = 'ON'
 vim.cmd.colorscheme('gruvbox')
 vim.g.gruvbox_contrast_dark = 'soft'
@@ -235,7 +236,7 @@ vim.cmd([[
 
     augroup file_group
     autocmd!
-
+" Set tabs for Svelte files
       au BufRead,BufNewFile *.svelte      set ft=svelte  ts=4  sw=4 sts=0
       au BufRead,BufNewFile *.ts          set ft=typescript  syntax=typescript ts=4 sts=4 sw=4 tw=120
       au BufRead,BufNewFile *.js          set ft=javascript  syntax=javascript ts=4 sts=4 sw=4 tw=120
@@ -245,7 +246,7 @@ vim.cmd([[
       au BufRead,BufNewFile *.slimbars    set syntax=slim
 
       au FileType python                  set sw=4
-      au FileType svelte                  set noet smarttab autoindent
+      au FileType svelte                  setlocal tabstop=4 shiftwidth=4 expandtab
       au FileType javascript              set noet smarttab autoindent
       au FileType typescript              set noet smarttab autoindent
       " au Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab

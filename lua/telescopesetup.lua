@@ -26,7 +26,8 @@ require('telescope').setup{
   pickers = {
     find_files = {
       -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+      --cwd = vim.fn.expand("%:p:h"), -- using no-ignore-vcs makes it so it doesnt know what the CWD should be.
+      find_command = { "rg", "--files", "--hidden",  "--no-ignore-vcs", "--glob", "!**/.git/*" },
       mappings = {
         n = {
           ["cd"] = function(prompt_bufnr)

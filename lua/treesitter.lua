@@ -19,7 +19,7 @@ require'nvim-treesitter.configs'.setup {
 
   },
   indent = {
-      enable = false, -- Testing if this is what messes up indents in Svelte files
+      enable = true,
   },
   -- rainbow parens using treesitter is supplied by nvim-ts-rainbow
   rainbow = {

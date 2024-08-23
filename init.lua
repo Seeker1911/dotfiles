@@ -51,6 +51,7 @@ require("gruvbox").setup({
 
 vim.notify = require("notify")
 require('notifysetup')
+require('alphasetup')
 
 vim.g.svelte_preprocessors = { 'ts' }
 vim.bo.syntax = 'ON'

@@ -26,7 +26,7 @@ return require('packer').startup(function(use)
           'goolord/alpha-nvim',
           -- config = function() require("alpha") end
     }
-    use { 'HiPhish/nvim-ts-rainbow2' }
+    use { 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim' }
     use { "sainnhe/gruvbox-material" }
     use {
     'nvim-lualine/lualine.nvim',
@@ -38,6 +38,7 @@ use ({
     config = function()
         require('lspsaga').setup({
             ui = {beacon = {enable= true}, code_action = ''},
+            symbol_in_winbar = {enable=false},
             finder = {methods = {tyd='textDocument/typeDefinition'}},
             })
     end,

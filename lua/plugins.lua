@@ -74,6 +74,10 @@ use ({
       cmd = {'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeFindFile'},
       config = function()
         require("nvim-tree").setup {
+                live_filter = {
+                    prefix = "[FILTER]: ",
+                    always_show_folders = false,
+                },
                 { window = {options={signcolumn="yes"}}}
         }
       end

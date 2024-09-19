@@ -73,13 +73,34 @@ use ({
       tag = 'nightly', -- optional, updated every week. (see issue #1193)
       cmd = {'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeFindFile'},
       config = function()
+        local VIEW_WIDTH_FIXED = 30
+        local view_width_max = VIEW_WIDTH_FIXED -- fixed to start
+
+        -- toggle the width and redraw
+        local function toggle_width_adaptive()
+          if view_width_max == -1 then
+            view_width_max = VIEW_WIDTH_FIXED
+          else
+            view_width_max = -1
+          end
+
+          require("nvim-tree.api").tree.reload()
+        end
+        -- get current view width
+        local function get_view_width_max()
+          return view_width_max
+        end
         require("nvim-tree").setup {
                 live_filter = {
                     prefix = "[FILTER]: ",
                     always_show_folders = false,
                 },
+                view = {
+                    width = get_view_width_max,
+                },
                 { window = {options={signcolumn="yes"}}}
         }
+        vim.keymap.set('n', 'n', toggle_width_adaptive)
       end
     }
     use {

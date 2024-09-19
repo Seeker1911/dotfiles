@@ -158,8 +158,10 @@ map('n', '<leader>o', ':SymbolsOutline<CR>')
 map('n', '<leader>z', ':ZenMode<CR>')
 map('n', '<space>', 'za')
 map('t', '<Esc>', '<C-\\><C-n>')
+
 -- Add a custom keybinding to toggle the colorscheme
 vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
+
 
 function file_exists(name)
     local f = io.open(name, "r")

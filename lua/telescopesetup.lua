@@ -5,13 +5,22 @@ local trouble = require("trouble.sources.telescope")
 
 require('telescope').setup{
   defaults = {
+    ripgrep_arguments = {
+      'rg',
+      '--hidden',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case'
+    },
     layout_strategy = 'vertical',
     layout_config = {
         width = 0.7,
         height = 0.7
       -- horizontal = { width = 0.4 }
     },
-    file_ignore_patterns = {"node_modules", "build", ".git/"},
+    file_ignore_patterns = {"node_modules", "build/", ".git/"},
     prompt_prefix='🔍 >',
     mappings = {
       n = {

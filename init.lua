@@ -162,7 +162,6 @@ map('t', '<Esc>', '<C-\\><C-n>')
 -- Add a custom keybinding to toggle the colorscheme
 vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
-
 function file_exists(name)
     local f = io.open(name, "r")
     if f ~= nil then
@@ -181,7 +180,7 @@ end
 
 local api = vim.api
 local M = {}
-
+--
 --TODO: Make a function with keymap to call something like the following (accepting arg for pane)
 --:exe "!tmux send -t <PANE> 'pytest...' Enter"
 
@@ -276,12 +275,10 @@ vim.api.nvim_create_autocmd("User", {
     end,
 })
 
-
--- Define a function for inserting console.log with emoji and comma
 function InsertConsoleLog()
-  vim.api.nvim_feedkeys("i`console.log(`🚨 `, )`<Esc>F`a", 'n', false)
+  vim.api.nvim_feedkeys("i const log = (x: any) => { console.log(`🚨 🚨: `, x); return x }", 'n', false)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), 'n', false)
 end
-
 -- Map a key to the function (e.g., <Leader>l for leader key + l)
 vim.api.nvim_set_keymap('n', '<Leader>l', ':lua InsertConsoleLog()<CR>', { noremap = true, silent = true })
 
@@ -300,7 +297,9 @@ function _G.smart_tab()
 end
 
 
-
+-- # generated with chatgpt cuz IDK how to vim
+-- command! -nargs=* RunTS execute '!pnpm run ts ' . shellescape(@%, 1) . ' ' . <q-args>
+-- command! -nargs=* RunTask execute '!pnpm run task_worker ' . shellescape(@%, 1) . ' ' . <q-args>
 
 
 

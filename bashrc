@@ -50,7 +50,9 @@ export EDITOR='nvim'
 export GOPATH="$HOME"/go
 export GOBIN="$HOME"/go/bin
 export FZF_DEFAULT_OPTS='--height 70% --border'
-export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
+# export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
+# export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git}'" # testing if build affects ANYTHING with build in the name
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '!.git/*''
 
 _fzf_compgen_path() {
   rg --files --hidden --follow . "$1"
@@ -230,8 +232,10 @@ PATH="/opt/homebrew/opt/mysql@8.3/bin:$PATH"
 PATH="${PATH}:/opt/homebrew/opt/php@7.4/bin"
 PATH="${PATH}:/opt/homebrew/opt/php@7.4/sbin"
 
-PNPM_HOME=~/pnpm-global
-PATH=$PNPM_HOME/bin:$PATH
+# PNPM_HOME=~/pnpm-global
+# PATH=$PNPM_HOME/bin:$PATH
+export PNPM_HOME="$HOME/.pnpm_global"
+export PATH="$PNPM_HOME:$PATH"
 
 # PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # If you need to have openssl@2.1 first in your PATH:

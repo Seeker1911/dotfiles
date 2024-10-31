@@ -203,6 +203,9 @@ local autoCommands = {
     -- other autocommands
     open_folds = {
         { "BufReadPost,FileReadPost", "*", "normal zR" }
+    },
+    php_keyword = {
+        { "FileType", "php", "set iskeyword+=$" }
     }
 }
 

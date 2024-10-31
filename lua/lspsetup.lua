@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('User', {
         bufmap('n', '<F8>', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
               end, bufopts)
-
+        bufmap('n', '<F9>', '<cmd>EslintFixAll()<cr>')
 
     end
 })
@@ -154,7 +154,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 ---
 local mason_lspconfig = require("mason-lspconfig")
 -- ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint" }
-ToInstall = { "rust_analyzer", "gopls", "terraformls",  "tsserver", "lua_ls", "ruff_lsp", "pylsp", "eslint", "svelte" }
+ToInstall = { "rust_analyzer", "gopls", "terraformls",  "tsserver", "lua_ls", "ruff_lsp", "pylsp", "eslint", "svelte", "phpactor" }
 mason_lspconfig.setup({
     ensure_installed = ToInstall,
     automatic_installation = true,
@@ -213,30 +213,29 @@ table.insert(lua_rtp, 'lua/?.lua')
 table.insert(lua_rtp, 'lua/?/init.lua')
 
 lspconfig.lua_ls.setup {
-    on_attach = lsp_defaults.on_attach,
-    capabilities = lsp_defaults.capabilities,
-    init_options = {
-    settings = {
-        runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT',
-            -- Setup your lua path
-            path = lua_rtp,
-          },
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = { 'vim' },
-          },
-          workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file('', true),
-          },
-          -- Do not send telemetry data containing a randomized but unique identifier
-          telemetry = {
-            enable = false,
-          },
-    }
-  }
+	on_attach = lsp_defaults.on_attach,
+	capabilities = lsp_defaults.capabilities,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+				-- Setup your lua path
+				path = lua_rtp,
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { 'vim' },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file('', true),
+			},
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
 }
 
 lspconfig.pylsp.setup {
@@ -362,7 +361,6 @@ require("typescript-tools").setup {
 }
 
 
--- Setup lspconfig.
 lspconfig.tsserver.setup {
   on_attach = lsp_defaults.on_attach,
   capabilities = lsp_defaults.capabilities,
@@ -371,5 +369,14 @@ lspconfig.tsserver.setup {
   -- Custom handler configurations can be set here as needed
   settings = {
     -- Add any specific settings for tsserver or plugins here
+    }
   }
+
+lspconfig.phpactor.setup{
+    on_attach = lsp_defaults.on_attach,
+    init_options = {
+        ["language_server_phpstan.enabled"] = false,
+        ["language_server_psalm.enabled"] = false,
+    }
 }
+

@@ -232,8 +232,6 @@ PATH="/opt/homebrew/opt/mysql@8.3/bin:$PATH"
 PATH="${PATH}:/opt/homebrew/opt/php@7.4/bin"
 PATH="${PATH}:/opt/homebrew/opt/php@7.4/sbin"
 
-# PNPM_HOME=~/pnpm-global
-# PATH=$PNPM_HOME/bin:$PATH
 export PNPM_HOME="$HOME/.pnpm_global"
 export PATH="$PNPM_HOME:$PATH"
 

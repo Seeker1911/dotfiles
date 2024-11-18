@@ -49,13 +49,20 @@ export SHELL='/bin/sh'
 export EDITOR='nvim'
 export GOPATH="$HOME"/go
 export GOBIN="$HOME"/go/bin
-export FZF_DEFAULT_OPTS='--height 70% --border'
 # export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git, build}'"
 # export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --glob '!{.git}'" # testing if build affects ANYTHING with build in the name
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '!.git/*''
+# export FZF_DEFAULT_OPTS='--height 70% --border'
+# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '!.git/*''
+#
+# _fzf_compgen_path() {
+#   rg --files --hidden --follow . "$1"
+# }
+### testing this to remove duplicates, follow also searches symlinks which can create duplicates.
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+export FZF_DEFAULT_OPTS='--height 70% --border'
 
 _fzf_compgen_path() {
-  rg --files --hidden --follow . "$1"
+  rg --files --hidden --glob "!.git/*" "$1"
 }
 export HISTSIZE=1000
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"

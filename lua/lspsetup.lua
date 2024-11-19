@@ -118,17 +118,19 @@ local lsp_defaults = {
                    { text = table.concat(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false), "\n") },
                  },
                })
+
+            vim.api.nvim_create_autocmd("BufWritePost", {
+              pattern = { "*.js", "*.ts" },
+              group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+              callback = function(ctx)
+                -- Here use ctx.match instead of ctx.file
+                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+              end,
+            })
              end
            end,
            group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
          })
-
-
-
-
-
-
-
     end
 }
 
@@ -185,7 +187,7 @@ lspconfig.svelte.setup {
             svelte = {
                 plugin = {
                     typescript = {
-                        enable = false,
+                        enable = true,
                         completions = {enable = true}}
                 }
             }

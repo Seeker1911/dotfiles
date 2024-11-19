@@ -192,8 +192,8 @@ use ({
     use { 'hrsh7th/cmp-nvim-lsp'} --, after = 'cmp-nvim-lua' }
     use { 'hrsh7th/cmp-buffer', after = 'cmp-nvim-lsp' }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
-    use({"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"})
     use { 'andersevenrud/cmp-tmux' }
+    use({"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"})
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end

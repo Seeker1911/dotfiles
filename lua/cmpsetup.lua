@@ -33,13 +33,13 @@ cmp.setup({
         require('luasnip').lsp_expand(args.body)
     end },
     sources = {
-        { name = 'nvim_lsp', keyword_length = 2 },
+        -- { name = 'tmux', keyword_length = 4 },
+        { name = 'nvim_lsp', keyword_length = 0 },
         { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lua' },
         { name = 'luasnip' },
         { name = 'git' },
-        { name = 'tmux', keyword_length = 3 },
-        { name = 'buffer', keyword_length = 2 },
+        { name = 'buffer', keyword_length = 3 },
     },
     window = {
         documentation = cmp.config.window.bordered()

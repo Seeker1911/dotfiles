@@ -159,5 +159,7 @@ output.null = "#808080"
 
 # Use the -d option to reference a DSN.
 # Special characters in passwords and other strings can be escaped with URL encoding.
+#
+# /opt/homebrew/opt/mysql@8.4/bin/mysqld --mysql-native-password=ON
 [alias_dsn]
 trex = mysql://root:@localhost:3306/trex

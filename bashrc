@@ -136,6 +136,7 @@ elif [ $platform = 'macos' ]; then
   alias lS='ls -S' #List by size.
   alias lt='ls -ltr' #List by time and date.
   alias brew='arch -arm64 brew'
+  alias runmysql='/opt/homebrew/opt/mysql@8.4/bin/mysqld --mysql-native-password=ON'
   export GOOS=darwin
 
     # Fix for:

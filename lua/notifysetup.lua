@@ -121,13 +121,14 @@ end
 -- end
 
 
-local enable_debug = true  -- Set to `true` if you need detailed logs
+local enable_debug = false  -- Set to `true` if you need detailed logs
+---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
 	local client_id = ctx.client_id
 	local val = result.value
 
 	local client_name = vim.lsp.get_client_by_id(client_id).name
-    
+
  --    -- Log all kinds for PHPActor if debugging is enabled
 	-- if enable_debug and client_name == "phpactor" then
 	-- 	vim.notify("PHPActor progress kind: " .. vim.inspect(val.kind), "info")

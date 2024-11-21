@@ -176,8 +176,6 @@ use ({
      ft = 'svelte',
       config = function()
         vim.g.svelte_preprocessors = { 'ts' }
-        require("vim-svelte").setup {
-        }
       end
     }
     use {

@@ -155,8 +155,8 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 -- Mason Config
 ---
 local mason_lspconfig = require("mason-lspconfig")
--- ToInstall = { "rust_analyzer", "gopls", "tsserver", "terraformls", "lua_ls", "ruff_lsp", "pylsp", "eslint" }
-ToInstall = { "rust_analyzer", "gopls", "terraformls",  "tsserver", "lua_ls", "ruff_lsp", "pylsp", "eslint", "svelte", "phpactor" }
+-- ToInstall = { "rust_analyzer", "gopls", "ts_ls", "terraformls", "lua_ls", "ruff", "pylsp", "eslint" }
+ToInstall = { "rust_analyzer", "gopls", "terraformls",  "ts_ls", "lua_ls", "ruff", "pylsp", "eslint", "svelte", "phpactor" }
 mason_lspconfig.setup({
     ensure_installed = ToInstall,
     automatic_installation = true,
@@ -165,7 +165,7 @@ mason_lspconfig.setup({
 })
 
 -- AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "lua_ls", "jedi_language_server"}
--- AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "svelte", "tsserver"}
+-- AcceptDefaults = { "rust_analyzer", "gopls", "terraformls", "svelte", "ts_ls"}
 AcceptDefaults = { "rust_analyzer", "gopls", "terraformls"}
 for _, lsp in pairs(AcceptDefaults) do
     lspconfig[lsp].setup {
@@ -194,7 +194,7 @@ lspconfig.svelte.setup {
         }
       }
 
-lspconfig.ruff_lsp.setup {
+lspconfig.ruff.setup {
     enabled = true,
     on_attach = lsp_defaults.on_attach,
     capabilities = lsp_defaults.capabilities,
@@ -299,11 +299,11 @@ require("typescript-tools").setup {
     ),
   },
   settings = {
-   tsserver_plugins = {
+   ts_ls_plugins = {
           -- for TypeScript v4.9+
           "@styled/typescript-styled-plugin",
       },
-    -- spawn additional tsserver instance to calculate diagnostics on it
+    -- spawn additional ts_ls instance to calculate diagnostics on it
     separate_diagnostic_server = false,
     -- "change"|"insert_leave" determine when the client asks the server about diagnostic
     publish_diagnostic_on = "insert_leave",
@@ -312,23 +312,23 @@ require("typescript-tools").setup {
     -- to include all supported code actions
     -- specify commands exposed as code_actions
     expose_as_code_action = {'all'},
-    -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
+    -- string|nil - specify a custom path to `ts_ls.js` file, if this is nil or file under path
     -- not exists then standard path resolution strategy is applied
-    tsserver_path = nil,
+    ts_ls_path = nil,
     -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
     -- memory limit in megabytes or "auto"(basically no limit)
-    tsserver_max_memory = "auto",
+    ts_ls_max_memory = "auto",
     -- described below
     --
     -- format options and file preferences for typescript-server
     -- https://github.com/microsoft/TypeScript/blob/3b45f4db12bbae97d10f62ec0e2d94858252c5ab/src/server/protocol.ts#L3418
-    tsserver_format_options = {
+    ts_ls_format_options = {
         insertSpaceBeforeAndAfterBinaryOperators = true,
         semicolons = "remove",
           -- allowIncompleteCompletions = false,
           -- allowRenameOfImportPath = false,
     },
-    tsserver_file_preferences = {
+    ts_ls_file_preferences = {
       includeInlayParameterNameHints = "all",
       includeInlayFunctionParameterTypeHints = true,
       includeCompletionsForModuleExports = true,
@@ -339,9 +339,9 @@ require("typescript-tools").setup {
       quotePreference = "auto",
       disableSuggestions = false,
     },
-    -- locale of all tsserver messages, supported locales you can find here:
+    -- locale of all ts_ls messages, supported locales you can find here:
     -- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
-    tsserver_locale = "en",
+    ts_ls_locale = "en",
     -- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
     complete_function_calls = true,
     include_completions_with_insert_text = true,
@@ -363,14 +363,14 @@ require("typescript-tools").setup {
 }
 
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = lsp_defaults.on_attach,
   capabilities = lsp_defaults.capabilities,
   -- Ensure the server is looking for the nearest tsconfig.json or jsconfig.json
   root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git"),
   -- Custom handler configurations can be set here as needed
   settings = {
-    -- Add any specific settings for tsserver or plugins here
+    -- Add any specific settings for ts_ls or plugins here
     }
   }
 

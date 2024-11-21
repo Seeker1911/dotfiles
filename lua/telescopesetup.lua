@@ -8,7 +8,7 @@ require('telescope').setup{
     ripgrep_arguments = {
       'rg',
       '--hidden',
-      '--no-heading',
+      -- '--no-heading',
       '--with-filename',
       '--line-number',
       '--column',
@@ -65,6 +65,9 @@ require('telescope').setup{
         },
   },
   extensions = {
+    ["ui-select"] = {
+        require("telescope.themes").get_dropdown {},
+    },
     file_browser = {
       -- file_ignore_patterns = {"node_modules", "build", ".git/"},
       file_ignore_patterns = {},
@@ -84,3 +87,4 @@ require('telescope').setup{
 }
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("gh")
+require("telescope").load_extension("ui-select")

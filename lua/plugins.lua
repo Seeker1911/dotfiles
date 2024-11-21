@@ -176,8 +176,8 @@ use ({
      ft = 'svelte',
       config = function()
         vim.g.svelte_preprocessors = { 'ts' }
-        -- require("vim-svelte").setup {
-        -- }
+        require("vim-svelte").setup {
+        }
       end
     }
     use {
@@ -211,6 +211,7 @@ use ({
         {'nvim-lua/plenary.nvim'},
       }
     }
+    use {'nvim-telescope/telescope-ui-select.nvim' }
     use {
       'pwntester/octo.nvim',
       requires = {

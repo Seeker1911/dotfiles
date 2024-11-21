@@ -121,7 +121,7 @@ end
 -- end
 
 
-local enable_debug = false  -- Set to `true` if you need detailed logs
+local enable_debug = true  -- Set to `true` if you need detailed logs
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
 	local client_id = ctx.client_id
 	local val = result.value
@@ -165,7 +165,7 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
 		notif_data.notification = vim.notify(val.message and format_message(val.message) or "Complete", "info", {
 			icon = "",
 			replace = notif_data.notification,
-			timeout = 3000,
+			timeout = 1000,
 		})
 
 		notif_data.spinner = nil

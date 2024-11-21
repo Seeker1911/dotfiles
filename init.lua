@@ -251,7 +251,7 @@ vim.cmd([[
       au BufRead,BufNewFile *.markdown    set ft=mkd tw=80 syntax=markdown
       au BufRead,BufNewFile *.slimbars    set syntax=slim
 
-      au FileType python                  set sw=4
+      au FileType python                  set sw=4 ts=4
       au FileType svelte                  setlocal tabstop=4 shiftwidth=4 expandtab
       au FileType javascript              set noet smarttab autoindent
       au FileType typescript              set noet smarttab autoindent

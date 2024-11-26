@@ -71,36 +71,36 @@ use ({
         'nvim-tree/nvim-web-devicons', -- optional, for file icons
       },
       tag = 'nightly', -- optional, updated every week. (see issue #1193)
-      cmd = {'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeFindFile'},
+      cmd = {'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeFindFile'} ,
       config = function()
-        local VIEW_WIDTH_FIXED = 30
-        local view_width_max = VIEW_WIDTH_FIXED -- fixed to start
-
-        -- toggle the width and redraw
-        local function toggle_width_adaptive()
-          if view_width_max == -1 then
-            view_width_max = VIEW_WIDTH_FIXED
-          else
-            view_width_max = -1
-          end
-
-          require("nvim-tree.api").tree.reload()
-        end
-        -- get current view width
-        local function get_view_width_max()
-          return view_width_max
-        end
+      --   local VIEW_WIDTH_FIXED = 50
+      --   local view_width_max = VIEW_WIDTH_FIXED -- fixed to start
+      --
+      --   -- toggle the width and redraw
+      --   local function toggle_width_adaptive()
+      --     if view_width_max == -1 then
+      --       view_width_max = VIEW_WIDTH_FIXED
+      --     else
+      --       view_width_max = -1
+      --     end
+      --
+      --     require("nvim-tree.api").tree.reload()
+      --   end
+      --   -- get current view width
+      --   local function get_view_width_max()
+      --     return view_width_max
+      --   end
         require("nvim-tree").setup {
                 live_filter = {
                     prefix = "[FILTER]: ",
                     always_show_folders = false,
                 },
                 view = {
-                    width = get_view_width_max,
+                    width = 50,--get_view_width_max
                 },
                 { window = {options={signcolumn="yes"}}}
         }
-        vim.keymap.set('n', 'n', toggle_width_adaptive)
+      --   vim.keymap.set('n', 'n', toggle_width_adaptive)
       end
     }
     use {
@@ -146,11 +146,6 @@ use ({
         -- wants = 'friendly-snippets',
         run = "make install_jsregexp",
         after = 'nvim-cmp',
-    }
-    use { 'folke/neodev.nvim',
-        config = function()
-            require('neodev').setup{}
-        end
     }
     use { 'neovim/nvim-lspconfig'} --, after = 'mason.nvim' }
     use {

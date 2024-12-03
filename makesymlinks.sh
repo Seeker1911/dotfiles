@@ -48,12 +48,13 @@ done
 # mv ~/bin/ $olddir 2>/dev/null;
 ln -sf $dir/bin/* $bindir/
 
-ln -sf $dir/init.lua $nvimdir
-ln -sf $dir/config/ftplugin/* $nvimdir/ftplugin/*
-ln -sf $dir/lua/* $luadir
-ln -sf $dir/vimrc ~/.vimrc
+# ln -sf $dir/init.lua $nvimdir
+# ln -sf $dir/config/ftplugin/* $nvimdir/ftplugin/*
+ln -sf $dir/nvim/* $nvimdir
+# ln -sf $dir/lua/* $luadir
+# ln -sf $dir/vimrc ~/.vimrc
 ln -sf $dir/config/ruff/pyproject.toml $ruffdir
-ln -sf $dir/config/pnpm/rc $pnpmdir
+# ln -sf $dir/config/pnpm/rc $pnpmdir
 # hardlink alacritty files
 ln -f $dir/profiles/alacritty.toml $alacrittydir/alacritty.toml
 ln -f $dir/profiles/alacritty_background.toml $HOME/.alacritty_background.toml

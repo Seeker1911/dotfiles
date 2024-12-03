@@ -38,6 +38,7 @@ PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$GOBIN:$HOME/bin:$PATH"
 PATH="$HOME/.pnpm_global:$PATH"
 PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 PATH="/opt/homebrew/opt/php@7.4/bin:/opt/homebrew/opt/php@7.4/sbin:$PATH"
+PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 export PATH
 
 # Load pyenv
@@ -50,6 +51,7 @@ eval "$(pyenv virtualenv-init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash completion
+nvm use 20
 
 # Direnv
 if command -v direnv >/dev/null; then

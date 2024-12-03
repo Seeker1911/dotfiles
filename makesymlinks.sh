@@ -16,7 +16,7 @@ pnpmdir=$XDG_CONFIG_HOME/pnpm
 luadir=$nvimdir/lua
 alacrittydir=$XDG_CONFIG_HOME/alacritty
 
-homeFiles="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig vim_background myclirc"
+homeFiles="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig background myclirc"
 configFiles="pylintrc"
 
 ##########

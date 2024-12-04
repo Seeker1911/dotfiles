@@ -39,7 +39,7 @@ lspconfig.svelte.setup({
 	root_dir = function()
 		return vim.loop.cwd()
 	end,
-	on_attach = nvlsp.on_attach(),
+	on_attach = nvlsp.on_attach,
 	capabilities = nvlsp.capabilities,
 	init_options = {
 		-- these aren't working: https://github.com/sveltejs/language-tools/tree/master/packages/language-server

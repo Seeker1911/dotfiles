@@ -5,7 +5,7 @@
 ---@type ChadrcConfig
 local M = {
   base46 = {
-    theme = "everforest_light",
+    theme = "flex-light",
     -- hl_override = {
     -- 	Comment = { italic = true },
     -- 	["@comment"] = { italic = true },

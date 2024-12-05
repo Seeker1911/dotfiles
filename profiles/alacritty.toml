@@ -3,8 +3,8 @@
 # brew install --cask alacritty --no-quarantine
 #
 
-import = ["~/.alacritty_background.toml"]
-# import = [
+general.import = ["~/.alacritty_background.toml"]
+# general.import = [
 #     "~/.config/alacritty/themes/themes/night_owlish_light.toml",
 #     "~/.config/alacritty/themes/themes/pencil_light.toml",
 #     "~/.config/alacritty/themes/themes/gruvbox_material_medium_light.toml",

@@ -38,6 +38,7 @@ return {
 			},
 		},
 	},
+	{ "scottmckendry/cyberdream.nvim" },
 	{ "leafOfTree/vim-svelte-plugin", config = true, opts = {} },
 }
 

@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "github_light",
+	theme = "gruvbox",
 	-- Other configurations...
 }
 
@@ -18,7 +18,7 @@ M.ui = {
 		},
 	},
 	statusline = {
-		theme = "vscode_colored",
+		theme = "minimal",
 		separator_style = "default",
 	},
 }

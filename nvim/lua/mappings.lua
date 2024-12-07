@@ -6,12 +6,13 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", "<SPACE>", "za", { desc = "toggle current fold" })
 map("i", "jj", "<ESC>")
 map("t", "<ESC>", [[<C-\><C-n>]], { desc = "Enter Normal mode in terminal" })
+map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "open diagnostic float" })
+
+vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
 map({ "n", "t" }, "<Esc>i", function()
 	require("nvchad.term").toggle({ pos = "float", id = "floatTerm" })
 end, { desc = "terminal toggle floating term" })
-
-map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
 
 map("n", "<leader>rt", function()
 	local file = vim.fn.expand("%")
@@ -32,4 +33,4 @@ map("n", "<leader>rt", function()
 		cmd = fts[cur_ft],
 		id = "test code runner",
 	})
-end)
+end, { desc = "run open typescript file" })

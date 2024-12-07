@@ -12,3 +12,24 @@ map({ "n", "t" }, "<Esc>i", function()
 end, { desc = "terminal toggle floating term" })
 
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
+
+map("n", "<leader>rt", function()
+	local file = vim.fn.expand("%")
+	local cur_ft = vim.bo.ft
+
+	local fts = {
+		-- javascript = "pnpm ts " .. file,
+		typescript = "pnpm ts " .. file,
+	}
+
+	if not fts[cur_ft] then
+		vim.notify("no runner for " .. cur_ft, vim.log.levels.ERROR)
+		return
+	end
+
+	require("nvchad.term").runner({
+		pos = "vsp",
+		cmd = fts[cur_ft],
+		id = "test code runner",
+	})
+end)

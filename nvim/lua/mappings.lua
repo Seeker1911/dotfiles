@@ -5,7 +5,6 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", "<SPACE>", "za", { desc = "toggle current fold" })
 map("i", "jj", "<ESC>")
-map("t", "<ESC>", [[<C-\><C-n>]], { desc = "Enter Normal mode in terminal" })
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "open diagnostic float" })
 
 vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
@@ -34,3 +33,16 @@ map("n", "<leader>rt", function()
 		id = "test code runner",
 	})
 end, { desc = "run open typescript file" })
+
+-- map("t", "<ESC>", [[<C-\><C-n>]], { desc = "Enter Normal mode in terminal" })
+vim.api.nvim_create_autocmd("TermEnter", {
+	callback = function()
+		-- If the terminal window is lazygit, we do not make changes to avoid clashes
+		if string.find(vim.api.nvim_buf_get_name(0), "lazygit") then
+			return
+		end
+		vim.keymap.set("t", "<ESC>", function()
+			vim.cmd("stopinsert")
+		end, { buffer = true })
+	end,
+})

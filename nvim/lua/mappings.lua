@@ -34,7 +34,6 @@ map("n", "<leader>rt", function()
 	})
 end, { desc = "run open typescript file" })
 
--- map("t", "<ESC>", [[<C-\><C-n>]], { desc = "Enter Normal mode in terminal" })
 vim.api.nvim_create_autocmd("TermEnter", {
 	callback = function()
 		-- If the terminal window is lazygit, we do not make changes to avoid clashes
@@ -46,3 +45,7 @@ vim.api.nvim_create_autocmd("TermEnter", {
 		end, { buffer = true })
 	end,
 })
+
+map("n", "<leader>ft", function()
+	require("nvchad.term").new({ pos = "float" })
+end, { desc = "terminal new float term" })

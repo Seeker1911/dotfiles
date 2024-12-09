@@ -41,11 +41,14 @@ return {
 	{ "leafOfTree/vim-svelte-plugin", config = true, opts = {} },
 
 	-- This would be neat but looks like you cant use custom themes with Base46
-	-- {
-	-- 	"scottmckendry/cyberdream.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- },
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("configs.cyberdream")
+		end,
+	},
 }
 
 -- when a plugin is loaded, the files under lua/ are not immediately required by default; they are just available to be required. only if you have opts = {} or config = true, does lazy.nvim try to do require("my_plugin").setup(opts) after loading the plugin.

@@ -39,6 +39,7 @@ PATH="$HOME/.pnpm_global:$PATH"
 PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 PATH="/opt/homebrew/opt/php@7.4/bin:/opt/homebrew/opt/php@7.4/sbin:$PATH"
 PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+PATH="/opt/homebrew/Cellar/mysql@8.4/8.4.3_2/bin":$PATH
 export PATH
 
 # Load pyenv

@@ -35,6 +35,7 @@ return {
 				"typescript",
 				"bash",
 				"regex",
+				"sql",
 			},
 		},
 	},

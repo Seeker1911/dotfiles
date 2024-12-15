@@ -2,7 +2,6 @@ require("nvchad.mappings")
 
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", "<SPACE>", "za", { desc = "toggle current fold" })
 map("i", "jj", "<ESC>")
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "open diagnostic float" })
@@ -49,3 +48,9 @@ vim.api.nvim_create_autocmd("TermEnter", {
 map("n", "<leader>ft", function()
 	require("nvchad.term").new({ pos = "float" })
 end, { desc = "terminal new float term" })
+
+-- adjust splits
+map("n", "<M-,>", "<c-w>5<")
+map("n", "<M-.>", "<c-w>5>")
+map("n", "<M-t>", "<c-w>5+")
+map("n", "<M-s>", "<c-w>5-")

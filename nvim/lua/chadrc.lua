@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "gruvbox",
+	theme = "github_light",
 	-- Other configurations...
 }
 

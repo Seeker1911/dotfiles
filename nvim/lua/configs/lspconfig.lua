@@ -15,22 +15,6 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
--- configuring single server, example: typescript
--- lspconfig.svelte.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
---   settings = {
---     svelte = {
---       plugin = {
---         svelte = true,
---         typescript = true,
---         javascript = true,
---       },
---     },
---   },
--- }
-
 lspconfig.svelte.setup({
 	-- requires: npm install --save-dev typescript-svelte-plugin on per project basis
 	filetypes = { "svelte" },
@@ -41,13 +25,21 @@ lspconfig.svelte.setup({
 	end,
 	on_attach = nvlsp.on_attach,
 	capabilities = nvlsp.capabilities,
-	init_options = {
+	on_init = nvlsp.on_init,
+	settings = {
 		-- these aren't working: https://github.com/sveltejs/language-tools/tree/master/packages/language-server
 		svelte = {
 			plugin = {
 				typescript = {
 					enable = true,
+					hover = { enable = true },
 					completions = { enable = true },
+				},
+				svelte = {
+					format = {
+						enable = false,
+						config = { singleQuote = true, printWidth = 160 },
+					},
 				},
 			},
 		},

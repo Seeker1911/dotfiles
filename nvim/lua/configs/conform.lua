@@ -3,6 +3,7 @@ local options = {
 		lua = { "stylua" },
 		typescript = { "eslint_d" },
 		javascript = { "eslint_d" },
+		svelte = { "eslint_d" },
 		python = { "ruff" },
 		css = { "prettierd", "prettier" },
 		html = { "prettierd", "prettier" },

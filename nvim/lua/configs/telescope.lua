@@ -16,7 +16,14 @@ return {
 			n = { ["q"] = require("telescope.actions").close },
 		},
 	},
+	dependencies = {
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+		},
+		{ "nvim-telescope/telescope-fzy-native.nvim" },
+	},
 
-	extensions_list = { "themes", "terms" },
+	extensions_list = { "themes", "terms", "fzf" },
 	extensions = {},
 }

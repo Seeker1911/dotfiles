@@ -2,6 +2,15 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
+vim.api.nvim_cmd({
+	cmd = "colorscheme",
+	args = { "cyberdream" },
+}, {})
+
+-- now go light mode
+vim.api.nvim_cmd({
+	cmd = "CyberdreamToggleMode",
+}, {})
 o.cursorlineopt = "both" -- to enable cursorline!
 o.cursorline = true
 o.shiftwidth = 4

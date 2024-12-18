@@ -1,4 +1,3 @@
--- local nvlsp = require("nvchad.configs.lspconfig")
 local M = {}
 local map = vim.keymap.set
 
@@ -22,7 +21,7 @@ M.on_attach = function(_, bufnr)
 	end, opts("List workspace folders"))
 
 	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-	map("n", "<leader>ra", require("nvchad.lsp.renamer"), opts("NvRenamer"))
+	map("n", "<leader>ra", require("configs.renamer"), opts("Renamer"))
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
 	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
@@ -56,7 +55,7 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 M.defaults = function()
-	-- require("nvchad.lsp").diagnostic_config()
+	require("configs.lspDiagnostic").diagnostic_config()
 
 	require("lspconfig").lua_ls.setup({
 		on_attach = M.on_attach,
@@ -82,46 +81,46 @@ M.defaults = function()
 			},
 		},
 	})
-end
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
+	-- lsps with default config
+	for _, lsp in ipairs(servers) do
+		print(lsp)
+		lspconfig[lsp].setup({
+			on_attach = M.on_attach,
+			on_init = M.on_init,
+			capabilities = M.capabilities,
+		})
+	end
+
+	lspconfig.svelte.setup({
+		-- requires: npm install --save-dev typescript-svelte-plugin on per project basis
+		filetypes = { "svelte" },
+		pattern = { "*.svelte" },
+		enabled = true,
+		root_dir = function()
+			return vim.loop.cwd()
+		end,
 		on_attach = M.on_attach,
-		on_init = M.on_init,
 		capabilities = M.capabilities,
-	})
-end
-
-lspconfig.svelte.setup({
-	-- requires: npm install --save-dev typescript-svelte-plugin on per project basis
-	filetypes = { "svelte" },
-	pattern = { "*.svelte" },
-	enabled = true,
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-	on_attach = M.on_attach,
-	capabilities = M.capabilities,
-	on_init = M.on_init,
-	settings = {
-		-- these aren't working: https://github.com/sveltejs/language-tools/tree/master/packages/language-server
-		svelte = {
-			plugin = {
-				typescript = {
-					enable = true,
-					hover = { enable = true },
-					completions = { enable = true },
-				},
-				svelte = {
-					format = {
-						enable = false,
-						config = { singleQuote = true, printWidth = 160 },
+		on_init = M.on_init,
+		settings = {
+			-- these aren't working: https://github.com/sveltejs/language-tools/tree/master/packages/language-server
+			svelte = {
+				plugin = {
+					typescript = {
+						enable = true,
+						hover = { enable = true },
+						completions = { enable = true },
+					},
+					svelte = {
+						format = {
+							enable = false,
+							config = { singleQuote = true, printWidth = 160 },
+						},
 					},
 				},
 			},
 		},
-	},
-})
-
+	})
+end
 return M

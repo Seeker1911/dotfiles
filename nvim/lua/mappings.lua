@@ -110,8 +110,6 @@ map("n", "<SPACE>", "za", { desc = "toggle current fold" })
 map("i", "jj", "<ESC>")
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "open diagnostic float" })
 
-vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
-
 map({ "n", "t" }, "<Esc>i", function()
 	require("nvchad.term").toggle({ pos = "float", id = "floatTerm" })
 end, { desc = "terminal toggle floating term" })
@@ -158,3 +156,32 @@ map("n", "<M-,>", "<c-w>5<")
 map("n", "<M-.>", "<c-w>5>")
 map("n", "<M-t>", "<c-w>5+")
 map("n", "<M-s>", "<c-w>5-")
+
+-- vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
+
+map("n", "<leader>tt", function()
+	-- Paths to the theme files
+	local dark_theme = "~/.config/alacritty/themes/themes/cyberdream.toml"
+	local light_theme = "~/.config/alacritty/themes/themes/cyberdream-light.toml"
+
+	-- Determine current background and toggle
+	local current_background = vim.o.background
+	local command
+
+	if current_background == "dark" then
+		command = string.format("echo \"general.import = ['%s']\" > ~/.alacritty_background.toml", light_theme)
+		vim.o.background = "light"
+	else
+		command = string.format("echo \"general.import = ['%s']\" > ~/.alacritty_background.toml", dark_theme)
+		vim.o.background = "dark"
+	end
+
+	-- Execute the shell command to update Alacritty theme
+	os.execute(command)
+
+	-- Call the :CyberdreamToggleMode Vim command
+	vim.cmd("CyberdreamToggleMode")
+
+	-- Notify the user
+	print("Switched to " .. vim.o.background .. " mode")
+end, { desc = "buffer goto next" })

@@ -17,7 +17,7 @@ general.import = ["~/.alacritty_background.toml"]
 # ]
 
 [window]
-opacity = 1
+opacity = 0.85
 decorations = 'buttonless'
 padding = {x = 2, y = 2}
 

@@ -1,3 +1,5 @@
+-- when a plugin is loaded, the files under lua/ are not immediately required by default; they are just available to be required. only if you have opts = {} or config = true, does lazy.nvim try to do require("my_plugin").setup(opts) after loading the plugin.
+-- Lazy-loaded plugins are automatically loaded when their Lua modules are required, or when one of the lazy-loading handlers triggers
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -33,14 +35,9 @@ return {
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			require("configs.cyberdream")
-		end,
+		opts = require("configs.cyberdream"),
 	},
 
-	-- when a plugin is loaded, the files under lua/ are not immediately required by default; they are just available to be required. only if you have opts = {} or config = true, does lazy.nvim try to do require("my_plugin").setup(opts) after loading the plugin.
-	--
-	-- Lazy-loaded plugins are automatically loaded when their Lua modules are required, or when one of the lazy-loading handlers triggers
 	"nvim-lua/plenary.nvim",
 
 	"nvzone/volt",

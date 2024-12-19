@@ -7,11 +7,9 @@ vim.api.nvim_cmd({
 	args = { "cyberdream" },
 }, {})
 
--- now go light mode
-vim.api.nvim_cmd({
-	cmd = "CyberdreamToggleMode",
-}, {})
-o.cursorlineopt = "both" -- to enable cursorline!
+opt.cursorlineopt = "line" -- to enable cursorline!
+opt.termguicolors = true
+
 o.cursorline = true
 o.shiftwidth = 4
 o.tabstop = 4
@@ -20,11 +18,11 @@ o.softtabstop = 4
 g.vim_svelte_plugin_load_full_syntax = 1
 g.vim_svelte_plugin_use_typescript = 1
 
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 1
-vim.opt.foldminlines = 4
-vim.opt.foldnestmax = 2
-vim.opt.foldtext = ""
+opt.foldlevel = 99
+opt.foldlevelstart = 1
+opt.foldminlines = 4
+opt.foldnestmax = 2
+opt.foldtext = ""
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function()

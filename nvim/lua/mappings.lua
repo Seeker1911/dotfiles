@@ -111,7 +111,7 @@ map("i", "jj", "<ESC>")
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "open diagnostic float" })
 
 map({ "n", "t" }, "<Esc>i", function()
-	require("nvchad.term").toggle({ pos = "float", id = "floatTerm" })
+	require("configs.term").toggle({ pos = "float", id = "floatTerm" })
 end, { desc = "terminal toggle floating term" })
 
 map("n", "<leader>rt", function()

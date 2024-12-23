@@ -3,25 +3,18 @@ local o = vim.o
 local g = vim.g
 
 local file_path = os.getenv("HOME") .. "/.alacritty_background.toml"
--- print("file path: ", file_path)
 
--- Read the file content
 local content = ""
 local file = io.open(file_path, "r")
 
--- print("file : ", file)
 if file then
 	content = file:read("*all")
-	-- print("file exists , content: ", content)
 	file:close()
 end
 
--- Define the pattern to find the specific string
 local pattern = "general%.import%s*=%s*%['~/.config/alacritty/themes/themes/(.*)%.toml'%]"
 
--- Search for the pattern in the content
 local theme = content:match(pattern)
--- print("THEME: ", theme)
 
 opt.background = "light"
 local theme_name = "cyberdream"
@@ -31,6 +24,9 @@ if theme then
 		opt.background = "dark"
 		theme_name = "gruvbox"
 	elseif theme == "cyberdream" then
+		opt.background = "dark"
+		theme_name = "cyberdream"
+	elseif theme == "cyberdream-light" then
 		opt.background = "light"
 		theme_name = "cyberdream"
 	elseif theme == "gruvbox_light" then
@@ -38,8 +34,6 @@ if theme then
 		theme_name = "gruvbox"
 	end
 end
-
--- print("Theme name: " .. (theme_name or "not found"))
 
 vim.api.nvim_cmd({
 	cmd = "colorscheme",

@@ -8,7 +8,7 @@ return {
 		update_root = false,
 	},
 	view = {
-		width = 30,
+		width = 40,
 		preserve_window_proportions = true,
 	},
 	renderer = {

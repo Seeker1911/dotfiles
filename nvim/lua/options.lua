@@ -7,10 +7,15 @@ vim.api.nvim_cmd({
 	args = { "cyberdream" },
 }, {})
 
-opt.cursorlineopt = "line" -- to enable cursorline!
+-- nvim-tree options
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+opt.cursorlineopt = "line"
+opt.cursorline = true
+
 opt.termguicolors = true
 
-o.cursorline = true
 o.shiftwidth = 4
 o.tabstop = 4
 o.softtabstop = 4

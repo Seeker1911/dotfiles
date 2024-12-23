@@ -1,4 +1,3 @@
----@type NvPluginSpec
 return {
 	"folke/noice.nvim",
 	event = "UIEnter",

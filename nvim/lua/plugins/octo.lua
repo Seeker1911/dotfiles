@@ -1,4 +1,3 @@
----@type NvPluginSpec
 return {
 	"pwntester/octo.nvim",
 	event = "UIEnter",

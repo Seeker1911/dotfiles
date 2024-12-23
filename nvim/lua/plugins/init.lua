@@ -38,10 +38,14 @@ return {
 		opts = require("configs.cyberdream"),
 	},
 
-	"nvim-lua/plenary.nvim",
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = {} },
 
-	"nvzone/volt",
-	"nvzone/menu",
+	{ "nvim-lua/plenary.nvim" },
+
+	{ "nvzone/volt" },
+
+	{ "nvzone/menu" },
+
 	{ "nvzone/minty", cmd = { "Huefy", "Shades" } },
 
 	{
@@ -133,5 +137,14 @@ return {
 		opts = function()
 			return require("configs.cmp")
 		end,
+	},
+
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = "InsertEnter",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {},
 	},
 }

@@ -1,0 +1,50 @@
+# Comments start with a `#` and are only valid on their own line.
+# CLI actions: (can be proceeded with -h)
+# +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
+
+# background = FFFFFF
+# foreground= 000000
+
+keybind = ctrl+z=close_surface
+
+keybind = super+shift+l=new_split:right
+keybind = super+shift+h=new_split:left
+
+keybind = super+alt+l=goto_split:right
+keybind = super+alt+h=goto_split:left
+
+keybind = global:cmd+s=toggle_quick_terminal
+keybind = global:super+shift+t=toggle_visibility
+
+theme = GruvboxDark
+# theme = github
+
+shell-integration = bash
+
+macos-titlebar-style = hidden 
+macos-icon = custom-style
+macos-icon-frame = aluminum
+macos-icon-ghost-color = grey
+macos-icon-screen-color = dark grey,black
+macos-option-as-alt = true
+
+background-opacity = 0.7
+background-blur-radius = 30 
+
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 11.5
+
+window-decoration = true
+window-padding-x = 4 
+window-padding-y = 4 
+window-inherit-working-directory = true
+window-theme = ghostty
+
+# cursor-invert-fg-bg = true
+cursor-style = block
+
+
+clipboard-read = "allow"
+clipboard-paste-protection = false
+
+quick-terminal-position = right 

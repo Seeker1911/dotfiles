@@ -1,0 +1,154 @@
+# bind-key -n flag will prevent need for prefix key
+
+# Setting the prefix from C-b to C-a
+set -g prefix C-b
+
+# All of these are almost certainly not needed.
+set-option -gs default-terminal "screen-256color-bce"
+# set-option -gas terminal-overrides "*:Tc"
+# set-option -gas terminal-overrides "*:RGB"
+# set -ag terminal-overrides ',screen*:cvvis=\E[34l\E[?25h'
+
+unbind C-a
+# Ensure that we can send Ctrl-A to other apps
+#bind C-a send-prefix
+#setting the delay between prefix and command
+set -s escape-time 3
+
+# Set the base index for windows to 1 instead of 0
+set -g base-index 1
+
+# Set the base index for panes to 1 instead of 0
+setw -g pane-base-index 1
+
+# Set message display time
+set-option -g display-time 4000
+# set-option display-panes-time 3000
+# Reload the file with Prefix r
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+# splitting panes with | and -
+bind \\ split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}" 
+unbind c
+bind c new-window -c "#{pane_current_path}"
+# run arbitrary shell command in specific directory
+bind t split-window -h -c ~/ "nvim ~/dotfiles/tmux.conf"
+bind v split-window -h -c ~/ "nvim ~/dotfiles/init.lua"
+bind l split-window -h -c ~/ "nvim ~/dotfiles/lua/lspsetup.lua +13"
+bind b split-window -h -c ~/ "nvim ~/dotfiles/bashrc"
+
+# Pane resizing panes with Prefix H,J,K,L
+bind -r H resize-pane -L 15
+bind -r J resize-pane -D 15
+bind -r K resize-pane -U 15
+bind -r L resize-pane -R 15
+
+set -g mouse off
+
+# Set the default terminal mode to 256color mode
+set -g default-terminal "screen-256color"
+# Undercurl
+# set -g default-terminal "${TERM}"
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+# Status line left side to show Session:window:pane
+set -g status-left-length 40
+
+# Update the status line every sixty seconds
+set -g status-interval 60
+
+# Center the window list in the status line
+set -g status-justify centre
+
+# enable activity alerts
+setw -g monitor-activity on
+set -g visual-activity on
+
+# enable vi keys.
+setw -g mode-keys vi
+
+# enforce bash
+set-option -g default-shell /bin/bash
+set-option -g focus-events on  # for 'autoread'
+#bind buffers/copy mode to vim keys 
+bind [ copy-mode
+bind ] paste-buffer
+
+# set up 'v' to begin selection like vim.
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe "reattach-to-user-namespace pbcopy"
+
+# update default binding of 'enter' to also use copy-pipe.
+unbind-key -T copy-mode-vi Enter
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe "reattach-to-user-namespace pbcopy"
+
+bind p previous-window
+bind n next-window
+
+
+# Smart pane switching with awareness of Vim splits.
+# https://github.com/alexghergh/nvim-tmux-navigation
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h' 'select-pane -L'
+bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
+bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
+bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
+tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+bind-key -n 'C-Space' if-shell "$is_vim" 'send-keys C-Space' 'select-pane -t:.+'
+
+bind-key -T copy-mode-vi 'C-h' select-pane -L
+bind-key -T copy-mode-vi 'C-j' select-pane -D
+bind-key -T copy-mode-vi 'C-k' select-pane -U
+bind-key -T copy-mode-vi 'C-l' select-pane -R
+bind-key -T copy-mode-vi 'C-\' select-pane -l
+bind-key -T copy-mode-vi 'C-Space' select-pane -t:.+
+
+# from https://scripter.co/command-to-every-pane-window-session-in-tmux/
+# Send the same command to all panes/windows/sessions
+bind E command-prompt -p "Command:" \
+       "run \"tmux list-panes -a -F '##{session_name}:##{window_index}.##{pane_index}' \
+              | xargs -I PANE tmux send-keys -t PANE '%1' Enter\""
+
+# Send the same command to all panes/windows in current session
+bind C-e command-prompt -p "Command:" \
+         "run \"tmux list-panes -s -F '##{session_name}:##{window_index}.##{pane_index}' \
+                | xargs -I PANE tmux send-keys -t PANE '%1' Enter\""
+
+
+
+
+# source-file ~/dotfiles/colors/tmux_default.conf
+# source-file ~/dotfiles/colors/tmux-everforest.conf
+
+set -g status-right-length 100
+set -g status-left-length 100
+set -g status-left ""
+set -g status-right "#{E:@catppuccin_status_application}"
+set -agF status-right "#{E:@catppuccin_status_cpu}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -ag status-right "#{E:@catppuccin_status_uptime}"
+set -agF status-right "#{E:@catppuccin_status_battery}"
+
+# run ~/.tmux/plugins/tmux/catppuccin.tmux
+# source-file ~/.tmux/plugins/tmux/themes/catppuccin_cyberdream.tmuxtheme
+# List of plugins
+# <prefix> I to install.
+set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'catppuccin/tmux#v2.1.2' # See https://github.com/catppuccin/tmux/tags for additional tags
+set -g @plugin 'catppuccin/tmux'
+set -g @catppuccin_flavour "cyberdream"
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-logging'
+# set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'

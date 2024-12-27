@@ -1,7 +1,7 @@
 local options = {
 	formatters_by_ft = {
 		lua = { "stylua" },
-		typescript = { "eslint_d" },
+		typescript = { "eslint" },
 		javascript = { "eslint_d" },
 		svelte = { "eslint_d" },
 		python = { "ruff" },

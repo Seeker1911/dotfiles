@@ -96,7 +96,7 @@ map("n", "<leader>rt", function()
 	local cur_ft = vim.bo.ft
 
 	local fts = {
-		-- javascript = "pnpm ts " .. file,
+		javascript = "npm test " .. file,
 		typescript = "pnpm ts " .. file,
 	}
 

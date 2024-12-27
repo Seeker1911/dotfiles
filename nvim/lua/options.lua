@@ -2,7 +2,9 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
-local file_path = os.getenv("HOME") .. "/.alacritty_background.toml"
+-- local file_path = os.getenv("HOME") .. "/.alacritty_background.toml"
+local file_path = os.getenv("HOME") .. "/.config/ghostty/config"
+-- print(file_path)
 
 local content = ""
 local file = io.open(file_path, "r")
@@ -12,15 +14,16 @@ if file then
 	file:close()
 end
 
-local pattern = "general%.import%s*=%s*%['~/.config/alacritty/themes/themes/(.*)%.toml'%]"
+-- local pattern = "general%.import%s*=%s*%['~/.config/alacritty/themes/themes/(.*)%.toml'%]"
+local pattern = "theme%s*=%s*([%w_%-]+)"
 
 local theme = content:match(pattern)
+require("notify")("theme: " .. theme)
 
 opt.background = "light"
 local theme_name = "cyberdream"
-
 if theme then
-	if theme == "gruvbox_dark" then
+	if theme == "GruvboxDark" then
 		opt.background = "dark"
 		theme_name = "gruvbox"
 	elseif theme == "cyberdream" then
@@ -29,9 +32,9 @@ if theme then
 	elseif theme == "cyberdream-light" then
 		opt.background = "light"
 		theme_name = "cyberdream"
-	elseif theme == "gruvbox_light" then
+	elseif theme == "github" then
 		opt.background = "light"
-		theme_name = "gruvbox"
+		theme_name = "cyberdream"
 	end
 end
 
@@ -75,22 +78,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -------------------------------------- options ------------------------------------------
 o.laststatus = 3
-o.showmode = false
 
 o.clipboard = "unnamedplus"
 o.cursorlineopt = "number"
 
--- Indenting
-o.expandtab = true
-o.shiftwidth = 2
-o.smartindent = true
-o.tabstop = 2
-o.softtabstop = 2
-
 opt.fillchars = { eob = " " }
 o.ignorecase = true
 o.smartcase = true
-o.mouse = "a"
 
 -- Numbers
 o.number = true
@@ -114,8 +108,8 @@ o.updatetime = 250
 opt.whichwrap:append("<>[]hl")
 
 -- disable some default providers
-g.loaded_node_provider = 0
-g.loaded_python3_provider = 0
+-- g.loaded_node_provider = 0
+-- g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 

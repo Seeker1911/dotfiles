@@ -5,6 +5,7 @@ dotfiles_dir="$HOME/dotfiles"
 backup_dir="$HOME/.dotfiles_old"
 config_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
 nvim_dir="$config_dir/nvim"
+ghost_dir="$config_dir/ghostty"
 nvim_lua_dir="$dotfiles_dir/nvim/lua"
 
 # Files and directories to symlink
@@ -13,7 +14,7 @@ config_files="pylintrc"
 # nvim_files="init.lua"
 
 # Ensure backup directory exists
-mkdir -p "$backup_dir" "$config_dir" "$nvim_dir"
+mkdir -p "$backup_dir" "$config_dir" "$nvim_dir" "$ghost_dir"
 
 echo "Backing up existing dotfiles and creating symlinks..."
 
@@ -39,12 +40,9 @@ if [[ -d "$nvim_dir" || -L "$nvim_dir" ]]; then
 fi
 ln -sf "$dotfiles_dir/nvim" "$nvim_dir"
 
-# Handle Neovim individual files
-# for file in $nvim_files; do
-# 	if [[ -e "$nvim_dir/$file" || -L "$nvim_dir/$file" ]]; then
-# 		mv "$nvim_dir/$file" "$backup_dir/" 2>/dev/null
-# 	fi
-# 	ln -sf "$dotfiles_dir/nvim/$file" "$nvim_dir/$file"
-# done
+if [[ -d "$ghost_dir" || -L "$ghost_dir" ]]; then
+	mv "$ghost_dir" "$backup_dir/" 2>/dev/null
+fi
+ln -sf "$dotfiles_dir/ghostty" "$ghost_dir"
 
 echo "Dotfiles successfully linked!"

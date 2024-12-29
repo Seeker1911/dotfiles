@@ -23,7 +23,7 @@ set -o vi
 export XDG_CONFIG_HOME="$HOME/.config"
 export LANG=en_US.UTF-8
 export TERM="screen-256color"
-export EDITOR='nvim'
+export EDITOR='vim'
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'

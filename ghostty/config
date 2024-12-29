@@ -1,9 +1,12 @@
 # Comments start with a `#` and are only valid on their own line.
 # CLI actions: (can be proceeded with -h)
-# +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
+# +help(shows the following), +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
 
 # background = FFFFFF
 # foreground= 000000
+
+theme = GruvboxDark
+
 
 keybind = ctrl+z=close_surface
 
@@ -15,9 +18,6 @@ keybind = super+alt+h=goto_split:left
 
 keybind = global:cmd+s=toggle_quick_terminal
 keybind = global:super+shift+t=toggle_visibility
-
-theme = GruvboxDark
-# theme = github
 
 shell-integration = bash
 
@@ -32,13 +32,25 @@ background-opacity = 0.7
 background-blur-radius = 30 
 
 font-family = JetBrainsMono Nerd Font Mono
-font-size = 11.5
+font-size = 14
+# ss01: != and ===
+font-feature = "ss01"
+# ss02: <= and >=
+font-feature = "ss02"
+# ss03: -> and ~>
+font-feature = "ss03"
+# ss04: <> and </>
+font-feature = "ss04"
+# liga: //, ..., ||
+font-feature = "liga"
 
 window-decoration = true
 window-padding-x = 4 
 window-padding-y = 4 
 window-inherit-working-directory = true
-window-theme = ghostty
+window-theme = system
+window-save-state = always
+quit-after-last-window-closed = true
 
 # cursor-invert-fg-bg = true
 cursor-style = block
@@ -47,4 +59,4 @@ cursor-style = block
 clipboard-read = "allow"
 clipboard-paste-protection = false
 
-quick-terminal-position = right 
+quick-terminal-position = center 

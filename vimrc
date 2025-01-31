@@ -239,8 +239,8 @@ if has('nvim')
 
     lua require("lsp")
     " lua require("lua-ls")
-else
-    echo('nvim not found, skipping LSP setup')
+" else
+"     echo('nvim not found, skipping LSP setup')
 endif
 
 if filereadable(expand("~/.vim_background"))

@@ -50,6 +50,8 @@ g.loaded_netrwPlugin = 1
 opt.cursorlineopt = "line"
 opt.cursorline = true
 
+opt.wrap = false
+
 opt.termguicolors = true
 
 o.shiftwidth = 4

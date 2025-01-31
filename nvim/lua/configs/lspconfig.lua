@@ -122,5 +122,17 @@ M.defaults = function()
 			},
 		},
 	})
+	lspconfig.ruff.setup({
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		filetypes = { "python" },
+		root_dir = require("lspconfig").util.find_git_ancestor,
+		init_options = {
+			settings = {
+				-- Customize settings if needed
+			},
+		},
+	})
 end
 return M

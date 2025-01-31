@@ -9,7 +9,7 @@ ghost_dir="$config_dir/ghostty"
 nvim_lua_dir="$dotfiles_dir/nvim/lua"
 
 # Files and directories to symlink
-files_to_link="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig myclirc"
+files_to_link="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig myclirc ideavimrc"
 config_files="pylintrc"
 # nvim_files="init.lua"
 

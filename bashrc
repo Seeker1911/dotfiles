@@ -36,6 +36,7 @@ export PYTHONBREAKPOINT="ipdb.set_trace"
 PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$GOBIN:$HOME/bin:$PATH"
 PATH="$HOME/.pnpm_global:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 PATH="/opt/homebrew/opt/php@7.4/bin:/opt/homebrew/opt/php@7.4/sbin:$PATH"
 PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
@@ -83,7 +84,11 @@ alias cdg='cd $(git rev-parse --show-toplevel)'
 alias xconfig='cd $XDG_CONFIG_HOME'
 alias vim=nvim
 alias cleangit='git branch --merged | grep -vE "(^\*|master|develop|main)" | xargs git branch -d'
+alias localmysql='mysqld --mysql-native-password=ON'
+alias harlequin='PYENV_VERSION=3.9.6 pyenv exec harlequin'
 
 # Source other configuration files
 [ -f ~/.secrets.sh ] && . ~/.secrets.sh
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
+
+. "$HOME/.local/bin/env"

@@ -134,5 +134,12 @@ M.defaults = function()
 			},
 		},
 	})
+	lspconfig.eslint.setup({
+		flags = {
+			allow_incremental_sync = true,
+			template_curly_spacing = true,
+			debounce_text_changes = 1000,
+		},
+	})
 end
 return M

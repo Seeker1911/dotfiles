@@ -25,7 +25,7 @@ log_level = INFO
 
 # Log every query and its results to a file. Enable this by uncommenting the
 # line below.
-audit_log = ~/.mycli-audit.log
+# audit_log = ~/.mycli-audit.log
 
 # Timing of sql statements and table rendering.
 timing = True
@@ -37,7 +37,6 @@ beep_after_seconds = 20
 # psql, plain, simple, grid, fancy_grid, pipe, orgtbl, rst, mediawiki, html,
 # latex, latex_booktabs, textile, moinmoin, jira, vertical, tsv, csv.
 # Recommended: ascii
-# table_format = ascii
 table_format = ascii
 
 # Syntax coloring style. Possible values (many support the "-dark" suffix):
@@ -46,7 +45,6 @@ table_format = ascii
 # fruity.
 # Screenshots at http://mycli.net/syntax
 # Can be further modified in [colors]
-# syntax_style = default
 syntax_style = emacs
 
 # Keybindings: Possible values: emacs, vi.
@@ -72,8 +70,8 @@ wider_completion_menu = False
 # \A - DSN alias name (from the [alias_dsn] section)
 # \u - Username
 # \x1b[...m - insert ANSI escape sequence
-prompt = '\t \u@\h:\d> '
-prompt_continuation = '->'
+prompt = "\t \u@\h:\d> "
+prompt_continuation = ->
 
 # Skip intro info on startup and outro info on exit
 less_chatty = False
@@ -92,36 +90,35 @@ keyword_casing = auto
 enable_pager = True
 
 # Choose a specific pager
-pager = 'less -SRXF'
+pager = less -SRXF
+audit_log = ~/.mycli-audit.log
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
-completion-menu.completion.current = 'bg:#ffffff #000000'
-completion-menu.completion = 'bg:#008888 #ffffff'
-completion-menu.meta.completion.current = 'bg:#44aaaa #000000'
-completion-menu.meta.completion = 'bg:#448888 #ffffff'
-completion-menu.multi-column-meta = 'bg:#aaffff #000000'
-scrollbar.arrow = 'bg:#003333'
-scrollbar = 'bg:#00aaaa'
-selected = '#ffffff bg:#6666aa'
-search = '#ffffff bg:#4444aa'
-search.current = '#ffffff bg:#44aa44'
-bottom-toolbar = 'bg:#222222 #aaaaaa'
-bottom-toolbar.off = 'bg:#222222 #888888'
-bottom-toolbar.on = 'bg:#222222 #ffffff'
-search-toolbar = 'noinherit bold'
-search-toolbar.text = 'nobold'
-system-toolbar = 'noinherit bold'
-arg-toolbar = 'noinherit bold'
-arg-toolbar.text = 'nobold'
-bottom-toolbar.transaction.valid = 'bg:#222222 #00ff5f bold'
-bottom-toolbar.transaction.failed = 'bg:#222222 #ff005f bold'
+completion-menu.completion.current = "bg:#ffffff #000000"
+completion-menu.completion = "bg:#008888 #ffffff"
+completion-menu.meta.completion.current = "bg:#44aaaa #000000"
+completion-menu.meta.completion = "bg:#448888 #ffffff"
+completion-menu.multi-column-meta = "bg:#aaffff #000000"
+scrollbar.arrow = "bg:#003333"
+scrollbar = "bg:#00aaaa"
+selected = "#ffffff bg:#6666aa"
+search = "#ffffff bg:#4444aa"
+search.current = "#ffffff bg:#44aa44"
+bottom-toolbar = "bg:#222222 #aaaaaa"
+bottom-toolbar.off = "bg:#222222 #888888"
+bottom-toolbar.on = "bg:#222222 #ffffff"
+search-toolbar = noinherit bold
+search-toolbar.text = nobold
+system-toolbar = noinherit bold
+arg-toolbar = noinherit bold
+arg-toolbar.text = nobold
+bottom-toolbar.transaction.valid = "bg:#222222 #00ff5f bold"
+bottom-toolbar.transaction.failed = "bg:#222222 #ff005f bold"
 
 # style classes for colored table output
-# output.header = "#00ff5f bold" # bright green
-output.header = "#006426 bold" #dark green
+output.header = "#006426 bold"
 output.odd-row = ""
-# output.even-row = "#d3d3d3"
 output.even-row = ""
 output.null = "#808080"
 
@@ -156,10 +153,12 @@ output.null = "#808080"
 
 # Favorite queries.
 [favorite_queries]
+find = '''SELECT *
+FROM information_schema.columns
+WHERE table_schema = 'trex' AND column_name LIKE '%note%';'''
 
 # Use the -d option to reference a DSN.
 # Special characters in passwords and other strings can be escaped with URL encoding.
-#
-# /opt/homebrew/opt/mysql@8.4/bin/mysqld --mysql-native-password=ON
 [alias_dsn]
 trex = mysql://root:@localhost:3306/trex
+# example_dsn = mysql://[user[:password]@][host][:port][/dbname]

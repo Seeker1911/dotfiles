@@ -1,11 +1,9 @@
 return {
 	transparent = true,
-	borderless_telescope = true,
+	borderless_pickers = true,
 	cache = false,
-	theme = {
-		variant = "light",
-		saturation = 1, -- seems to be broken
-	},
+	variant = "light",
+	saturation = 1, -- seems to be broken
 	extensions = {
 		telescope = true,
 		notify = true,

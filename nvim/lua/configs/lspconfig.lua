@@ -134,7 +134,11 @@ M.defaults = function()
 			},
 		},
 	})
+
 	lspconfig.eslint.setup({
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
 		flags = {
 			allow_incremental_sync = true,
 			template_curly_spacing = true,

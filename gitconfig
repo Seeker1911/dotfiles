@@ -1,3 +1,5 @@
+[column]
+	ui = auto
 [credential]
 	helper = osxkeychain
 [user]
@@ -11,6 +13,10 @@
 [init]
 	templatedir = ~/.git_template
 	defaultBranch = main
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -28,6 +34,11 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[diff]
+	algorithm = histogram
+    colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [diff-so-fancy]
 	rulerWidth = 47
 	markEmptyLines = false
@@ -67,10 +78,44 @@
     # git reviewone foo.js bar.js
     reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"stat $(git merge-base HEAD \"$REVIEW_BASE\")
     ctags = !.git/hooks/ctags
+	# probably dont need with autoSetupRemote = true below
 	pushu = push -u origin HEAD
+[push]
+        default = simple
+        autoSetupRemote = true
+        followTags = true
+[fetch]
+        prune = true
+        pruneTags = true
+        all = true
 [pull]
 	rebase = false
 [help]
     autocorrect = 10
 [color]
 	ui = true
+
+# why the hell not?
+
+[help]
+        autocorrect = prompt
+[commit]
+        verbose = true
+[rerere]
+        enabled = true
+        autoupdate = true
+[rebase]
+        autoSquash = true
+        autoStash = true
+        updateRefs = true
+
+# a matter of taste (uncomment if you dare)
+
+[core]
+        # fsmonitor = true
+        # untrackedCache = true
+[merge]
+        # (just 'diff3' if git version < 2.3)
+        conflictstyle = zdiff3 
+[pull]
+        # rebase = true

@@ -5,8 +5,9 @@
 # background = FFFFFF
 # foreground= 000000
 
-theme = GruvboxDark
-# theme = github
+theme = GitHub-Light-Default
+#theme = GruvboxDark
+#theme = github
 # theme = zenbones_light
 
 confirm-close-surface = false

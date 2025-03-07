@@ -27,6 +27,7 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
+	{ "tpope/vim-fugitive", config = true, lazy = false, opts = {}, keys = { "G" } },
 
 	{ "leafOfTree/vim-svelte-plugin", config = true, opts = {} },
 

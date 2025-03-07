@@ -61,7 +61,7 @@
     # use this alias with util/bash_functions git_log func
     showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
 
-    hub = !hub
+	hub = !hub
     # list files which have changed since REVIEW_BASE
     # (REVIEW_BASE defaults to 'master' in my zshrc)
     files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
@@ -112,6 +112,7 @@
 # a matter of taste (uncomment if you dare)
 
 [core]
+	editor = nvim
         # fsmonitor = true
         # untrackedCache = true
 [merge]

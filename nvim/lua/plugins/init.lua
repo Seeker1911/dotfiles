@@ -27,7 +27,6 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	{ "tpope/vim-fugitive", config = true, lazy = false, opts = {}, keys = { "G" } },
 
 	{ "leafOfTree/vim-svelte-plugin", config = true, opts = {} },
 
@@ -69,6 +68,8 @@ return {
 	},
 
 	-- git stuff
+	{ "tpope/vim-fugitive", cmd = { "Git" }, keys = { "G" } },
+	{ "tpope/vim-rhubarb" },
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "User FilePost",
@@ -76,6 +77,7 @@ return {
 			return require("configs.gitsigns")
 		end,
 	},
+	{ "sodapopcan/vim-twiggy", cmd = { "Twiggy" } }, -- fugitive extension for branch management
 
 	-- lsp stuff
 	{

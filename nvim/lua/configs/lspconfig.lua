@@ -141,7 +141,7 @@ M.defaults = function()
 		on_init = M.on_init,
 		flags = {
 			allow_incremental_sync = true,
-			template_curly_spacing = true,
+			template_curly_spacing = false,
 			debounce_text_changes = 1000,
 		},
 	})

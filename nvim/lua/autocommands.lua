@@ -25,3 +25,7 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 		end
 	end,
 })
+
+vim.api.nvim_create_user_command("DismissNotify", function()
+	require("notify").dismiss({ silent = true, pending = true })
+end, {})

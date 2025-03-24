@@ -15,6 +15,7 @@ if file then
 end
 
 -- local pattern = "general%.import%s*=%s*%['~/.config/alacritty/themes/themes/(.*)%.toml'%]"
+-- Ghostty pattern
 local pattern = "theme%s*=%s*([%w_%-]+)"
 
 local theme = content:match(pattern)

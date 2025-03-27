@@ -9,3 +9,4 @@ viminfo
 nvim_log*
 .git/
 .ruff_cache/
+nvim/lazy-lock.json

@@ -84,7 +84,6 @@ M.defaults = function()
 
 	-- lsps with default config
 	for _, lsp in ipairs(servers) do
-		print(lsp)
 		lspconfig[lsp].setup({
 			on_attach = M.on_attach,
 			on_init = M.on_init,

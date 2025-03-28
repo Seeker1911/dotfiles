@@ -1,6 +1,8 @@
 return {
 	"pwntester/octo.nvim",
-	event = "UIEnter",
+	-- event = "UIEnter",
+	cmd = "Octo",
+	enabled = false,
 	opts = {},
 	-- requires = {
 	-- 	"nvim-lua/plenary.nvim",

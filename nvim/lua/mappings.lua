@@ -139,9 +139,9 @@ map("n", "<M-.>", "<c-w>5>")
 map("n", "<M-t>", "<c-w>5+")
 map("n", "<M-s>", "<c-w>5-")
 
--- vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
-map("n", "<leader>tt", function()
+map("n", "<leader>tcd", function()
 	-- Paths to the theme files
 	local dark_theme = "~/.config/alacritty/themes/themes/cyberdream.toml"
 	local light_theme = "~/.config/alacritty/themes/themes/cyberdream-light.toml"
@@ -165,5 +165,5 @@ map("n", "<leader>tt", function()
 	vim.cmd("CyberdreamToggleMode")
 
 	-- Notify the user
-	print("Switched to " .. vim.o.background .. " mode")
+	print("Switched background to " .. vim.o.background .. " mode")
 end, { desc = "buffer goto next" })

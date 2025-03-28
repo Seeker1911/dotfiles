@@ -14,27 +14,33 @@ if file then
 	file:close()
 end
 
+-- Alacritty pattern
 -- local pattern = "general%.import%s*=%s*%['~/.config/alacritty/themes/themes/(.*)%.toml'%]"
+
 -- Ghostty pattern
 local pattern = "theme%s*=%s*([%w_%-]+)"
 
 local theme = content:match(pattern)
 require("notify")("theme: " .. theme)
+require("notify")("background: " .. o.background)
 
-opt.background = "light"
+o.background = "light"
 local theme_name = "cyberdream"
 if theme then
 	if theme == "GruvboxDark" then
-		opt.background = "dark"
+		o.background = "dark"
 		theme_name = "gruvbox"
 	elseif theme == "cyberdream" then
-		opt.background = "dark"
+		o.background = "dark"
 		theme_name = "cyberdream"
 	elseif theme == "cyberdream-light" then
-		opt.background = "light"
+		o.background = "light"
 		theme_name = "cyberdream"
 	elseif theme == "github" then
-		opt.background = "light"
+		o.background = "light"
+		theme_name = "cyberdream"
+	elseif theme == "GitHub-Dark-Default" then
+		o.background = "dark"
 		theme_name = "cyberdream"
 	end
 end

@@ -3,7 +3,7 @@ return {
 	borderless_pickers = true,
 	cache = false,
 	variant = "light",
-	saturation = 1, -- seems to be broken
+	-- saturation = 1,
 	extensions = {
 		telescope = true,
 		notify = true,

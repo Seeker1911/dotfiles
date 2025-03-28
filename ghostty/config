@@ -6,10 +6,12 @@
 # background = FFFFFF
 # foreground= 000000
 
-theme = dark:GitHub-Dark-Default, light:github
+theme = cyberdream-light
+# theme = cyberdream
+# theme = GitHub-Light-Default
+# theme = GitHub-Dark-Default
 # theme = github
-#theme = GruvboxDark
-#theme = GitHub-Light-Default
+# theme = GruvboxDark
 # theme = zenbones_light
 
 confirm-close-surface = false

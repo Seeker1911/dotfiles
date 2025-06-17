@@ -21,7 +21,19 @@ return {
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
+		lualine_c = {
+			{
+				"filename",
+				path = 1, -- 0 = just name, 1 = relative, 2 = absolute, 3 = ~ shortened
+				shorting_target = 50, -- (optional) shorten long paths to keep statusline compact
+				symbols = {
+					modified = "[+]", -- Text to show when the file is modified.
+					readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+					unnamed = "[No Name]", -- Text to show for unnamed buffers.
+					newfile = "[New]", -- Text to show for newly created file before first write
+				},
+			},
+		},
 		lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_y = { "progress", "searchcount" },
 		lualine_z = { "location" },

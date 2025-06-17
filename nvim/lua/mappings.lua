@@ -167,3 +167,10 @@ map("n", "<leader>tcd", function()
 	-- Notify the user
 	print("Switched background to " .. vim.o.background .. " mode")
 end, { desc = "buffer goto next" })
+
+function InsertConsoleLog()
+	vim.api.nvim_feedkeys("i const log = (x: any) => { console.log(`🚨 🚨: `, x); return x }", "n", false)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+end
+-- Map a key to the function (e.g., <Leader>l for leader key + l)
+vim.api.nvim_set_keymap("n", "<Leader>l", ":lua InsertConsoleLog()<CR>", { noremap = true, silent = true })

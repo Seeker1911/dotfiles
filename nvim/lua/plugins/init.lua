@@ -10,6 +10,12 @@ return {
 		end,
 	},
 	{
+		"smjonas/inc-rename.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		cmd = { "IncRename" },
+		opts = {},
+	},
+	{
 		"stevearc/conform.nvim",
 		event = "BufWritePre", -- uncomment for format on save
 		opts = require("configs.conform"),

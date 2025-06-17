@@ -21,7 +21,10 @@ M.on_attach = function(_, bufnr)
 	end, opts("List workspace folders"))
 
 	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-	map("n", "<leader>ra", require("configs.renamer"), opts("Renamer"))
+	-- map("n", "<leader>ra", require("configs.renamer"), opts("Renamer"))
+	vim.keymap.set("n", "<leader>rn", function()
+		return ":IncRename " .. vim.fn.expand("<cword>")
+	end, { expr = true })
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
 	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
@@ -56,7 +59,7 @@ M.capabilities.textDocument.completion.completionItem = {
 
 M.defaults = function()
 	require("configs.lspDiagnostic").diagnostic_config()
-
+	vim.lsp.set_log_level("WARN")
 	require("lspconfig").lua_ls.setup({
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,

@@ -22,7 +22,6 @@ local pattern = "theme%s*=%s*([%w_%-]+)"
 
 local theme = content:match(pattern)
 require("notify")("theme: " .. theme)
-require("notify")("background: " .. o.background)
 
 o.background = "light"
 local theme_name = "cyberdream"

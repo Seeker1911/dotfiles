@@ -32,14 +32,14 @@ keybind = global:super+shift+t=toggle_visibility
 shell-integration = bash
 shell-integration-features = sudo
 
-macos-titlebar-style = hidden 
+macos-titlebar-style = transparent 
 macos-icon = custom-style
 macos-icon-frame = plastic
 macos-icon-ghost-color = FFA500
 macos-icon-screen-color = dark grey,black
 macos-option-as-alt = true
 
-background-opacity = 0.7
+background-opacity = 1
 background-blur-radius = 40 
 
 font-family = JetBrainsMono Nerd Font Mono
@@ -57,13 +57,12 @@ font-feature = "liga"
 font-thicken = false
 
 window-decoration = true
-window-padding-x = 4 
-window-padding-y = 4 
+window-padding-x = 10 
+window-padding-y = 10 
 window-inherit-working-directory = true
 window-theme = system
 window-save-state = always
 window-padding-color = background
-window-inherit-working-directory = true
 quit-after-last-window-closed = true
 
 # cursor-invert-fg-bg = true

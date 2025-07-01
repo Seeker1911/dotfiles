@@ -91,26 +91,25 @@ map("n", "<SPACE>", "za", { desc = "toggle current fold" })
 map("i", "jj", "<ESC>")
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "open diagnostic float" })
 
-map("n", "<leader>rt", function()
+vim.keymap.set("n", "<leader>rt", function()
 	local file = vim.fn.expand("%")
-	local cur_ft = vim.bo.ft
+	local cur_ft = vim.bo.filetype
 
-	local fts = {
+	local runners = {
 		javascript = "npm test " .. file,
 		typescript = "pnpm ts " .. file,
 	}
 
-	if not fts[cur_ft] then
+	local cmd = runners[cur_ft]
+	if not cmd then
 		vim.notify("no runner for " .. cur_ft, vim.log.levels.ERROR)
 		return
 	end
 
-	-- require("nvchad.term").runner({
-	-- 	pos = "vsp",
-	-- 	cmd = fts[cur_ft],
-	-- 	id = "test code runner",
-	-- })
-end, { desc = "run open typescript file" })
+	vim.cmd("vsplit") -- open vertical split
+	vim.cmd("terminal " .. cmd) -- run command in terminal
+	vim.cmd("startinsert") -- enter insert mode
+end, { desc = "run open typescript/javascript file" })
 
 vim.keymap.set("n", "<C-t>", function()
 	require("menu").open("default")

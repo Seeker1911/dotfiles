@@ -92,3 +92,5 @@ alias harlequin='PYENV_VERSION=3.9.6 pyenv exec harlequin'
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 . "$HOME/.local/bin/env"
+
+alias claude="/Users/michaelmead/.claude/local/claude"

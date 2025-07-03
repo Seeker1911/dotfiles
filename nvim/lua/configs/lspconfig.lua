@@ -12,6 +12,7 @@ M.on_attach = function(_, bufnr)
 	map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
 	map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
 	map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
+	map("n", "K", vim.lsp.buf.hover, opts("Show hover info"))
 	map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Show signature help"))
 	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
 	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
@@ -28,17 +29,28 @@ M.on_attach = function(_, bufnr)
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
 	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
+
+	-- Telescope LSP pickers for better type browsing
+	map("n", "<leader>lt", "<cmd>Telescope lsp_type_definitions<cr>", opts("Type definitions"))
+	map("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts("References"))
+	map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts("Document symbols"))
+	map("n", "<leader>lw", "<cmd>Telescope lsp_workspace_symbols<cr>", opts("Workspace symbols"))
 end
 
--- disable semanticTokens
+-- enable semanticTokens for enhanced type highlighting
 M.on_init = function(client, _)
-	if client.supports_method("textDocument/semanticTokens") then
-		client.server_capabilities.semanticTokensProvider = nil
-	end
+	-- semanticTokens enabled for better type highlighting
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
+-- Enhanced hover capabilities for detailed type information
+M.capabilities.textDocument.hover = {
+	dynamicRegistration = true,
+	contentFormat = { "markdown", "plaintext" },
+}
+
+-- Enhanced completion capabilities
 M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },
 	snippetSupport = true,
@@ -85,8 +97,60 @@ M.defaults = function()
 		},
 	})
 
-	-- lsps with default config
-	for _, lsp in ipairs(servers) do
+	-- TypeScript LSP with enhanced settings for detailed type information
+	lspconfig.ts_ls.setup({
+		on_attach = M.on_attach,
+		on_init = M.on_init,
+		capabilities = M.capabilities,
+		settings = {
+			typescript = {
+				inlayHints = {
+					includeInlayParameterNameHints = "all",
+					includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
+				},
+				suggest = {
+					includeCompletionsForModuleExports = true,
+				},
+				preferences = {
+					displayPartsForJSDoc = true,
+					includeCompletionsForModuleExports = true,
+					includeCompletionsWithSnippetText = true,
+					generateReturnInDocTemplate = true,
+					includePackageJsonAutoImports = "auto",
+				},
+			},
+			javascript = {
+				inlayHints = {
+					includeInlayParameterNameHints = "all",
+					includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
+				},
+				suggest = {
+					includeCompletionsForModuleExports = true,
+				},
+				preferences = {
+					displayPartsForJSDoc = true,
+					includeCompletionsForModuleExports = true,
+					includeCompletionsWithSnippetText = true,
+					generateReturnInDocTemplate = true,
+					includePackageJsonAutoImports = "auto",
+				},
+			},
+		},
+	})
+
+	-- Other LSPs with default config
+	local other_servers = { "html", "eslint", "svelte", "ruff" }
+	for _, lsp in ipairs(other_servers) do
 		lspconfig[lsp].setup({
 			on_attach = M.on_attach,
 			on_init = M.on_init,

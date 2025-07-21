@@ -1,6 +1,6 @@
 return {
 	defaults = {
-		prompt_prefix = "   ",
+		prompt_prefix = "   ",
 		selection_caret = " ",
 		entry_prefix = " ",
 		sorting_strategy = "ascending",
@@ -14,6 +14,24 @@ return {
 		},
 		mappings = {
 			n = { ["q"] = require("telescope.actions").close },
+		},
+		file_ignore_patterns = {
+			"node_modules/",
+			".idea/",
+			".git/",
+			"dist/",
+			"build/",
+			"target/",
+			"vendor/",
+			"%.lock",
+			"package%-lock%.json",
+			"yarn%.lock",
+			"%.min%.js",
+			"%.min%.css",
+			"coverage/",
+			"%.DS_Store",
+			"%.env",
+			"%.log",
 		},
 	},
 	dependencies = {

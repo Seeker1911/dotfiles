@@ -6,3 +6,5 @@ fi
 . "$HOME/.cargo/env"
 
 . "$HOME/.local/bin/env"
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"

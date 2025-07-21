@@ -160,6 +160,6 @@ WHERE table_schema = 'trex' AND column_name LIKE '%note%';'''
 # Use the -d option to reference a DSN.
 # Special characters in passwords and other strings can be escaped with URL encoding.
 [alias_dsn]
-trex = mysql://root:@localhost:3306/trex
+trex = mysql://root:root@localhost:3306/trex
 ; prs = mycli -u michael -p seeker -h localhost -D prs
 # example_dsn = mysql://[user[:password]@][host][:port][/dbname]

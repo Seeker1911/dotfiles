@@ -2,7 +2,8 @@ return {
 	transparent = true,
 	borderless_pickers = true,
 	cache = false,
-	variant = "light",
+	-- theme = "auto",
+	variant = "auto",
 	-- saturation = 1,
 	extensions = {
 		telescope = true,

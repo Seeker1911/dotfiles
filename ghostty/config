@@ -2,16 +2,13 @@
 # CLI actions: (can be proceeded with -h)
 # +help(shows the following), +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
 
-# background set in nvim options.lua
-# background = FFFFFF
-# foreground= 000000
-
 theme = cyberdream-light
+# theme = dark:cyberdream,light:cyberdream-light
+# theme = GruvboxDark
 # theme = cyberdream
+# theme = github
 # theme = GitHub-Light-Default
 # theme = GitHub-Dark-Default
-# theme = github
-# theme = GruvboxDark
 # theme = zenbones_light
 
 confirm-close-surface = false

@@ -23,7 +23,7 @@ set -o vi
 export XDG_CONFIG_HOME="$HOME/.config"
 export LANG=en_US.UTF-8
 export TERM="screen-256color"
-export EDITOR='vim'
+export EDITOR='nvim'
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
@@ -39,8 +39,8 @@ PATH="$HOME/.pnpm_global:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 PATH="/opt/homebrew/opt/php@7.4/bin:/opt/homebrew/opt/php@7.4/sbin:$PATH"
-PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
-PATH="/opt/homebrew/Cellar/mysql@8.4/8.4.3_2/bin":$PATH
+# PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+# PATH="/opt/homebrew/Cellar/mysql@8.4/8.4.3_2/bin":$PATH
 export PATH
 
 # Load pyenv

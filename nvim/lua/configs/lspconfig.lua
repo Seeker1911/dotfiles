@@ -10,9 +10,10 @@ M.on_attach = function(_, bufnr)
 	end
 
 	map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
-	map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
+	map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts("Peek definition"))
+	map("n", "<leader>gd", "<cmd>Lspsaga goto_definition<CR>", opts("Go to definition"))
 	map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
-	map("n", "K", vim.lsp.buf.hover, opts("Show hover info"))
+	map("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("Show hover info"))
 	map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Show signature help"))
 	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
 	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
@@ -21,15 +22,17 @@ M.on_attach = function(_, bufnr)
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, opts("List workspace folders"))
 
-	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-	-- map("n", "<leader>ra", require("configs.renamer"), opts("Renamer"))
-	vim.keymap.set("n", "<leader>rn", function()
-		return ":IncRename " .. vim.fn.expand("<cword>")
-	end, { expr = true })
+	map("n", "<leader>D", "<cmd>Lspsaga peek_type_definition<CR>", opts("Peek type definition"))
+	map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts("Rename"))
+	map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts("Code action"))
+	map("n", "gr", "<cmd>Lspsaga finder<CR>", opts("Show references"))
 
-	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
-	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
-
+	-- Lspsaga navigation
+	map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts("Toggle outline"))
+	map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts("Previous diagnostic"))
+	map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("Next diagnostic"))
+	map("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("Show line diagnostics"))
+	
 	-- Telescope LSP pickers for better type browsing
 	map("n", "<leader>lt", "<cmd>Telescope lsp_type_definitions<cr>", opts("Type definitions"))
 	map("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts("References"))

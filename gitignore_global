@@ -1,6 +1,7 @@
 # General #
 ###################
 **/.claude/**
+AGENTS.md
 *.un~
 **/.DS_Store
 .idea/

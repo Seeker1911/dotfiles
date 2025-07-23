@@ -23,7 +23,7 @@ set -o vi
 export XDG_CONFIG_HOME="$HOME/.config"
 export LANG=en_US.UTF-8
 export TERM="screen-256color"
-export EDITOR='vim'
+export EDITOR='nvim'
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
@@ -90,5 +90,3 @@ alias harlequin='PYENV_VERSION=3.9.6 pyenv exec harlequin'
 # Source other configuration files
 [ -f ~/.secrets.sh ] && . ~/.secrets.sh
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
-
-. "$HOME/.local/bin/env"

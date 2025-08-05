@@ -63,6 +63,7 @@ opt.termguicolors = true
 o.shiftwidth = 4
 o.tabstop = 4
 o.softtabstop = 4
+o.expandtab = true
 
 g.vim_svelte_plugin_load_full_syntax = 1
 g.vim_svelte_plugin_use_typescript = 1

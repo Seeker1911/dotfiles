@@ -26,6 +26,10 @@ Session.vim
 # ignore named session files
 *.vim
 
+# AI Crap #
+##################
+*AGENTS.md
+
 # Compiled source #
 ###################
 *.com

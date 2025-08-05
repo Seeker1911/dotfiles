@@ -74,4 +74,3 @@ clipboard-read = "allow"
 clipboard-paste-protection = false
 
 quick-terminal-position = center 
-keybind = shift+enter=text:\n

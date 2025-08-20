@@ -1,42 +1,41 @@
- select = ["E", "F", "B", "Q", "W", "I", "N", "D", "UP", "YTT", "ANN", "FBT", "COM", "DTZ", "T10",
-             "EM", "EXE", "INP", "PT", "RET", "SIM", "TID", "PTH", "PD", "RUF"]
- line-length = 100
- ignore = ["BLE001", "D401", "D100", "D103",
-     "E713", #Test for membership should be not in
-     "D404",  # First word of docstring should not be 'this'
-     "COM812", # Trailing comma missing
-     ]
- fixable = ["A", "E", "F"]
- unfixable = []
- cache-dir = "~/.cache/ruff"
- target-version = "py39"
- exclude = [
-     ".direnv",
-     ".eggs",
-     ".git",
-     ".mypy_cache",
-     ".ruff_cache",
-     ".tox",
-     ".venv",
-     "__pypackages__",
-     "build",
-     "buildspecs",
-     "dist",
-     "node_modules",
-     "venv",
- ]
- extend-exclude = [".mypy_cache", ".pytest_cache"]
- extend-ignore = []
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+cache-dir = "~/.cache/ruff"
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "build",
+    "buildspecs",
+    "dist",
+    "node_modules",
+    "venv",
+]
+extend-exclude = [".mypy_cache", ".pytest_cache"]
 
- # Allow unused variables when underscore-prefixed.
- dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+[tool.ruff.lint]
+select = ["E", "F", "B", "Q", "W", "I", "N", "D", "UP", "YTT", "ANN", "FBT", "COM", "DTZ", "T10",
+          "EM", "EXE", "INP", "PT", "RET", "SIM", "TID", "PTH", "PD", "RUF"]
+ignore = ["BLE001", "D401", "D100", "D103",
+    "E713", # Test for membership should be not in
+    "D404", # First word of docstring should not be 'this'
+    "COM812", # Trailing comma missing
+]
+fixable = ["A", "E", "F"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
 
- [lint.per-file-ignores]
- "__init__.py" = ["E402"]
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
 
- [lint.flake8-quotes]
- docstring-quotes = "double"
-
- [lint.mccabe]
- max-complexity = 10
+[tool.ruff.lint.mccabe]
+max-complexity = 10

@@ -2,7 +2,7 @@ local M = {}
 local map = vim.keymap.set
 
 local lspconfig = require("lspconfig")
-local servers = { "html", "ts_ls", "eslint", "svelte", "ruff" }
+local servers = { "html", "ts_ls", "eslint", "svelte", "ruff", "pylsp" }
 -- export on_attach & capabilities
 M.on_attach = function(_, bufnr)
 	local function opts(desc)
@@ -27,6 +27,18 @@ M.on_attach = function(_, bufnr)
 	end, { expr = true })
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
+	
+	-- Python-specific ruff code actions
+	if vim.bo.filetype == "python" then
+		map("n", "<leader>ra", function()
+			vim.lsp.buf.code_action({
+				filter = function(action)
+					return action.kind and string.match(action.kind, "quickfix")
+				end,
+				apply = true,
+			})
+		end, opts("Ruff auto-fix"))
+	end
 	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
 end
 
@@ -129,10 +141,34 @@ M.defaults = function()
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		filetypes = { "python" },
+		cmd = { "/opt/homebrew/bin/ruff", "server", "--preview" },
 		root_dir = require("lspconfig").util.find_git_ancestor,
 		init_options = {
 			settings = {
-				-- Customize settings if needed
+				configuration = vim.fn.expand("~/.config/ruff/pyproject.toml"),
+				configurationPreference = "filesystemFirst",
+			},
+		},
+	})
+
+	lspconfig.pylsp.setup({
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		filetypes = { "python" },
+		settings = {
+			pylsp = {
+				plugins = {
+					pycodestyle = { enabled = false },
+					pyflakes = { enabled = false },
+					pylint = { enabled = false },
+					flake8 = { enabled = false },
+					mccabe = { enabled = false },
+					autopep8 = { enabled = false },
+					yapf = { enabled = false },
+					rope_autoimport = { enabled = true },
+					rope_completion = { enabled = true },
+				},
 			},
 		},
 	})

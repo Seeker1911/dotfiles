@@ -30,6 +30,23 @@ map("n", "<leader>fm", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "general format file" })
 
+-- Ruff specific commands
+map("n", "<leader>rf", function()
+	if vim.bo.filetype == "python" then
+		require("conform").format({ formatters = { "ruff_fix", "ruff_format" } })
+	else
+		vim.notify("Ruff is only for Python files", vim.log.levels.WARN)
+	end
+end, { desc = "ruff fix and format" })
+
+map("n", "<leader>rl", function()
+	if vim.bo.filetype == "python" then
+		require("conform").format({ formatters = { "ruff_fix" } })
+	else
+		vim.notify("Ruff is only for Python files", vim.log.levels.WARN)
+	end
+end, { desc = "ruff lint fix only" })
+
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
 -- tabufline

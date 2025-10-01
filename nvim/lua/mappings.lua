@@ -79,23 +79,12 @@ map(
 )
 
 -- terminal
-map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+-- Use jj to escape terminal mode - doesn't interfere with TUI tools
+map("t", "jj", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 map({ "n", "t" }, "<Esc>i", function()
 	require("configs.term").toggle({ pos = "float", id = "floatTerm" })
 end, { desc = "terminal toggle floating term" })
-
-vim.api.nvim_create_autocmd("TermEnter", {
-	callback = function()
-		-- If the terminal window is lazygit, we do not make changes to avoid clashes
-		if string.find(vim.api.nvim_buf_get_name(0), "lazygit") then
-			return
-		end
-		vim.keymap.set("t", "<ESC>", function()
-			vim.cmd("stopinsert")
-		end, { buffer = true })
-	end,
-})
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })

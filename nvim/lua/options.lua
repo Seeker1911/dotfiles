@@ -10,8 +10,8 @@ local content = ""
 local file = io.open(file_path, "r")
 
 if file then
-	content = file:read("*all")
-	file:close()
+    content = file:read("*all")
+    file:close()
 end
 
 -- Alacritty pattern
@@ -21,32 +21,32 @@ end
 local pattern = "theme%s*=%s*([%w_%-]+)"
 
 local theme = content:match(pattern)
-require("notify")("theme: " .. theme)
+-- require("notify")("theme: " .. theme)
 
 o.background = "light"
 local theme_name = "cyberdream"
 if theme then
-	if theme == "GruvboxDark" then
-		o.background = "dark"
-		theme_name = "gruvbox"
-	elseif theme == "cyberdream" then
-		o.background = "dark"
-		theme_name = "cyberdream"
-	elseif theme == "cyberdream-light" then
-		o.background = "light"
-		theme_name = "cyberdream"
-	elseif theme == "github" then
-		o.background = "light"
-		theme_name = "cyberdream"
-	elseif theme == "GitHub-Dark-Default" then
-		o.background = "dark"
-		theme_name = "cyberdream"
-	end
+    if theme == "GruvboxDark" then
+        o.background = "dark"
+        theme_name = "gruvbox"
+    elseif theme == "cyberdream" then
+        o.background = "dark"
+        theme_name = "cyberdream"
+    elseif theme == "cyberdream-light" then
+        o.background = "light"
+        theme_name = "cyberdream"
+    elseif theme == "github" then
+        o.background = "light"
+        theme_name = "cyberdream"
+    elseif theme == "GitHub-Dark-Default" then
+        o.background = "dark"
+        theme_name = "cyberdream"
+    end
 end
 
 vim.api.nvim_cmd({
-	cmd = "colorscheme",
-	args = { theme_name },
+    cmd = "colorscheme",
+    args = { theme_name },
 }, {})
 
 -- nvim-tree options
@@ -75,14 +75,14 @@ opt.foldnestmax = 2
 opt.foldtext = ""
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	callback = function()
-		if require("nvim-treesitter.parsers").has_parser() then
-			vim.opt.foldmethod = "expr"
-			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-		else
-			vim.opt.foldmethod = "syntax"
-		end
-	end,
+    callback = function()
+        if require("nvim-treesitter.parsers").has_parser() then
+            vim.opt.foldmethod = "expr"
+            vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+        else
+            vim.opt.foldmethod = "syntax"
+        end
+    end,
 })
 
 -------------------------------------- options ------------------------------------------

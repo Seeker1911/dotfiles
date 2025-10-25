@@ -141,11 +141,11 @@ M.defaults = function()
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		filetypes = { "python" },
-		cmd = { "/opt/homebrew/bin/ruff", "server", "--preview" },
+		cmd = { "ruff", "server", "--preview" },
 		root_dir = require("lspconfig").util.find_git_ancestor,
 		init_options = {
 			settings = {
-				configuration = vim.fn.expand("~/.config/ruff/pyproject.toml"),
+				configuration = vim.fn.expand("~/dotfiles/config/ruff/pyproject.toml"),
 				configurationPreference = "filesystemFirst",
 			},
 		},

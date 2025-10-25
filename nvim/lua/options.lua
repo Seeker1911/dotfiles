@@ -70,8 +70,8 @@ g.vim_svelte_plugin_use_typescript = 1
 
 opt.foldlevel = 99
 opt.foldlevelstart = 1
-opt.foldminlines = 4
-opt.foldnestmax = 2
+opt.foldminlines = 2
+opt.foldnestmax = 3
 opt.foldtext = ""
 
 vim.api.nvim_create_autocmd({ "FileType" }, {

@@ -14,7 +14,7 @@ config_files="pylintrc"
 # nvim_files="init.lua"
 
 # Ensure backup directory exists
-mkdir -p "$backup_dir" "$config_dir" "$nvim_dir" "$ghost_dir"
+mkdir -p "$backup_dir" "$config_dir" "$nvim_dir" "$ghost_dir" "$config_dir/opencode"
 
 echo "Backing up existing dotfiles and creating symlinks..."
 
@@ -43,6 +43,12 @@ ln -sf "$dotfiles_dir/nvim" "$nvim_dir"
 if [[ -d "$ghost_dir" || -L "$ghost_dir" ]]; then
 	mv "$ghost_dir" "$backup_dir/" 2>/dev/null
 fi
-ln -sf "$dotfiles_dir/ghostty" "$ghost_dir"
+
+
+for file in "$dotfiles_dir/ghostty" ; do
+    ln -sf "$dotfiles_dir/ghostty/$file" "$ghost_dir/$file"
+done
+
+ln -sf "$dotfiles_dir/config/AGENTS.md" "$config_dir/opencode/AGENTS.md"
 
 echo "Dotfiles successfully linked!"

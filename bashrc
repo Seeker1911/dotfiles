@@ -94,3 +94,7 @@ alias harlequin='PYENV_VERSION=3.9.6 pyenv exec harlequin'
 # Source other configuration files
 [ -f ~/.secrets.sh ] && . ~/.secrets.sh
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
+
+alias peek="AWS_PROFILE=peek-dev npx @peek-tech/peek-cli"
+alias peek-env="npx @peek-tech/peek-cli get-env --prefix /apps/consumer/backend/"
+alias peek-sso="aws sso login --sso-session peek"

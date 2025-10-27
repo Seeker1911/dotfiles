@@ -3,6 +3,19 @@ local cmp = require("cmp")
 local options = {
 	completion = { completeopt = "menu,menuone" },
 
+	window = {
+		documentation = {
+			max_height = 15,
+			max_width = 60,
+			border = "rounded",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+		},
+		completion = {
+			border = "rounded",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+		},
+	},
+
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)

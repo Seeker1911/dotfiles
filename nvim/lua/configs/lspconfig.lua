@@ -1,8 +1,8 @@
 local M = {}
 local map = vim.keymap.set
 
-local lspconfig = require("lspconfig")
-local servers = { "html", "ts_ls", "eslint", "svelte", "ruff", "pylsp" }
+local servers = { "html", "ts_ls", "eslint", "ruff", "pylsp" }
+
 -- export on_attach & capabilities
 M.on_attach = function(_, bufnr)
 	local function opts(desc)
@@ -72,11 +72,21 @@ M.capabilities.textDocument.completion.completionItem = {
 M.defaults = function()
 	require("configs.lspDiagnostic").diagnostic_config()
 	vim.lsp.set_log_level("WARN")
-	require("lspconfig").lua_ls.setup({
+
+	-- Helper function to find git root
+	local function find_git_ancestor(path)
+		local util = require("lspconfig.util")
+		return util.find_git_ancestor(path)
+	end
+
+	-- Configure lua_ls
+	vim.lsp.config("lua_ls", {
+		cmd = { "lua-language-server" },
+		filetypes = { "lua" },
+		root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" },
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
-
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -97,28 +107,72 @@ M.defaults = function()
 		},
 	})
 
-	-- lsps with default config
-	for _, lsp in ipairs(servers) do
-		lspconfig[lsp].setup({
-			on_attach = M.on_attach,
-			on_init = M.on_init,
-			capabilities = M.capabilities,
-		})
-	end
+	-- Configure HTML LSP
+	vim.lsp.config("html", {
+		cmd = { "vscode-html-language-server", "--stdio" },
+		filetypes = { "html" },
+		root_markers = { ".git" },
+		on_attach = M.on_attach,
+		on_init = M.on_init,
+		capabilities = M.capabilities,
+	})
 
-	lspconfig.svelte.setup({
-		-- requires: npm install --save-dev typescript-svelte-plugin on per project basis
-		filetypes = { "svelte" },
-		pattern = { "*.svelte" },
-		enabled = true,
-		root_dir = function()
-			return vim.loop.cwd()
-		end,
+	-- Configure TypeScript LSP
+	vim.lsp.config("ts_ls", {
+		cmd = { "typescript-language-server", "--stdio" },
+		filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+		root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+		on_attach = M.on_attach,
+		on_init = M.on_init,
+		capabilities = M.capabilities,
+	})
+
+	-- Configure ESLint
+	vim.lsp.config("eslint", {
+		cmd = { "vscode-eslint-language-server", "--stdio" },
+		filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte" },
+		root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json", "package.json", ".git" },
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		settings = {
-			-- these aren't working: https://github.com/sveltejs/language-tools/tree/master/packages/language-server
+			codeAction = {
+				disableRuleComment = {
+					enable = true,
+					location = "separateLine",
+				},
+				showDocumentation = {
+					enable = true,
+				},
+			},
+			codeActionOnSave = {
+				enable = false,
+				mode = "all",
+			},
+			format = true,
+			nodePath = "",
+			onIgnoredFiles = "off",
+			packageManager = "npm",
+			quiet = false,
+			rulesCustomizations = {},
+			run = "onType",
+			useESLintClass = false,
+			validate = "on",
+			workingDirectory = {
+				mode = "location",
+			},
+		},
+	})
+
+	-- Configure Svelte
+	vim.lsp.config("svelte", {
+		cmd = { "svelteserver", "--stdio" },
+		filetypes = { "svelte" },
+		root_markers = { "package.json", ".git" },
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		settings = {
 			svelte = {
 				plugin = {
 					typescript = {
@@ -136,26 +190,29 @@ M.defaults = function()
 			},
 		},
 	})
-	lspconfig.ruff.setup({
+
+	-- Configure Ruff
+	vim.lsp.config("ruff", {
+		cmd = { "ruff", "server", "--preview" },
+		filetypes = { "python" },
+		root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
-		filetypes = { "python" },
-		cmd = { "ruff", "server", "--preview" },
-		root_dir = require("lspconfig").util.find_git_ancestor,
-		init_options = {
-			settings = {
-				configuration = vim.fn.expand("~/dotfiles/config/ruff/pyproject.toml"),
-				configurationPreference = "filesystemFirst",
-			},
+		settings = {
+			configuration = vim.fn.expand("~/dotfiles/config/ruff/pyproject.toml"),
+			configurationPreference = "filesystemFirst",
 		},
 	})
 
-	lspconfig.pylsp.setup({
+	-- Configure pylsp
+	vim.lsp.config("pylsp", {
+		cmd = { "pylsp" },
+		filetypes = { "python" },
+		root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
-		filetypes = { "python" },
 		settings = {
 			pylsp = {
 				plugins = {
@@ -173,15 +230,42 @@ M.defaults = function()
 		},
 	})
 
-	lspconfig.eslint.setup({
-		on_attach = M.on_attach,
-		capabilities = M.capabilities,
-		on_init = M.on_init,
-		flags = {
-			allow_incremental_sync = true,
-			template_curly_spacing = false,
-			debounce_text_changes = 1000,
-		},
+	-- Enable the LSP servers for relevant filetypes
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = { "lua", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "python" },
+		callback = function(args)
+			local bufnr = args.buf
+			local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+			-- Map filetypes to LSP server names
+			local filetype_to_servers = {
+				lua = { "lua_ls" },
+				html = { "html" },
+				javascript = { "ts_ls", "eslint" },
+				javascriptreact = { "ts_ls", "eslint" },
+				typescript = { "ts_ls", "eslint" },
+				typescriptreact = { "ts_ls", "eslint" },
+				svelte = { "svelte", "eslint" },
+				python = { "ruff", "pylsp" },
+			}
+
+			local servers_for_ft = filetype_to_servers[vim.bo[bufnr].filetype] or {}
+
+			for _, server_name in ipairs(servers_for_ft) do
+				-- Check if this server is already attached
+				local already_attached = false
+				for _, client in ipairs(clients) do
+					if client.name == server_name then
+						already_attached = true
+						break
+					end
+				end
+
+				if not already_attached then
+					vim.lsp.enable(server_name)
+				end
+			end
+		end,
 	})
 end
 return M

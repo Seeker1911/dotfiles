@@ -87,8 +87,6 @@ map({ "n", "t" }, "<Esc>i", function()
 end, { desc = "terminal toggle floating term" })
 
 -- whichkey
-map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey: all keymaps" })
-
 map("n", "<leader>wk", function()
     vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
 end, { desc = "whichkey query lookup" })
@@ -112,9 +110,9 @@ vim.keymap.set("n", "<leader>rt", function()
         return
     end
 
-    vim.cmd("vsplit")        -- open vertical split
+    vim.cmd("vsplit")           -- open vertical split
     vim.cmd("terminal " .. cmd) -- run command in terminal
-    vim.cmd("startinsert")   -- enter insert mode
+    vim.cmd("startinsert")      -- enter insert mode
 end, { desc = "run open typescript/javascript file" })
 
 vim.keymap.set("n", "<C-t>", function()

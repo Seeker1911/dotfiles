@@ -3,6 +3,8 @@ local cmp = require("cmp")
 local options = {
 	completion = { completeopt = "menu,menuone" },
 
+	preselect = cmp.PreselectMode.None,
+
 	window = {
 		documentation = {
 			max_height = 15,

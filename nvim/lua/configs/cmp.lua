@@ -5,6 +5,13 @@ local options = {
 
 	preselect = cmp.PreselectMode.None,
 
+	-- Disable auto-opening of documentation to prevent buffer errors
+	view = {
+		docs = {
+			auto_open = false,
+		},
+	},
+
 	window = {
 		documentation = {
 			max_height = 15,
@@ -16,6 +23,10 @@ local options = {
 			border = "rounded",
 			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 		},
+	},
+
+	experimental = {
+		ghost_text = false,
 	},
 
 	snippet = {

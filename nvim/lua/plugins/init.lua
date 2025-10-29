@@ -31,6 +31,8 @@ return {
 		end,
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
+			-- Register markdown parser for octo.nvim buffers
+			vim.treesitter.language.register('markdown', 'octo')
 		end,
 	},
 

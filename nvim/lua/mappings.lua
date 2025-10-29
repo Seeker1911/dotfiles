@@ -57,7 +57,7 @@ map("v", "p", '"_dP', { desc = "paste without yanking" })
 -- ========================================
 map("n", "<leader>fm", function()
     require("conform").format({ lsp_fallback = true })
-end, { desc = "format file" })
+end, { desc = "Conform: format file" })
 
 -- Ruff specific commands (Python)
 map("n", "<leader>rf", function()
@@ -66,7 +66,7 @@ map("n", "<leader>rf", function()
     else
         vim.notify("Ruff is only for Python files", vim.log.levels.WARN)
     end
-end, { desc = "ruff fix and format" })
+end, { desc = "Ruff: fix and format" })
 
 map("n", "<leader>rl", function()
     if vim.bo.filetype == "python" then
@@ -74,7 +74,7 @@ map("n", "<leader>rl", function()
     else
         vim.notify("Ruff is only for Python files", vim.log.levels.WARN)
     end
-end, { desc = "ruff lint fix only" })
+end, { desc = "Ruff: lint fix only" })
 
 -- ========================================
 -- Buffer Management
@@ -91,33 +91,33 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 -- ========================================
 -- File Explorer (NvimTree)
 -- ========================================
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "toggle file tree" })
-map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "focus file tree" })
+map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree: toggle file tree" })
+map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "NvimTree: focus file tree" })
 
 -- ========================================
 -- Telescope (Fuzzy Finder)
 -- ========================================
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "find files" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope: find files" })
 map("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-    { desc = "find all files (hidden/ignored)" })
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "live grep search" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "find buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "search help" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "find old files" })
-map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "fuzzy find in buffer" })
-map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "find keymaps" })
-map("n", "<leader>fc", "<cmd>Telescope commands<CR>", { desc = "find commands" })
-map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "find marks" })
-map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "browse git commits" })
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "show git status" })
+    { desc = "Telescope: find all files (hidden/ignored)" })
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: live grep search" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: find buffers" })
+map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope: search help" })
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope: find old files" })
+map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope: fuzzy find in buffer" })
+map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Telescope: find keymaps" })
+map("n", "<leader>fc", "<cmd>Telescope commands<CR>", { desc = "Telescope: find commands" })
+map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "Telescope: find marks" })
+map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Git: browse commits" })
+map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Git: show status" })
 
 -- ========================================
 -- LSP & Diagnostics
 -- ========================================
-map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "open diagnostic float" })
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "show diagnostic loclist" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "previous diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "next diagnostic" })
+map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "LSP: open diagnostic float" })
+map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP: show diagnostic loclist" })
+map("n", "[d", vim.diagnostic.goto_prev, { desc = "LSP: previous diagnostic" })
+map("n", "]d", vim.diagnostic.goto_next, { desc = "LSP: next diagnostic" })
 
 -- ========================================
 -- Code Folding
@@ -127,10 +127,10 @@ map("n", "<SPACE>", "za", { desc = "toggle current fold" })
 -- ========================================
 -- Terminal
 -- ========================================
-map("t", "jj", "<C-\\><C-N>", { desc = "escape terminal mode" })
+map("t", "jj", "<C-\\><C-N>", { desc = "Terminal: escape terminal mode" })
 map({ "n", "t" }, "<Esc>i", function()
     require("configs.term").toggle({ pos = "float", id = "floatTerm" })
-end, { desc = "toggle floating terminal" })
+end, { desc = "Terminal: toggle floating terminal" })
 
 -- ========================================
 -- Quick-fix List Navigation
@@ -143,7 +143,7 @@ map("n", "]q", "<cmd>cnext<CR>", { desc = "next quickfix item" })
 -- ========================================
 map("n", "<leader>wk", function()
     vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
-end, { desc = "whichkey query lookup" })
+end, { desc = "WhichKey: query lookup" })
 
 -- ========================================
 -- Test Runners
@@ -173,7 +173,7 @@ end, { desc = "run typescript/javascript file" })
 -- ========================================
 map("n", "<C-t>", function()
     require("menu").open("default")
-end, { desc = "open menu" })
+end, { desc = "Menu: open default" })
 
 map({ "n", "v" }, "<RightMouse>", function()
     require("menu.utils").delete_old_menus()
@@ -181,12 +181,12 @@ map({ "n", "v" }, "<RightMouse>", function()
     local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
     local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
     require("menu").open(options, { mouse = true })
-end, { desc = "open context menu" })
+end, { desc = "Menu: open context menu" })
 
 -- ========================================
 -- Theme & UI Toggles
 -- ========================================
-map("n", "<leader>tt", "<cmd>CyberdreamToggleMode<CR>", { desc = "toggle theme mode" })
+map("n", "<leader>tt", "<cmd>CyberdreamToggleMode<CR>", { desc = "Cyberdream: toggle theme mode" })
 
 -- Legacy Alacritty theme toggle (now using Ghostty)
 map("n", "<leader>tcd", function()
@@ -206,7 +206,7 @@ map("n", "<leader>tcd", function()
     os.execute(command)
     vim.cmd("CyberdreamToggleMode")
     print("Switched background to " .. vim.o.background .. " mode")
-end, { desc = "toggle cyberdream + alacritty theme" })
+end, { desc = "Cyberdream: toggle + sync Alacritty" })
 
 -- ========================================
 -- Development Helpers

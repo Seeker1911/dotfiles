@@ -1,144 +1,144 @@
 return {
-	"folke/noice.nvim",
-	event = "UIEnter",
-	dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-	opts = {
-		cmdline = {
-			format = {
-				cmdline = {
-					title = "",
-					icon = "  ",
-				},
-				lua = {
-					title = "",
-					icon = " 󰢱 ",
-				},
-				help = {
-					title = "",
-					icon = " 󰋖 ",
-				},
-				input = {
-					title = "",
-					icon = "  ",
-				},
-				filter = {
-					title = "",
-					icon = "  ",
-				},
-				search_up = {
-					icon = "    ",
-				},
-				search_down = {
-					icon = "    ",
-				},
-			},
-			opts = {
-				win_options = {
-					winhighlight = {
-						-- Normal = "NormalFloat",
-						FloatBorder = "FloatBorder",
-					},
-				},
-			},
-		},
-		popupmenu = {
-			-- backend = "cmp", -- Has issues after first completion
-		},
-		views = {
-			cmdline_popup = {
-				position = {
-					row = 5,
-					col = "50%",
-				},
-				size = {
-					width = 60,
-					height = "auto",
-				},
-			},
-			cmdline_popupmenu = {
-				border = {
-					style = { " ", " ", " ", " ", " ", " ", " ", " " },
-					padding = { 0, 1 },
-				},
-				win_options = {
-					winhighlight = {
-						Normal = "NormalFloat",
-						FloatBorder = "FloatBorder",
-					},
-				},
-			},
-		},
+    "folke/noice.nvim",
+    event = "UIEnter",
+    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+    opts = {
+        cmdline = {
+            format = {
+                cmdline = {
+                    title = "",
+                    icon = "  ",
+                },
+                lua = {
+                    title = "",
+                    icon = " 󰢱 ",
+                },
+                help = {
+                    title = "",
+                    icon = " 󰋖 ",
+                },
+                input = {
+                    title = "",
+                    icon = "  ",
+                },
+                filter = {
+                    title = "",
+                    icon = "  ",
+                },
+                search_up = {
+                    icon = "    ",
+                },
+                search_down = {
+                    icon = "    ",
+                },
+            },
+            opts = {
+                win_options = {
+                    winhighlight = {
+                        -- Normal = "NormalFloat",
+                        FloatBorder = "FloatBorder",
+                    },
+                },
+            },
+        },
+        popupmenu = {
+            -- backend = "cmp", -- Has issues after first completion
+        },
+        views = {
+            cmdline_popup = {
+                position = {
+                    row = 5,
+                    col = "50%",
+                },
+                size = {
+                    width = 60,
+                    height = "auto",
+                },
+            },
+            cmdline_popupmenu = {
+                border = {
+                    style = { " ", " ", " ", " ", " ", " ", " ", " " },
+                    padding = { 0, 1 },
+                },
+                win_options = {
+                    winhighlight = {
+                        Normal = "NormalFloat",
+                        FloatBorder = "FloatBorder",
+                    },
+                },
+            },
+        },
 
-		lsp = {
-			signature = {
-				enabled = true,
-			},
-			override = {
-				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-				["vim.lsp.util.stylize_markdown"] = true,
-				["cmp.entry.get_documentation"] = true,
-			},
-			hover = {
-				enabled = true,
-				silent = true,
-			},
-		},
-		-- you can enable a preset for easier configuration
-		presets = {
-			bottom_search = true, -- use a classic bottom cmdline for search
-			command_palette = true, -- position the cmdline and popupmenu together
-			long_message_to_split = true, -- long messages will be sent to a split
-			inc_rename = true, -- enables an input dialog for inc-rename.nvim
-			lsp_doc_border = true, -- add a border to hover docs and signature help
-		},
-		messages = {
-			-- a good primer on vim messages
-			-- https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#messages-and-notifications-in-neovim
-			view_history = false,
-			view_search = false,
-		},
-		routes = {
-			{
-				filter = {
-					event = "msg_show",
-					any = {
-						{ find = "%d+L, %d+B" },
-						{ find = "; after #%d+" },
-						{ find = "; before #%d+" },
-						{ find = "%d fewer lines" },
-						{ find = "%d more lines" },
-						{ find = "%d lines yanked" },
-						{ find = "(%d of %d)" },
-					},
-				},
-				opts = { skip = true },
-			},
+        lsp = {
+            signature = {
+                enabled = true,
+            },
+            override = {
+                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                ["vim.lsp.util.stylize_markdown"] = true,
+                ["cmp.entry.get_documentation"] = true,
+            },
+            hover = {
+                enabled = true,
+                silent = true,
+            },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+            bottom_search = true, -- use a classic bottom cmdline for search
+            command_palette = true, -- position the cmdline and popupmenu together
+            long_message_to_split = true, -- long messages will be sent to a split
+            inc_rename = true,   -- enables an input dialog for inc-rename.nvim
+            lsp_doc_border = true, -- add a border to hover docs and signature help
+        },
+        messages = {
+            -- a good primer on vim messages
+            -- https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#messages-and-notifications-in-neovim
+            view_history = true,
+            view_search = true,
+        },
+        routes = {
+            {
+                filter = {
+                    event = "msg_show",
+                    any = {
+                        { find = "%d+L, %d+B" },
+                        { find = "; after #%d+" },
+                        { find = "; before #%d+" },
+                        { find = "%d fewer lines" },
+                        { find = "%d more lines" },
+                        { find = "%d lines yanked" },
+                        { find = "(%d of %d)" },
+                    },
+                },
+                opts = { skip = true },
+            },
 
-			-- Hide supermaven startup messages
-			{
-				filter = {
-					event = "msg_show",
-					any = {
-						{ find = "Starting Supermaven..." },
-						{ find = "Supermaven Pro is running." },
-					},
-				},
-				opts = { skip = true },
-			},
+            -- Hide supermaven startup messages
+            {
+                filter = {
+                    event = "msg_show",
+                    any = {
+                        { find = "Starting Supermaven..." },
+                        { find = "Supermaven Pro is running." },
+                    },
+                },
+                opts = { skip = true },
+            },
 
-			-- angularls runs at the same time as vtsls and does not find references
-			{
-				filter = {
-					any = {
-						{ find = "No information available" },
-						{ find = "No references found" },
-						{ find = "No lines in buffer" },
-						{ find = "vtsls: .* Cannot find provider for" },
-						{ find = "navic: .* Already attached to vtsls" },
-					},
-				},
-				opts = { skip = true },
-			},
-		},
-	},
+            -- angularls runs at the same time as vtsls and does not find references
+            {
+                filter = {
+                    any = {
+                        { find = "No information available" },
+                        { find = "No references found" },
+                        { find = "No lines in buffer" },
+                        { find = "vtsls: .* Cannot find provider for" },
+                        { find = "navic: .* Already attached to vtsls" },
+                    },
+                },
+                opts = { skip = true },
+            },
+        },
+    },
 }

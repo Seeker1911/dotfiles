@@ -73,12 +73,6 @@ map("n", "<leader>rl", function()
 end, { desc = "Ruff: lint fix only" })
 
 -- ========================================
--- Buffer Management
--- ========================================
-map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "next buffer" })
-map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "previous buffer" })
-
--- ========================================
 -- Comments
 -- ========================================
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })

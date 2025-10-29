@@ -40,6 +40,14 @@ M.on_attach = function(_, bufnr)
 		end, opts("Ruff auto-fix"))
 	end
 	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
+
+	-- Register LSP-specific WhichKey groups dynamically
+	if pcall(require, "which-key") then
+		require("which-key").add({
+			{ "<leader>s", group = "LSP", icon = "", buffer = bufnr },
+			{ "<leader>sh", desc = "Signature help", buffer = bufnr },
+		})
+	end
 end
 
 -- disable semanticTokens

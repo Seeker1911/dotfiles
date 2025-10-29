@@ -159,21 +159,6 @@ map("n", "<leader>rt", function()
 end, { desc = "run typescript/javascript file" })
 
 -- ========================================
--- Menus & Context Actions
--- ========================================
-map("n", "<C-t>", function()
-    require("menu").open("default")
-end, { desc = "Menu: open default" })
-
-map({ "n", "v" }, "<RightMouse>", function()
-    require("menu.utils").delete_old_menus()
-    vim.cmd.exec('"normal! \\<RightMouse>"')
-    local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
-    local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
-    require("menu").open(options, { mouse = true })
-end, { desc = "Menu: open context menu" })
-
--- ========================================
 -- Theme & UI Toggles
 -- ========================================
 map("n", "<leader>tt", "<cmd>CyberdreamToggleMode<CR>", { desc = "Cyberdream: toggle theme mode" })

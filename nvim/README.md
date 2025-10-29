@@ -216,7 +216,6 @@ For complete keybindings, see [`lua/mappings.lua`](lua/mappings.lua) or run `:Te
 - **toggleterm.nvim** - Terminal integration
 - **trouble.nvim** - Diagnostic list
 - **inc-rename.nvim** - LSP rename UI
-- **menu** - Context menus
 - **minty** - Color picker
 - **render-markdown.nvim** - Markdown rendering
 

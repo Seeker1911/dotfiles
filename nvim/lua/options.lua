@@ -2,10 +2,8 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
--- local file_path = os.getenv("HOME") .. "/.alacritty_background.toml"
+-- Read Ghostty config to detect theme
 local file_path = os.getenv("HOME") .. "/.config/ghostty/config"
--- print(file_path)
-
 local content = ""
 local file = io.open(file_path, "r")
 
@@ -14,14 +12,8 @@ if file then
     file:close()
 end
 
--- Alacritty pattern
--- local pattern = "general%.import%s*=%s*%['~/.config/alacritty/themes/themes/(.*)%.toml'%]"
-
--- Ghostty pattern
 local pattern = "theme%s*=%s*([%w_%-]+)"
-
 local theme = content:match(pattern)
--- require("notify")("theme: " .. theme)
 
 o.background = "light"
 local theme_name = "cyberdream"

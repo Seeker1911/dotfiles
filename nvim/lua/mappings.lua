@@ -37,10 +37,6 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "copy whole file" })
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 
--- Search with cursor centered
--- map("n", "n", "nzzzv", { desc = "search next (centered)" })
--- map("n", "N", "Nzzzv", { desc = "search previous (centered)" })
-
 -- Keep visual selection when indenting
 map("v", "<", "<gv", { desc = "indent left and reselect" })
 map("v", ">", ">gv", { desc = "indent right and reselect" })
@@ -187,26 +183,6 @@ end, { desc = "Menu: open context menu" })
 -- Theme & UI Toggles
 -- ========================================
 map("n", "<leader>tt", "<cmd>CyberdreamToggleMode<CR>", { desc = "Cyberdream: toggle theme mode" })
-
--- Legacy Alacritty theme toggle (now using Ghostty)
-map("n", "<leader>tcd", function()
-    local dark_theme = "~/.config/alacritty/themes/themes/cyberdream.toml"
-    local light_theme = "~/.config/alacritty/themes/themes/cyberdream-light.toml"
-    local current_background = vim.o.background
-    local command
-
-    if current_background == "dark" then
-        command = string.format("echo \"general.import = ['%s']\" > ~/.alacritty_background.toml", light_theme)
-        vim.o.background = "light"
-    else
-        command = string.format("echo \"general.import = ['%s']\" > ~/.alacritty_background.toml", dark_theme)
-        vim.o.background = "dark"
-    end
-
-    os.execute(command)
-    vim.cmd("CyberdreamToggleMode")
-    print("Switched background to " .. vim.o.background .. " mode")
-end, { desc = "Cyberdream: toggle + sync Alacritty" })
 
 -- ========================================
 -- Development Helpers

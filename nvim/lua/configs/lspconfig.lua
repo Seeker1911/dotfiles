@@ -21,7 +21,7 @@ M.on_attach = function(_, bufnr)
 	end, opts("List workspace folders"))
 
 	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-	-- map("n", "<leader>ra", require("configs.renamer"), opts("Renamer"))
+
 	vim.keymap.set("n", "<leader>rn", function()
 		return ":IncRename " .. vim.fn.expand("<cword>")
 	end, { expr = true })

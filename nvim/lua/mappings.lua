@@ -32,17 +32,14 @@ map("n", "<M-s>", "<c-w>5-", { desc = "decrease window height" })
 -- ========================================
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clear search highlights" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "copy whole file" })
-map("n", "<leader>w", "<cmd>w<CR>", { desc = "save file" })
-map("n", "<leader>q", "<cmd>q<CR>", { desc = "quit window" })
-map("n", "<leader>x", "<cmd>x<CR>", { desc = "save and quit" })
 
 -- Line numbers
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 
 -- Search with cursor centered
-map("n", "n", "nzzzv", { desc = "search next (centered)" })
-map("n", "N", "Nzzzv", { desc = "search previous (centered)" })
+-- map("n", "n", "nzzzv", { desc = "search next (centered)" })
+-- map("n", "N", "Nzzzv", { desc = "search previous (centered)" })
 
 -- Keep visual selection when indenting
 map("v", "<", "<gv", { desc = "indent left and reselect" })
@@ -82,11 +79,8 @@ end, { desc = "ruff lint fix only" })
 -- ========================================
 -- Buffer Management
 -- ========================================
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "new buffer" })
 map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "next buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "previous buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "delete buffer" })
-map("n", "<leader>ba", "<cmd>bufdo bd<CR>", { desc = "delete all buffers" })
 
 -- ========================================
 -- Comments
@@ -104,7 +98,8 @@ map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "focus file tree" })
 -- Telescope (Fuzzy Finder)
 -- ========================================
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "find files" })
-map("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "find all files (hidden/ignored)" })
+map("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+    { desc = "find all files (hidden/ignored)" })
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "live grep search" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "search help" })
@@ -128,8 +123,6 @@ map("n", "]d", vim.diagnostic.goto_next, { desc = "next diagnostic" })
 -- Code Folding
 -- ========================================
 map("n", "<SPACE>", "za", { desc = "toggle current fold" })
-map("n", "zR", "zR", { desc = "open all folds" })
-map("n", "zM", "zM", { desc = "close all folds" })
 
 -- ========================================
 -- Terminal
@@ -144,8 +137,6 @@ end, { desc = "toggle floating terminal" })
 -- ========================================
 map("n", "[q", "<cmd>cprev<CR>", { desc = "previous quickfix item" })
 map("n", "]q", "<cmd>cnext<CR>", { desc = "next quickfix item" })
-map("n", "<leader>co", "<cmd>copen<CR>", { desc = "open quickfix list" })
-map("n", "<leader>cc", "<cmd>cclose<CR>", { desc = "close quickfix list" })
 
 -- ========================================
 -- Utilities

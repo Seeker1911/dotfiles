@@ -200,7 +200,8 @@ M.defaults = function()
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		settings = {
-			configuration = vim.fn.expand("~/dotfiles/config/ruff/pyproject.toml"),
+			-- Use XDG_CONFIG_HOME or fallback to ~/.config
+			configuration = vim.fn.expand((os.getenv("XDG_CONFIG_HOME") or os.getenv("HOME") .. "/.config") .. "/ruff/pyproject.toml"),
 			configurationPreference = "filesystemFirst",
 		},
 	})

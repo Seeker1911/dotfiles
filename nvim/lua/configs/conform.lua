@@ -11,12 +11,14 @@ local options = {
 
 	formatters = {
 		ruff_fix = {
-			command = "/opt/homebrew/bin/ruff",
+			-- Use 'ruff' from PATH instead of hard-coded path
+			command = "ruff",
 			args = { "check", "--fix", "--stdin-filename", "$FILENAME", "-" },
 			stdin = true,
 		},
 		ruff_format = {
-			command = "/opt/homebrew/bin/ruff",
+			-- Use 'ruff' from PATH instead of hard-coded path
+			command = "ruff",
 			args = { "format", "--stdin-filename", "$FILENAME", "-" },
 			stdin = true,
 		},

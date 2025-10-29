@@ -31,6 +31,8 @@ return {
 		end,
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
+			-- Register markdown parser for octo.nvim buffers
+			vim.treesitter.language.register('markdown', 'octo')
 		end,
 	},
 
@@ -69,8 +71,11 @@ return {
 
 	{
 		"folke/which-key.nvim",
-		keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+		event = "VeryLazy",
 		cmd = "WhichKey",
+		opts = function()
+			return require("configs.whichkey")
+		end,
 	},
 
 	-- git stuff

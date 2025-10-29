@@ -25,5 +25,4 @@ return {
 
     indent = { enable = true },
     fold = { enable = true },
-    vim.treesitter.language.register('markdown', 'octo')
 }

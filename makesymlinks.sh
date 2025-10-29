@@ -44,11 +44,14 @@ if [[ -d "$ghost_dir" || -L "$ghost_dir" ]]; then
 	mv "$ghost_dir" "$backup_dir/" 2>/dev/null
 fi
 
+# Link entire ghostty directory
+ln -sf "$dotfiles_dir/ghostty" "$ghost_dir"
 
-for file in "$dotfiles_dir/ghostty" ; do
-    ln -sf "$dotfiles_dir/ghostty/$file" "$ghost_dir/$file"
-done
+# Link ruff config directory
+mkdir -p "$config_dir/ruff"
+ln -sf "$dotfiles_dir/config/ruff/pyproject.toml" "$config_dir/ruff/pyproject.toml"
 
+# Link opencode AGENTS.md
 ln -sf "$dotfiles_dir/config/AGENTS.md" "$config_dir/opencode/AGENTS.md"
 
 echo "Dotfiles successfully linked!"

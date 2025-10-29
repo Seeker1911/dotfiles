@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Read(//Users/michaelmead/.config/ruff/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

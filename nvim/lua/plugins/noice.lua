@@ -41,11 +41,12 @@ return {
                 },
             },
         },
-        popupmenu = {
-            -- backend = "cmp", -- Has issues after first completion
+        notify = {
+            enabled = true, -- enables the Noice popupmenu UI
         },
         views = {
             cmdline_popup = {
+                backend = "popup",
                 position = {
                     row = 5,
                     col = "50%",
@@ -56,6 +57,7 @@ return {
                 },
             },
             cmdline_popupmenu = {
+                backend = "popup",
                 border = {
                     style = { " ", " ", " ", " ", " ", " ", " ", " " },
                     padding = { 0, 1 },
@@ -85,17 +87,17 @@ return {
         },
         -- you can enable a preset for easier configuration
         presets = {
-            bottom_search = true, -- use a classic bottom cmdline for search
-            command_palette = true, -- position the cmdline and popupmenu together
+            bottom_search = false,        -- use a classic bottom cmdline for search
+            command_palette = true,       -- position the cmdline and popupmenu together
             long_message_to_split = true, -- long messages will be sent to a split
-            inc_rename = true,   -- enables an input dialog for inc-rename.nvim
-            lsp_doc_border = true, -- add a border to hover docs and signature help
+            inc_rename = true,            -- enables an input dialog for inc-rename.nvim
+            lsp_doc_border = true,        -- add a border to hover docs and signature help
         },
         messages = {
             -- a good primer on vim messages
             -- https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#messages-and-notifications-in-neovim
-            view_history = true,
-            view_search = true,
+            view_history = "messages",
+            view_search = "virtualtext",
         },
         routes = {
             {

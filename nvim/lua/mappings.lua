@@ -166,7 +166,7 @@ map("n", "<leader>tt", "<cmd>CyberdreamToggleMode<CR>", { desc = "Cyberdream: to
 -- ========================================
 -- Development Helpers
 -- ========================================
-map("n", "<leader>l", function()
+map("n", "<leader>log", function()
     vim.api.nvim_feedkeys("i const log = (x: any) => { console.log(`🚨 🚨: `, x); return x }", "n", false)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
 end, { desc = "insert console.log helper" })

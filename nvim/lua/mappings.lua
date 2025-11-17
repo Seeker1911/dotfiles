@@ -117,7 +117,7 @@ map("n", "<SPACE>", "za", { desc = "toggle current fold" })
 -- ========================================
 -- Terminal
 -- ========================================
-map("t", "jj", "<C-\\><C-N>", { desc = "Terminal: escape terminal mode" })
+map("t", "jk", "<C-\\><C-N>", { desc = "Terminal: escape terminal mode" })
 map({ "n", "t" }, "<Esc>i", function()
     require("configs.term").toggle({ pos = "float", id = "floatTerm" })
 end, { desc = "Terminal: toggle floating terminal" })

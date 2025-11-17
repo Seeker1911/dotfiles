@@ -47,6 +47,8 @@ PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 PATH="/opt/homebrew/Cellar/mysql@8.4/8.4.3_2/bin":$PATH
 export PATH
 
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
 # Load pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"

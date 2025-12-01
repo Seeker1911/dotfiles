@@ -7,6 +7,7 @@ config_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
 nvim_dir="$config_dir/nvim"
 ghost_dir="$config_dir/ghostty"
 nvim_lua_dir="$dotfiles_dir/nvim/lua"
+claude_dir="$HOME/.claude"
 
 # Files and directories to symlink
 files_to_link="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig myclirc ideavimrc"
@@ -14,7 +15,7 @@ config_files="pylintrc"
 # nvim_files="init.lua"
 
 # Ensure backup directory exists
-mkdir -p "$backup_dir" "$config_dir" "$nvim_dir" "$ghost_dir" "$config_dir/opencode"
+mkdir -p "$backup_dir" "$config_dir" "$nvim_dir" "$ghost_dir" "$config_dir/opencode" "$claude_dir"
 
 echo "Backing up existing dotfiles and creating symlinks..."
 
@@ -53,5 +54,11 @@ ln -sf "$dotfiles_dir/config/ruff/pyproject.toml" "$config_dir/ruff/pyproject.to
 
 # Link opencode AGENTS.md
 ln -sf "$dotfiles_dir/config/AGENTS.md" "$config_dir/opencode/AGENTS.md"
+
+# Link Claude template to ~/.claude/CLAUDE.md
+if [[ -e "$HOME/.claude/CLAUDE.md" || -L "$HOME/.claude/CLAUDE.md" ]]; then
+	mv "$HOME/.claude/CLAUDE.md" "$backup_dir/" 2>/dev/null
+fi
+ln -sf "$dotfiles_dir/claude_template.md" "$HOME/.claude/CLAUDE.md"
 
 echo "Dotfiles successfully linked!"

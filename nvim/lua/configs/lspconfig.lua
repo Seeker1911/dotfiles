@@ -133,6 +133,18 @@ M.defaults = function()
 		on_attach = M.on_attach,
 		on_init = M.on_init,
 		capabilities = M.capabilities,
+		settings = {
+			typescript = {
+				preferences = {
+					semicolons = "remove",
+				},
+			},
+			javascript = {
+				preferences = {
+					semicolons = "remove",
+				},
+			},
+		},
 	})
 
 	-- Configure ESLint

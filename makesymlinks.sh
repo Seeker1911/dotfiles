@@ -39,26 +39,33 @@ done
 if [[ -d "$nvim_dir" || -L "$nvim_dir" ]]; then
 	mv "$nvim_dir" "$backup_dir/" 2>/dev/null
 fi
-ln -sf "$dotfiles_dir/nvim" "$nvim_dir"
+ln -sfn "$dotfiles_dir/nvim" "$nvim_dir"
 
 if [[ -d "$ghost_dir" || -L "$ghost_dir" ]]; then
 	mv "$ghost_dir" "$backup_dir/" 2>/dev/null
 fi
 
 # Link entire ghostty directory
-ln -sf "$dotfiles_dir/ghostty" "$ghost_dir"
+ln -sfn "$dotfiles_dir/ghostty" "$ghost_dir"
 
 # Link ruff config directory
 mkdir -p "$config_dir/ruff"
 ln -sf "$dotfiles_dir/config/ruff/pyproject.toml" "$config_dir/ruff/pyproject.toml"
 
 # Link opencode AGENTS.md
-ln -sf "$dotfiles_dir/config/AGENTS.md" "$config_dir/opencode/AGENTS.md"
+ln -sf "$dotfiles_dir/agents/AGENTS.md" "$config_dir/opencode/AGENTS.md"
 
 # Link Claude template to ~/.claude/CLAUDE.md
 if [[ -e "$HOME/.claude/CLAUDE.md" || -L "$HOME/.claude/CLAUDE.md" ]]; then
 	mv "$HOME/.claude/CLAUDE.md" "$backup_dir/" 2>/dev/null
 fi
-ln -sf "$dotfiles_dir/claude_template.md" "$HOME/.claude/CLAUDE.md"
+
+ln -sf "$dotfiles_dir/agents/claude_template.md" "$HOME/.claude/CLAUDE.md"
+
+# Link skills directory to ~/.claude/skills
+if [[ -e "$HOME/.claude/skills" || -L "$HOME/.claude/skills" ]]; then
+	mv "$HOME/.claude/skills" "$backup_dir/" 2>/dev/null
+fi
+ln -sfn "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
 
 echo "Dotfiles successfully linked!"

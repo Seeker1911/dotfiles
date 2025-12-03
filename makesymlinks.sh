@@ -68,4 +68,16 @@ if [[ -e "$HOME/.claude/skills" || -L "$HOME/.claude/skills" ]]; then
 fi
 ln -sfn "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
 
+# Link hooks directory to ~/.claude/hooks
+if [[ -e "$HOME/.claude/hooks" || -L "$HOME/.claude/hooks" ]]; then
+	mv "$HOME/.claude/hooks" "$backup_dir/" 2>/dev/null
+fi
+ln -sfn "$dotfiles_dir/agents/skills/hooks" "$HOME/.claude/hooks"
+
+# Link settings.json to ~/.claude/settings.json
+if [[ -e "$HOME/.claude/settings.json" || -L "$HOME/.claude/settings.json" ]]; then
+	mv "$HOME/.claude/settings.json" "$backup_dir/" 2>/dev/null
+fi
+ln -sf "$dotfiles_dir/agents/skills/settings.json" "$HOME/.claude/settings.json"
+
 echo "Dotfiles successfully linked!"

@@ -2,44 +2,12 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
--- Read Ghostty config to detect theme
-local file_path = os.getenv("HOME") .. "/.config/ghostty/config"
-local content = ""
-local file = io.open(file_path, "r")
+-- Colorscheme configuration
+o.background = "dark"
+vim.cmd.colorscheme("gruvbox")
 
-if file then
-    content = file:read("*all")
-    file:close()
-end
-
-local pattern = "theme%s*=%s*([%w_%-]+)"
-local theme = content:match(pattern)
-
-o.background = "light"
-local theme_name = "cyberdream"
-if theme then
-    if theme == "GruvboxDark" then
-        o.background = "dark"
-        theme_name = "gruvbox"
-    elseif theme == "cyberdream" then
-        o.background = "dark"
-        theme_name = "cyberdream"
-    elseif theme == "cyberdream-light" then
-        o.background = "light"
-        theme_name = "cyberdream"
-    elseif theme == "github" then
-        o.background = "light"
-        theme_name = "cyberdream"
-    elseif theme == "GitHub-Dark-Default" then
-        o.background = "dark"
-        theme_name = "cyberdream"
-    end
-end
-
-vim.api.nvim_cmd({
-    cmd = "colorscheme",
-    args = { theme_name },
-}, {})
+-- o.background = "light"
+-- vim.cmd.colorscheme("cyberdream")
 
 -- nvim-tree options
 g.loaded_netrw = 1

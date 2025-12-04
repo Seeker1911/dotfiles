@@ -5,7 +5,7 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": ".claude/hooks/skill-forced-eval-hook.sh"
+						"command": ".claude/hooks/skill-simple-instruction-hook.sh"
 					}
 				]
 			}

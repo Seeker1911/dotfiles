@@ -137,11 +137,37 @@ M.defaults = function()
 			typescript = {
 				preferences = {
 					semicolons = "remove",
+					includePackageJsonAutoImports = "on",
+					includeCompletionsForImportStatements = true,
+					includeCompletionsWithSnippetText = true,
+				},
+				inlayHints = {
+					includeInlayParameterNameHints = "all",
+					includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
 				},
 			},
 			javascript = {
 				preferences = {
 					semicolons = "remove",
+					includePackageJsonAutoImports = "on",
+					includeCompletionsForImportStatements = true,
+					includeCompletionsWithSnippetText = true,
+				},
+				inlayHints = {
+					includeInlayParameterNameHints = "all",
+					includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
 				},
 			},
 		},

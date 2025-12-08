@@ -24,7 +24,7 @@ return {
 		{ "nvim-telescope/telescope-fzy-native.nvim" },
 	},
 
-	extensions_list = { "themes", "terms", "fzf" },
+	extensions_list = { "themes", "terms", "fzf", "notify" },
 	extensions = {},
 	-- example to add keys in the plugin itself
 	keys = {

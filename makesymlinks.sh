@@ -60,7 +60,7 @@ if [[ -e "$HOME/.claude/CLAUDE.md" || -L "$HOME/.claude/CLAUDE.md" ]]; then
 	mv "$HOME/.claude/CLAUDE.md" "$backup_dir/" 2>/dev/null
 fi
 
-ln -sf "$dotfiles_dir/agents/claude_template.md" "$HOME/.claude/CLAUDE.md"
+ln -sf "$dotfiles_dir/agents/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
 # Link skills directory to ~/.claude/skills
 if [[ -e "$HOME/.claude/skills" || -L "$HOME/.claude/skills" ]]; then

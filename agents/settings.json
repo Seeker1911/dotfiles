@@ -1,18 +1,19 @@
 {
-	"hooks": {
-		"UserPromptSubmit": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "~/.claude/hooks/skill-simple-instruction-hook.sh"
-					}
-				]
-			}
-		]
-	},
-	"statusLine": {
-		"type": "command",
-		"command": "printf \"\\033[32mseeker \\033[38;5;172m$(pwd)\\033[m\""
-	}
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/skill-simple-instruction-hook.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "printf \"\\033[32mseeker \\033[38;5;172m$(pwd)\\033[m\""
+  },
+  "model": "opus"
 }

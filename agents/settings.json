@@ -1,4 +1,5 @@
 {
+  "model": "opus",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -15,5 +16,7 @@
     "type": "command",
     "command": "printf \"\\033[32mseeker \\033[38;5;172m$(pwd)\\033[m\""
   },
-  "model": "opus"
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true
+  }
 }

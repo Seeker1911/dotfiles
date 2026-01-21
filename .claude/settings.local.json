@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(tree:*)",
-      "Read(//Users/michaelmead/.config/ruff/**)"
+      "Read(//Users/michaelmead/.config/ruff/**)",
+      "Bash(ln:*)"
     ],
     "deny": [],
     "ask": []

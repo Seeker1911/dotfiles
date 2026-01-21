@@ -39,3 +39,8 @@ save_to_clipboard = true
 
 [colors]
 cursor = { text = "CellBackground", cursor = "#F28500" }
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b[13;2u"

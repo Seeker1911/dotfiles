@@ -3,11 +3,11 @@ local o = vim.o
 local g = vim.g
 
 -- Colorscheme configuration
-o.background = "dark"
-vim.cmd.colorscheme("gruvbox")
+-- o.background = "dark"
+-- vim.cmd.colorscheme("gruvbox")
 
--- o.background = "light"
--- vim.cmd.colorscheme("cyberdream")
+o.background = "light"
+vim.cmd.colorscheme("cyberdream")
 
 -- nvim-tree options
 g.loaded_netrw = 1

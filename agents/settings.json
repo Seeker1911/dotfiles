@@ -17,6 +17,7 @@
     "command": "printf \"\\033[32mseeker \\033[38;5;172m$(pwd)\\033[m\""
   },
   "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
   }
 }

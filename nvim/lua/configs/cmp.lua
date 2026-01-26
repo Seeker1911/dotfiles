@@ -8,7 +8,7 @@ local options = {
 	-- Disable auto-opening of documentation to prevent buffer errors
 	view = {
 		docs = {
-			auto_open = false,
+			auto_open = true,
 		},
 	},
 

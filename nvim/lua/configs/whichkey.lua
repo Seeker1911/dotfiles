@@ -7,6 +7,8 @@ return {
 		{ "<leader>fl", group = "LSP", icon = "" },
 		{ "<leader>fv", group = "Vim", icon = "" },
 		{ "<leader>fh", group = "History", icon = "" },
+		{ "<leader>a", group = "AI", icon = "" },
+		{ "<leader>x", group = "Terminal", icon = "" },
 		{ "<leader>c", group = "Code", icon = "" },
 		{ "<leader>r", group = "Ruff/Refactor", icon = "" },
 		{ "<leader>b", group = "Buffer", icon = "" },

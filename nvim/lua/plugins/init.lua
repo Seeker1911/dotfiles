@@ -86,7 +86,6 @@ return {
             return require("configs.gitsigns")
         end,
     },
-    { "sodapopcan/vim-twiggy", cmd = { "Twiggy" } }, -- fugitive extension for branch management
 
     -- lsp stuff
     {

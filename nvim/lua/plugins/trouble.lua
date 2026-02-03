@@ -4,34 +4,34 @@ return {
 	cmd = "Trouble",
 	keys = {
 		{
-			"<leader>tD",
+			"<leader>ltD",
 			"<cmd>Trouble diagnostics toggle<cr>",
-			desc = "Trouble: Show all diagnostics",
+			desc = "Trouble: All diagnostics",
 		},
 		{
-			"<leader>td",
+			"<leader>ltd",
 			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-			desc = "Trouble: Show buffer diagnostics",
+			desc = "Trouble: Buffer diagnostics",
 		},
 		{
-			"<leader>ts",
+			"<leader>lts",
 			"<cmd>Trouble symbols toggle focus=false<cr>",
-			desc = "Trouble: Show symbols",
+			desc = "Trouble: Symbols",
 		},
 		{
-			"<leader>tl",
+			"<leader>ltr",
 			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-			desc = "Trouble: Show LSP definitions/references",
+			desc = "Trouble: References",
 		},
 		{
-			"<leader>tL",
+			"<leader>ltl",
 			"<cmd>Trouble loclist toggle<cr>",
-			desc = "Trouble: Show location list",
+			desc = "Trouble: Loclist",
 		},
 		{
-			"<leader>xQ",
+			"<leader>ltq",
 			"<cmd>Trouble qflist toggle<cr>",
-			desc = "Trouble: Show quickfix list",
+			desc = "Trouble: Quickfix",
 		},
 	},
 }

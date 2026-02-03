@@ -6,29 +6,39 @@ local servers = { "html", "ts_ls", "eslint", "ruff", "pylsp" }
 -- export on_attach & capabilities
 M.on_attach = function(_, bufnr)
 	local function opts(desc)
-		return { buffer = bufnr, desc = "LSP " .. desc }
+		return { buffer = bufnr, desc = "LSP: " .. desc }
 	end
 
-	map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
-	map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
-	map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
-	map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Show signature help"))
-	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
-	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
+	-- Navigation (standard vim keys)
+	map("n", "gD", vim.lsp.buf.declaration, opts("Declaration"))
+	map("n", "gd", vim.lsp.buf.definition, opts("Definition"))
+	map("n", "gi", vim.lsp.buf.implementation, opts("Implementation"))
+	map("n", "gr", vim.lsp.buf.references, opts("References"))
+	map("n", "K", vim.lsp.buf.hover, opts("Hover"))
 
-	map("n", "<leader>wl", function()
+	-- LSP actions (,l prefix)
+	map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts("Code action"))
+	map("n", "<leader>lr", function()
+		return ":IncRename " .. vim.fn.expand("<cword>")
+	end, { buffer = bufnr, expr = true, desc = "LSP: Rename" })
+	map("n", "<leader>ls", vim.lsp.buf.signature_help, opts("Signature help"))
+	map("n", "<leader>lD", vim.lsp.buf.type_definition, opts("Type definition"))
+	map("n", "<leader>lh", vim.lsp.buf.hover, opts("Hover"))
+	map("n", "<leader>lf", function()
+		vim.lsp.buf.format({ async = true })
+	end, opts("Format"))
+	map("n", "<leader>li", function()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	end, opts("Toggle inlay hints"))
+
+	-- Workspace (,lw prefix)
+	map("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
+	map("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
+	map("n", "<leader>lwl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, opts("List workspace folders"))
 
-	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-
-	vim.keymap.set("n", "<leader>rn", function()
-		return ":IncRename " .. vim.fn.expand("<cword>")
-	end, { expr = true })
-
-	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
-	
-	-- Python-specific ruff code actions
+	-- Python-specific ruff code actions (keep under ,r for Ruff)
 	if vim.bo.filetype == "python" then
 		map("n", "<leader>ra", function()
 			vim.lsp.buf.code_action({
@@ -38,15 +48,6 @@ M.on_attach = function(_, bufnr)
 				apply = true,
 			})
 		end, opts("Ruff auto-fix"))
-	end
-	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
-
-	-- Register LSP-specific WhichKey groups dynamically
-	if pcall(require, "which-key") then
-		require("which-key").add({
-			{ "<leader>s", group = "LSP", icon = "", buffer = bufnr },
-			{ "<leader>sh", desc = "Signature help", buffer = bufnr },
-		})
 	end
 end
 

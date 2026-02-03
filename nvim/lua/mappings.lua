@@ -128,6 +128,10 @@ map("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "Telescope: Notific
 
 -- Quick shortcuts (also in subgroups)
 map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Telescope: Keymaps (quick)" })
+map("n", "<leader>f.", "<cmd>Telescope builtin<CR>", { desc = "Telescope: All pickers" })
+map("n", "<leader>fc", "<cmd>Telescope colorscheme<CR>", { desc = "Telescope: Colorschemes" })
+map("n", "<leader>fj", "<cmd>Telescope jumplist<CR>", { desc = "Telescope: Jumplist" })
+map("n", "<leader>f'", "<cmd>Telescope marks<CR>", { desc = "Telescope: Marks (quick)" })
 
 -- ========================================
 -- Git (under <leader>g)
@@ -162,12 +166,12 @@ map("n", "<leader>gtl", function() gs().toggle_linehl() end, { desc = "Gitsigns:
 map("n", "<leader>gtw", function() gs().toggle_word_diff() end, { desc = "Gitsigns: Toggle word diff" })
 
 -- ========================================
--- LSP & Diagnostics
+-- LSP Diagnostics (under <leader>ld)
 -- ========================================
-map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "LSP: open diagnostic float" })
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP: show diagnostic loclist" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "LSP: previous diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "LSP: next diagnostic" })
+map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "LSP: Line diagnostic" })
+map("n", "<leader>ldl", vim.diagnostic.setloclist, { desc = "LSP: Diagnostic loclist" })
+map("n", "[d", vim.diagnostic.goto_prev, { desc = "LSP: Previous diagnostic" })
+map("n", "]d", vim.diagnostic.goto_next, { desc = "LSP: Next diagnostic" })
 
 -- ========================================
 -- Code Folding

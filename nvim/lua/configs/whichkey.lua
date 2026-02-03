@@ -9,10 +9,12 @@ return {
 		{ "<leader>fh", group = "History", icon = "" },
 		{ "<leader>c", group = "Code", icon = "" },
 		{ "<leader>r", group = "Ruff/Refactor", icon = "" },
-		{ "<leader>w", group = "Workspace", icon = "󰙀" },
-		{ "<leader>d", group = "Diagnostics", icon = "" },
 		{ "<leader>b", group = "Buffer", icon = "" },
-		{ "<leader>t", group = "Trouble", icon = "" },
+
+		{ "<leader>l", group = "LSP", icon = "" },
+		{ "<leader>lt", group = "Trouble", icon = "" },
+		{ "<leader>lw", group = "Workspace", icon = "󰙀" },
+		{ "<leader>ld", group = "Diagnostic", icon = "" },
 
 		{ "<leader>g", group = "Git", icon = "" },
 		{ "<leader>gh", group = "Hunk", icon = "" },

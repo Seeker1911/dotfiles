@@ -77,7 +77,7 @@ return {
     },
 
     -- git stuff
-    { "tpope/vim-fugitive", cmd = { "Git" }, keys = { "G" } },
+    { "tpope/vim-fugitive", cmd = { "Git" } },
     { "tpope/vim-rhubarb" },
     {
         "lewis6991/gitsigns.nvim",

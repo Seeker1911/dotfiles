@@ -98,8 +98,38 @@ map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = 
 map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Telescope: find keymaps" })
 map("n", "<leader>fc", "<cmd>Telescope commands<CR>", { desc = "Telescope: find commands" })
 map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "Telescope: find marks" })
-map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Git: browse commits" })
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Git: show status" })
+
+-- ========================================
+-- Git (under <leader>g)
+-- ========================================
+map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope: Git status" })
+map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope: Git commits" })
+map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Telescope: Git branches" })
+map("n", "<leader>gS", "<cmd>Telescope git_stash<CR>", { desc = "Telescope: Git stash" })
+map("n", "<leader>gf", "<cmd>Git<CR>", { desc = "Fugitive: Status" })
+map("n", "<leader>gp", "<cmd>Git push<CR>", { desc = "Fugitive: Push" })
+map("n", "<leader>gP", "<cmd>Git pull<CR>", { desc = "Fugitive: Pull" })
+map("n", "<leader>gl", "<cmd>Git log --oneline<CR>", { desc = "Fugitive: Log" })
+
+-- Gitsigns (global keymaps for discoverability)
+local gs = function()
+	return require("gitsigns")
+end
+map("n", "<leader>ghs", function() gs().stage_hunk() end, { desc = "Gitsigns: Stage hunk" })
+map("n", "<leader>ghr", function() gs().reset_hunk() end, { desc = "Gitsigns: Reset hunk" })
+map("v", "<leader>ghs", function() gs().stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Gitsigns: Stage selected" })
+map("v", "<leader>ghr", function() gs().reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Gitsigns: Reset selected" })
+map("n", "<leader>ghS", function() gs().stage_buffer() end, { desc = "Gitsigns: Stage buffer" })
+map("n", "<leader>ghu", function() gs().undo_stage_hunk() end, { desc = "Gitsigns: Undo stage" })
+map("n", "<leader>ghR", function() gs().reset_buffer() end, { desc = "Gitsigns: Reset buffer" })
+map("n", "<leader>ghp", function() gs().preview_hunk() end, { desc = "Gitsigns: Preview hunk" })
+map("n", "<leader>ghd", function() gs().diffthis() end, { desc = "Gitsigns: Diff vs index" })
+map("n", "<leader>ghD", function() gs().diffthis("~") end, { desc = "Gitsigns: Diff vs HEAD~1" })
+map("n", "<leader>gB", function() gs().blame_line({ full = true }) end, { desc = "Gitsigns: Blame line" })
+map("n", "<leader>gtb", function() gs().toggle_current_line_blame() end, { desc = "Gitsigns: Toggle blame" })
+map("n", "<leader>gtd", function() gs().toggle_deleted() end, { desc = "Gitsigns: Toggle deleted" })
+map("n", "<leader>gtl", function() gs().toggle_linehl() end, { desc = "Gitsigns: Toggle line hl" })
+map("n", "<leader>gtw", function() gs().toggle_word_diff() end, { desc = "Gitsigns: Toggle word diff" })
 
 -- ========================================
 -- LSP & Diagnostics

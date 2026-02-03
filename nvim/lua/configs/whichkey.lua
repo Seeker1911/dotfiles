@@ -4,6 +4,9 @@ return {
 	delay = 500,
 	spec = {
 		{ "<leader>f", group = "Find", icon = "󰍉" },
+		{ "<leader>fl", group = "LSP", icon = "" },
+		{ "<leader>fv", group = "Vim", icon = "" },
+		{ "<leader>fh", group = "History", icon = "" },
 		{ "<leader>c", group = "Code", icon = "" },
 		{ "<leader>r", group = "Ruff/Refactor", icon = "" },
 		{ "<leader>w", group = "Workspace", icon = "󰙀" },

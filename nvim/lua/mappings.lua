@@ -87,17 +87,47 @@ map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "NvimTree: focus file t
 -- ========================================
 -- Telescope (Fuzzy Finder)
 -- ========================================
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope: find files" })
-map("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-    { desc = "Telescope: find all files (hidden/ignored)" })
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: live grep search" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: find buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope: search help" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope: find old files" })
-map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope: fuzzy find in buffer" })
-map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Telescope: find keymaps" })
-map("n", "<leader>fc", "<cmd>Telescope commands<CR>", { desc = "Telescope: find commands" })
-map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "Telescope: find marks" })
+-- Files
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope: Files" })
+map("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "Telescope: All files (hidden)" })
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope: Old files (recent)" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: Buffers" })
+map("n", "<leader>fr", "<cmd>Telescope resume<CR>", { desc = "Telescope: Resume last" })
+
+-- Search/Grep
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: Words (grep)" })
+map("n", "<leader>fg", "<cmd>Telescope grep_string<CR>", { desc = "Telescope: Grep cursor word" })
+map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope: Fuzzy in buffer" })
+
+-- LSP (,fl)
+map("n", "<leader>fld", "<cmd>Telescope diagnostics<CR>", { desc = "Telescope: Diagnostics" })
+map("n", "<leader>flr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope: References" })
+map("n", "<leader>fls", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope: Document symbols" })
+map("n", "<leader>flS", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Telescope: Workspace symbols" })
+map("n", "<leader>fli", "<cmd>Telescope lsp_implementations<CR>", { desc = "Telescope: Implementations" })
+map("n", "<leader>flt", "<cmd>Telescope treesitter<CR>", { desc = "Telescope: Treesitter symbols" })
+
+-- Vim internals (,fv)
+map("n", "<leader>fvk", "<cmd>Telescope keymaps<CR>", { desc = "Telescope: Keymaps" })
+map("n", "<leader>fvc", "<cmd>Telescope commands<CR>", { desc = "Telescope: Commands" })
+map("n", "<leader>fvm", "<cmd>Telescope marks<CR>", { desc = "Telescope: Marks" })
+map("n", "<leader>fvr", "<cmd>Telescope registers<CR>", { desc = "Telescope: Registers" })
+map("n", "<leader>fvh", "<cmd>Telescope highlights<CR>", { desc = "Telescope: Highlights" })
+map("n", "<leader>fvq", "<cmd>Telescope quickfix<CR>", { desc = "Telescope: Quickfix" })
+map("n", "<leader>fvl", "<cmd>Telescope loclist<CR>", { desc = "Telescope: Loclist" })
+map("n", "<leader>fvo", "<cmd>Telescope vim_options<CR>", { desc = "Telescope: Options" })
+map("n", "<leader>fva", "<cmd>Telescope autocommands<CR>", { desc = "Telescope: Autocommands" })
+
+-- History (,fh)
+map("n", "<leader>fhh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope: Help tags" })
+map("n", "<leader>fhs", "<cmd>Telescope search_history<CR>", { desc = "Telescope: Search history" })
+map("n", "<leader>fhc", "<cmd>Telescope command_history<CR>", { desc = "Telescope: Command history" })
+
+-- Extensions
+map("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "Telescope: Notifications" })
+
+-- Quick shortcuts (also in subgroups)
+map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Telescope: Keymaps (quick)" })
 
 -- ========================================
 -- Git (under <leader>g)

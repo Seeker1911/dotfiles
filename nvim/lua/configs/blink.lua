@@ -38,9 +38,16 @@ return {
 
     cmdline = {
         enabled = true,
+        keymap = {
+            ["<CR>"] = { "accept", "fallback" },
+            ["<Tab>"] = { "select_next", "fallback" },
+            ["<S-Tab>"] = { "select_prev", "fallback" },
+            ["<C-e>"] = { "hide", "fallback" },
+        },
         completion = {
             menu = { auto_show = true },
-            ghost_text = { enabled = false }
+            list = { selection = { preselect = false, auto_insert = false } },
+            ghost_text = { enabled = false },
         },
     },
 }

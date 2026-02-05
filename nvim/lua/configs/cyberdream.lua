@@ -9,7 +9,7 @@ return {
 		notify = true,
 		mini = false,
 		noice = true,
-		cmp = true,
+		blinkcmp = true,
 		treesitter = true,
 		whichkey = true,
 	},

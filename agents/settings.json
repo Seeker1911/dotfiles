@@ -1,5 +1,4 @@
 {
-  "model": "opus",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -7,6 +6,17 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/skill-simple-instruction-hook.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre-compact-handover.sh",
+            "timeout": 30
           }
         ]
       }

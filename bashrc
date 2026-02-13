@@ -11,12 +11,9 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 	platform='macos'
 fi
 
-# Prompt configuration based on platform
-if [[ $platform == 'linux' ]]; then
-	export PS1="\[\033[32m\]seeker-remote\[\033[m\]\[\033[36;1m\]\w\[\033[m\]\$ "
-elif [[ $platform == 'macos' ]]; then
-	export PS1="\[\033[32m\]seeker \[\033[38;5;172m\]\w\[\033[m\]\$ "
-fi
+# PS1 set in prompt.sh
+source $HOME/dotfiles/prompt.sh
+
 
 # History and shell settings
 HISTCONTROL=ignoredups:erasedups

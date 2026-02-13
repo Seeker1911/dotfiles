@@ -79,5 +79,6 @@ if [[ -e "$HOME/.claude/settings.json" || -L "$HOME/.claude/settings.json" ]]; t
 	mv "$HOME/.claude/settings.json" "$backup_dir/" 2>/dev/null
 fi
 ln -sf "$dotfiles_dir/agents/settings.json" "$HOME/.claude/settings.json"
+ln -sf "$dotfiles_dir/profiles/statusline.sh" "$HOME/.claude/statusline.sh"
 
 echo "Dotfiles successfully linked!"

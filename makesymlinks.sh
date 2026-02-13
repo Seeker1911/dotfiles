@@ -66,7 +66,7 @@ ln -sf "$dotfiles_dir/agents/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 if [[ -e "$HOME/.claude/skills" || -L "$HOME/.claude/skills" ]]; then
 	mv "$HOME/.claude/skills" "$backup_dir/" 2>/dev/null
 fi
-ln -sfn "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
+cp -r "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
 
 # Link hooks directory to ~/.claude/hooks
 if [[ -e "$HOME/.claude/hooks" || -L "$HOME/.claude/hooks" ]]; then

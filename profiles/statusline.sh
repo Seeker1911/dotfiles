@@ -50,6 +50,7 @@ if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
         git_color="${c_yellow}"
     fi
     branch=$(git -C "$cwd" branch 2>/dev/null | sed -n '/^\*/s/^\* //p')
+    [[ ${#branch} -gt 20 ]] && branch="${branch:0:17}..."
     git_info="${git_color}[${branch}]${c_sgr0} "
 fi
 

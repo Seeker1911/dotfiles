@@ -1,8 +1,7 @@
-let mapleader=" "
+let mapleader=","
 
 """ Plugins  --------------------------------
 set surround
-set multiple-cursors
 set commentary
 set argtextobj
 set easymotion
@@ -48,16 +47,3 @@ map <leader>l V<Action>(ReformatCode)
 
 map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>o <Action>(FileStructurePopup)
-
-map <leader>J Ji <ESC>
-
-" Just makes me nervous
-map H h
-
-" Toggle case and start typing. E.g. `<leader>iget`: `property` -> `getProperty`
-map <leader>i ~hi
-" Remove selection and toggle case. E.g. `v2l<leader>u`: `getProperty` -> `property`
-vmap <leader>u d~h
-
-" I think it's a better solution
-map U <C-R>

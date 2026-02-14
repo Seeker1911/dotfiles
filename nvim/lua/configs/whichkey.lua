@@ -11,6 +11,7 @@ return {
 		{ "<leader>x", group = "Terminal", icon = "" },
 		{ "<leader>c", group = "Code", icon = "" },
 		{ "<leader>r", group = "Ruff/Refactor", icon = "" },
+		{ "<leader>9", group = "99 Agent", icon = "" },
 		{ "<leader>b", group = "Buffer", icon = "" },
 
 		{ "<leader>l", group = "LSP", icon = "" },
@@ -33,6 +34,20 @@ return {
 		{ "z", group = "Fold", icon = "" },
 
 		{ "<C-w>", group = "Window", icon = "" },
+
+		{ "<leader>G", group = "Ghostty", icon = "󰊠" },
+		{ "<leader>Gs", group = "Splits" },
+		{ "<leader>Gsl", "<Nop>", desc = "⌘⇧L  New split right" },
+		{ "<leader>Gsh", "<Nop>", desc = "⌘⇧H  New split left" },
+		{ "<leader>Gn", group = "Navigate" },
+		{ "<leader>Gnl", "<Nop>", desc = "⌘⌥L  Go to split right" },
+		{ "<leader>Gnh", "<Nop>", desc = "⌘⌥H  Go to split left" },
+		{ "<leader>Gr", group = "Resize" },
+		{ "<leader>Grl", "<Nop>", desc = "⌘⌃→  Resize split right" },
+		{ "<leader>Grh", "<Nop>", desc = "⌘⌃←  Resize split left" },
+		{ "<leader>Gp", "<Nop>", desc = "⌘⇧P  Command palette" },
+		{ "<leader>Gq", "<Nop>", desc = "⌘S   Quick terminal" },
+		{ "<leader>Gv", "<Nop>", desc = "⌘⇧T  Toggle visibility" },
 	},
 
 	icons = {

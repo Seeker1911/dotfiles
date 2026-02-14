@@ -1,5 +1,4 @@
 {
-  "model": "opus",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -10,11 +9,22 @@
           }
         ]
       }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre-compact-handover.sh",
+            "timeout": 30
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
     "type": "command",
-    "command": "printf \"\\033[32mseeker \\033[38;5;172m$(pwd)\\033[m\""
+    "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,

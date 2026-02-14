@@ -4,7 +4,8 @@
       "Bash(tree:*)",
       "WebSearch",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:cmp.saghen.dev)"
+      "WebFetch(domain:cmp.saghen.dev)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": [],
     "ask": []

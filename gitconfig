@@ -120,3 +120,5 @@
         conflictstyle = zdiff3 
 [pull]
         # rebase = true
+[pager]
+	diff = diffnav

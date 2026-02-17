@@ -34,7 +34,7 @@ macos-icon-ghost-color = FFA500
 macos-icon-screen-color = dark grey,black
 macos-option-as-alt = true
 
-background-opacity = 0.8
+background-opacity = 0.99
 background-blur-radius = 40 
 
 split-divider-color = #dd6b20

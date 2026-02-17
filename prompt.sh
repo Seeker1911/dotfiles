@@ -39,7 +39,9 @@
     {
         if git rev-parse --git-dir >/dev/null 2>&1
         then
-            gitver="["$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')"]"
+            local branch=$(git branch 2>/dev/null | sed -n '/^\*/s/^\* //p')
+            [[ ${#branch} -gt 20 ]] && branch="${branch:0:17}..."
+            gitver="[${branch}]"
         else
             return 0
         fi

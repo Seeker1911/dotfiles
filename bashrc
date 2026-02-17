@@ -86,7 +86,7 @@ alias weather='curl wttr.in/nashville'
 alias cdg='cd $(git rev-parse --show-toplevel)'
 alias xconfig='cd $XDG_CONFIG_HOME'
 alias vim=nvim
-alias cleangit='git branch --merged | grep -vE "(^\*|master|develop|main)" | xargs git branch -d'
+alias cleangit='git branch | grep -vE "(^\*|master|develop|main)" | xargs git branch -d'
 alias localmysql='mysqld --mysql-native-password=ON'
 alias harlequin='PYENV_VERSION=3.9.6 pyenv exec harlequin'
 

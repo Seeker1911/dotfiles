@@ -1,7 +1,7 @@
 local M = {}
 local map = vim.keymap.set
 
-local servers = { "html", "ts_ls", "eslint", "ruff", "pylsp" }
+local servers = { "html", "ts_ls", "eslint", "ruff", "basedpyright" }
 
 -- export on_attach & capabilities
 M.on_attach = function(_, bufnr)
@@ -30,6 +30,9 @@ M.on_attach = function(_, bufnr)
 	map("n", "<leader>li", function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 	end, opts("Toggle inlay hints"))
+	map("n", "<leader>lk", function()
+		vim.diagnostic.open_float({ scope = "cursor" })
+	end, opts("Hover diagnostic"))
 
 	-- Workspace (,lw prefix)
 	map("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
@@ -63,12 +66,6 @@ M.capabilities = require("blink.cmp").get_lsp_capabilities()
 M.defaults = function()
 	require("configs.lspDiagnostic").diagnostic_config()
 	vim.lsp.set_log_level("WARN")
-
-	-- Helper function to find git root
-	local function find_git_ancestor(path)
-		local util = require("lspconfig.util")
-		return util.find_git_ancestor(path)
-	end
 
 	-- Configure lua_ls
 	vim.lsp.config("lua_ls", {
@@ -220,41 +217,37 @@ M.defaults = function()
 		},
 	})
 
-	-- Configure Ruff
+	-- Configure Ruff (linting + formatting, defer hover to basedpyright)
 	vim.lsp.config("ruff", {
 		cmd = { "ruff", "server", "--preview" },
 		filetypes = { "python" },
 		root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
-		on_attach = M.on_attach,
+		on_attach = function(client, bufnr)
+			client.server_capabilities.hoverProvider = false
+			M.on_attach(client, bufnr)
+		end,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		settings = {
-			-- Use XDG_CONFIG_HOME or fallback to ~/.config
 			configuration = vim.fn.expand((os.getenv("XDG_CONFIG_HOME") or os.getenv("HOME") .. "/.config") .. "/ruff/pyproject.toml"),
 			configurationPreference = "filesystemFirst",
 		},
 	})
 
-	-- Configure pylsp
-	vim.lsp.config("pylsp", {
-		cmd = { "pylsp" },
+	-- Configure basedpyright (type checking, completions, auto-imports, hover)
+	vim.lsp.config("basedpyright", {
+		cmd = { "basedpyright-langserver", "--stdio" },
 		filetypes = { "python" },
-		root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
+		root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", "pyrightconfig.json", ".git" },
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		settings = {
-			pylsp = {
-				plugins = {
-					pycodestyle = { enabled = false },
-					pyflakes = { enabled = false },
-					pylint = { enabled = false },
-					flake8 = { enabled = false },
-					mccabe = { enabled = false },
-					autopep8 = { enabled = false },
-					yapf = { enabled = false },
-					rope_autoimport = { enabled = true },
-					rope_completion = { enabled = true },
+			basedpyright = {
+				analysis = {
+					autoSearchPaths = true,
+					useLibraryCodeForTypes = true,
+					diagnosticMode = "openFilesOnly",
 				},
 			},
 		},
@@ -276,7 +269,7 @@ M.defaults = function()
 				typescript = { "ts_ls", "eslint" },
 				typescriptreact = { "ts_ls", "eslint" },
 				svelte = { "svelte", "eslint" },
-				python = { "ruff", "pylsp" },
+				python = { "ruff", "basedpyright" },
 			}
 
 			local servers_for_ft = filetype_to_servers[vim.bo[bufnr].filetype] or {}

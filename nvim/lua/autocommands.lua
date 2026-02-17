@@ -49,7 +49,7 @@ autocmd("FileType", {
 	end,
 })
 
--- Python specific settings and auto-fix
+-- Python specific settings
 autocmd("FileType", {
 	pattern = "python",
 	callback = function()
@@ -57,16 +57,5 @@ autocmd("FileType", {
 		vim.opt_local.tabstop = 4
 		vim.opt_local.softtabstop = 4
 		vim.opt_local.expandtab = true
-		
-		-- Auto-fix on save with ruff
-		autocmd("BufWritePre", {
-			buffer = 0,
-			callback = function()
-				require("conform").format({ 
-					formatters = { "ruff_fix", "ruff_format" },
-					timeout_ms = 3000,
-				})
-			end,
-		})
 	end,
 })

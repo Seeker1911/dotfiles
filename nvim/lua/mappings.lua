@@ -72,6 +72,17 @@ map("n", "<leader>rl", function()
     end
 end, { desc = "Ruff: lint fix only" })
 
+map("n", "<leader>ro", function()
+    if vim.bo.filetype ~= "python" then
+        vim.notify("Ruff is only for Python files", vim.log.levels.WARN)
+        return
+    end
+    vim.lsp.buf.code_action({
+        context = { only = { "source.organizeImports" } },
+        apply = true,
+    })
+end, { desc = "Ruff: organize imports" })
+
 -- ========================================
 -- Comments
 -- ========================================
@@ -209,6 +220,7 @@ map("n", "<leader>rt", function()
     local runners = {
         javascript = "npm test " .. file,
         typescript = "pnpm ts " .. file,
+        python = "pytest " .. file .. " -v",
     }
 
     local cmd = runners[cur_ft]
@@ -220,7 +232,7 @@ map("n", "<leader>rt", function()
     vim.cmd("vsplit")
     vim.cmd("terminal " .. cmd)
     vim.cmd("startinsert")
-end, { desc = "run typescript/javascript file" })
+end, { desc = "Run test file" })
 
 -- ========================================
 -- Theme & UI Toggles

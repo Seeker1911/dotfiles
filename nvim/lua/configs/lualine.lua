@@ -54,7 +54,7 @@ local lsp_clients = {
 return {
     options = {
         icons_enabled = true,
-        theme = "cyberdream_light",
+        theme = require("configs.theme-toggle").themes[require("configs.theme-toggle").get_mode()].lualine,
         component_separators = "",
         section_separators = "",
         disabled_filetypes = { "mason", "lazy", "NvimTree" },

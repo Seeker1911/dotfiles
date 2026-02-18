@@ -2,10 +2,7 @@
 # CLI actions: (can be proceeded with -h)
 # +help(shows the following), +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
 
-# theme = cyberdream-light
-theme = github
-# theme = Gruvbox Dark
-# theme = cyberdream
+theme = cyberdream-light
 
 confirm-close-surface = false
 

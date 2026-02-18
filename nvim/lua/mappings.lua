@@ -237,7 +237,7 @@ end, { desc = "Run test file" })
 -- ========================================
 -- Theme & UI Toggles
 -- ========================================
-map("n", "<leader>tt", "<cmd>CyberdreamToggleMode<CR>", { desc = "Cyberdream: toggle theme mode" })
+map("n", "<leader>tt", function() require("configs.theme-toggle").toggle() end, { desc = "Toggle light/dark theme" })
 
 -- ========================================
 -- Development Helpers

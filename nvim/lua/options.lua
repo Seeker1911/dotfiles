@@ -7,7 +7,7 @@ local g = vim.g
 -- vim.cmd.colorscheme("gruvbox")
 
 o.background = "light"
-vim.cmd.colorscheme("one")
+vim.cmd.colorscheme("cyberdream")
 
 -- nvim-tree options
 g.loaded_netrw = 1

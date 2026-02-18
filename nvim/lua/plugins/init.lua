@@ -48,8 +48,6 @@ return {
 
     { "ellisonleao/gruvbox.nvim",     priority = 1000,            config = true, opts = {} },
 
-    { "rakr/vim-one",                 lazy = false,               priority = 1000 },
-
     { "nvim-lua/plenary.nvim" },
 
     { "nvzone/volt" },

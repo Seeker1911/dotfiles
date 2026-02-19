@@ -8,7 +8,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="fino-time"
+ZSH_THEME="ys"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -103,18 +105,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export TERM="screen-256color"
-export EDITOR='nvim'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" --glob "!dist/*" --glob "!node_modules/*"'
-export FZF_DEFAULT_OPTS='--height 80% --border'
-export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
-export NVM_DIR="$HOME/.nvm"
-if command -v direnv >/dev/null; then
-	eval "$(direnv hook zsh)"
-fi
-[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
-
 alias vim=nvim
 alias weather='curl wttr.in/nashville'
 alias cleangit='git branch | grep -vE "(^\*|master|develop|main)" | xargs git branch -d'
@@ -122,4 +112,22 @@ alias peek="AWS_PROFILE=peek-dev npx @peek-tech/peek-cli"
 alias peek-env="npx @peek-tech/peek-cli get-env --prefix /apps/consumer/backend/"
 alias peek-sso="aws sso login --sso-session peek"
 
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR='nvim'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" --glob "!dist/*" --glob "!node_modules/*"'
+export FZF_DEFAULT_OPTS='--height 80% --border'
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
+export NVM_DIR="$HOME/.nvm"
+export PATH="$HOME/.local/bin:$PATH"
+
+if command -v direnv >/dev/null; then
+	eval "$(direnv hook zsh)"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm use default
+
+[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
 eval "$(fzf --zsh)"

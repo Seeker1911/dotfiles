@@ -10,7 +10,7 @@ nvim_lua_dir="$dotfiles_dir/nvim/lua"
 claude_dir="$HOME/.claude"
 
 # Files and directories to symlink
-files_to_link="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig myclirc ideavimrc"
+files_to_link="zshrc vimrc tmux.conf gitignore_global gitconfig myclirc ideavimrc"
 config_files="pylintrc"
 # nvim_files="init.lua"
 

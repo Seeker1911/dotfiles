@@ -81,4 +81,9 @@ fi
 ln -sf "$dotfiles_dir/agents/settings.json" "$HOME/.claude/settings.json"
 ln -sf "$dotfiles_dir/profiles/statusline.sh" "$HOME/.claude/statusline.sh"
 
+# Link custom oh-my-zsh themes
+omz_themes_dir="$HOME/.oh-my-zsh/custom/themes"
+mkdir -p "$omz_themes_dir"
+ln -sf "$dotfiles_dir/oh-my-zsh/custom/themes/mp.zsh-theme" "$omz_themes_dir/mp.zsh-theme"
+
 echo "Dotfiles successfully linked!"

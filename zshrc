@@ -112,7 +112,6 @@ alias peek="AWS_PROFILE=peek-dev npx @peek-tech/peek-cli"
 alias peek-env="npx @peek-tech/peek-cli get-env --prefix /apps/consumer/backend/"
 alias peek-sso="aws sso login --sso-session peek"
 
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR='nvim'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" --glob "!dist/*" --glob "!node_modules/*"'

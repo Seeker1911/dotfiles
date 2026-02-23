@@ -5,7 +5,10 @@
       "WebSearch",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:cmp.saghen.dev)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh pr view:*)",
+      "Bash(gh api:*)",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "ask": []

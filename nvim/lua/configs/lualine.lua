@@ -1,53 +1,79 @@
+local function nf(codepoint)
+    return vim.fn.nr2char(codepoint)
+end
+
+local diagnostics = {
+    "diagnostics",
+    sources = { "nvim_diagnostic" },
+    sections = { "error", "warn", "info", "hint" },
+    symbols = {
+        error = nf(0xF06A) .. " ",
+        warn = nf(0xF071) .. " ",
+        info = nf(0xF05A) .. " ",
+        hint = nf(0xF0EB) .. " ",
+    },
+    colored = true,
+    update_in_insert = false,
+    always_visible = false,
+}
+
+local diff = {
+    "diff",
+    source = function()
+        local gitsigns = vim.b.gitsigns_status_dict
+        if gitsigns then
+            return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+            }
+        end
+    end,
+    symbols = {
+        added = nf(0xF055) .. " ",
+        modified = nf(0xF040) .. " ",
+        removed = nf(0xF056) .. " ",
+    },
+    colored = true,
+    always_visible = false,
+    padding = { left = 1, right = 3 },
+}
+
+local lsp_clients = {
+    function()
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        if #clients == 0 then return "" end
+        local names = {}
+        for _, client in ipairs(clients) do
+            table.insert(names, client.name)
+        end
+        return nf(0xF085) .. " " .. table.concat(names, ", ")
+    end,
+}
+
 return {
-	options = {
-		icons_enabled = true,
-		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		disabled_filetypes = {
-			statusline = {},
-			winbar = {},
-		},
-		ignore_focus = {},
-		always_divide_middle = true,
-		always_show_tabline = true,
-		globalstatus = true,
-		refresh = {
-			statusline = 100,
-			tabline = 100,
-			winbar = 100,
-		},
-	},
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = {
-			{
-				"filename",
-				path = 1, -- 0 = just name, 1 = relative, 2 = absolute, 3 = ~ shortened
-				shorting_target = 50, -- (optional) shorten long paths to keep statusline compact
-				symbols = {
-					modified = "[+]", -- Text to show when the file is modified.
-					readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
-					unnamed = "[No Name]", -- Text to show for unnamed buffers.
-					newfile = "[New]", -- Text to show for newly created file before first write
-				},
-			},
-		},
-		lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_y = { "progress", "searchcount" },
-		lualine_z = { "location" },
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
-	tabline = {},
-	winbar = {},
-	inactive_winbar = {},
-	extensions = { "lazy" },
+    options = {
+        icons_enabled = true,
+        theme = require("configs.theme-toggle").themes[require("configs.theme-toggle").get_mode()].lualine,
+        component_separators = "",
+        section_separators = "",
+        disabled_filetypes = { "mason", "lazy", "NvimTree" },
+        globalstatus = true,
+    },
+    sections = {
+        lualine_a = { "mode" },
+        lualine_b = {},
+        lualine_c = {
+            {
+                "filename",
+                path = 1,
+                shorting_target = 50,
+            },
+            lsp_clients,
+        },
+        lualine_x = { diff, diagnostics, { "filetype", icon_only = true } },
+        lualine_y = {},
+        lualine_z = {},
+    },
+    extensions = { "lazy" },
 }

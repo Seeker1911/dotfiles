@@ -3,11 +3,6 @@
 # +help(shows the following), +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
 
 theme = cyberdream-light
-# theme = Gruvbox Dark
-# theme = Gruvbox Dark
-# theme = cyberdream-light
-# theme = cyberdream
-# theme = github
 
 confirm-close-surface = false
 
@@ -34,7 +29,7 @@ macos-icon-ghost-color = FFA500
 macos-icon-screen-color = dark grey,black
 macos-option-as-alt = true
 
-background-opacity = 0.8
+background-opacity = 0.99
 background-blur-radius = 40 
 
 split-divider-color = #dd6b20

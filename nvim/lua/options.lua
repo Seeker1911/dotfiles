@@ -2,12 +2,10 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
--- Colorscheme configuration
--- o.background = "dark"
--- vim.cmd.colorscheme("gruvbox")
-
-o.background = "light"
-vim.cmd.colorscheme("cyberdream")
+local theme_toggle = require("configs.theme-toggle")
+local theme = theme_toggle.themes[theme_toggle.get_mode()]
+o.background = theme.background
+vim.cmd.colorscheme(theme.colorscheme)
 
 -- nvim-tree options
 g.loaded_netrw = 1

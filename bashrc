@@ -28,7 +28,7 @@ export EDITOR='nvim'
 # export GOPATH="$HOME/go"
 # export GOBIN="$GOPATH/bin"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" --glob "!dist/*" --glob "!node_modules/*"'
-export FZF_DEFAULT_OPTS='--height 70% --border'
+export FZF_DEFAULT_OPTS='--height 80% --border'
 export HISTSIZE=1000
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export PYTHONBREAKPOINT="ipdb.set_trace"
@@ -86,7 +86,7 @@ alias weather='curl wttr.in/nashville'
 alias cdg='cd $(git rev-parse --show-toplevel)'
 alias xconfig='cd $XDG_CONFIG_HOME'
 alias vim=nvim
-alias cleangit='git branch --merged | grep -vE "(^\*|master|develop|main)" | xargs git branch -d'
+alias cleangit='git branch | grep -vE "(^\*|master|develop|main)" | xargs git branch -d'
 alias localmysql='mysqld --mysql-native-password=ON'
 alias harlequin='PYENV_VERSION=3.9.6 pyenv exec harlequin'
 

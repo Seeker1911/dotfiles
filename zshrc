@@ -107,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim=nvim
 alias weather='curl wttr.in/nashville'
+alias weathr='weathr --imperial --auto-location'
 alias cleangit='git branch | grep -vE "(^\*|master|develop|main)" | xargs git branch -d'
 alias peek="AWS_PROFILE=peek-dev npx @peek-tech/peek-cli"
 alias peek-env="npx @peek-tech/peek-cli get-env --prefix /apps/consumer/backend/"

@@ -10,7 +10,7 @@ nvim_lua_dir="$dotfiles_dir/nvim/lua"
 claude_dir="$HOME/.claude"
 
 # Files and directories to symlink
-files_to_link="bashrc bash_profile vimrc tmux.conf gitignore_global gitconfig myclirc ideavimrc"
+files_to_link="zshrc zprofile vimrc tmux.conf gitignore_global gitconfig myclirc ideavimrc"
 config_files="pylintrc"
 # nvim_files="init.lua"
 
@@ -68,6 +68,12 @@ if [[ -e "$HOME/.claude/skills" || -L "$HOME/.claude/skills" ]]; then
 fi
 cp -r "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
 
+# Link commands directory to ~/.claude/commands
+if [[ -e "$HOME/.claude/commands" || -L "$HOME/.claude/commands" ]]; then
+	mv "$HOME/.claude/commands" "$backup_dir/" 2>/dev/null
+fi
+ln -sfn "$dotfiles_dir/agents/commands" "$HOME/.claude/commands"
+
 # Link hooks directory to ~/.claude/hooks
 if [[ -e "$HOME/.claude/hooks" || -L "$HOME/.claude/hooks" ]]; then
 	mv "$HOME/.claude/hooks" "$backup_dir/" 2>/dev/null
@@ -80,5 +86,10 @@ if [[ -e "$HOME/.claude/settings.json" || -L "$HOME/.claude/settings.json" ]]; t
 fi
 ln -sf "$dotfiles_dir/agents/settings.json" "$HOME/.claude/settings.json"
 ln -sf "$dotfiles_dir/profiles/statusline.sh" "$HOME/.claude/statusline.sh"
+
+# Link custom oh-my-zsh themes
+omz_themes_dir="$HOME/.oh-my-zsh/custom/themes"
+mkdir -p "$omz_themes_dir"
+ln -sf "$dotfiles_dir/oh-my-zsh/custom/themes/mp.zsh-theme" "$omz_themes_dir/mp.zsh-theme"
 
 echo "Dotfiles successfully linked!"

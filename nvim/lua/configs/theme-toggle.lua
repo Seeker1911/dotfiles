@@ -4,7 +4,7 @@ M.themes = {
     light = {
         colorscheme = "cyberdream",
         background = "light",
-        lualine = "cyberdream_light",
+        lualine = "evil_lualine",
         ghostty = "cyberdream-light",
     },
     dark = {

@@ -15,13 +15,28 @@ return {
 		},
 		{
 			"<leader>lts",
-			"<cmd>Trouble symbols toggle focus=false<cr>",
+			"<cmd>Trouble symbols toggle focus=false win.position=right win.size=0.3<cr>",
 			desc = "Trouble: Symbols",
 		},
 		{
 			"<leader>ltr",
-			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+			"<cmd>Trouble lsp_references toggle focus=false win.position=right win.size=0.3<cr>",
 			desc = "Trouble: References",
+		},
+		{
+			"<leader>ltf",
+			"<cmd>Trouble lsp_definitions toggle focus=false win.position=right win.size=0.3<cr>",
+			desc = "Trouble: Definitions",
+		},
+		{
+			"<leader>lti",
+			"<cmd>Trouble lsp_implementations toggle focus=false win.position=right win.size=0.3<cr>",
+			desc = "Trouble: Implementations",
+		},
+		{
+			"<leader>ltt",
+			"<cmd>Trouble lsp_type_definitions toggle focus=false win.position=right win.size=0.3<cr>",
+			desc = "Trouble: Type definitions",
 		},
 		{
 			"<leader>ltl",

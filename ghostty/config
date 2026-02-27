@@ -19,7 +19,7 @@ keybind = super+ctrl+left=resize_split:left,100
 keybind = global:cmd+s=toggle_quick_terminal
 keybind = global:super+shift+t=toggle_visibility
 
-shell-integration = bash
+# shell-integration = zsh
 shell-integration-features = sudo
 
 macos-titlebar-style = transparent 
@@ -37,7 +37,7 @@ split-divider-color = #dd6b20
 unfocused-split-opacity = 0.8
 
 font-family = JetBrainsMono Nerd Font Mono
-font-size = 14
+font-size = 15
 # ss01: != and ===
 font-feature = "ss01"
 # ss02: <= and >=

@@ -72,7 +72,7 @@ ZSH_THEME="mp"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws alias-finder 1password brew docker dotenv macos man mosh node pyenv python tailscale fzf gh github gitignore keychain npm nvm pip per-directory-history ssh stripe vi-mode vim-interaction yarn web-search)
+# plugins=(git aws alias-finder 1password brew docker dotenv macos man mosh node pyenv python tailscale fzf gh github gitignore keychain npm nvm pip per-directory-history ssh stripe vi-mode vim-interaction yarn web-search)
 
 source $ZSH/oh-my-zsh.sh
 

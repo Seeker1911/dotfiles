@@ -68,6 +68,12 @@ if [[ -e "$HOME/.claude/skills" || -L "$HOME/.claude/skills" ]]; then
 fi
 cp -r "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
 
+# Link commands directory to ~/.claude/commands
+if [[ -e "$HOME/.claude/commands" || -L "$HOME/.claude/commands" ]]; then
+	mv "$HOME/.claude/commands" "$backup_dir/" 2>/dev/null
+fi
+ln -sfn "$dotfiles_dir/agents/commands" "$HOME/.claude/commands"
+
 # Link hooks directory to ~/.claude/hooks
 if [[ -e "$HOME/.claude/hooks" || -L "$HOME/.claude/hooks" ]]; then
 	mv "$HOME/.claude/hooks" "$backup_dir/" 2>/dev/null

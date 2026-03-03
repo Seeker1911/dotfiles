@@ -132,3 +132,5 @@ nvm use default
 
 [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
 eval "$(fzf --zsh)"
+
+[ -f ~/.secrets.sh ] && source ~/.secrets.sh

@@ -8,7 +8,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(gh pr view:*)",
       "Bash(gh api:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "WebFetch(domain:app.chiltonlibrary.com)"
     ],
     "deny": [],
     "ask": []

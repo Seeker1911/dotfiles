@@ -4,13 +4,9 @@
 
 theme = cyberdream-light
 
-confirm-close-surface = false
-
 keybind = ctrl+z=close_surface
-
 keybind = super+shift+l=new_split:right
 keybind = super+shift+h=new_split:left
-
 keybind = super+alt+l=goto_split:right
 keybind = super+alt+h=goto_split:left
 keybind = super+ctrl+right=resize_split:right,100
@@ -19,22 +15,32 @@ keybind = super+ctrl+left=resize_split:left,100
 keybind = global:cmd+s=toggle_quick_terminal
 keybind = global:super+shift+t=toggle_visibility
 
+background-opacity = 0.90
+# background-image = /Users/michaelmead/Library/Mobile Documents/com~apple~CloudDocs/Documents/photos/wallpapers/ghostty_background.jpg
+background-image-fit = cover
+background-blur = macos-glass-clear
+background-blur-radius = 05 
+split-divider-color = #EF630C
+# unfocused-split-fill = #acaaaa
+unfocused-split-opacity = 0.7
+
+split-divider-color = #EF630C
+confirm-close-surface = false
+quit-after-last-window-closed = true
+quick-terminal-size = 40%
+quick-terminal-autohide = false
 # shell-integration = zsh
 shell-integration-features = sudo
 
 macos-titlebar-style = transparent 
-macos-icon = custom-style
-macos-icon-frame = plastic
-macos-icon-ghost-color = FFA500
-macos-icon-screen-color = dark grey,black
 macos-option-as-alt = true
 
-background-opacity = 0.99
-background-blur-radius = 40 
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = #E67B0E
+macos-icon-screen-color = #386C44
 
-split-divider-color = #dd6b20
-# unfocused-split-fill = #dd6b20
-unfocused-split-opacity = 0.8
+mouse-hide-while-typing = true
 
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 15
@@ -57,15 +63,18 @@ window-inherit-working-directory = true
 window-theme = system
 window-save-state = always
 window-padding-color = background
+
 quit-after-last-window-closed = true
 
 # cursor-invert-fg-bg = true
 cursor-style = block
 # cursor-color = white
 
-
 clipboard-read = "allow"
 clipboard-paste-protection = false
 
 quick-terminal-position = center 
 keybind = shift+enter=text:\n
+confirm-close-surface = false
+clipboard-read = allow
+copy-on-select = true

@@ -73,6 +73,7 @@ ZSH_THEME="mp"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git aws alias-finder 1password brew docker dotenv macos man mosh node pyenv python tailscale fzf gh github gitignore keychain npm nvm pip per-directory-history ssh stripe vi-mode vim-interaction yarn web-search)
+plugins=(git aws alias-finder 1password brew docker dotenv macos man mosh node pyenv python tailscale fzf gh github gitignore keychain npm nvm pip per-directory-history ssh stripe vi-mode vim-interaction yarn web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,3 +135,9 @@ nvm use default
 eval "$(fzf --zsh)"
 
 [ -f ~/.secrets.sh ] && source ~/.secrets.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/michaelmead/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/michaelmead/code/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/michaelmead/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/michaelmead/code/google-cloud-sdk/completion.zsh.inc'; fi

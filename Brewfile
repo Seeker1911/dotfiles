@@ -1,10 +1,13 @@
 tap "browsh-org/browsh"
 tap "buo/cask-upgrade"
+tap "dlvhdr/formulae"
 tap "github/gh"
 tap "koekeishiya/formulae"
+tap "manaflow-ai/cmux"
 tap "oven-sh/bun"
 tap "sst/tap"
 tap "timescale/tap"
+tap "veirt/veirt"
 brew "aalib"
 brew "ack"
 brew "ansifilter"
@@ -148,13 +151,17 @@ brew "wget"
 brew "wimlib"
 brew "wp-cli"
 brew "yarn"
+brew "yt-dlp"
 brew "zoxide"
 brew "browsh-org/browsh/browsh"
+brew "dlvhdr/formulae/diffnav"
 brew "sst/tap/opencode"
+brew "veirt/veirt/weathr"
 cask "arc"
 cask "brave-browser"
 cask "bruno"
 cask "claude"
+cask "cmux"
 cask "emacs-app"
 cask "figma"
 cask "firefox"
@@ -188,6 +195,7 @@ mas "Jayson", id: 1468691718
 mas "Jolt of Caffeine", id: 1437130425
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
+mas "MDClock", id: 1536358464
 mas "MKPlayer", id: 1335612105
 mas "Notion Web Clipper", id: 1559269364
 mas "Numbers", id: 409203825
@@ -204,3 +212,4 @@ mas "Supernote Partner", id: 1494992020
 mas "TestFlight", id: 899247664
 mas "ToothFairy", id: 1191449274
 mas "Xcode", id: 497799835
+uv "posting"

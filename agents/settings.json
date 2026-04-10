@@ -1,5 +1,11 @@
 {
   "hooks": {
+    "SessionStart": [{
+      "hooks": [{
+        "type": "command",
+        "command": "git status > /tmp/claude-git-context.txt && echo 'Development context loaded'"
+      }]
+    }],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -30,6 +36,18 @@
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true
-  }
+    "pyright-lsp@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "peek-aws-logs@peek-claude-marketplace": true,
+    "atlassian@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "peek-claude-marketplace": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/michaelmead/workspaces/peek-claude-marketplace"
+      }
+    }
+  },
+  "effortLevel": "high"
 }

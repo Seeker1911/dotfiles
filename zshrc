@@ -120,7 +120,8 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" --glob "!dist/*
 export FZF_DEFAULT_OPTS='--height 80% --border'
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE=true
 export NVM_DIR="$HOME/.nvm"
-export PATH="$HOME/.local/bin:$PATH"
+
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
 
 if command -v direnv >/dev/null; then
 	eval "$(direnv hook zsh)"
@@ -136,8 +137,15 @@ eval "$(fzf --zsh)"
 
 [ -f ~/.secrets.sh ] && source ~/.secrets.sh
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/michaelmead/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/michaelmead/code/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/michaelmead/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/michaelmead/code/google-cloud-sdk/completion.zsh.inc'; fi
+_dedoc_pick() {
+    local docset="$1"; shift
+    local query="$*"
+    local pick
+    pick=$(dedoc search "$docset" "$query" --porcelain \
+      | fzf --height=40% --reverse \
+             --preview "dedoc open $docset {} 2>/dev/null | head -60" \
+             --preview-window=right:60%:wrap)
+    [[ -n "$pick" ]] && dedoc open "$docset" "$pick" | less -R
+  }
+  js() { _dedoc_pick javascript "$@" }
+  ts() { _dedoc_pick typescript "$@" }

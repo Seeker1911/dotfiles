@@ -9,7 +9,8 @@
       "Bash(gh pr view:*)",
       "Bash(gh api:*)",
       "Bash(git log:*)",
-      "WebFetch(domain:app.chiltonlibrary.com)"
+      "WebFetch(domain:app.chiltonlibrary.com)",
+      "WebFetch(domain:pathtoprecision.com)"
     ],
     "deny": [],
     "ask": []

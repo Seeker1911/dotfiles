@@ -42,17 +42,10 @@
     "gopls-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
-    "peek-aws-logs@peek-claude-marketplace": true,
     "atlassian@claude-plugins-official": true,
     "mempalace@mempalace": true
   },
   "extraKnownMarketplaces": {
-    "peek-claude-marketplace": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/michaelmead/workspaces/peek-claude-marketplace"
-      }
-    },
     "mempalace": {
       "source": {
         "source": "github",
@@ -60,5 +53,6 @@
       }
     }
   },
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "theme": "light"
 }

@@ -17,6 +17,32 @@ M.themes = {
 
 local state_file = vim.fn.stdpath("data") .. "/.theme_mode"
 
+local function octo_left_ns()
+    return vim.api.nvim_create_namespace("octo_review_left_highlight")
+end
+
+local function octo_right_ns()
+    return vim.api.nvim_create_namespace("octo_review_right_highlight")
+end
+
+local function apply_octo_diff_highlights()
+    if vim.o.background ~= "light" then return end
+    local set = vim.api.nvim_set_hl
+    set(octo_left_ns(), "DiffText", { background = "#ef9a9a" })
+    set(octo_left_ns(), "DiffChange", { link = "DiffDelete" })
+    set(octo_right_ns(), "DiffText", { background = "#a5d6a7" })
+    set(octo_right_ns(), "DiffChange", { link = "DiffAdd" })
+end
+
+local function apply_global_diff_highlights()
+    if vim.o.background ~= "light" then return end
+    local set = vim.api.nvim_set_hl
+    set(0, "DiffAdd", { background = "#c8e6c9" })
+    set(0, "DiffDelete", { background = "#ffcdd2" })
+    set(0, "DiffChange", { background = "#fff9c4" })
+    set(0, "DiffText", { background = "#ffe082" })
+end
+
 function M.get_mode()
     local f = io.open(state_file, "r")
     if not f then return "light" end
@@ -55,6 +81,8 @@ local function apply(mode)
     if vim.o.background == theme.background then return end
     vim.o.background = theme.background
     vim.cmd.colorscheme(theme.colorscheme)
+    apply_global_diff_highlights()
+    apply_octo_diff_highlights()
     local ok, lualine = pcall(require, "lualine")
     if ok then
         lualine.setup({ options = { theme = theme.lualine } })
@@ -63,6 +91,20 @@ end
 
 vim.api.nvim_create_autocmd("FocusGained", {
     callback = function() apply(M.get_mode()) end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyLoad",
+    callback = function(args)
+        if args.data ~= "octo.nvim" then return end
+        local ok, layout_module = pcall(require, "octo.reviews.layout")
+        if not ok or not layout_module.Layout then return end
+        local original = layout_module.Layout.init_layout
+        layout_module.Layout.init_layout = function(self)
+            original(self)
+            apply_octo_diff_highlights()
+        end
+    end,
 })
 
 function M.toggle()

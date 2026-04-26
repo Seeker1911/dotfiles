@@ -33,12 +33,12 @@ opt.foldnestmax = 3
 opt.foldtext = ""
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    callback = function()
-        if require("nvim-treesitter.parsers").has_parser() then
-            vim.opt.foldmethod = "expr"
-            vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    callback = function(args)
+        if pcall(vim.treesitter.get_parser, args.buf) then
+            vim.opt_local.foldmethod = "expr"
+            vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         else
-            vim.opt.foldmethod = "syntax"
+            vim.opt_local.foldmethod = "syntax"
         end
     end,
 })

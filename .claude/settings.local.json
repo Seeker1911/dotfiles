@@ -10,7 +10,12 @@
       "Bash(gh api:*)",
       "Bash(git log:*)",
       "WebFetch(domain:app.chiltonlibrary.com)",
-      "WebFetch(domain:pathtoprecision.com)"
+      "WebFetch(domain:pathtoprecision.com)",
+      "mcp__plugin_mempalace_mempalace__mempalace_status",
+      "mcp__plugin_mempalace_mempalace__mempalace_get_taxonomy",
+      "mcp__plugin_mempalace_mempalace__mempalace_get_aaak_spec",
+      "mcp__plugin_mempalace_mempalace__mempalace_diary_write",
+      "mcp__plugin_mempalace_mempalace__mempalace_add_drawer"
     ],
     "deny": [],
     "ask": []

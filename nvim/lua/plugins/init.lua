@@ -23,16 +23,23 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPost", "BufNewFile" },
-        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+        branch = "main",
+        lazy = false,
         build = ":TSUpdate",
-        opts = function()
-            return require("configs.treesitter")
-        end,
-        config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
-            -- Register markdown parser for octo.nvim buffers
-            vim.treesitter.language.register('markdown', 'octo')
+        config = function()
+            require("nvim-treesitter").install({
+                "python", "vim", "lua", "luadoc", "printf", "vimdoc",
+                "html", "css", "svelte", "javascript", "typescript",
+                "bash", "regex", "sql",
+            })
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    if pcall(vim.treesitter.start, args.buf) then
+                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end,
+            })
+            vim.treesitter.language.register("markdown", "octo")
         end,
     },
 

@@ -3,6 +3,7 @@
 # +help(shows the following), +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
 
 theme = cyberdream-light
+# theme = belafonte-day
 
 keybind = ctrl+z=close_surface
 keybind = super+shift+l=new_split:right

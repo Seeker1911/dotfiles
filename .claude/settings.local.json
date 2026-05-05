@@ -15,7 +15,10 @@
       "mcp__plugin_mempalace_mempalace__mempalace_get_taxonomy",
       "mcp__plugin_mempalace_mempalace__mempalace_get_aaak_spec",
       "mcp__plugin_mempalace_mempalace__mempalace_diary_write",
-      "mcp__plugin_mempalace_mempalace__mempalace_add_drawer"
+      "mcp__plugin_mempalace_mempalace__mempalace_add_drawer",
+      "Bash(defaults read *)",
+      "Read(//Users/michaelmead/.config/ghostty/**)",
+      "Read(//Users/michaelmead/.config/ghostty/themes/**)"
     ],
     "deny": [],
     "ask": []

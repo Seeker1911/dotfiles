@@ -54,5 +54,7 @@
     }
   },
   "effortLevel": "high",
-  "theme": "light"
+  "theme": "light",
+  "skipAutoPermissionPrompt": true,
+  "agentPushNotifEnabled": true
 }

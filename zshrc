@@ -3,6 +3,7 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+bindkey -v
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -113,6 +114,12 @@ alias cleangit='git branch | grep -vE "(^\*|master|develop|main)" | xargs git br
 alias peek="AWS_PROFILE=peek-dev npx @peek-tech/peek-cli"
 alias peek-env="npx @peek-tech/peek-cli get-env --prefix /apps/consumer/backend/"
 alias peek-sso="aws sso login --sso-session peek"
+alias posting-dev='posting --collection
+~/posting/discovery-backend/collection'
+alias posting-prod='posting --collection
+~/posting/discovery-backend/collection --env
+~/posting/discovery-backend/posting.env --env
+~/posting/discovery-backend/prod.env'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR='nvim'

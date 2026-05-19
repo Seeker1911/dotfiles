@@ -55,6 +55,6 @@
   },
   "effortLevel": "high",
   "theme": "light",
-  "skipAutoPermissionPrompt": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }

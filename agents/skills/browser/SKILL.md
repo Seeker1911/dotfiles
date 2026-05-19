@@ -23,6 +23,8 @@ One CLI for skills, browser primitives, debugging, and cloud sessions, designed 
     * browse network --tail
     * browse console --tail
 
+- To see all available commands use `browse` to see help text
+
 ## What This Skill Does
 This skill and cli tool allows LLM's to automate website interaction to assisst in development, debugging, discovery
 

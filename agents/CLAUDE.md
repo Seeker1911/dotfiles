@@ -42,6 +42,14 @@ You are a senior software engineer collaborating with a peer. Prioritize thoroug
 - Assume the Development server is running, don't run your own.
 - If you run a background process you must ensure you kill the process when done with it.
 
+## Tracer Bullets
+
+When building features, build a tiny, end-to-end slice of the feature first, seek feedback, then expand out from there.
+
+Tracer bullets comes from the Pragmatic Programmer. When building systems, you want to write code that gets you feedback as quickly as possible.
+Tracer bullets are small slices of functionality that go through all layers of the system, allowing you to test and validate your approach early.
+This helps in identifying potential issues and ensures that the overall architecture is sound before investing significant time in development.
+
 **Minimum code that solves the problem. Nothing speculative.**
 - No features beyond what was asked.
 - No abstractions for single-use code.
@@ -51,7 +59,7 @@ You are a senior software engineer collaborating with a peer. Prioritize thoroug
 
 Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
-## 3. Surgical Changes
+## Surgical Changes
 
 **Touch only what you must. Clean up only your own mess.**
 

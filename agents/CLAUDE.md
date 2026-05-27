@@ -42,6 +42,29 @@ You are a senior software engineer collaborating with a peer. Prioritize thoroug
 - Assume the Development server is running, don't run your own.
 - If you run a background process you must ensure you kill the process when done with it.
 
+**Minimum code that solves the problem. Nothing speculative.**
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
+
+When your changes create orphans:
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked. But you should mention it. 
+
 ## What NOT to do
 - Don't comment code changes ever. The only acceptable comments in code are explaining why a choice was made, particularly if it would seem odd to someone reading it for the first time.
 - Don't wrap blocks of code in try/catch. It hides real errors. Exceptions should be explicit.

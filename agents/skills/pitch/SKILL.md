@@ -11,6 +11,8 @@ Upon request by the user to enable this skill, ask the user what we are planning
 
 ## Plan phase
 Use the plan skill to decide on requirements for a feature
+Use the /grill-me skill to drill down on decisions with the developer until there is absolute mutual understanding.
+Dont default to very long output in examples and responses, information is easily missed that way.
 
 ## Write phase
 Create a Markdown document in ~/Documents/Obsidian Vault/Work/Peek/[title.md]

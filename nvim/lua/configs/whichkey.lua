@@ -24,6 +24,7 @@ return {
 		{ "<leader>gd", group = "Diff", icon = "" },
 		{ "<leader>gn", group = "Neogit", icon = "" },
 		{ "<leader>go", group = "GitHub", icon = "" },
+		{ "<leader>gr", group = "PR Review", icon = "" },
 		{ "<leader>gt", group = "Toggle", icon = "󰔡" },
 
 		{ "]", group = "Next", icon = "" },

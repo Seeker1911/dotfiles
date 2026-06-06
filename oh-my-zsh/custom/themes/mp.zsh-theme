@@ -66,8 +66,10 @@ function git_time_since_commit() {
     fi
 }
 
+MP_HOST="${$(scutil --get LocalHostName 2>/dev/null):-${HOST:h}}"
+
 PROMPT='
-%{$fg[yellow]%}%m%{$reset_color%} %{$fg[red]%}%(5~|%-1~/…/%3~|%4~) %{$reset_color%}$(git_prompt_short_sha)$(git_prompt_info)
+%{$fg[yellow]%}${MP_HOST}%{$reset_color%} %{$fg[red]%}%(5~|%-1~/…/%3~|%4~) %{$reset_color%}$(git_prompt_short_sha)$(git_prompt_info)
 $(prompt_char) '
 
 RPROMPT='${return_status}$(git_time_since_commit)$(git_prompt_status)%{$reset_color%}'

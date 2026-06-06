@@ -27,6 +27,12 @@
       "Bash(ls -la /Users/michaelmead/.local/share/nvim/lazy/nvim-treesitter/parser/vim.*)",
       "Bash(ls -la /Users/michaelmead/.local/lib/nvim/parser/vim.*)",
       "Bash(ls -la /Users/michaelmead/.local/share/nvim/site/parser/vim.*)"
+      "Read(//Users/michaelmead/.config/ghostty/themes/**)"
+      "Bash(scutil --get HostName)",
+      "Bash(echo \"HostName: $\\(scutil --get HostName 2>/dev/null\\)\")",
+      "Bash(scutil --get LocalHostName)",
+      "Bash(echo \"LocalHostName: $\\(scutil --get LocalHostName 2>/dev/null\\)\")",
+      "Bash(scutil --get ComputerName)"
     ],
     "deny": [],
     "ask": []

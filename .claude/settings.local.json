@@ -18,7 +18,15 @@
       "mcp__plugin_mempalace_mempalace__mempalace_add_drawer",
       "Bash(defaults read *)",
       "Read(//Users/michaelmead/.config/ghostty/**)",
-      "Read(//Users/michaelmead/.config/ghostty/themes/**)"
+      "Read(//Users/michaelmead/.config/ghostty/themes/**)",
+      "Bash(find /Users/michaelmead/.local/share/nvim/tree-sitter-vim* -name \"*.json\" -o -name \"grammar.*\")",
+      "Bash(find *)",
+      "Bash(/opt/homebrew/bin/nvim --headless -c 'lua local info = vim.treesitter.language.inspect\\(\"vim\"\\); print\\(vim.inspect\\(info.symbols\\)\\):sub\\(1,3000\\)' -c 'q')",
+      "Bash(/opt/homebrew/bin/nvim *)",
+      "Read(//opt/homebrew/Cellar/neovim/0.11.3/lib/nvim/parser/**)",
+      "Bash(ls -la /Users/michaelmead/.local/share/nvim/lazy/nvim-treesitter/parser/vim.*)",
+      "Bash(ls -la /Users/michaelmead/.local/lib/nvim/parser/vim.*)",
+      "Bash(ls -la /Users/michaelmead/.local/share/nvim/site/parser/vim.*)"
     ],
     "deny": [],
     "ask": []

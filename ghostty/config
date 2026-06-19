@@ -2,7 +2,8 @@
 # CLI actions: (can be proceeded with -h)
 # +help(shows the following), +list-keybinds +list-fonts, +list-actions, +show-config, +validate-config +list-themes, +list-colors +crash-report
 
-theme = cyberdream-light
+theme = custom
+# theme = cyberdream-light
 # theme = belafonte-day
 
 keybind = ctrl+z=close_surface
@@ -19,13 +20,12 @@ keybind = global:super+shift+t=toggle_visibility
 background-opacity = 1.00
 # background-image = /Users/michaelmead/Library/Mobile Documents/com~apple~CloudDocs/Documents/photos/wallpapers/ghostty_background.jpg
 background-image-fit = cover
-background-blur = macos-glass-clear
-background-blur-radius = 05 
-split-divider-color = #EF630C
+# background-blur = macos-glass-clear
+# background-blur-radius = 01 
 # unfocused-split-fill = #acaaaa
-unfocused-split-opacity = 0.9
+unfocused-split-opacity = 1.0
 
-split-divider-color = #EF630C
+split-divider-color = #ff5a1f
 confirm-close-surface = false
 quit-after-last-window-closed = true
 quick-terminal-size = 40%

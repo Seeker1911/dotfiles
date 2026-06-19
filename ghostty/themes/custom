@@ -1,0 +1,27 @@
+# custom — cyberdream-light base with warm neon accents
+# Base palette stays cyberdream-light (muted, readable on white), except:
+#   yellow (3/11) -> electric blue: the mp prompt host (was muddy gold)
+#   cyan   (6/14) -> hot magenta: ls directory color (was aqua)
+# Other neon accents: cursor + selection below; split divider lives in config.
+palette = 0=#ffffff
+palette = 1=#d11500
+palette = 2=#008b0c
+palette = 3=#1f6fff
+palette = 4=#0057d1
+palette = 5=#a018ff
+palette = 6=#e80a89
+palette = 7=#16181a
+palette = 8=#acacac
+palette = 9=#d11500
+palette = 10=#008b0c
+palette = 11=#1f6fff
+palette = 12=#0057d1
+palette = 13=#a018ff
+palette = 14=#e80a89
+palette = 15=#16181a
+
+background = #ffffff
+foreground = #16181a
+cursor-color = #ff2d78
+selection-background = #ffd9c2
+selection-foreground = #16181a

@@ -11,14 +11,19 @@ Upon request by the user to enable this skill, ask the user what we are planning
 
 ## Plan phase
 Use the plan skill to decide on requirements for a feature
+Use the /grill-me skill to drill down on decisions with the developer until there is absolute mutual understanding.
+Dont default to very long output in examples and responses, information is easily missed that way.
 
 ## Write phase
-Create a Markdown document in ~/Documents directory
+Create a Markdown document in ~/Documents/Obsidian Vault/Work/Peek/[title.md]
 Recommended length: 1–3 pages of core content (~700-2,400 words)
 The document should not take longer than 10-15 minutes to read
+The document is technical in nature but not technical implementation. It should contain enough info to inform any developer that is assigned 
+on what to do, not how to implement. It generally should not contain code blocks except when informing a contract between functional components, backend/frontend for example.
+It should be technical enough to impress the CTO while written with enough prose to satisfy a product owner.
 
 ## Audience
-engineering leads, product, technical executive
+engineering leads, product, technical executives
 
 # Critical, the format must contain the following sections
 1. Task / Story
@@ -101,6 +106,6 @@ The people assigned to each milestone of this story, by name. Where this story d
 * Use active voice
 * Put the most important information first
 * Include relevant links and references
-* Do not draw diagrams
+* Do not draw diagrams or use emojis
 * Avoid this "banned list"  of words to immediately improve the output: 
-    Delve, Unlock, Tapestry, Paradigm, Cutting-edge, Revolutionize, Landscape, Potential, Intricate, Meticulously, Vibrant, Unparalleled, Underscore, Leverage, Synergy, Groundbreaking, Holistic, Garner, Pioneering, Transformative, Seamless, Robust.
+    Delve, Unlock, Gating/Gated, Tapestry, Paradigm, Cutting-edge, Revolutionize, Landscape, Potential, Intricate, Meticulously, Vibrant, Unparalleled, Underscore, Leverage, Synergy, Groundbreaking, Holistic, Garner, Pioneering, Transformative, Seamless, Robust.

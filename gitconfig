@@ -122,3 +122,23 @@
         # rebase = true
 [pager]
 	diff = diffnav
+[delta]
+	light = true
+	syntax-theme = GitHub
+	line-numbers = true
+	file-style = omit
+	file-decoration-style = none
+	plus-style = syntax "#e6ffec"
+	plus-emph-style = syntax "#abf2bc"
+	minus-style = syntax "#ffebe9"
+	minus-emph-style = syntax "#f1aeb5"
+	zero-style = syntax
+	line-numbers-left-style = "#8c959f"
+	line-numbers-right-style = "#8c959f"
+	line-numbers-zero-style = "#8c959f"
+	line-numbers-plus-style = "#1a7f37"
+	line-numbers-minus-style = "#cf222e"
+	hunk-header-style = "#57606a" italic
+	hunk-header-decoration-style = "#d0d7de" ul
+	hunk-header-file-style = "#0057d1"
+	hunk-header-line-number-style = "#a018ff"

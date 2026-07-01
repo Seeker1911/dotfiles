@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "git status > /tmp/claude-git-context.txt && echo 'Development context loaded'"
+            "command": "git status > /tmp/claude-git-context.txt; echo 'Development context loaded'"
           }
         ]
       }
@@ -25,7 +25,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/pre-compact-handover.sh",
+            "command": "~/.claude/hooks/mempalace-mine.sh precompact",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/mempalace-mine.sh stop",
             "timeout": 30
           }
         ]
@@ -44,7 +56,8 @@
     "code-simplifier@claude-plugins-official": true,
     "atlassian@claude-plugins-official": true,
     "mempalace@mempalace": true,
-    "stripe@claude-plugins-official": true
+    "stripe@claude-plugins-official": true,
+    "trading-skills@agiprolabs-claude-trading-skills": true
   },
   "extraKnownMarketplaces": {
     "mempalace": {
@@ -52,11 +65,27 @@
         "source": "github",
         "repo": "milla-jovovich/mempalace"
       }
+    },
+    "marketingskills": {
+      "source": {
+        "source": "github",
+        "repo": "coreyhaines31/marketingskills"
+      }
+    },
+    "agiprolabs-claude-trading-skills": {
+      "source": {
+        "source": "github",
+        "repo": "agiprolabs/claude-trading-skills"
+      }
     }
   },
   "effortLevel": "xhigh",
+  "awaySummaryEnabled": false,
+  "tui": "default",
   "skipWorkflowUsageWarning": true,
   "theme": "light",
+  "editorMode": "vim",
+  "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
 }

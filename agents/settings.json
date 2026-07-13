@@ -1,5 +1,17 @@
 {
+  "model": "opus[1m]",
   "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/mempalace-mine.sh precompact",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "hooks": [
@@ -8,25 +20,14 @@
             "command": "git status > /tmp/claude-git-context.txt; echo 'Development context loaded'"
           }
         ]
-      }
-    ],
-    "UserPromptSubmit": [
+      },
       {
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/skill-simple-instruction-hook.sh"
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/mempalace-mine.sh precompact",
-            "timeout": 30
+            "command": "bash '/Users/michaelmead/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
           }
         ]
       }
@@ -42,6 +43,16 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/skill-simple-instruction-hook.sh"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -49,21 +60,22 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
     "atlassian@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
     "mempalace@mempalace": true,
+    "pyright-lsp@claude-plugins-official": true,
     "stripe@claude-plugins-official": true,
-    "trading-skills@agiprolabs-claude-trading-skills": true
+    "trading-skills@agiprolabs-claude-trading-skills": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "northflank@northflank": true
   },
   "extraKnownMarketplaces": {
-    "mempalace": {
+    "agiprolabs-claude-trading-skills": {
       "source": {
         "source": "github",
-        "repo": "milla-jovovich/mempalace"
+        "repo": "agiprolabs/claude-trading-skills"
       }
     },
     "marketingskills": {
@@ -72,14 +84,20 @@
         "repo": "coreyhaines31/marketingskills"
       }
     },
-    "agiprolabs-claude-trading-skills": {
+    "mempalace": {
       "source": {
         "source": "github",
-        "repo": "agiprolabs/claude-trading-skills"
+        "repo": "MemPalace/mempalace"
+      }
+    },
+    "northflank": {
+      "source": {
+        "source": "github",
+        "repo": "northflank/skills"
       }
     }
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "awaySummaryEnabled": false,
   "tui": "default",
   "skipWorkflowUsageWarning": true,

@@ -37,9 +37,9 @@ macos-titlebar-style = transparent
 macos-option-as-alt = true
 
 macos-icon = custom-style
-macos-icon-frame = plastic
-macos-icon-ghost-color = #E67B0E
-macos-icon-screen-color = #386C44
+macos-icon-frame = chrome
+macos-icon-ghost-color = #e80a89
+macos-icon-screen-color = #ffffff
 
 mouse-hide-while-typing = true
 

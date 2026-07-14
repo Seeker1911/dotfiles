@@ -26,8 +26,7 @@
       "Read(//opt/homebrew/Cellar/neovim/0.11.3/lib/nvim/parser/**)",
       "Bash(ls -la /Users/michaelmead/.local/share/nvim/lazy/nvim-treesitter/parser/vim.*)",
       "Bash(ls -la /Users/michaelmead/.local/lib/nvim/parser/vim.*)",
-      "Bash(ls -la /Users/michaelmead/.local/share/nvim/site/parser/vim.*)"
-      "Read(//Users/michaelmead/.config/ghostty/themes/**)"
+      "Bash(ls -la /Users/michaelmead/.local/share/nvim/site/parser/vim.*)",
       "Bash(scutil --get HostName)",
       "Bash(echo \"HostName: $\\(scutil --get HostName 2>/dev/null\\)\")",
       "Bash(scutil --get LocalHostName)",

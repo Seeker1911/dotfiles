@@ -1,5 +1,5 @@
-name: browser
 ---
+name: browser
 description: Use the `browse` cli tool to automate browser interaction with LLM
 allowed-tools: Bash(browse:*)
 ---

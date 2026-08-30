@@ -42,7 +42,9 @@ TRANSCRIPT_PATH="${TRANSCRIPT_PATH/#\~/$HOME}"
 { [ -n "$TRANSCRIPT_PATH" ] && [ -f "$TRANSCRIPT_PATH" ]; } || emit
 
 mine() {
-  nohup python3 -m mempalace mine "$(dirname "$TRANSCRIPT_PATH")" >> "$LOG" 2>&1 </dev/null &
+  # convos mode: the target is a transcript dir. Default 'projects' mode skips
+  # .jsonl entirely and requires a mempalace.yaml we don't want to maintain.
+  nohup python3 -m mempalace mine "$(dirname "$TRANSCRIPT_PATH")" --mode convos >> "$LOG" 2>&1 </dev/null &
 }
 
 if [ "$MODE" = "precompact" ]; then

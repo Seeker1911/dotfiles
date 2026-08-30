@@ -1,5 +1,5 @@
-name: audit-website
 ---
+name: audit-website
 description: Audit websites for SEO, technical, content, and security issues using squirrelscan CLI. Returns LLM-optimized reports with health scores, broken links, meta tag analysis, and actionable recommendations. Use when analyzing websites, debugging SEO issues, or checking site health.
 license: See LICENSE file in repository root
 compatibility: Requires squirrel CLI installed and accessible in PATH

@@ -17,14 +17,21 @@ brew "ack"
 # Strip or convert ANSI codes into HTML, (La)Tex, RTF, or BBCode
 brew "ansifilter"
 # JPEG image codec that aids compression and decompression
+brew "jpeg-turbo"
 # Library for manipulating PNG images
+brew "libpng"
 # General-purpose data compression with high compression ratio
+brew "xz"
 # TIFF library and utilities
+brew "libtiff"
 # New file format for still image compression
+brew "jpeg-xl"
 # Codec library for encoding and decoding AV1 video streams
+brew "aom"
 # Command-line tool for downloading APK files from various sources
 brew "apkeep"
 # GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
 # Download with resuming and segmented downloading
 brew "aria2"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -34,7 +41,9 @@ brew "aws-shell"
 # Simple command-line tool to read AWS CloudWatch logs
 brew "awslogs"
 # Text-based UI library
+brew "ncurses"
 # Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Draw boxes around text
@@ -44,6 +53,7 @@ brew "bzip2"
 # Extract files from Microsoft cabinet files
 brew "cabextract"
 # Core application library for C
+brew "glib"
 # CD/DVD/Blu-ray premastering and recording software
 brew "cdrtools"
 # Cross-platform make
@@ -51,11 +61,13 @@ brew "cmake"
 # Utility that creates projects from templates
 brew "cookiecutter"
 # GNU File, Shell, and Text utilities
+brew "coreutils"
 # Apjanke's fork of the classic cowsay project
 brew "cowsay"
 # Reimplementation of ctags(1)
 brew "ctags"
 # Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Load/unload environment variables based on $PWD
@@ -73,18 +85,29 @@ brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # International domain name library (IDNA2008, Punycode and TR46)
+brew "libidn2"
 # Validating, recursive, caching DNS resolver
+brew "unbound"
 # GNU Transport Layer Security (TLS) Library
+brew "gnutls"
 # OpenType text shaping engine
+brew "harfbuzz"
 # Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
 # Light HTTP/1.1 server library
+brew "libmicrohttpd"
 # Reliable Internet Stream Transport (RIST)
+brew "librist"
 # Framework for layout and rendering of i18n text
+brew "pango"
 # Secure Reliable Transport
+brew "srt"
 # OCR (Optical Character Recognition) engine
+brew "tesseract"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Development kit for the Java programming language
+brew "openjdk"
 # Database version control to control migrations
 brew "flyway"
 # Command-line outline and bitmap font editor/converter
@@ -92,6 +115,7 @@ brew "fontforge"
 # Infamous electronic fortune-cookie generator
 brew "fortune"
 # Command-line fuzzy finder written in Go
+brew "fzf"
 # GNU compiler collection
 brew "gcc"
 # GitHub command-line tool
@@ -109,10 +133,13 @@ brew "glances"
 # Render markdown on the CLI
 brew "glow"
 # Assuan IPC Library
+brew "libassuan"
 # GNU Privacy Guard (OpenPGP)
+brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Package compiler and linker metadata toolkit
+brew "pkgconf"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Log analysis TUI
@@ -120,6 +147,7 @@ brew "gonzo"
 # Open-source build automation tool based on the Groovy and Kotlin DSL
 brew "gradle"
 # Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # JavaScript Task Runner
 brew "grunt-cli"
 # GNU Ubiquitous Intelligent Language for Extensions
@@ -137,7 +165,9 @@ brew "hunk"
 # Command-line benchmarking tool
 brew "hyperfine"
 # ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
+brew "libheif"
 # Tools and libraries to manipulate images in select formats
+brew "imagemagick"
 # Dex to Java decompiler
 brew "jadx"
 # Load testing and performance measurement application
@@ -153,7 +183,9 @@ brew "lazysql"
 # Key-value storage library with ordered mapping
 brew "leveldb"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
+brew "libfido2"
 # C websockets server library
+brew "libwebsockets"
 # Rainbows and unicorns in your console!
 brew "lolcat"
 # Language Server for the Lua language
@@ -177,6 +209,7 @@ brew "mosquitto"
 # CLI for MySQL with auto-completion and syntax highlighting
 brew "mycli"
 # General-purpose lossless data-compression library
+brew "zlib"
 # Open source relational database management system
 brew "mysql", restart_service: :changed
 # Open source relational database management system
@@ -194,9 +227,11 @@ brew "ninja"
 # Port scanning utility for large networks
 brew "nmap"
 # Libraries for security-enabled client and server applications
+brew "nss"
 # Manage multiple Node.js versions
 brew "nvm"
 # Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # AI coding agent, built for the terminal
 brew "opencode"
 # Terminal User Interface (TUI) to view & control docker containers
@@ -208,6 +243,7 @@ brew "perl"
 # CLI for Postgres with auto-completion and syntax highlighting
 brew "pgcli"
 # General-purpose scripting language
+brew "php"
 # Python dependency management tool
 brew "pipenv"
 # Execute binaries from Python packages in isolated environments
@@ -225,6 +261,7 @@ brew "procs"
 # Monitor data's progress through a pipe
 brew "pv"
 # Python version management
+brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
 # Interpreted, interactive, object-oriented programming language
@@ -237,6 +274,8 @@ brew "python@3.12"
 brew "python@3.9"
 # Generic machine emulator and virtualizer
 brew "qemu"
+# Reverse engineering framework
+brew "radare2"
 # File browser
 brew "ranger"
 # Reattach process (e.g., tmux) to background
@@ -267,6 +306,8 @@ brew "tmux"
 brew "tree"
 # Parser generator tool
 brew "tree-sitter-cli"
+# Code review TUI with vim keybindings
+brew "tuicr"
 # Language Server Protocol implementation for TypeScript wrapping tsserver
 brew "typescript-language-server"
 # Compact tool for building and debugging applications for Flipper Zero
@@ -291,6 +332,8 @@ brew "zbar"
 brew "zoxide"
 # Terminal UI git diff viewer
 brew "jansmrcka/tap/differ", trusted: true
+# Command-line tools for building and debugging Android apps
+cask "android-commandlinetools"
 # Chromium based browser
 cask "arc"
 # Web browser focusing on privacy
@@ -303,7 +346,7 @@ cask "caffeine"
 cask "claude"
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
 cask "cmux"
-# Text editor
+# GNU Emacs text editor
 cask "emacs-app"
 # Collaborative team software
 cask "figma"
@@ -370,6 +413,8 @@ mas "Supernote Partner", id: 1494992020
 mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "ToothFairy", id: 1191449274
+mas "Vimari", id: 1480933944
+mas "Widgy", id: 1524540481
 mas "Xcode", id: 497799835
 cargo "dedoc"
 uv "awsui"

@@ -16,16 +16,6 @@ brew "aalib"
 brew "ack"
 # Strip or convert ANSI codes into HTML, (La)Tex, RTF, or BBCode
 brew "ansifilter"
-# JPEG image codec that aids compression and decompression
-brew "jpeg-turbo"
-# Library for manipulating PNG images
-brew "libpng"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# TIFF library and utilities
-brew "libtiff"
-# New file format for still image compression
-brew "jpeg-xl"
 # Codec library for encoding and decoding AV1 video streams
 brew "aom"
 # Command-line tool for downloading APK files from various sources
@@ -34,8 +24,12 @@ brew "apkeep"
 brew "gettext"
 # Download with resuming and segmented downloading
 brew "aria2"
+# Library for manipulating PNG images
+brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Integrated shell for working with the AWS CLI
 brew "aws-shell"
 # Simple command-line tool to read AWS CloudWatch logs
@@ -68,6 +62,10 @@ brew "cowsay"
 brew "ctags"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# JPEG image codec that aids compression and decompression
+brew "jpeg-turbo"
+# TIFF library and utilities
+brew "libtiff"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Load/unload environment variables based on $PWD
@@ -84,32 +82,16 @@ brew "erlang"
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# International domain name library (IDNA2008, Punycode and TR46)
-brew "libidn2"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
-# OpenType text shaping engine
-brew "harfbuzz"
-# Subtitle renderer for the ASS/SSA subtitle format
-brew "libass"
-# Light HTTP/1.1 server library
-brew "libmicrohttpd"
-# Reliable Internet Stream Transport (RIST)
-brew "librist"
-# Framework for layout and rendering of i18n text
-brew "pango"
-# Secure Reliable Transport
-brew "srt"
-# OCR (Optical Character Recognition) engine
-brew "tesseract"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# OpenType text shaping engine
+brew "harfbuzz"
 # Development kit for the Java programming language
 brew "openjdk"
 # Database version control to control migrations
 brew "flyway"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Command-line outline and bitmap font editor/converter
 brew "fontforge"
 # Infamous electronic fortune-cookie generator
@@ -118,8 +100,12 @@ brew "fortune"
 brew "fzf"
 # GNU compiler collection
 brew "gcc"
+# New file format for still image compression
+brew "jpeg-xl"
 # GitHub command-line tool
 brew "gh"
+# OCR (Optical Character Recognition) engine
+brew "tesseract"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
 # Distributed revision control system
@@ -132,6 +118,10 @@ brew "git-lfs"
 brew "glances"
 # Render markdown on the CLI
 brew "glow"
+# International domain name library (IDNA2008, Punycode and TR46)
+brew "libidn2"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
 # Assuan IPC Library
 brew "libassuan"
 # GNU Privacy Guard (OpenPGP)
@@ -182,8 +172,16 @@ brew "lazygit"
 brew "lazysql"
 # Key-value storage library with ordered mapping
 brew "leveldb"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# Light HTTP/1.1 server library
+brew "libmicrohttpd"
+# Reliable Internet Stream Transport (RIST)
+brew "librist"
 # C websockets server library
 brew "libwebsockets"
 # Rainbows and unicorns in your console!
@@ -292,6 +290,8 @@ brew "sd"
 brew "sevenzip"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Secure Reliable Transport
+brew "srt"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Modern and pretty fancy file manager for the terminal

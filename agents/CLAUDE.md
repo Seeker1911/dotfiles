@@ -24,6 +24,7 @@ In general use ASD-STE-100 as guidance on how to communicate.
 - write code in small reviewable chunks so it can be staged, commited, or modified by the user before moving on.
 - prefer small changes to large sweeping changes. Pause at natural stopping points for feedback.
 - use skills that are available. 
+- When asked for a doc, write-up or report that needs claims checked, use the verified-doc skill.
 
 ## When Planning
 - Look for existing documentation and notes, especially in a docs/ folder.

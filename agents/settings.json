@@ -1,17 +1,6 @@
 {
   "model": "opus[1m]",
   "hooks": {
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/mempalace-mine.sh precompact",
-            "timeout": 30
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "hooks": [
@@ -28,18 +17,6 @@
             "type": "command",
             "command": "bash '/Users/michaelmead/.claude/hooks/herdr-agent-state.sh' session",
             "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/mempalace-mine.sh stop",
-            "timeout": 30
           }
         ]
       }
@@ -64,43 +41,22 @@
     "code-simplifier@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
-    "mempalace@mempalace": true,
     "pyright-lsp@claude-plugins-official": true,
     "stripe@claude-plugins-official": true,
-    "trading-skills@agiprolabs-claude-trading-skills": true,
     "typescript-lsp@claude-plugins-official": true,
-    "northflank@northflank": true,
-    "finance-market-analysis@finance-skills": true
+    "northflank@northflank": true
   },
   "extraKnownMarketplaces": {
-    "agiprolabs-claude-trading-skills": {
-      "source": {
-        "source": "github",
-        "repo": "agiprolabs/claude-trading-skills"
-      }
-    },
     "marketingskills": {
       "source": {
         "source": "github",
         "repo": "coreyhaines31/marketingskills"
       }
     },
-    "mempalace": {
-      "source": {
-        "source": "github",
-        "repo": "MemPalace/mempalace"
-      }
-    },
     "northflank": {
       "source": {
         "source": "github",
         "repo": "northflank/skills"
-      }
-    },
-    "finance-skills": {
-      "source": {
-        "source": "github",
-        "repo": "himself65/finance-skills"
       }
     }
   },
@@ -125,34 +81,34 @@
   "autoMode": {
     "soft_deny": [
       "$defaults",
-      "Bash(make backup-db-prod:*) in /Users/michaelmead/code/precision-rifle-simulator — prod-named backup target",
-      "Bash(make migrate:production) in /Users/michaelmead/code/precision-rifle-simulator — production migration target",
-      "Bash(make stripe-subscription-cancel:*) in /Users/michaelmead/code/precision-rifle-simulator — real-world Stripe transaction"
+      "Bash(make backup-db-prod:*) in /Users/michaelmead/code/precision-rifle-simulator \u2014 prod-named backup target",
+      "Bash(make migrate:production) in /Users/michaelmead/code/precision-rifle-simulator \u2014 production migration target",
+      "Bash(make stripe-subscription-cancel:*) in /Users/michaelmead/code/precision-rifle-simulator \u2014 real-world Stripe transaction"
     ],
     "environment": [
       "### Org-wide",
       "**Organization**: None configured",
-      "**Cloud provider(s)**: AWS (from shell history: `aws` CLI, 34×) — no bucket names or account IDs corroborated by config scan or transcript usage",
+      "**Cloud provider(s)**: AWS (from shell history: `aws` CLI, 34\u00d7) \u2014 no bucket names or account IDs corroborated by config scan or transcript usage",
       "**Repository visibility**: private (Seeker1911/precision-rifle-simulator, per gh)",
-      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
-      "**Secrets management**: None configured — repo uses local `.env` files (gitignored: `.env`, `.env.test`, `.env.local`, `.env.*.local`, `docker.env`, `.env.production`, `*.key`)",
-      "**Default / protected branches**: main (default, per gh); no protected branches or rulesets listed (rulesets not queryable here — do not assume unprotected)",
+      "**Internal sharing / snippet hosting**: None configured \u2014 treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured \u2014 repo uses local `.env` files (gitignored: `.env`, `.env.test`, `.env.local`, `.env.*.local`, `docker.env`, `.env.production`, `*.key`)",
+      "**Default / protected branches**: main (default, per gh); no protected branches or rulesets listed (rulesets not queryable here \u2014 do not assume unprotected)",
       "**CI/CD deploy targets**: None configured",
       "**Network posture**: None configured",
       "**Source control**: github.com:Seeker1911/precision-rifle-simulator.git (origin) only",
       "**Trusted internal domains**: None configured",
       "**Trusted cloud buckets**: None configured",
-      "**Key internal services**: None configured — Makefile shows a `northflank` target/tool referenced in shell history (15×) but not corroborated as a bucket/service endpoint",
+      "**Key internal services**: None configured \u2014 Makefile shows a `northflank` target/tool referenced in shell history (15\u00d7) but not corroborated as a bucket/service endpoint",
       "**Internal package registry**: None configured",
-      "**Sensitive data locations & audiences**: `.env`, `.env.example`, `.env.test`, `.env.test.example` and other gitignored env files hold DB credentials, SMTP credentials, Stripe secret keys, and session secrets — keep restricted to local development use only, never commit or share",
+      "**Sensitive data locations & audiences**: `.env`, `.env.example`, `.env.test`, `.env.test.example` and other gitignored env files hold DB credentials, SMTP credentials, Stripe secret keys, and session secrets \u2014 keep restricted to local development use only, never commit or share",
       "**Data retention / declassification**: None configured",
-      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word/segment — Makefile shows `backup-db-prod` and `migrate:production` targets confirming this pattern is in active use",
-      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word/segment \u2014 Makefile shows `backup-db-prod` and `migrate:production` targets confirming this pattern is in active use",
+      "**Protected deployment namespaces / environments**: None configured \u2014 fall back to the Sensitive remote targets heuristic",
       "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
       "### User-specific",
-      "**Primary use of Claude Code**: software development (precision-rifle-simulator web app — Node/pnpm/Svelte)",
-      "**Trusted repo**: /Users/michaelmead/code/precision-rifle-simulator and its remote github.com:Seeker1911/precision-rifle-simulator.git (private) — confidential material may be committed here, but secrets/credentials are never cleared into the repo regardless of visibility",
-      "**Org-specific CLIs**: None configured — `northflank`, `sqlit`/`lazysql`, `hunk`, `mempalace`, `herdr` appear in shell history but are unconfirmed personal tools, not org-specific"
+      "**Primary use of Claude Code**: software development (precision-rifle-simulator web app \u2014 Node/pnpm/Svelte)",
+      "**Trusted repo**: /Users/michaelmead/code/precision-rifle-simulator and its remote github.com:Seeker1911/precision-rifle-simulator.git (private) \u2014 confidential material may be committed here, but secrets/credentials are never cleared into the repo regardless of visibility",
+      "**Org-specific CLIs**: None configured \u2014 `northflank`, `sqlit`/`lazysql`, `hunk`, `mempalace`, `herdr` appear in shell history but are unconfirmed personal tools, not org-specific"
     ]
   }
 }

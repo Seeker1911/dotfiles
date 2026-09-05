@@ -62,11 +62,10 @@ fi
 
 ln -sf "$dotfiles_dir/agents/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
-# Link skills directory to ~/.claude/skills
-if [[ -e "$HOME/.claude/skills" || -L "$HOME/.claude/skills" ]]; then
-	mv "$HOME/.claude/skills" "$backup_dir/" 2>/dev/null
-fi
-cp -r "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
+# Copy skills directory to ~/.claude/skills
+rm -rf "$backup_dir/skills"
+mv "$HOME/.claude/skills" "$backup_dir/" 2>/dev/null
+cp -R "$dotfiles_dir/agents/skills" "$HOME/.claude/skills"
 
 # Link commands directory to ~/.claude/commands
 if [[ -e "$HOME/.claude/commands" || -L "$HOME/.claude/commands" ]]; then

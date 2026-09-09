@@ -179,6 +179,13 @@ map("n", "<leader>gtl", function() gs().toggle_linehl() end, { desc = "Gitsigns:
 map("n", "<leader>gtw", function() gs().toggle_word_diff() end, { desc = "Gitsigns: Toggle word diff" })
 
 -- ========================================
+-- LSP
+-- ========================================
+map("n", "<leader>lL", function()
+    vim.cmd.tabnew(vim.fn.fnameescape(vim.lsp.log.get_filename()))
+end, { desc = "LSP: Open log" })
+
+-- ========================================
 -- LSP Diagnostics (under <leader>ld)
 -- ========================================
 map("n", "<leader>ldd", function()

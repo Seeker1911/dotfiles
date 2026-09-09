@@ -167,13 +167,13 @@ M.defaults = function()
 				enable = false,
 				mode = "all",
 			},
-			format = true,
+			format = false,
 			nodePath = "",
 			onIgnoredFiles = "off",
 			packageManager = "npm",
 			quiet = false,
 			rulesCustomizations = {},
-			run = "onType",
+			run = "onSave",
 			useESLintClass = false,
 			validate = "on",
 			workingDirectory = {
@@ -209,6 +209,33 @@ M.defaults = function()
 		},
 	})
 
+	-- Configure JSON LSP (schema validation for tsconfig, package.json)
+	vim.lsp.config("jsonls", {
+		cmd = { "vscode-json-language-server", "--stdio" },
+		filetypes = { "json", "jsonc" },
+		root_markers = { ".git" },
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		init_options = { provideFormatter = false },
+	})
+
+	-- Configure YAML LSP
+	vim.lsp.config("yamlls", {
+		cmd = { "yaml-language-server", "--stdio" },
+		filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
+		root_markers = { ".git" },
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		settings = {
+			yaml = {
+				format = { enable = false },
+				schemaStore = { enable = true, url = "https://www.schemastore.org/api/json/catalog.json" },
+			},
+		},
+	})
+
 	-- Configure Ruff (lint + fixes, defer hover to ty)
 	vim.lsp.config("ruff", {
 		cmd = { "ruff", "server" },
@@ -234,7 +261,7 @@ M.defaults = function()
 
 	-- Enable the LSP servers for relevant filetypes
 	vim.api.nvim_create_autocmd("FileType", {
-		pattern = { "lua", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "python" },
+		pattern = { "lua", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "python", "json", "jsonc", "yaml" },
 		callback = function(args)
 			local bufnr = args.buf
 			local clients = vim.lsp.get_clients({ bufnr = bufnr })
@@ -249,6 +276,9 @@ M.defaults = function()
 				typescriptreact = { "ts_ls", "eslint" },
 				svelte = { "svelte", "eslint" },
 				python = { "ruff", "ty" },
+				json = { "jsonls" },
+				jsonc = { "jsonls" },
+				yaml = { "yamlls" },
 			}
 
 			local servers_for_ft = filetype_to_servers[vim.bo[bufnr].filetype] or {}

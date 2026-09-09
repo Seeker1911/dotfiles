@@ -85,6 +85,30 @@ map("n", "<leader>ro", function()
     })
 end, { desc = "Ruff: organize imports" })
 
+-- TypeScript source actions (ts_ls)
+local ts_filetypes = {
+    typescript = true, typescriptreact = true,
+    javascript = true, javascriptreact = true,
+}
+
+local ts_action = function(kind)
+    return function()
+        if not ts_filetypes[vim.bo.filetype] then
+            vim.notify("TypeScript action, not a ts/js buffer", vim.log.levels.WARN)
+            return
+        end
+        vim.lsp.buf.code_action({
+            context = { only = { kind }, diagnostics = {} },
+            apply = true,
+        })
+    end
+end
+
+map("n", "<leader>co", ts_action("source.organizeImports.ts"), { desc = "TS: Organize imports" })
+map("n", "<leader>ci", ts_action("source.addMissingImports.ts"), { desc = "TS: Add missing imports" })
+map("n", "<leader>cu", ts_action("source.removeUnused.ts"), { desc = "TS: Remove unused" })
+map("n", "<leader>cx", ts_action("source.fixAll.ts"), { desc = "TS: Fix all" })
+
 -- ========================================
 -- Comments
 -- ========================================

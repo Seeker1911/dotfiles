@@ -7,6 +7,7 @@ local ensure_installed = {
 	"html-lsp",
 	"svelte-language-server",
 	"yaml-language-server",
+	"json-lsp",
 	"stylua",
 	"eslint_d",
 	"prettierd",

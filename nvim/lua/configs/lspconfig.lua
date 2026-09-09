@@ -1,8 +1,6 @@
 local M = {}
 local map = vim.keymap.set
 
-local servers = { "html", "ts_ls", "eslint", "ruff", "basedpyright" }
-
 -- export on_attach & capabilities
 M.on_attach = function(_, bufnr)
 	local function opts(desc)
@@ -56,7 +54,7 @@ end
 
 -- disable semanticTokens
 M.on_init = function(client, _)
-	if client.supports_method("textDocument/semanticTokens") then
+	if client:supports_method("textDocument/semanticTokens") then
 		client.server_capabilities.semanticTokensProvider = nil
 	end
 end
@@ -65,7 +63,7 @@ M.capabilities = require("blink.cmp").get_lsp_capabilities()
 
 M.defaults = function()
 	require("configs.lspDiagnostic").diagnostic_config()
-	vim.lsp.set_log_level("WARN")
+	vim.lsp.log.set_level("WARN")
 
 	-- Configure lua_ls
 	vim.lsp.config("lua_ls", {
@@ -217,40 +215,27 @@ M.defaults = function()
 		},
 	})
 
-	-- Configure Ruff (linting + formatting, defer hover to basedpyright)
+	-- Configure Ruff (lint + fixes, defer hover to ty)
 	vim.lsp.config("ruff", {
-		cmd = { "ruff", "server", "--preview" },
+		cmd = { "ruff", "server" },
 		filetypes = { "python" },
-		root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
+		root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
 		on_attach = function(client, bufnr)
 			client.server_capabilities.hoverProvider = false
 			M.on_attach(client, bufnr)
 		end,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
-		settings = {
-			configuration = vim.fn.expand((os.getenv("XDG_CONFIG_HOME") or os.getenv("HOME") .. "/.config") .. "/ruff/pyproject.toml"),
-			configurationPreference = "filesystemFirst",
-		},
 	})
 
-	-- Configure basedpyright (type checking, completions, auto-imports, hover)
-	vim.lsp.config("basedpyright", {
-		cmd = { "basedpyright-langserver", "--stdio" },
+	-- Configure ty (type checking, completions, hover, navigation)
+	vim.lsp.config("ty", {
+		cmd = { "ty", "server" },
 		filetypes = { "python" },
-		root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", "pyrightconfig.json", ".git" },
+		root_markers = { "ty.toml", "pyproject.toml", ".git" },
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
-		settings = {
-			basedpyright = {
-				analysis = {
-					autoSearchPaths = true,
-					useLibraryCodeForTypes = true,
-					diagnosticMode = "openFilesOnly",
-				},
-			},
-		},
 	})
 
 	-- Enable the LSP servers for relevant filetypes
@@ -269,7 +254,7 @@ M.defaults = function()
 				typescript = { "ts_ls", "eslint" },
 				typescriptreact = { "ts_ls", "eslint" },
 				svelte = { "svelte", "eslint" },
-				python = { "ruff", "basedpyright" },
+				python = { "ruff", "ty" },
 			}
 
 			local servers_for_ft = filetype_to_servers[vim.bo[bufnr].filetype] or {}

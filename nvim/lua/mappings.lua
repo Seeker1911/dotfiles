@@ -35,7 +35,7 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "copy whole file" })
 
 -- Line numbers
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
+map("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 
 -- Keep visual selection when indenting
 map("v", "<", "<gv", { desc = "indent left and reselect" })
@@ -51,9 +51,11 @@ map("v", "p", '"_dP', { desc = "paste without yanking" })
 -- ========================================
 -- Formatting
 -- ========================================
-map("n", "<leader>fm", function()
-    require("conform").format({ lsp_fallback = true })
-end, { desc = "Conform: format file" })
+local format_buffer = function()
+    require("conform").format({ lsp_format = "fallback" })
+end
+map("n", "<leader>lf", format_buffer, { desc = "Format buffer" })
+map("n", "<leader>fm", format_buffer, { desc = "Format buffer" })
 
 -- Ruff specific commands (Python)
 map("n", "<leader>rf", function()
@@ -179,10 +181,11 @@ map("n", "<leader>gtw", function() gs().toggle_word_diff() end, { desc = "Gitsig
 -- ========================================
 -- LSP Diagnostics (under <leader>ld)
 -- ========================================
-map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "LSP: Line diagnostic" })
+map("n", "<leader>ldd", function()
+    vim.diagnostic.open_float({ scope = "cursor" })
+end, { desc = "LSP: Cursor diagnostic" })
+map("n", "<leader>ldL", vim.diagnostic.open_float, { desc = "LSP: Line diagnostic" })
 map("n", "<leader>ldl", vim.diagnostic.setloclist, { desc = "LSP: Diagnostic loclist" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "LSP: Previous diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "LSP: Next diagnostic" })
 
 -- ========================================
 -- Code Folding

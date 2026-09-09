@@ -87,6 +87,7 @@ When your changes create orphans:
 - Don't use git comamnds.
 - Don't access the database unless explicitely directed to. 
 - Don't write long prose when a short response will suffice.
+- Don't speak in aphorisms. Use more natural language.
 
 ## Technical Discussion Guidelines
 - Assume I understand common programming concepts without over-explaining. Often, less words are better than more words.

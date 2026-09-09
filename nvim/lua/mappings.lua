@@ -216,26 +216,25 @@ end, { desc = "WhichKey: query lookup" })
 -- ========================================
 -- Test Runners
 -- ========================================
-map("n", "<leader>rt", function()
+map("n", "<leader>Tr", function()
     local file = vim.fn.expand("%")
     local cur_ft = vim.bo.filetype
 
     local runners = {
         javascript = "npm test " .. file,
         typescript = "pnpm ts " .. file,
-        python = "pytest " .. file .. " -v",
     }
 
     local cmd = runners[cur_ft]
     if not cmd then
-        vim.notify("no runner for " .. cur_ft, vim.log.levels.ERROR)
+        vim.notify("no terminal runner for " .. cur_ft .. ", use <leader>Tt", vim.log.levels.ERROR)
         return
     end
 
     vim.cmd("vsplit")
     vim.cmd("terminal " .. cmd)
     vim.cmd("startinsert")
-end, { desc = "Run test file" })
+end, { desc = "Neotest: Terminal fallback runner" })
 
 -- ========================================
 -- Theme & UI Toggles

@@ -97,7 +97,7 @@ return {
     -- lsp stuff
     {
         "williamboman/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonUpdate", "MasonLog" },
+        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonUpdate", "MasonLog" },
         opts = function()
             return require("configs.mason")
         end,

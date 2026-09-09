@@ -4,13 +4,16 @@ return {
 	delay = 500,
 	spec = {
 		{ "<leader>f", group = "Find", icon = "󰍉" },
+		{ "<leader>fm", hidden = true },
 		{ "<leader>fl", group = "LSP", icon = "" },
 		{ "<leader>fv", group = "Vim", icon = "" },
 		{ "<leader>fh", group = "History", icon = "" },
 		{ "<leader>a", group = "AI", icon = "" },
 		{ "<leader>x", group = "Terminal", icon = "" },
 		{ "<leader>c", group = "Code", icon = "" },
-		{ "<leader>r", group = "Ruff/Refactor", icon = "" },
+		{ "<leader>r", group = "Ruff", icon = "" },
+		{ "<leader>t", group = "Toggle", icon = "󰔡" },
+		{ "<leader>T", group = "Test", icon = "󰙨" },
 		{ "<leader>9", group = "99 Agent", icon = "" },
 		{ "<leader>b", group = "Buffer", icon = "" },
 

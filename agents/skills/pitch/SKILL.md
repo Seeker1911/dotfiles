@@ -3,6 +3,7 @@ description: Write a pitch meeting document based on outcomes from feature plann
 compatibility: All
 user-invocable: true
 allowed-tools: Bash(mcp:*),  Write(//Users/michaelmead/Documents/**)
+skills: /peek-pitch
 ---
 
 # Write a pitch skill
@@ -40,105 +41,9 @@ dependencies or real risks. Say so when handing it over. It is the start of the 
 ## Audience
 engineering leads, product, technical executives
 
-# Critical, the format must contain the following sections
-1. Task / Story
+## implementation
+use the peek-pitch skill for rules on the document writing.
 
-What is being proposed, in one or two sentences. Link to the ticket(s) or project tracker.
-
-2. Goal
-
-The product goal this work serves. Not "what we're building" — why we're building it. What changes for the customer, the business, or the product when this is done?
-Dont start with the solution, start with the problem.
-
-Success must be a number, not a description. State the metric, where it stands today, where it
-has to get to, and by when. "The feature works" is not success. A target with no baseline behind
-it is not a target. The number is not a report card, it is what tells you which solution to build
-and which scope is safe to cut, so use it while planning rather than adding it at the end.
-
-State the business priority and the business timing here. If Product has a date, give it and the
-reason behind it. If there is no date, say there is none.
-
-3. Non-Technical Explanation
-
-A plain-language description of what needs to happen to achieve the goal, written so that a product partner or non-engineer can follow it end-to-end.
-
-Include:
-
-The user-facing or business-facing flow.
-
-The major pieces of work and the order they need to happen in.
-
-Dependencies on other stories, tasks, teams, or systems — name the work, name the owner, and state what would happen if that dependency slipped. A missing design, decision or upstream
-team is named here, never quietly worked around. If something was asked for and not received,
-that is stated, not absorbed.
-
-4. Technical Details
-
-Enough technical depth that another engineer can see a clear roadmap to get this done and can help identify gaps. This typically includes:
-
-The approach and key design decisions, and the alternatives that were considered and rejected.
-
-Data model, API surface, or system boundaries that change.
-
-Migration, rollout, or backfill plans where relevant.
-
-Testing and observability plan.
-
-5. Risks and Mitigations
-
-Risks should not be something true of all software ("the code may fail", "AWS may go down") or a task we already planned to do.
-The risks that matter, the ones caused by a decision we made in the plan, that could stop us from succeeding, now or later, are the risks we care about. These may be product related risks or technical risks.
-
-Walk what was chosen, what was skipped, and what was left for later. For each one state four
-things: what it costs, who pays it, when they pay it, and what you want done about it. A risk
-nobody can act on is not a risk. A thing you are simply relying on is an assumption, so it
-belongs in section 6. If you asked for something you needed and did not get it, that is a risk
-and it goes here.
-
-6. Assumptions/Dependencies
-
-The things that must be true for this plan to work, but which are not stated goals of the project. These are load-bearing claims, not risks — risks are things we plan to mitigate; assumptions are things we are relying on.
-Examples:
-
-"Team X ships their new API by [date],"
-
-"I am using technology X because it is the only way to do this work"
-
-"In the future we need to do X to scale to Y"
-
-"we keep the current auth model through Q3,"
-
-"the third-party integration's rate limit doesn't change."
-
-If an assumption turns out to be wrong, the plan needs to be revisited — surfacing it here makes these decisions easier to spot later.
-
-7. Work-streams and Effort
-
-Never write calendar dates. We do not know when the work starts, and an invented start date is
-worse than no date. Size in effort and sequence relatively.
-
-Break the project into work-streams. A work-stream is a piece of work with a clean boundary
-that can be owned and sized on its own. Each one gets: the boundary, the effort, what it depends
-on, and whether it can run in parallel with the others. Breaking them out is what shows the real
-size of the work and what lets someone else pick up a piece.
-
-Do not name individual developers. That is this author's standing convention. But the staffing
-gap must still be visible: state how many work-streams can run in parallel and how many people
-that needs. If there are more work-streams than people available, say so plainly. Never quietly
-plan for one person to carry all of them, and never fold one work-stream into another to make
-the gap disappear.
-
-Express effort in days per work-stream and give a total calendar range for a stated number of
-people. Relative sequencing only: "second week", "after the flag flip", "parallel with X".
-
-Sizing discipline: a pitch should describe work that fits in about 2 to 3 weeks in total,
-including testing, PR review and deployment. If the plan comes out larger than that, the scope
-is wrong or it is more than one pitch. Cut it or split it, and say which. Do not pad estimates,
-and do not inflate a milestone to look thorough.
-
-Knowing the available time is not a reason to cut correct work. It is how the right solution
-gets chosen in the first place. When the effort and the business timing do not agree, say so
-plainly in this section. That disagreement is the single most useful thing to bring into the room.
 
 ## Common structural patterns to avoid
 * Heavy use of bullet lists: Most of the piece is short bullets instead of developed paragraphs with examples or nuance.

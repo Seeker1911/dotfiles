@@ -58,6 +58,7 @@ This helps in identifying potential issues and ensures that the overall architec
 - No "flexibility" or "configurability" that wasn't requested.
 - No error handling for impossible scenarios.
 - If you write 200 lines and it could be 50, rewrite it.
+- For new non-trivial logic (a branch, a loop, a parser, money or security code), propose one small test. Trivial changes need none.
 
 Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
@@ -70,6 +71,13 @@ When editing existing code:
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.
 - If you notice unrelated dead code, mention it - don't delete it.
+
+When fixing a bug:
+- Find every caller of the function before you edit it.
+- Fix the root cause once, in the shared code. Do not patch each call site.
+
+When moving or merging code:
+- Keep its error handling and validation.
 
 When your changes create orphans:
 - Remove imports/variables/functions that YOUR changes made unused.
@@ -132,3 +140,4 @@ When your changes create orphans:
 - **Question every DB call** - is this data actually used downstream?
 - **If passing data "just in case"** - stop and ask, don't add speculative code
 - **No defensive type checking** - code should be deterministic, types should be correct at the source
+- **Never cut checks at trust boundaries** - validate user input, external API data, and file contents. Keep error handling that prevents data loss. Keep security and accessibility code. "No defensive code" applies only to data we own.

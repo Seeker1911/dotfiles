@@ -73,10 +73,11 @@ ZSH_THEME="mp"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git aws alias-finder 1password brew docker dotenv macos man mosh node pyenv python tailscale fzf gh github gitignore keychain npm nvm pip per-directory-history ssh stripe vi-mode vim-interaction yarn web-search)
-plugins=(git aws alias-finder 1password brew docker macos man mosh node pyenv python tailscale fzf gh github gitignore keychain npm nvm pip per-directory-history ssh stripe vi-mode vim-interaction yarn web-search)
+# plugins=(git aws alias-finder 1password brew docker dotenv macos man mosh node pyenv python tailscale fzf gh gitignore keychain npm nvm pip per-directory-history ssh stripe vi-mode vim-interaction yarn web-search)
+plugins=(git aws alias-finder 1password brew docker macos man mosh node pyenv python tailscale fzf gh gitignore keychain npm nvm pip ssh stripe vi-mode vim-interaction yarn web-search)
 
 source $ZSH/oh-my-zsh.sh
+unsetopt hist_ignore_space
 
 # User configuration
 
@@ -114,12 +115,9 @@ alias cleangit='git branch | grep -vE "(^\*|master|develop|main)" | xargs git br
 alias peek="AWS_PROFILE=peek-dev npx @peek-tech/peek-cli"
 alias peek-env="npx @peek-tech/peek-cli get-env --prefix /apps/consumer/backend/"
 alias peek-sso="aws sso login --sso-session peek"
-alias posting-dev='posting --collection
-~/posting/discovery-backend/collection'
-alias posting-prod='posting --collection
-~/posting/discovery-backend/collection --env
-~/posting/discovery-backend/posting.env --env
-~/posting/discovery-backend/prod.env'
+alias posting-dev='posting --collection ~/posting/discovery-backend/collection --env ~/posting/discovery-backend/posting.env'
+alias posting-prod='posting --collection ~/posting/discovery-backend/collection --env ~/posting/discovery-backend/posting.env --env ~/posting/discovery-backend/prod.env'
+alias posting-notifications='posting --collection ~/posting/notifications/collection --env ~/posting/notifications/posting.env'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR='nvim'

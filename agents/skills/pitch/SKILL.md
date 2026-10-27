@@ -20,6 +20,7 @@ already failed.
 Use the plan skill to decide on requirements for a feature
 Use the /grill-me skill to drill down on decisions with the developer until there is absolute mutual understanding.
 Dont default to very long output in examples and responses, information is easily missed that way.
+A Pitch is always to be treated like "this is work to do". We may have created a POC or done work towards it. That just helps inform the Pitch.
 
 Before writing, establish these three things. Ask if they are not known.
 1. What the business priority is right now. Not the author's next task, the top priority.

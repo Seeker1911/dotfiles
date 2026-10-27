@@ -34,7 +34,8 @@ opt.foldtext = ""
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     callback = function(args)
-        if pcall(vim.treesitter.get_parser, args.buf) then
+        local parser = vim.treesitter.get_parser(args.buf, nil, { error = false })
+        if parser and vim.treesitter.query.get(parser:lang(), "folds") then
             vim.opt_local.foldmethod = "expr"
             vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         else

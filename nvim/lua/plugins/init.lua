@@ -30,7 +30,7 @@ return {
             require("nvim-treesitter").install({
                 "python", "vim", "lua", "luadoc", "printf", "vimdoc",
                 "html", "css", "svelte", "javascript", "typescript",
-                "bash", "regex", "sql",
+                "bash", "regex", "sql", "json",
             })
             vim.api.nvim_create_autocmd("FileType", {
                 callback = function(args)

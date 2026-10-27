@@ -1,6 +1,5 @@
 {
   "cleanupPeriodDays": 30,
-  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {

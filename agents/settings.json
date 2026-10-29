@@ -65,6 +65,9 @@
     },
     "claude-fable-5-1": {
       "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
     }
   },
   "awaySummaryEnabled": false,
@@ -108,5 +111,10 @@
       "**Trusted repo**: /Users/michaelmead/code/precision-rifle-simulator and its remote github.com:Seeker1911/precision-rifle-simulator.git (private) — confidential material may be committed here, but secrets/credentials are never cleared into the repo regardless of visibility",
       "**Org-specific CLIs**: None configured — `northflank`, `sqlit`/`lazysql`, `hunk`, `mempalace`, `herdr` appear in shell history but are unconfirmed personal tools, not org-specific"
     ]
-  }
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "includeCoAuthoredBy": false
 }

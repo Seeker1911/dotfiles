@@ -22,10 +22,10 @@ brew "aom"
 brew "apkeep"
 # GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
+# Command-line interface for SQLite
+brew "sqlite"
 # Download with resuming and segmented downloading
 brew "aria2"
-# Library for manipulating PNG images
-brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # General-purpose data compression with high compression ratio
@@ -46,6 +46,8 @@ brew "boxes"
 brew "bzip2"
 # Extract files from Microsoft cabinet files
 brew "cabextract"
+# Library for manipulating PNG images
+brew "libpng"
 # Core application library for C
 brew "glib"
 # CD/DVD/Blu-ray premastering and recording software
@@ -71,7 +73,7 @@ brew "diff-so-fancy"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Pack, ship and run any application as a lightweight container
-brew "docker"
+brew "docker", link: false
 # Isolated development environments using Docker
 brew "docker-compose"
 # More intuitive version of du in rust
@@ -104,6 +106,8 @@ brew "gcc"
 brew "jpeg-xl"
 # GitHub command-line tool
 brew "gh"
+# Multi-platform software reverse engineering framework
+brew "ghidra"
 # OCR (Optical Character Recognition) engine
 brew "tesseract"
 # Interpreter for PostScript and PDF
@@ -136,8 +140,6 @@ brew "gobject-introspection"
 brew "gonzo"
 # Open-source build automation tool based on the Groovy and Kotlin DSL
 brew "gradle"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # JavaScript Task Runner
 brew "grunt-cli"
 # GNU Ubiquitous Intelligent Language for Extensions
@@ -176,8 +178,8 @@ brew "leveldb"
 brew "libass"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
+# Library to communicate with iOS devices natively
+brew "libimobiledevice"
 # Light HTTP/1.1 server library
 brew "libmicrohttpd"
 # Reliable Internet Stream Transport (RIST)
@@ -186,8 +188,12 @@ brew "librist"
 brew "libwebsockets"
 # Rainbows and unicorns in your console!
 brew "lolcat"
+# Powerful, lightweight programming language
+brew "lua"
 # Language Server for the Lua language
 brew "lua-language-server"
+# Powerful, lightweight programming language
+brew "lua@5.4"
 # Package manager for the Lua programming language
 brew "luarocks"
 # Text-based web browser
@@ -196,22 +202,26 @@ brew "lynx"
 brew "markdownlint-cli"
 # Mac App Store command-line interface
 brew "mas"
+# Cryptographic & SSL/TLS library
+brew "mbedtls@3"
 # Scalable distributed version control system
 brew "mercurial"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Fast and user friendly build system
+brew "meson"
 # Simple tool to make locally trusted development certificates
 brew "mkcert"
 # MongoDB Shell to connect, configure, query, and work with your MongoDB database
 brew "mongosh"
+# Remote terminal application
+brew "mosh"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
 # CLI for MySQL with auto-completion and syntax highlighting
 brew "mycli"
-# General-purpose lossless data-compression library
-brew "zlib"
 # Open source relational database management system
-brew "mysql", restart_service: :changed
-# Open source relational database management system
-brew "mysql-client"
+brew "mysql@9.7", link: true, restart_service: :changed, pin: true
 # Interactive cheatsheet tool for the command-line
 brew "navi"
 # NCurses Disk Usage
@@ -220,8 +230,6 @@ brew "ncdu"
 brew "neovim"
 # HTTP/2 C Library
 brew "nghttp2"
-# Small build system for use with gyp or CMake
-brew "ninja"
 # Port scanning utility for large networks
 brew "nmap"
 # Libraries for security-enabled client and server applications
@@ -232,6 +240,8 @@ brew "nvm"
 brew "ripgrep"
 # AI coding agent, built for the terminal
 brew "opencode"
+# Libosmium-based command-line tool for processing OpenStreetMap data
+brew "osmium-tool"
 # Terminal User Interface (TUI) to view & control docker containers
 brew "oxker"
 # Swiss-army knife of markup format conversion
@@ -276,6 +286,8 @@ brew "qemu"
 brew "radare2"
 # File browser
 brew "ranger"
+# JSON parser/generator for C++ with SAX and DOM style APIs
+brew "rapidjson"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Persistent key-value database, with built-in net interface
@@ -288,6 +300,8 @@ brew "rust"
 brew "sd"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
+# Library for reading and writing ArcView Shapefiles
+brew "shapelib"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Secure Reliable Transport
@@ -312,6 +326,8 @@ brew "tuicr"
 brew "typescript-language-server"
 # Compact tool for building and debugging applications for Flipper Zero
 brew "ufbt"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Pager/text based browser
@@ -328,9 +344,11 @@ brew "yarn"
 brew "yt-dlp"
 # Suite of barcodes-reading tools
 brew "zbar"
+# General-purpose lossless data-compression library
+brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# Terminal UI git diff viewer
+# Terminal-native review interface for Git changes
 brew "jansmrcka/tap/differ", trusted: true
 # Command-line tools for building and debugging Android apps
 cask "android-commandlinetools"
@@ -365,6 +383,8 @@ cask "ghostty"
 cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
+# Tool to prevent the system from going into sleep mode
+cask "keepingyouawake"
 # Open-source keystroke visualiser
 cask "keycastr"
 # Clipboard manager
@@ -375,6 +395,8 @@ cask "microsoft-edge"
 cask "ngrok"
 # Local-first alternative to Logitech Options+ for HID++ devices
 cask "openlogi"
+# Android file transfer
+cask "openmtp"
 # Browse, manage, inspect containers and images
 cask "podman-desktop"
 # Move and resize windows using keyboard shortcuts or snap areas
@@ -413,18 +435,9 @@ mas "Supernote Partner", id: 1494992020
 mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "ToothFairy", id: 1191449274
-mas "Vimari", id: 1480933944
 mas "Widgy", id: 1524540481
 mas "Xcode", id: 497799835
 cargo "dedoc"
 uv "awsui"
 uv "harlequin[mysql,postgres,s3]"
 uv "posting"
-npm "@googleworkspace/cli"
-npm "@northflank/cli"
-npm "@peek-tech/peek-cli"
-npm "aws-cdk"
-npm "browse"
-npm "corepack"
-npm "serverless"
-npm "tsx"

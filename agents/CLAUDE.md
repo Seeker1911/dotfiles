@@ -93,7 +93,7 @@ When your changes create orphans:
 - Don't hedge criticism excessively - be direct but professional
 - Don't treat subjective preferences as objective improvements
 - Don't use deprecated functions or libraries.
-- Don't use git comamnds.
+- Don't use write git comamnds. You can run things like `git status` or branches/remotes. Stage, commit, and push are up to the user unless otherwise notified. 
 - Don't access the database unless explicitely directed to. 
 - Don't write long prose when a short response will suffice.
 - Don't speak in aphorisms. Use more natural language.

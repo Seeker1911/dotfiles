@@ -1,5 +1,10 @@
 {
   "cleanupPeriodDays": 30,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "includeCoAuthoredBy": false,
   "hooks": {
     "SessionStart": [
       {
@@ -112,9 +117,5 @@
       "**Org-specific CLIs**: None configured — `northflank`, `sqlit`/`lazysql`, `hunk`, `mempalace`, `herdr` appear in shell history but are unconfirmed personal tools, not org-specific"
     ]
   },
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
-  "includeCoAuthoredBy": false
+  "switchModelsOnFlag": true
 }
